@@ -18,7 +18,7 @@
 				<a href="/travelers/admin.do">관리자페이지</a><p/>
 			</c:if>
 			
-			<a href="/travelers/memberInfo.do">내정보</a>&nbsp;&nbsp;
+			<a href="/travelers/memberInfo.do">내정보1</a>&nbsp;&nbsp;
 			<a href="/travelers/logout.do">로그아웃</a><p/>
 			<a href="/travelers/fileUpload.do">파일업로드</a>
 		</c:when>
