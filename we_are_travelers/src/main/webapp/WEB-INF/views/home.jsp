@@ -15,7 +15,7 @@
 		<c:when test="${member_id != null}"><!-- 로그인이 이루어진 경우 -->
 		
 			<c:if test="${member_grade != 0}"><!-- member_grade: 0(일반회원), 1(관리자), 2(슈퍼관리자) -->
-				<a href="/travelers/admin.do">관리자페이지1</a><p/>
+				<a href="/travelers/admin.do">관리자페이지</a><p/>
 			</c:if>
 			
 			<a href="/travelers/memberInfo.do">내정보</a>&nbsp;&nbsp;
