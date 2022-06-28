@@ -7,7 +7,7 @@
 <body>
 <h2>Hello, Administrator!</h2>
 
-<h3>  관리자 페이지입니다... </h3>
+<h3>  관리자 페이지입니다...2 </h3>
 
 <hr/>
 
