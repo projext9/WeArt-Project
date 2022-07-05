@@ -22,8 +22,7 @@
 	</beans:bean>
 	
 	<!-- 파일 업로드 -->
-	<beans:bean id="multipartResolver" 
-	              class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>
 	
 	<context:component-scan base-package="we.are.travelers.controller" />

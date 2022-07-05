@@ -1,17 +1,17 @@
 package we.are.travelers.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import we.are.travelers.service.BoardService;
 
 @Controller
 public class HomeController {
@@ -24,6 +24,16 @@ public class HomeController {
 	@GetMapping("/home.do")//get방식 요청 처리
 	public String home2() {
 		return "home";
+	}
+	
+	@GetMapping("/test2.do")//get방식 요청 처리
+	public String test2() {
+		return "test2";
+	}
+	
+	@GetMapping("/aaa.do")//get방식 요청 처리
+	public String aaa() {
+		return "aaa";
 	}
 	
 	@GetMapping("/fileUpload.do")//get방식 요청 처리
@@ -71,70 +81,115 @@ public class HomeController {
 	 */
 	
 	
-	@PostMapping("/fileUploadProcess.do")
-	public String fileUploadProcess(@RequestParam("uploadFile") MultipartFile uploadFile,
-			String content, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
-		//<input type ="file" name="uploadFile" />에서 업로드된 파일객체를 MultipartFile uploadFile에 저장
-		
-		//업로드된 파일을 프로젝트 내의 upload 폴더에 저장하기 전에 DB의 upload_file 테이블에 저장할 
-		//origin_filename과 system_filename 값을 세팅함
-		
-		String origin_fileName = uploadFile.getOriginalFilename();
-		
-		//시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
-		int dot_idx = origin_fileName.lastIndexOf(".");
-		String fileName1 = origin_fileName.substring(0, dot_idx);
-		String extension = origin_fileName.substring(dot_idx+1);
-		String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
-		String system_fileName = fileName2+"."+extension;
-		
-		//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
-		String upload_dir = "resources/upload/";
-		
-		String realPath = request.getServletContext().getRealPath(upload_dir);
-		System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
-		
-		//지정된 경로에 파일 저장
-		//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
-		String fullPath = realPath+system_fileName;
-		uploadFile.transferTo(new File(fullPath));
-		
-		
-		//파일업로드가 정상적으로 이루어진 것을 gallery_home.jsp에서 확인
-		//model객체에 입력내용(content)와 system_fileName을 추가함
-		//model.addAttribute("content", content);
-		//model.addAttribute("fileName", system_fileName);
-		
-		//파일 업로드 디렉토리에 저장된 모든 파일이름을 가져와서 model객체에 추가
-		/*File[] files = new File(realPath).listFiles();
-		String[] fileNames = new String[files.length];
-		
-		for(int i=0; i<files.length; i++) {
-			fileNames[i] = files[i].getName();
-		}*/
-		
-		String[] fileNames = new File(realPath).list();
-		model.addAttribute("fileNames", fileNames);
-		
-		
-		return "gallery/gallery_home";
+//	@PostMapping("/fileUploadProcess.do")
+//	public String fileUploadProcess(@RequestParam("uploadFile") MultipartFile uploadFile,
+//			String content, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
+//		//<input type ="file" name="uploadFile" />에서 업로드된 파일객체를 MultipartFile uploadFile에 저장
+//		
+//		//업로드된 파일을 프로젝트 내의 upload 폴더에 저장하기 전에 DB의 upload_file 테이블에 저장할 
+//		//origin_filename과 system_filename 값을 세팅함
+//		
+//		String origin_fileName = uploadFile.getOriginalFilename();
+//		
+//		//시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
+//		int dot_idx = origin_fileName.lastIndexOf(".");
+//		String fileName1 = origin_fileName.substring(0, dot_idx);
+//		String extension = origin_fileName.substring(dot_idx+1);
+//		String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
+//		String system_fileName = fileName2+"."+extension;
+//		
+//		//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+//		String upload_dir = "resources/upload/";
+//		
+//		String realPath = request.getServletContext().getRealPath(upload_dir);
+//		System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+//		
+//		//지정된 경로에 파일 저장
+//		//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
+//		String fullPath = realPath+system_fileName;
+//		uploadFile.transferTo(new File(fullPath));
+//		
+//		
+//		//파일업로드가 정상적으로 이루어진 것을 gallery_home.jsp에서 확인
+//		//model객체에 입력내용(content)와 system_fileName을 추가함
+//		//model.addAttribute("content", content);
+//		//model.addAttribute("fileName", system_fileName);
+//		
+//		//파일 업로드 디렉토리에 저장된 모든 파일이름을 가져와서 model객체에 추가
+//		/*File[] files = new File(realPath).listFiles();
+//		String[] fileNames = new String[files.length];
+//		
+//		for(int i=0; i<files.length; i++) {
+//			fileNames[i] = files[i].getName();
+//		}*/
+//		
+//		String[] fileNames = new File(realPath).list();
+//		model.addAttribute("fileNames", fileNames);
+//		
+//		
+//		return "gallery/gallery_home";
+//	}
+	
+//	// ckeditor test2
+//	private String getServerIp() {
+//		
+//		InetAddress local = null;
+//		try {
+//			local = InetAddress.getLocalHost();
+//		}catch(UnknownHostException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		if(local == null) {
+//			return "";
+//		}else {
+//			String ip = local.getHostAddress();
+//			return ip;
+//		}
+//		
+//	}
+//	@RequestMapping("/imageUploadProcess.do")
+//	public ModelAndView image(@RequestParam Map<String, Object> map, MultipartHttpServletRequest request)
+//		throws Exception {
+//		
+//		ModelAndView mv = new ModelAndView("jsonView");
+//		Map<String, Object> resultMap = new HashMap<String, Object>();
+//		String imageServerPath = null;
+//		String savePath = null;
+//		String originImagename = null;
+//		String imageName = null;
+//		String extension = null;
+//		
+//		List<MultipartFile> imageList = request.getFiles("upload");
+//		
+//		for(MultipartFile mf : imageList) {
+//			if(imageList.get(0).getSize()>0) {
+//				
+//				originImagename = mf.getOriginalFilename();
+//				extension = FilenameUtils.getExtension(originImagename);
+//				imageName = "img_" + UUID.randomUUID() + "." + extension;
+//				savePath = EgovProperties.getProperty("Globals.EditerImagePath");
+//				
+//				File imageUpload = new File(savePath + imageName);
+//				try {
+//					mf.transferTo(imageUpload);
+//				}catch(IllegalStateException | IOException e) {
+//					e.printStackTrace();
+//				}
+//				
+//			}
+//		}
+//		
+//	}
+	
+
+	// CKEditor 이미지 업로드 부분
+	@ResponseBody
+	@PostMapping("/imageUploadProcess.do")
+	public Map<String, Object> imgUpload(@RequestParam("upload") MultipartFile img, HttpSession session) {
+		return BoardService.uploadImg(img, session);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 }

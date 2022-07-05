@@ -43,5 +43,7 @@ public class MemberService {
 		 
 		return memberDao.getMemberInfo(member_id);
 	}
+	
+
 
 }
