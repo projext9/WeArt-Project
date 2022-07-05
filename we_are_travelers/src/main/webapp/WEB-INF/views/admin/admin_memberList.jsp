@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원목록</title>
+	<title>회원목록</title>
 </head>
 <body>
-
+<%@include file="./nav.jsp" %>
 <h3>회원목록</h3>
 <hr/>
 
