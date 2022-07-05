@@ -15,7 +15,7 @@ public class MemberDao {
 	
 	private SqlSession sqlSession;
 	
-	public static final String MAPPER = "we.are.travelers.member";
+	public static final String MAPPER = "ezen.dev.spring.member";
 	
 	@Autowired
 	public MemberDao(SqlSession sqlSession) {

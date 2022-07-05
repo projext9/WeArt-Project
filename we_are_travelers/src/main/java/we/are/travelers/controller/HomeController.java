@@ -3,9 +3,11 @@ package we.are.travelers.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import we.are.travelers.service.GalleryService;
+import we.are.travelers.vo.GalleryVo;
+
 @Controller
 public class HomeController {
+	
+	private GalleryService galleryService;
+	
+	@Autowired //의존 자동 주입: 생성자 방식
+	public HomeController(GalleryService galleryService) {
+		this.galleryService = galleryService;
+	}
+
 	
 	@GetMapping("/")//get방식 요청 처리
 	public String home1() {
@@ -73,7 +86,7 @@ public class HomeController {
 	
 	@PostMapping("/fileUploadProcess.do")
 	public String fileUploadProcess(@RequestParam("uploadFile") MultipartFile uploadFile,
-			String content, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
+			String gallery_content, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
 		//<input type ="file" name="uploadFile" />에서 업로드된 파일객체를 MultipartFile uploadFile에 저장
 		
 		//업로드된 파일을 프로젝트 내의 upload 폴더에 저장하기 전에 DB의 upload_file 테이블에 저장할 
@@ -99,23 +112,32 @@ public class HomeController {
 		String fullPath = realPath+system_fileName;
 		uploadFile.transferTo(new File(fullPath));
 		
+		if(gallery_content.length() == 0) gallery_content = null;
 		
-		//파일업로드가 정상적으로 이루어진 것을 gallery_home.jsp에서 확인
-		//model객체에 입력내용(content)와 system_fileName을 추가함
-		//model.addAttribute("content", content);
-		//model.addAttribute("fileName", system_fileName);
+		int result=0;//0:입력 실패
 		
-		//파일 업로드 디렉토리에 저장된 모든 파일이름을 가져와서 model객체에 추가
-		/*File[] files = new File(realPath).listFiles();
-		String[] fileNames = new String[files.length];
+		GalleryVo galleryVo = new GalleryVo();
+		galleryVo.setGallery_content(gallery_content);
+		galleryVo.setOrigin_filename(origin_fileName);
+		galleryVo.setSystem_filename(system_fileName);
 		
-		for(int i=0; i<files.length; i++) {
-			fileNames[i] = files[i].getName();
-		}*/
+		result = galleryService.addGallery(galleryVo);
+		String viewPage="gallery/fileUpload";
 		
-		String[] fileNames = new File(realPath).list();
-		model.addAttribute("fileNames", fileNames);
+		if(result ==1) {
+			model.addAttribute("content", gallery_content);
+			model.addAttribute("fileName", system_fileName);
+			viewPage = "gallery/fileUpload_result";
+		}
 		
+		return viewPage;
+	}
+	
+	@GetMapping("/gallery_home.do")//get방식 요청 처리
+	public String gallery_home(Model model) {
+		
+		List<GalleryVo> galleryList = galleryService.getGalleryList();
+		model.addAttribute("galleryList", galleryList);
 		
 		return "gallery/gallery_home";
 	}
