@@ -30,6 +30,11 @@ public class HomeController {
 	public String fileUpload() {
 		return "gallery/fileUpload";
 	}
+	@GetMapping("/activity.do")
+	public String activity()
+	{
+		return "map/activity/activity";
+	}
 	
 	/* Spring MVC에서 파일 업로드 구현을 위한 조치들
 	 * 
