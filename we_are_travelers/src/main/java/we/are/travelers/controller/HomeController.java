@@ -20,7 +20,6 @@ import we.are.travelers.vo.GalleryVo;
 
 @Controller
 public class HomeController {
-	
 	private GalleryService galleryService;
 	
 	@Autowired //의존 자동 주입: 생성자 방식
@@ -142,20 +141,7 @@ public class HomeController {
 		return "gallery/gallery_home";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

@@ -7,18 +7,5 @@
 	<select id="getMemberList" resultType="memberVo">
 		select * from member
 	</select>
-	
-	<update id="updateMemberGrade" parameterType="map">
-		update member set member_grade = #{member_grade}
-			where member_idx = #{member_idx}
-	</update>
-	
-	<delete id="deleteMemberInfo" parameterType="list">
-		delete from member where member_idx in 
-		<foreach collection="list" item="member_idx" open="(" separator="," close=")" >
-			#{member_idx}
-		</foreach>
-	
-	</delete>
 
 </mapper>

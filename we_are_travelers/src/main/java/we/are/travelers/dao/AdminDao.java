@@ -16,7 +16,7 @@ public class AdminDao {
 	
 	private SqlSession sqlSession;
 	
-	public static final String MAPPER = "ezen.dev.spring.admin";
+	public static final String MAPPER = "we.are.travelers.admin";
 	
 	@Autowired
 	public AdminDao(SqlSession sqlSession) {
@@ -35,13 +35,6 @@ public class AdminDao {
 		return sqlSession.delete(MAPPER+".deleteMemberInfo", member_idx_list);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 }
