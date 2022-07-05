@@ -24,7 +24,8 @@
 		</c:when>
 		
 		<c:otherwise><!-- 로그인이 이루어지지 않은 경우 -->
-			<a href="/travelers/join.do">회원가입</a><p/>
+			<a href="/travelers/join.do">일반회원</a><p/>
+			<a href="/travelers/joinCompany.do">기업회원</a><p/>
 			<a href="/travelers/login.do">로그인</a>
 		</c:otherwise>
 	</c:choose>

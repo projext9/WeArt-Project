@@ -30,11 +30,17 @@ public class MemberController {
 		return "member/join";
 	}
 	
+	@GetMapping("/joinCompany.do")
+	public String joinCompany() {
+		return "member/joinCompany";
+	}
+	
 	@PostMapping("/joinProcess.do")
 	public String joinProcess(MemberVo memberVo) {
 		//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌
 		//이러한 객체를 커맨드 객체라고 함.
 		int result=memberService.join(memberVo);
+		
 		
 		String viewPage = null;
 		if(result==1) {
