@@ -2,18 +2,22 @@
 /*
 * Copyright 2022 Team We-Art
 * Licensed under MIT (https://github.com/projext9/WeArt-Project)
-*/
-.navbar-dark .navbar-nav .nav-link { /* 메뉴 텍스트 색상 */
+*/cv
+.navbar-dark .navbar-nav .nav-link{ /* 메뉴 텍스트 색상 */
+    font-size : 1.2em;
 	color:#FFFFFF;
+	
 }
-
+.navbar-dark .navbar-nav .nav-link:hover{ /* 메뉴 텍스트 색상 */
+   background : white;
+   color : #0DCAF0;
+}
+.dropdown-menu { /* 드롭다운 메뉴 배경색 */
+	background-color: #87CDEE;
+}
 .dropdown-item { /* 드롭다운 아이템 배경색 */
 	background-color: #87CDEE;
 	color:#FFFFFF;
-}
-
-.dropdown-menu { /* 드롭다운 메뉴 배경색 */
-	background-color: #87CDEE;
 }
 
 ul.dropdown-menu a:hover, ul.dropdown-menu a:focus { /* 마우스 및 키보드 탐색기의 배경 색상 */
@@ -46,4 +50,11 @@ footer li { /* footer */
 
 .copyright { /* footer */
 	border-top: 1px solid #ffffff;
+}
+/*모바일 웹 화면에서 hover효과 제거*/
+@media (hover: hover) {
+  a:hover {
+    color: y#87CDEE;
+    text-decoration: none;
+  }
 }
