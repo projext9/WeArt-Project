@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias alias="memberVo" type="we.are.travelers.vo.MemberVo"/>
 		<typeAlias alias="galleryVo" type="we.are.travelers.vo.GalleryVo"/>
+		<typeAlias alias="itemVo" type="we.are.travelers.vo.ItemVo"/>
 	</typeAliases>  
 
 </configuration>  
