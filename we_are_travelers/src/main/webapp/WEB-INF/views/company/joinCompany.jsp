@@ -10,7 +10,6 @@
 	$(function() {
 		
    $('#b_no').on('focusout' , function(){
-	   alert("테스트입니다")
 	var b_no = {
 		    "b_no": [$('#b_no').val()] // 사업자번호 "xxxxxxxxx" 로 조회 시,
 		   };
@@ -23,18 +22,19 @@
 		  accept: "application/json",
 		  async : false,
 		  success: function(data) {
-			  
+			  var check1 ="유효한 사업자 등록번호입니다."
+			  var check2 ="휴.폐업처리된 사업자입니다. 회원가입을 진행 하실 수 없습니다."
+			  var check3 ="유효하지 않은 사업자 등록번호입니다."
+					  
 			  var obj = JSON.parse(data);
 			  
 			  if(obj['data'][0].b_stt_cd == '01') {
-				   $('#no_b').html('유효한 등록번호입니다.');
-				   $('#no_b').attr('color','green');
+				  $('#no_b').html(check1).css('color','green');
+			  }else if(obj['data'][0].b_stt_cd == ""){
+				  $('#no_b').html(check3).css('color','red');
 			  }else if(obj['data'][0].b_stt_cd == '02' || '03'){
-				  $('#no_b').html('휴,폐업 처리된 사업자번호입니다 회원가입을 진행하실수없습니다.');
-				  $('#no_b').attr('color','red');
-			  }else if(obj['data'][0].b_stt_cd == ''){
-				  $('#no_b').html('유효하지 않은 등록번호입니다.');
-				   $('#no_b').attr('color','red');
+				  $('#no_b').html(check2).css('color','red');
+				  
 		  }
 		      console.log(data);
 		  },
@@ -44,6 +44,7 @@
 		});
 	
 	});
+   
 });
 	
 	</script>
@@ -58,9 +59,8 @@
     <input type="text" name="b_no" id="b_no" maxlength="10" placeholder="사업자 등록번호" />
     <font id="no_b" size ="2"></font>
     
-	<div style="height:20px"><span id="result_checkId" style="font-size:12px;"></span></div>
-	<input type="password" name="member_pw"  value="" maxlength="20" placeholder="비밀번호"><p/>            
-	<input type="submit" value="가입하기">
+	<div style="height:20px"><span id="result_checkId" style="font-size:12px;"></span></div>            
+	<input type="submit" value="다음">
 	<input type="reset"  value="취소하기">
 </form> 
 

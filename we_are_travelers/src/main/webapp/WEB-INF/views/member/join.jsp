@@ -33,10 +33,8 @@
 			
 			});
 			
-});
-	
-	
-	
+        });
+
 	</script>
 
 </head>
@@ -53,7 +51,6 @@
 	<input type="password" name="member_pw"  value="" maxlength="20" placeholder="비밀번호"><p/>            
 	<input type="text" name="member_name" maxlength="40" value="" placeholder="이름"><p/>
 	<input type="tel" name="member_phone"  value="" autocomplete="off" placeholder="휴대폰 번호"><p/>
-	<input type="text" name="b_no"  id="b_no"  value="" placeholder="사업자등록번호"><p/>
 	<font id="result" size=2px;></font>
 	<input type="submit" value="가입하기">
 	<input type="reset"  value="취소하기">

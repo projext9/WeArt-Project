@@ -32,7 +32,7 @@ public class MemberController {
 	
 	@GetMapping("/joinCompany.do")
 	public String joinCompany() {
-		return "member/joinCompany";
+		return "company/joinCompany";
 	}
 	
 	@PostMapping("/joinProcess.do")
