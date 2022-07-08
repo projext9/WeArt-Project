@@ -1,9 +1,0 @@
-@charset "UTF-8";
-
-@media (min-width:769px) { /* ~~ 우측글 ~~ */
-	aside {
-		width: 20%;
-		height: 70%;
-	}
-
-}
