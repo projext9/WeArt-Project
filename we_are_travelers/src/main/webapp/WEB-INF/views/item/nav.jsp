@@ -14,7 +14,7 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" />
 		<link href="${pageContext.request.contextPath}/resources/css/weart_common.css" rel="stylesheet" />
     </head>
 	<body>

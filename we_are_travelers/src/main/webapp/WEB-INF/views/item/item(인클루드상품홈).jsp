@@ -4,18 +4,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="We-Art Project" />
-        <meta name="author" content="team We-Art" />
         <title>We-Art Project</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
-		<link href="${pageContext.request.contextPath}/resources/css/weart_common.css" rel="stylesheet" />
     </head>
 	<body>
         <!-- Header-->
@@ -272,6 +261,7 @@
                 </div>
             </div>
         </section>
+
         <%@ include file="footer.jsp"%>
     </body>
 </html>

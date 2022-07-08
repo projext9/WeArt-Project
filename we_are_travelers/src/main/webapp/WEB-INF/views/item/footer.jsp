@@ -29,6 +29,6 @@
             </div>
         </footer>
         <!-- Bootstrap core JS-->
-        <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
     </body>
 </html>

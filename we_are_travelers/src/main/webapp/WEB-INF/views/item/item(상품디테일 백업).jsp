@@ -12,7 +12,7 @@
 		<div class="header-middle">
 			<div class="container">
 				<div class="row align-items-center">
-					<div class="col-lg-8 col-md-8 col-10" style="float: none; margin:0 auto;">
+					<div class="col-lg-8 col-md-8 col-8">
 						<div class="main-menu-search">
 							<div class="navbar-search search-style-5">
 								<div class="search-select">
@@ -42,27 +42,28 @@
 	</header>
 
 <section class="item-details section">
-	<div class="container">
-		<div class="top-area">
-			<div class="row align-items-center">
-				<div class="col-lg-6 col-md-12 col-12">
-					<div class="product-images">
-						<main id="gallery">
-							<div class="main-img">
-								<img src="${pageContext.request.contextPath}/resources/img/item/item_sample.jpeg" id="current" alt="#">
-							</div>
-						</main>
-					</div>
-				</div>
-				<div class="col-lg-6 col-md-12 col-12">
-					<div class="product-info">
-						<h2 class="title">쭝꿔러 낚시대</h2>
-					    <hr class="featurette-divider">
-						<h3 class="price">5천만원<span>1억원</span></h3>
-						<hr class="featurette-divider">
-						<p class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-						tempor incididunt
-						ut labore et dolore magna aliqua.</p>
+<div class="container">
+<div class="top-area">
+<div class="row align-items-center">
+<div class="col-lg-6 col-md-12 col-12">
+<div class="product-images">
+<main id="gallery">
+<div class="main-img">
+<img src="https://demo.graygrids.com/themes/shopgrids/assets/images/product-details/01.jpg" id="current" alt="#">
+</div>
+
+
+</main>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 col-12">
+<div class="product-info">
+<h2 class="title">GoPro Karma Camera Drone</h2>
+
+<h3 class="price">$850<span>$945</span></h3>
+<p class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt
+ut labore et dolore magna aliqua.</p>
 
 <div class="row">
 
