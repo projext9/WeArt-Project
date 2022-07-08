@@ -7,16 +7,11 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
     <title>weart_login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
-
-    
-
     <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath}/resources/css/weart_home.css" rel="stylesheet">
-
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/weart_login.css" rel="stylesheet" />
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+   
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -41,27 +36,31 @@
  <body class="text-center">
     
 <main class="form-signin">
-  <form>
-    <img class="mb-4" src="${pageContext.request.contextPath}/resources/lmages/logo.jpg" alt="" width="72" height="57">
+  <form class="login_form" action="${pageContext.request.contextPath}/loginProcess.do" method="post">
+    <img class="mb-4" src="${pageContext.request.contextPath}/resources/images/logo.jpg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">이메일(아이디)</label>
+      <input type="email" class="form-control" id="floatingInput" >
+      <label for="floatingInput">이메일(아이디)</label> 
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">비밀번호</label>
-    </div>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
+      <input type="password" class="form-control" id="floatingPassword" >
+      <label for="floatingPassword">비밀번호</label> 
+    <div class="form-floating-btn">
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+    </div>
+     </div>
+    <div class="checkbox mb-3">
+    <label><input type="checkbox" value="remember-me"> 아이디 저장 </label>
+     </div> 
+    <img src="${pageContext.request.contextPath}/resources/images/kakao_login.png" width="200" height="50" alt="카카오 로그인">
+    <img src="${pageContext.request.contextPath}/resources/images/naver_login.png" width="200" height="50" alt="네이버 로그인">
+    <img src="${pageContext.request.contextPath}/resources/images/google_login.png" width="200" height="50" alt="구글 로그인">
+    <img src="${pageContext.request.contextPath}/resources/images/facebook_login.png" width="200" height="50" alt="페이스북 로그인">
+    <p class="mt-5 mb-6 text-muted">&copy; Copyright 2022. Team We-Art. all rights reserved.</p>
   </form>
-</main> 
+</main>
+
   </body>
 </html>

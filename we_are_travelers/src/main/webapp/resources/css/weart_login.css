@@ -20,6 +20,9 @@ body {
 
 .form-signin .checkbox {
   font-weight: 400;
+  position: relative;
+    top: -120px;
+    left: -90px;
 }
 
 .form-signin .form-floating:focus-within {
@@ -36,4 +39,9 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+.form-floating-btn {
+	position : relative;
+	left : 230px;
+	top : -125px;
 }
