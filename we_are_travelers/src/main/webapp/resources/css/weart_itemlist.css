@@ -75,6 +75,7 @@ select {
 
 .main-menu-search .search-btn button {
     background-color: #0167f3;
+	color: #fff !important;
     width: 45px;
     height: 45px;
     padding: 0;

@@ -33,6 +33,12 @@
 								<div class="search-btn">
 									<button><i class="bi bi-search"></i></button>
 								</div>
+								&nbsp
+								&nbsp
+								<a href="#"><img class="img-icon" src="${pageContext.request.contextPath}/resources/img/icon/icon_person.png" alt="..." /></a>
+								&nbsp
+								&nbsp
+								<a href="#"><img class="img-icon" src="${pageContext.request.contextPath}/resources/img/icon/icon_cart.png" alt="..." /></a>
 							</div>
 						</div>
 					</div>
@@ -58,7 +64,7 @@
 						<div class="product-info">
 							<h2 class="title">쭝꿔러 낚시대</h2>
 						    <hr class="featurette-divider">
-							<h3 class="price">5천만원<span>1억원</span></h3>
+							<h3 class="price">&#8361; 50,000,000<span>1억원</span></h3>
 							<p class="info-text">이건 낚시대입니다. 중국산 낚시대. 하나 둘 셋 넷 다섯 여섯 일곱 레인보우 낚시대. 이건 낚시대입니다. 중국산 낚시대. 하나 둘 셋 넷 다섯 여섯 일곱 레인보우 낚시대.</p>
 							<p class="info-text">판매자 : ㅇㅇ컴퍼니<br>택배사 : ㅇㅇ택배<br>배송비 : 3000원</p>
 	
@@ -111,7 +117,68 @@
 				</div>
 			</div>
 		</div>
-	
+
+		<div class="container">
+			<div class="product-details-info">
+				<div class="single-block">
+					<div class="row">
+					
+						<div class="col-lg-12 col-12">
+							<div class="info-body">
+								<h4>상품상세 정보</h4>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+								
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+								
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+								
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+								
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+								
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+								
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+								
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+								
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+								</p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="container">
 			<div class="product-details-info">
 				<div class="single-block">
@@ -119,7 +186,7 @@
 					
 						<div class="col-lg-6 col-12">
 							<div class="info-body">
-								<h4>필수 표기정보</h4>
+								<h4>기본 표기정보</h4>
 								<table class="product-details-table">
 									<tr>
 										<th>품명 및 모델명</th>
@@ -128,9 +195,9 @@
 										<td>상세페이지 참조</td>
 									</tr>
 									<tr>
-										<th>제조국(원산지)</th>
+										<th>제조국</th>
 										<td>상세페이지 참조</td>
-										<th>제조자(수입자)</th>
+										<th>제조자/수입자</th>
 										<td>상세페이지 참조</td>
 									</tr>
 									<tr>
@@ -149,10 +216,10 @@
 										<th>배송방법</th>
 										<td>상세페이지 참조</td>
 										<th rowspan="2">배송비</th>
-										<td rowspan="2">상세페이지 참조</td>
+										<td rowspan="2">기본 : 3000원<br>-추가배송비-<br>제주도 : 5000원<br>도서산간 : 8000원</td>
 									</tr>
 									<tr>
-										<th>배송사</th>
+										<th>택배회사</th>
 										<td>ㅇㅇ택배</td>
 									</tr>
 									<tr>
@@ -175,19 +242,32 @@
 					
 						<div class="col-lg-6 col-12">
 							<div class="info-body">
-								<h4>교환/반품 안내</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-								<h4>Features</h4>
-								<ul class="features">
-									<li>Capture 4K30 Video and 12MP Photos</li>
-									<li>Game-Style Controller with Touchscreen</li>
-									<li>View Live Camera Feed</li>
-									<li>Full Control of HERO6 Black</li>
-									<li>Use App for Dedicated Camera Operation</li>
-								</ul>
+								<h4>교환/반품/취소 안내</h4>
+								<table class="product-details-table">
+									<tr>
+										<th>교환/반품 비용</th>
+									</tr>
+									<tr>
+										<td>19,800원 미만인 경우 반품비 5,000원
+										<br>19,800원 이상인 경우 반품비 2,500원
+										</td>
+									</tr>
+									<tr>
+										<th>교환/반품 비용</th>
+									</tr>
+									<tr>
+										<td>ㆍ단순변심에 의한 로켓배송 상품의 교환/반품은 제품 수령 후 30일 이내까지, 교환/반품 제한사항에 해당하지 않는 경우에만 가능
+										<br>(교환/반품 비용 고객부담)
+										<br>ㆍ상품의 내용이 표시·광고의 내용과 다른 경우에는 상품을 수령한 날부터 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 청약철회 가능</td>
+									</tr>
+								</table>
+								
+								<table class="product-details-table">
+									<tr>
+										<th>취소 기준일</th>
+										<td>취소</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 						
@@ -195,19 +275,16 @@
 							<div class="info-body">
 								<h4>교환/반품 제한사항</h4>
 								<ul class="normal-list">
-									<li><span>Weight:</span> 35.5oz (1006g)</li>
-									<li><span>Maximum Speed:</span> 35 mph (15 m/s)</li>
-									<li><span>Maximum Distance:</span> Up to 9,840ft (3,000m)</li>
-									<li><span>Operating Frequency:</span> 2.4GHz</li>
-									<li><span>Manufacturer:</span> GoPro, USA</li>
+									<li>ㆍ주문/제작 상품의 경우, 상품의 제작이 이미 진행된 경우</li>
+									<li>ㆍ상품 포장을 개봉 후 사용 또는 설치 완료하여 상품 가치가 훼손된 경우</li>
+									<li>(예외 : 내용 확인을 위한 포장 개봉의 경우)</li>
+									<li>ㆍ고객의 사용, 시간경과, 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우</li>
+									<li>ㆍ상품 일부 사용, 구성품을 분실 및 취급 부주의로 인한 파손/고장/오염으로 재판매 불가한 경우</li>
+									<li>ㆍ화면 색상이나 이미지가 실제와 달라, 고객이 단순 변심으로 교환/반품을 무료로 요청하는 경우</li>
+									<li>ㆍ제조사의 사정 (신제품 출시 등) 및 부품 가격 변동 등에 의해 무상 교환/반품을 요청하는 경우</li>
 								</ul>
-								<h4>Shipping Options:</h4>
-								<ul class="normal-list">
-									<li><span>Courier:</span> 2 - 4 days, $22.50</li>
-									<li><span>Local Shipping:</span> up to one week, $10.00</li>
-									<li><span>UPS Ground Shipping:</span> 4 - 6 days, $18.00</li>
-									<li><span>Unishop Global Export:</span> 3 - 4 days, $25.00</li>
-								</ul>
+								<h4>상품별 취소/반품 제한 세부사항</h4>
+								<button type="button" class="btn btn-outline-info">팝업으로 확인</button>
 							</div>
 						</div>
 						
@@ -215,60 +292,11 @@
 				</div>
 			</div>
 		</div>
-
-		
-		<div class="container">
-			<div class="product-details-info">
-				<div class="single-block">
-					<div class="row">
-					
-						<div class="col-lg-6 col-12">
-							<div class="info-body">
-								<h4>Details</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-								exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-								irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-								<h4>Features</h4>
-								<ul class="features">
-									<li>Capture 4K30 Video and 12MP Photos</li>
-									<li>Game-Style Controller with Touchscreen</li>
-									<li>View Live Camera Feed</li>
-									<li>Full Control of HERO6 Black</li>
-									<li>Use App for Dedicated Camera Operation</li>
-								</ul>
-							</div>
-						</div>
-						
-						<div class="col-lg-6 col-12">
-							<div class="info-body">
-								<h4>Specifications</h4>
-								<ul class="normal-list">
-									<li><span>Weight:</span> 35.5oz (1006g)</li>
-									<li><span>Maximum Speed:</span> 35 mph (15 m/s)</li>
-									<li><span>Maximum Distance:</span> Up to 9,840ft (3,000m)</li>
-									<li><span>Operating Frequency:</span> 2.4GHz</li>
-									<li><span>Manufacturer:</span> GoPro, USA</li>
-								</ul>
-								<h4>Shipping Options:</h4>
-								<ul class="normal-list">
-									<li><span>Courier:</span> 2 - 4 days, $22.50</li>
-									<li><span>Local Shipping:</span> up to one week, $10.00</li>
-									<li><span>UPS Ground Shipping:</span> 4 - 6 days, $18.00</li>
-									<li><span>Unishop Global Export:</span> 3 - 4 days, $25.00</li>
-								</ul>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-
 
 	</section>
-
-		<a href="#" class="scroll-top" style="display: flex;"></a>
+	
+		<a href="/travelers/itemlist.do" class="scroll-back" style="display: flex;"><i class="bi bi-arrow-return-left"></i></a>
+		<a href="#" class="scroll-top" style="display: flex;"><i class="bi bi-arrow-up"></i></a>
         <%@ include file="footer.jsp"%>
     </body>
 </html>
