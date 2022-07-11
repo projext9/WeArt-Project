@@ -26,18 +26,23 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 	
-	@GetMapping("/item.do")
-	public String join() {
-		return "item/item";
+	@GetMapping("/itemlist.do")
+	public String itemlist() {
+		return "item/itemlist";
 	}
 	
-	@GetMapping("/itemlist.do")//get방식 요청 처리
+	@GetMapping("/itemdetail.do")
+	public String itemdetail() {
+		return "item/itemdetail";
+	}
+	
+	@GetMapping("/itemlist2.do")//get방식 요청 처리
 	public String item_list(Model model) {
 		
 		List<ItemVo> itemList = itemService.getItemList();
 		model.addAttribute("itemList", itemList);
 		
-		return "item/list";
+		return "item/list2";
 	}
 	
 	

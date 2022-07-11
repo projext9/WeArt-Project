@@ -55,8 +55,6 @@
     font-size: 14px;
 }
 
-
-
 select {
     -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
@@ -167,22 +165,29 @@ select {
     padding: 5px;
 }
 
+.main-img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .item-details .product-info {
     padding-left: 30px;
 }
 
 .item-details .product-info .title {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .item-details .product-info .price {
-    color: #081828;
+    color: #AE0000;
     display: block;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
-    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
 }
 
 .item-details .product-info .price span {
@@ -208,7 +213,7 @@ p {
 }
 
 .item-details .product-info .form-group {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .item-details .product-info .form-group label {
@@ -235,7 +240,7 @@ p {
 
 
 .item-details .product-info .bottom-content {
-    margin-top: 20px;
+
 }
 
 .item-details .product-info .cart-button {
@@ -247,7 +252,7 @@ p {
     padding: 0;
 }
   
-  .button .btn:last-child {
+.button .btn:last-child {
     margin: 0;
 }
 
@@ -294,10 +299,11 @@ p {
 
 .product-details-info .single-block {
     background-color: #fff;
-    padding: 30px;
+    padding: 20px;
+	padding-top: 0px;
     border: 1px solid #eee;
     border-radius: 4px;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 
@@ -305,7 +311,6 @@ body {
     font-family: "Manrope", sans-serif;
     font-weight: 500;
     font-style: normal;
-    color: #888;
     overflow-x: hidden;
     font-size: 14px;
 }
@@ -313,7 +318,8 @@ body {
 .product-details-info .info-body h4 {
     font-size: 18px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-top: 20px;
+	margin-bottom: 10px;
 }
 
 
@@ -344,10 +350,12 @@ ul, ol {
     margin-bottom: 12px;
     position: relative;
 }
+
 .product-details-info .info-body .normal-list li span {
     font-weight: 500;
     color: #555;
 }
+
 span, a {
     display: inline-block;
     text-decoration: none;
@@ -357,6 +365,40 @@ span, a {
 
 .product-details-info .info-body .normal-list:last-child {
     margin-bottom: 0;
+}
+
+.product-details-table {
+    width: 100%;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
+    font-size: 1em;
+    margin: 0;
+}
+
+.product-details-table th {
+    padding: 12px 5px;
+    border-bottom: 1px solid #eee;
+    background-color: #fafafa;
+    color: #111;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    width: 15%;
+    overflow: hidden;
+}
+
+.product-details-table td {
+    white-space: normal;
+    word-break: break-all;
+    padding: 12px 16px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    line-height: 17px;
+	width: 35%;
+    font-size: 12px;
 }
 
 .item-details {
