@@ -36,6 +36,11 @@ public class ItemController {
 		return "item/itemdetail";
 	}
 	
+	@GetMapping("/itemcart.do")
+	public String itemcart() {
+		return "item/itemcart";
+	}
+	
 	@GetMapping("/itemlist2.do")//get방식 요청 처리
 	public String item_list(Model model) {
 		

@@ -100,7 +100,7 @@
 								<div class="row align-items-end">
 									<div class="col-lg-6 col-md-6 col-12" style="margin-top: 20px;">
 										<div class="button cart-button">
-											<button class="btn" style="width: 100%;">장바구니 담기</button>
+											<button class="btn" style="width: 100%;" onclick="location.href='${pageContext.request.contextPath}/itemcart.do'">장바구니 담기</button>
 										</div>
 									</div>
 		
