@@ -41,6 +41,11 @@ public class ItemController {
 		return "item/itemcart";
 	}
 	
+	@GetMapping("/itemorder.do")
+	public String itemorder() {
+		return "item/itemorder";
+	}
+	
 	@GetMapping("/itemlist2.do")//get방식 요청 처리
 	public String item_list(Model model) {
 		
