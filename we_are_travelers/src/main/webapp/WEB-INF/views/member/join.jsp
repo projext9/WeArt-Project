@@ -1,59 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html> <!-- HTML5 적용 표시 -->
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
+    <link href="${pageContext.request.contextPath}/resources/css/join_member.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script>
-		$(function(){
-			
-			$("#checkId").click(function(){
-				
-				let member_id = $("#member_id").val();
-				
-				$.ajax({
-					type:'post',
-					url:"/travelers/checkId.do",
-					data: {"member_id":member_id},
-					success: function(data){
-						if(data == "N"){
-							result = "사용 가능한 아이디입니다.";
-							$("#result_checkId").html(result).css("color", "green");
-							$("#member_pw").trigger("focus");
-						}else{
-							result = "이미 사용중인 아이디입니다.";
-							$("#result_checkId").html(result).css("color", "red");
-							$("#member_id").val("").trigger("focus");
-						}
-					},
-					error: function(error){alert(error);}
-				});
-			
-			});
-			
-        });
-
+	<script type="text/javascript">
+	$(function(){
+	$('#mail-Check-Btn').click(function() {
+		const eamil = $('#member_id1').val() + $('#member_id2').val(); // 이메일 주소값 얻어오기!
+		console.log('완성된 이메일 : ' + eamil); // 이메일 오는지 확인
+		const checkInput = $('.mail-check') // 인증번호 입력하는곳 
+		
+		$.ajax({
+			type : 'get',
+			url : '<c:url value ="/user/mailCheck?email="/>'+eamil, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+			success : function (data) {
+				console.log("data : " +  data);
+				checkInput.attr('disabled',false);
+				code =data;
+				alert('인증번호가 전송되었습니다.')
+			}			
+		}); // end ajax
+	}); // end send eamil
+	
+	$('.mail-check').blur(function () {
+		const inputCode = $(this).val();
+		const $resultMsg = $('#mail-check-warn');
+		
+		if(inputCode === code){
+			$resultMsg.html('인증번호가 일치합니다.');
+			$resultMsg.css('color','green');
+			$('#mail-Check-Btn').attr('disabled',true);
+			$('#userEamil1').attr('readonly',true);
+			$('#userEamil2').attr('readonly',true);
+			$('#userEmail2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
+	         $('#userEmail2').attr('onChange', 'this.selectedIndex = this.initialSelect');
+		}else{
+			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+			$resultMsg.css('color','red');
+		}
+	});
+});
 	</script>
-
 </head>
 
-<body>
-
-<h3>회원정보를 입력해주세요</h3>
-
-<form name="joinForm" action="/travelers/joinProcess.do" method="post">
-	<input type="email" name="member_id" id="member_id" value="" maxlength="80" placeholder="아이디(이메일)" />
-	<input type="button" id="checkId" value="중복검사"/><br/>
-	<div style="height:20px"><span id="result_checkId" style="font-size:12px;"></span></div>
-	
-	<input type="password" name="member_pw"  value="" maxlength="20" placeholder="비밀번호"><p/>            
-	<input type="text" name="member_name" maxlength="40" value="" placeholder="이름"><p/>
-	<input type="tel" name="member_phone"  value="" autocomplete="off" placeholder="휴대폰 번호"><p/>
-	<font id="result" size=2px;></font>
-	<input type="submit" value="가입하기">
+<body class="join_member">
+<h1>We Are Travelers!</h1>
+<div class="join_container">
+<main class="join_cont">
+<form class="join_form" name="joinForm" action="/travelers/joinProcess.do" method="post">
+    <progress value="20" max="100"></progress>
+    <p class="join_guide_1">위아트 계정으로 사용할 이메일(아이디)를 입력해주세요 <p/>
+	<input type="email" name="member_id1" id="member_id1" value="" maxlength="80" placeholder="아이디(이메일)" />
+	<select class="form-control" name="member_id2" id="member_id2" >
+	<option>@naver.com</option>
+	<option>@daum.net</option>
+	<option>@gmail.com</option>
+	<option>@hanmail.com</option>
+	 <option>@yahoo.co.kr</option>
+	</select>
+<div class="input-group-addon">
+	<button type="button" class="btn btn-primary" id="mail-Check-Btn">본인인증</button>
+</div>
+<div class="mail-check-box">
+      <input class="form-control mail-check" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+</div>
+    <span id="mail-check-warn"></span>
+</div>
+	<input type="submit" value="다음">
 	<input type="reset"  value="취소하기">
 </form> 
-
-</body></html>        
+</main>
+</div>
+</body>
+</html>        

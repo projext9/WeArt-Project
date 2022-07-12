@@ -11,11 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import we.are.travelers.service.MemberService;
 import we.are.travelers.vo.MemberVo;
 
 @Controller
+@ResponseBody
 public class MemberController {
 	
 	private MemberService memberService;
@@ -34,7 +36,13 @@ public class MemberController {
 	public String joinCompany() {
 		return "company/joinCompany";
 	}
+	@GetMapping("/mailCheck")
 	
+	public String email_idCheck(String member_id) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + member_id);
+		return member_id;
+	}
 	@PostMapping("/joinProcess.do")
 	public String joinProcess(MemberVo memberVo) {
 		//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌

@@ -5,8 +5,13 @@
 <mapper namespace = "we.are.travelers.member">
 
 	<insert id="joinMember" parameterType="memberVo">
-		insert into member(member_id, member_pw, member_name, member_phone) 
-		 values(#{member_id}, #{member_pw}, #{member_name}, #{member_phone})
+		insert into member(member_idx,member_id,member_pwd,member_name,
+		member_nickname,member_phone,member_grade,member_ip,
+		social_sns_token,social_reg_code,social_naver,social_facebook,social_google,social_kakao,
+		member_regdate,member_delyn) 
+		
+		 values(#{member_id}, #{member_pwd}, #{member_name}, #{member_nickname},#{member_phone},#{member_grade},
+		 #{member_ip},#{social_sns_token},#{social_reg_code},#{social_reg_code},#{social_reg_code},#{social_reg_code},#{social_reg_code})
 	</insert>
 	
 	<!-- <select id="loginMember" parameterType="memberVo" resultType="map">
