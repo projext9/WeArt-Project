@@ -7,7 +7,6 @@
         <title>We-Art Project</title>
  		<link href="${pageContext.request.contextPath}/resources/css/weart_itemcart.css" rel="stylesheet" />
     </head>
-
 	<body>
 		<div class="container">
 			<div style="padding-top:100px;"></div>
@@ -83,7 +82,6 @@
                                                     <tr style="border-bottom-width: 2px; border-color: black;">
                                                         <td class="align-middle text-left" colspan="3">배송비 : &#8361;3,000 | 묶음배송 : O</td>
                                                     </tr>
-
                                                 </tbody>
                                             </table>
                                             <br>

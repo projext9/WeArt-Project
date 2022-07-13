@@ -26,9 +26,9 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 	
-	@GetMapping("/itemlist.do")
-	public String itemlist() {
-		return "item/itemlist";
+	@GetMapping("/fishingshop.do")
+	public String fishingshop() {
+		return "item/fishingshop";
 	}
 	
 	@GetMapping("/itemdetail.do")

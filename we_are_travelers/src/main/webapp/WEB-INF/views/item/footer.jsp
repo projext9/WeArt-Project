@@ -25,7 +25,6 @@
 			    <div class="copyright">
 					<h6>Copyright 2022. Team We-Art. all rights reserved.</h6>
 			    </div>
-            	</p>
             </div>
         </footer>
         <!-- Bootstrap core JS-->

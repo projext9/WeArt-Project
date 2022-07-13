@@ -10,16 +10,14 @@
 <body>
 
 	<h3>갤러리 홈입니다...</h3>
-	<a href="/travelers/home.do">메인페이지</a>
+	<a href="${pageContext.request.contextPath}/home.do">메인페이지</a>
 	<hr/>
-	<!--  
-	<div><img src="${pageContext.request.contextPath}/resources/upload/${fileName}"/></div>
-	<div>${content}</div>
-	-->
 	
-	<c:forEach var="fileName" items="${fileNames}">
-		<div style="float:left;margin-left:10px;margin-top:7px;">
-			<img src="${pageContext.request.contextPath}/resources/upload/${fileName}" style="width:300px;height:200px;"/>
+	<c:forEach var="galleryVo" items="${galleryList}">
+		<div style="float:left;margin-left:10px;margin-top:7px;height:230px;">
+			<img src="${pageContext.request.contextPath}/resources/upload/${galleryVo.system_filename}" 
+				style="width:300px;height:200px;"/><br/>
+			${galleryVo.gallery_content}				
 		</div>
 	</c:forEach>
 	

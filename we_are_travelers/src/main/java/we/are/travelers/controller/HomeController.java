@@ -111,8 +111,7 @@ public class HomeController {
 		String fullPath = realPath+system_fileName;
 		uploadFile.transferTo(new File(fullPath));
 		
-		if(gallery_content.length() == 0) gallery_content = null;
-		
+
 		int result=0;//0:입력 실패
 		
 		GalleryVo galleryVo = new GalleryVo();
