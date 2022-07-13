@@ -2,14 +2,16 @@ package we.are.travelers.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import we.are.travelers.service.AjaxService;
 
 //Ajax통신 지원을 위해 pom.xml에 의존모듈(jackson)을 추가해 줌
 
-//@Controller
 @RestController //Spring4버전부터 지원. @Controller + @ResponseBody 기능
 public class AjaxController {
 	
@@ -35,6 +37,15 @@ public class AjaxController {
 		return result;
 	}
 	
+	/*이메일 인증 */
+	@RequestMapping(value="/mailCheck" , method=RequestMethod.GET)
+	@ResponseBody
+	public void mailCheckGET(String member_id) throws Exception{
+	/*view 로부터 넘어온 데이터 확인	*/
+		System.out.println("이메일 데이터 전송 확인");
+		System.out.println("인증번호 : " + member_id);
+		
+	}
 	
 	
 }
