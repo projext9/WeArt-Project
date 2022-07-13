@@ -20,12 +20,12 @@
 	                        </div>
 	                    </div>
 	                    <div class="col-sm col-12">
-	                        <div class="alert alert-primary bg-alert-bg" role="alert">
+	                        <div class="alert alert-secondary" role="alert">
 	                            2 . 배송지 입력
 	                        </div>
 	                    </div>
 	                    <div class="col-sm col-12">
-	                        <div class="alert alert-secondary" role="alert">
+	                        <div class="alert alert-primary bg-alert-bg" role="alert">
 	                            3 . 결제 진행
 	                        </div>
 	                    </div>
@@ -36,76 +36,6 @@
 	                            <div class="row">
 									<div class="card border-0">
 										<div>
-											<br>
-											<div class="col-lg-12 col-12">
-												<div class="info-body">
-													<h4>구매자 정보</h4>
-													<table class="product-details-table">
-														<tr>
-															<th>이름</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>이메일</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>휴대폰 번호</th>
-															<td>상세페이지 참조</td>
-														</tr>
-													</table>
-												</div>
-											</div>
-
-											<br>
-											<div class="col-lg-12 col-12">
-												<div class="info-body">
-													<h4>받는이 정보</h4>
-													<table class="product-details-table">
-														<tr>
-															<th>이름</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>배송지</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>휴대폰 번호</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>배송 요청사항</th>
-															<td>상세페이지 참조</td>
-														</tr>
-													</table>
-												</div>
-											</div>
-
-											<br>
-											<div class="col-lg-12 col-12">
-												<div class="info-body">
-													<h4>구매예정 상품</h4>
-
-													<table class="product-details-table">
-														<tr>
-															<th style="text-align: left; width: 90%;">&nbsp;&nbsp;&nbsp;상품명</th>
-															<th style="width: 10%;">수량</th>
-														</tr>
-														
-														<tr>
-															<td>상품명 가나다라마바사</td>
-															<td style="text-align: center;">1</td>
-														</tr>
-
-														<tr>
-															<td>할렐루야 중국산 낚시대</td>
-															<td style="text-align: center;">1</td>
-														</tr>
-														
-													</table>
-												</div>
-											</div>
 
                                             <br>
 											<div class="col-lg-12 col-12">

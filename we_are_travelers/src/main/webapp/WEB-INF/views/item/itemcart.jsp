@@ -26,7 +26,7 @@
 	                    </div>
 	                    <div class="col-sm col-12">
 	                        <div class="alert alert-secondary" role="alert">
-	                            3 . 결제
+	                            3 . 결제 진행
 	                        </div>
 	                    </div>
 	                </div>
@@ -106,7 +106,7 @@
 			<div class="list-group mt-5 p-0 justify-content-center active" id="allList" role="tablist" style="flex-direction: row;">
 				<a href="javascript:window.history.back();" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">돌아가기<i class="fal fa-arrow-circle-right"></i></a>
 	           	&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#step2" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">배송지 입력<i class="fal fa-arrow-circle-right"></i></a>
+				<a href="${pageContext.request.contextPath}/itemorder.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">배송지 입력<i class="fal fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 		<%@ include file="footer.jsp"%>
