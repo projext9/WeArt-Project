@@ -88,9 +88,9 @@
                                             </table>
                                             <br>
                                             <div style="clear: both; border: 3px solid #c8c8c8; text-align: center;">
-                                            	<div style="display: inline-block; margin: 0 auto; vertical-align: top;">
+                                            	<div style="display: inline-block; margin: 0 auto; vertical-align: top;"> 
                                             		<div style="padding: 20px 15px 18px; font-size: 16px; line-height: 25px; color: #555; text-align: center;">
-														총 가격 : <span style="color: #000; font-weight: bold;">&#8361;2222</span> + 적용 배송비 : <span style="color: #000; font-weight: bold;">&#8361;2222</span> <br><span style="color: #000; font-weight: bold;">=> 최종 결제 금액 : </span><span style="color: #ff0000; font-weight: bold;">&#8361;2222</span>
+														총 가격 : <span style="color: #000; font-weight: bold;">&#8361;2222</span>&nbsp;<span style="background-color: #000; color: #fff; font-size: 20px; font-weight: bold;">+</span> 적용 배송비 : <span style="color: #000; font-weight: bold;">&#8361;2222</span> <br><span style="color: #000; font-weight: bold;">=> 최종 결제 금액 : </span><span style="color: #ff0000; font-weight: bold;">&#8361;2222</span>
 													</div>
 												</div>
 											</div>

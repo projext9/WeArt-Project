@@ -36,57 +36,11 @@
 	                            <div class="row">
 									<div class="card border-0">
 										<div>
-											<br>
-											<div class="col-lg-12 col-12">
-												<div class="info-body">
-													<h4>구매자 정보</h4>
-													<table class="product-details-table">
-														<tr>
-															<th>이름</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>이메일</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>휴대폰 번호</th>
-															<td>상세페이지 참조</td>
-														</tr>
-													</table>
-												</div>
-											</div>
-
-											<br>
-											<div class="col-lg-12 col-12">
-												<div class="info-body">
-													<h4>받는이 정보</h4>
-													<table class="product-details-table">
-														<tr>
-															<th>이름</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>배송지</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>휴대폰 번호</th>
-															<td>상세페이지 참조</td>
-														</tr>
-														<tr>
-															<th>배송 요청사항</th>
-															<td>상세페이지 참조</td>
-														</tr>
-													</table>
-												</div>
-											</div>
 
 											<br>
 											<div class="col-lg-12 col-12">
 												<div class="info-body">
 													<h4>구매예정 상품</h4>
-
 													<table class="product-details-table">
 														<tr>
 															<th style="text-align: left; width: 90%;">&nbsp;&nbsp;&nbsp;상품명</th>
@@ -114,20 +68,65 @@
 													<table class="product-details-table">
 														<tr>
 															<th>총 가격</th>
-															<td>상세페이지 참조</td>
+															<td>&#8361;5000</td>
 														</tr>
 														<tr>
 															<th>배송비</th>
-															<td>상세페이지 참조</td>
+															<td>&#8361;5000</td>
 														</tr>
 														<tr>
 															<th><span style="color: #ff0000; font-weight: bold;">결제예정금액</span></th>
-															<td>상세페이지 참조</td>
+															<td><span style="color: #000; font-weight: bold;">&#8361;5000</span></td>
 														</tr>
 													</table>
 												</div>
 											</div>
+											<hr>
+
+											<div class="col-lg-12 col-12">
+												<div class="info-body">
+													<h4>구매자 정보</h4>
+													<table class="product-details-table">
+														<tr>
+															<th>이름</th>
+															<td>조현철</td>
+														</tr>
+														<tr>
+															<th>이메일</th>
+															<td>projext9@gmail.com</td>
+														</tr>
+														<tr>
+															<th>휴대폰 번호</th>
+															<td>010-4760-3511</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+
 											<br>
+											<div class="col-lg-12 col-12">
+												<div class="info-body">
+													<h4>받는이 정보&nbsp&nbsp<button type="button" class="btn btn-outline-secondary btn-sm">구매자와 동일</button></h4>
+													<table class="product-details-table">
+														<tr>
+															<th>이름</th>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp조현철</td>
+														</tr>
+														<tr>
+															<th>휴대폰 번호</th>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp010-4760-3511</td>
+														</tr>
+														<tr>
+															<th>배송지</th>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp전라북도 전주시 덕진구 금암1동 667-52 5층 123123전라북도 전주시 덕진구 금암1동 667-52 5층</td>
+														</tr>
+														<tr>
+															<th>배송 요청사항</th>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp부재시 경비실에 맡겨주세요</td>
+														</tr>
+													</table>
+												</div>
+											</div>
 
 	                                  	</div>
 									</div>
@@ -141,7 +140,7 @@
 			<div class="list-group mt-5 p-0 justify-content-center active" id="allList" role="tablist" style="flex-direction: row;">
 				<a href="javascript:window.history.back();" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">돌아가기<i class="fal fa-arrow-circle-right"></i></a>
 	           	&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="${pageContext.request.contextPath}/itempay.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">결제 진행<i class="fal fa-arrow-circle-right"></i></a>
+				<a href="${pageContext.request.contextPath}/itempay.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">결제 방법 선택<i class="fal fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 		<%@ include file="footer.jsp"%>

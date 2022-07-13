@@ -37,6 +37,30 @@
 									<div class="card border-0">
 										<div>
 
+											<br>
+											<div class="col-lg-12 col-12">
+												<div class="info-body">
+													<h4>구매예정 상품</h4>
+
+													<table class="product-details-table">
+														<tr>
+															<th style="text-align: left; width: 90%;">&nbsp;&nbsp;&nbsp;상품명</th>
+															<th style="width: 10%;">수량</th>
+														</tr>
+														
+														<tr>
+															<td>상품명 가나다라마바사</td>
+															<td style="text-align: center;">1</td>
+														</tr>
+
+														<tr>
+															<td>할렐루야 중국산 낚시대</td>
+															<td style="text-align: center;">1</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+
                                             <br>
 											<div class="col-lg-12 col-12">
 												<div class="info-body">
@@ -44,20 +68,47 @@
 													<table class="product-details-table">
 														<tr>
 															<th>총 가격</th>
-															<td>상세페이지 참조</td>
+															<td>&#8361;5000</td>
 														</tr>
 														<tr>
 															<th>배송비</th>
-															<td>상세페이지 참조</td>
+															<td>&#8361;5000</td>
 														</tr>
 														<tr>
 															<th><span style="color: #ff0000; font-weight: bold;">결제예정금액</span></th>
-															<td>상세페이지 참조</td>
+															<td><span style="color: #000; font-weight: bold;">&#8361;2222</span></td>
+														</tr>
+													</table>
+												</div>
+											</div>
+											<hr>
+
+											<div class="col-lg-12 col-12">
+												<div class="info-body">
+													<h4>결제 진행</h4>
+													<table class="product-details-table">
+														<tr>
+															<th style="text-align: left;">&nbsp;&nbsp;&nbsp;결제방법</th>
+														</tr>
+														<tr>
+															<td>상품명 가나다라마바사</td>
+														</tr>
+														<tr>
+															<td>상품명 가나다라마바사</td>
 														</tr>
 													</table>
 												</div>
 											</div>
 											<br>
+
+											<div class="col-lg-12 col-12">
+												<div class="info-body">
+													<h4>현금영수증(소득공제)</h4>
+		                                            <div style="clear: both; border: 2px solid #c8c8c8; text-align: left; padding: 20px 15px 18px; font-size: 16px; line-height: 4px; color: #555;">
+														<button type="button" class="btn btn-outline-info btn-sm">변경</button>&nbsp;&nbsp;휴대폰 번호 : <span style="color: #000; font-weight: bold;">010-4760-3511</span><br><br>
+													</div>
+												</div>
+											</div>
 
 	                                  	</div>
 									</div>
@@ -69,7 +120,7 @@
 			</div>
 
 			<div class="list-group mt-5 p-0 justify-content-center active" id="allList" role="tablist" style="flex-direction: row;">
-				<a href="javascript:window.history.back();" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">돌아가기<i class="fal fa-arrow-circle-right"></i></a>
+				<a href="${pageContext.request.contextPath}/itemcart.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">결제 취소<i class="fal fa-arrow-circle-right"></i></a>
 	           	&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="${pageContext.request.contextPath}/itempay.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">결제 진행<i class="fal fa-arrow-circle-right"></i></a>
 			</div>

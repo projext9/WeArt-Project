@@ -296,8 +296,6 @@ p {
     width: 100%;
 }
 
-
-
 .product-details-info .single-block {
     background-color: #fff;
     padding: 20px;
@@ -307,22 +305,12 @@ p {
     margin-top: 15px;
 }
 
-
-body {
-    font-family: "Manrope", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    overflow-x: hidden;
-    font-size: 14px;
-}
-
 .product-details-info .info-body h4 {
     font-size: 18px;
     font-weight: 500;
     margin-top: 20px;
 	margin-bottom: 10px;
 }
-
 
 .product-details-info .info-body p {
     margin: 20px 0;

@@ -3,6 +3,13 @@
 * Copyright 2022 Team We-Art
 * Licensed under MIT (https://github.com/projext9/WeArt-Project)
 */
+@media only screen and (min-width: 768px) {
+	.dropdown:hover .dropdown-menu {
+	    display: block;
+	    margin-top: 0;
+	}
+}
+
 .navbar-dark .navbar-nav .nav-link { /* 메뉴 텍스트 색상 */
 	color:#FFFFFF;
 }

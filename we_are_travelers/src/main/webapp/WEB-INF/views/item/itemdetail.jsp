@@ -5,7 +5,7 @@
 <html>
     <head>
         <title>We-Art Project</title>
-		<link href="${pageContext.request.contextPath}/resources/css/weart_item.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
     </head>
 	<body>
 	<header class="header navbar-area">
@@ -283,8 +283,7 @@
 									<li>ㆍ화면 색상이나 이미지가 실제와 달라, 고객이 단순 변심으로 교환/반품을 무료로 요청하는 경우</li>
 									<li>ㆍ제조사의 사정 (신제품 출시 등) 및 부품 가격 변동 등에 의해 무상 교환/반품을 요청하는 경우</li>
 								</ul>
-								<h4>상품별 취소/반품 제한 세부사항</h4>
-								<button type="button" class="btn btn-outline-info">팝업으로 확인</button>
+								<h4>상품별 취소/반품 제한 세부사항&nbsp;&nbsp;<button type="button" class="btn btn-outline-info btn-sm">팝업으로 확인</button></h4>
 							</div>
 						</div>
 						
