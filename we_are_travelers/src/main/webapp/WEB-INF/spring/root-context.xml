@@ -24,11 +24,12 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
-	 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<!-- 이메일 인증 관련 빈 등록 -->
+   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
       <property name="host" value="smtp.gmail.com" />
       <property name="port" value="587" />
-      <property name="username" value="${member_id.account}" />
-      <property name="password" value="${member_pwd.password}" />
+      <property name="username" value="seokcheol0000@gmail.com" />
+      <property name="password" value="eqpmygiyvgxuatmv" />
       <property name="javaMailProperties">
          <props>
                 <prop key="mail.transport.protocol">smtp</prop>
@@ -43,6 +44,6 @@
       </property>
       
    </bean>
-   
+	 
 </beans>
 	  
