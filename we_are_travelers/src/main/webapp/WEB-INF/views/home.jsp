@@ -28,6 +28,12 @@
 			<a href="/travelers/login.do">로그인</a>
 		</c:otherwise>
 	</c:choose>
+	<a href ="/travelers/activityList.do">액티비티 리스트 들어가기 </a> <br><br>
+	<a href = "/travelers/attractionList.do">명소 리스트 들어가기</a><br><br>
+	<a href = "/travelers/fishingList.do">낚시터 리스트 들어가기</a><br><br>
+	
+	<a href = "/travelers/admin_CompanyList.do">관리자 맵리스트</a>
+	
 
 
 

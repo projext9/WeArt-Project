@@ -8,16 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import we.are.travelers.service.AdminService;
+import we.are.travelers.service.MapService;
+import we.are.travelers.vo.MapVo;
 import we.are.travelers.vo.MemberVo;
 
 @Controller
 public class AdminController {
 	
 	private AdminService adminService;
-	
+	private MapService mapService;
 	@Autowired //자동 의존 주입: 생성자 방식
-	public AdminController(AdminService adminService) {
+	public AdminController(AdminService adminService,MapService mapService) {
 		this.adminService = adminService;
+		this.mapService = mapService;
 	}
 	
 	@GetMapping("/admin.do") //get방식 요청 처리 <!-- admin_home.jsp 호출 -->
@@ -34,6 +37,7 @@ public class AdminController {
 		
 		return "admin/admin_memberList"; //저장된 객체를 여기로 보냅
 	}
+
 	
 	
 	

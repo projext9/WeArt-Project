@@ -17,7 +17,7 @@ public class GalleryDao {
 	
 	private SqlSession sqlSession;
 	
-	public static final String MAPPER = "ezen.dev.spring.gallery";
+	public static final String MAPPER = "we.are.travelers.gallery";
 	
 	@Autowired
 	public GalleryDao(SqlSession sqlSession) {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "we.are.travelers.admin">
+
+	<select id="getMemberList" resultType="memberVo">
+		select * from member
+	</select>
+	
+	<update id="updateMemberGrade" parameterType="map">
+		update member set member_grade = #{member_grade}
+			where member_idx = #{member_idx}
+	</update>
+	
+	<delete id="deleteMemberInfo" parameterType="list">
+		delete from member where member_idx in 
+		<foreach collection="list" item="member_idx" open="(" separator="," close=")" >
+			#{member_idx}
+		</foreach>
+	
+	</delete>
+
+</mapper>

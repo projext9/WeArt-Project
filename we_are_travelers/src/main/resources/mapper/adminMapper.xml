@@ -18,7 +18,5 @@
 		<foreach collection="list" item="member_idx" open="(" separator="," close=")" >
 			#{member_idx}
 		</foreach>
-	
 	</delete>
-
 </mapper>

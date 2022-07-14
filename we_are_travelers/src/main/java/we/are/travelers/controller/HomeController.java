@@ -16,16 +16,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import we.are.travelers.service.GalleryService;
+import we.are.travelers.service.MapService;
 import we.are.travelers.vo.GalleryVo;
+import we.are.travelers.vo.MapVo;
+import we.are.travelers.vo.MemberVo;
 
 @Controller
 public class HomeController {
 	private GalleryService galleryService;
+	private MapService mapService;
 	
 	@Autowired //의존 자동 주입: 생성자 방식
-	public HomeController(GalleryService galleryService) {
-		this.galleryService = galleryService;
+	public HomeController(GalleryService galleryService , MapService mapService) {
+		this.galleryService = galleryService; //객체주입 요청
+		this.mapService = mapService; // 객체주입을 요청
+	
+		
 	}
+	
 
 	
 	@GetMapping("/")//get방식 요청 처리
@@ -43,45 +51,49 @@ public class HomeController {
 		return "gallery/fileUpload";
 	}
 	
-	/* Spring MVC에서 파일 업로드 구현을 위한 조치들
-	 * 
-	 * 1. pom.xml에 fileupload에 필요한 dependency 추가
-	 * <dependency>
-	 * 	<groupId>commons-fileupload</groupId>
-	 * 	<artifactId>commons-fileupload</artifactId>
-	 * 	<version>1.4</version>
-	 * </dependency>
-	 * 
-	 * 2. pom.xml에 servlet-api와 jsp-api 업데이트
-	 * <dependency>
-	 * 	<groupId>javax.servlet</groupId>
-	 * 	<artifactId>javax.servlet-api</artifactId>
-	 * 	<version>3.1.0</version>
-	 * 	<scope>provided</scope>
-	 * </dependency>
-	 * 
-	 * <dependency>
-	 * 	<groupId>javax.servlet.jsp</groupId>
-	 * 	<artifactId>javax.servlet.jsp-api</artifactId>
-	 * 	<version>2.3.2-b02</version>
-	 * 	<scope>provided</scope>
-	 * </dependency>
-	 * 
-	 * 3. servlet-context.xml에 MultipartResolver 빈 등록
-	 * <beans:bean id="multipartResolver" 
-	 *             class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
-	 * </beans:bean>
-	 * 
-	 * 4. web.xml에 <servlet>태그 내에 multipart-config 설정 정보 추가
-	 * <multipart-config>
-	 * 	<max-file-size>10485760</max-file-size><!-- 파일 한 개의 최대 크기: 10MB(10*1024*1024) -->
-	 * 	<max-request-size>52428800</max-request-size><!-- 한 번에 여러 파일을 올릴 때 최대 크기: 50MB -->
-	 * 	<file-size-threshold>20971520</file-size-threshold><!-- 넘으면 temp에 넣고 업로드에 들어가지 않음: 20MB -->
-	 * </multipart-config>
-	 * 
-	 * 5. webapp/resources/upload 폴더 만들기
-	 */
+	@GetMapping("/activityList.do")
+	public String activity(Model model)
+	{
+		
 	
+		List<MapVo> mapList = mapService.getMapList(); 
+		model.addAttribute("mapList",mapList);
+		
+		return "map/activity/activityList";
+	}
+	@GetMapping("/attractionList.do")
+	public String attraction(Model model)
+	{
+		
+	
+		List<MapVo> mapList = mapService.getMapList(); 
+		model.addAttribute("mapList",mapList);
+		
+		return "map/attraction/attractionList";
+	}
+	@GetMapping("/fishingList.do")
+	public String fishing(Model model)
+	{
+		
+	
+		List<MapVo> mapList = mapService.getMapList(); 
+		model.addAttribute("mapList",mapList);
+		
+		return "map/fishing/fishingList";
+	}
+	
+	
+	@GetMapping("/admin_CompanyList.do")
+	public String admin_CompanyList(Model model)
+	{
+		
+		List<MapVo> mapList = mapService.getMapList(); 
+		model.addAttribute("mapList",mapList);
+		
+		return "admin/mapList/admin_CompanyList";
+	}
+	
+
 	
 	@PostMapping("/fileUploadProcess.do")
 	public String fileUploadProcess(@RequestParam("uploadFile") MultipartFile uploadFile,
