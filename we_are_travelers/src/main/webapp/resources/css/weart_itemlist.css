@@ -100,7 +100,7 @@ select {
 
 .card-img-top {
 	padding: 1rem !important;
-	max-height: 200px;
+	height: 200px;
 }
 
 .scroll-top {

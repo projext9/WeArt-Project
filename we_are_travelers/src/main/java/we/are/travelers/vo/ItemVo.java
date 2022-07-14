@@ -25,6 +25,7 @@ public class ItemVo {
 	private String item_input11;
 	private String item_content;
 	private String item_addr;
+	private String item_cashReceipt;
 	private Date item_date;
 	private String item_delyn;
 	
@@ -153,6 +154,12 @@ public class ItemVo {
 	}
 	public void setItem_addr(String item_addr) {
 		this.item_addr = item_addr;
+	}
+	public String getItem_cashReceipt() {
+		return item_cashReceipt;
+	}
+	public void setItem_cashReceipt(String item_cashReceipt) {
+		this.item_cashReceipt = item_cashReceipt;
 	}
 	public Date getItem_date() {
 		return item_date;

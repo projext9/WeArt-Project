@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import we.are.travelers.service.ItemService;
 import we.are.travelers.vo.ItemVo;
+import we.are.travelers.vo.MemberVo;
 
 @Controller
 public class ItemController {
@@ -24,16 +25,6 @@ public class ItemController {
 	@Autowired //자동 의존 주입: 생성자 방식
 	public ItemController(ItemService itemService) {
 		this.itemService = itemService;
-	}
-	
-	@GetMapping("/fishingshop.do")
-	public String fishingshop() {
-		return "item/fishingshop";
-	}
-	
-	@GetMapping("/itemdetail.do")
-	public String itemdetail() {
-		return "item/itemdetail";
 	}
 	
 	@GetMapping("/itemcart.do")
@@ -51,15 +42,25 @@ public class ItemController {
 		return "item/itempay";
 	}
 	
-	@GetMapping("/itemlist2.do")//get방식 요청 처리
-	public String item_list(Model model) {
+	@GetMapping("/fishingshop.do") //낚시 상품페이지 호출
+	public String fishingshop(Model model) {
 		
-		List<ItemVo> itemList = itemService.getItemList();
-		model.addAttribute("itemList", itemList);
+		List<ItemVo> fishingShopList = itemService.getItemList();
+		model.addAttribute("fishingShopList", fishingShopList);
 		
-		return "item/list2";
+		return "item/fishingshop";
 	}
 	
+	@GetMapping("/itemdetail.do") //상품 상세페이지 호출
+	public String itemdetail(Model model, HttpServletRequest request) {
+		String item_idx = request.getParameter("iidx");
+		int item_idx_ = Integer.parseInt(item_idx);
+		
+		ItemVo itemDetail = itemService.getItemDetail(item_idx_);
+		model.addAttribute("itemDetail", itemDetail);
+
+		return "item/itemdetail";
+	}
 	
 }
 

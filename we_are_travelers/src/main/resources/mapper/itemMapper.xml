@@ -17,8 +17,13 @@
 			</choose>
 	</insert>
 	
-	<select id="getGalleryList" resultType="galleryVo">
-		select * from gallery	
+	<select id="getItemList" resultType="itemVo">
+		select * from weart_item
 	</select>
+
+	<select id="getItemDetail" resultType="ItemVo">
+		SELECT * FROM weart_item WHERE item_idx=#{item_idx}
+	</select>
+
 
 </mapper>

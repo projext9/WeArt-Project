@@ -102,94 +102,30 @@
 
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                
-                    <div class="col mb-5">
-                        <div class="card h-100">
-							<!-- Hot badge-->
-                            <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/item/item_sample.png" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">중국산 낚시대</h5>
-                                    <!-- Product price-->
-                                    &#8361; 50,000,000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/itemdetail.do">상세보기</a></div>
-                            </div>
-                        </div>
-                    </div>
 
+					<c:forEach var="itemVo" items="${fishingShopList}">
                     <div class="col mb-5">
                         <div class="card h-100">
 							<!-- Hot badge-->
                             <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/item/item_sample.png" alt="..." />
+                            <img class="card-img-top" src="${pageContext.request.contextPath}/resources/upload/${itemVo.item_img}" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">중국산 낚시대</h5>
+                                    <h5 class="fw-bolder">${itemVo.item_name}</h5>
                                     <!-- Product price-->
-                                    &#8361; 50,000,000
+                                    &#8361; ${itemVo.item_price}
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/itemdetail.do">상세보기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/itemdetail.do?iidx=${itemVo.item_idx}">상세보기</a></div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col mb-5">
-                        <div class="card h-100">
-							<!-- Hot badge-->
-                            <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/item/item_sample.png" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">중국산 낚시대</h5>
-                                    <!-- Product price-->
-                                    &#8361; 50,000,000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/itemdetail.do">상세보기</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col mb-5">
-                        <div class="card h-100">
-							<!-- Hot badge-->
-                            <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/item/item_sample.png" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">중국산 낚시대</h5>
-                                    <!-- Product price-->
-                                    &#8361; 50,000,000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/itemdetail.do">상세보기</a></div>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
 
                 </div>
             </div>
