@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import we.are.travelers.service.ItemService;
 import we.are.travelers.vo.ItemVo;
 import we.are.travelers.vo.MemberVo;
+import we.are.travelers.vo.OptionVo;
 
 @Controller
 public class ItemController {
@@ -56,11 +57,15 @@ public class ItemController {
 		String item_idx = request.getParameter("iidx");
 		int item_idx_ = Integer.parseInt(item_idx);
 		
-		ItemVo itemDetail = itemService.getItemDetail(item_idx_);
-		model.addAttribute("itemDetail", itemDetail);
+		ItemVo itemVo = itemService.getItemDetail(item_idx_);
+		model.addAttribute("itemVo", itemVo);
+		
+		List<OptionVo> optionList = itemService.getItemOption(item_idx_);
+		model.addAttribute("optionList", optionList);
 
 		return "item/itemdetail";
 	}
+
 	
 }
 

@@ -337,6 +337,7 @@ ul, ol {
 .product-details-info .info-body .normal-list li {
     display: block;
     position: relative;
+    font-size: 12px;
 }
 
 span, a {

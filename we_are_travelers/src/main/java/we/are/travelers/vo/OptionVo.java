@@ -6,7 +6,8 @@ public class OptionVo {
 	private int option_idx;
 	private int item_idx;
 	private String company_idx;
-	private int option_name;
+	private int option_number;
+	private String option_name;
 	private int option_price;
 	private int option_stock;
 	private int option_postPrice;
@@ -30,10 +31,16 @@ public class OptionVo {
 	public void setCompany_idx(String company_idx) {
 		this.company_idx = company_idx;
 	}
-	public int getOption_name() {
+	public int getOption_number() {
+		return option_number;
+	}
+	public void setOption_number(int option_number) {
+		this.option_number = option_number;
+	}
+	public String getOption_name() {
 		return option_name;
 	}
-	public void setOption_name(int option_name) {
+	public void setOption_name(String option_name) {
 		this.option_name = option_name;
 	}
 	public int getOption_price() {

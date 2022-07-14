@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import we.are.travelers.dao.ItemDao;
 import we.are.travelers.vo.ItemVo;
 import we.are.travelers.vo.MemberVo;
+import we.are.travelers.vo.OptionVo;
 
 @Service
 public class ItemService {
@@ -29,5 +30,9 @@ public class ItemService {
 
 	public ItemVo getItemDetail(int item_idx) { //상품 상세 호출
 		return itemDao.getItemDetail(item_idx);
+	}
+	
+	public List<OptionVo> getItemOption(int item_idx) { //상품 상세 호출(옵션)
+		return itemDao.getItemOption(item_idx);
 	}
 }

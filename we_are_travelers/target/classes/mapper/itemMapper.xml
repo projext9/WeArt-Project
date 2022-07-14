@@ -17,12 +17,16 @@
 			</choose>
 	</insert>
 	
-	<select id="getItemList" resultType="itemVo">
+	<select id="getItemList" resultType="itemVo"> <!-- 상품 리스트 호출 -->
 		select * from weart_item
 	</select>
 
-	<select id="getItemDetail" resultType="ItemVo">
+	<select id="getItemDetail" resultType="itemVo">	<!-- 상품 상세 호출 -->
 		SELECT * FROM weart_item WHERE item_idx=#{item_idx}
+	</select>
+	
+	<select id="getItemOption" resultType="optionVo"> <!-- 상품 상세 호출(옵션) -->
+		select * from weart_option WHERE item_idx=#{item_idx}
 	</select>
 
 

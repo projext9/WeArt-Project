@@ -23,6 +23,7 @@ public class ItemVo {
 	private String item_input9;
 	private String item_input10;
 	private String item_input11;
+	private String item_input12;
 	private String item_content;
 	private String item_addr;
 	private String item_cashReceipt;
@@ -142,6 +143,12 @@ public class ItemVo {
 	}
 	public void setItem_input11(String item_input11) {
 		this.item_input11 = item_input11;
+	}
+	public String getItem_input12() {
+		return item_input12;
+	}
+	public void setItem_input12(String item_input12) {
+		this.item_input12 = item_input12;
 	}
 	public String getItem_content() {
 		return item_content;

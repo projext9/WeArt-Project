@@ -6,6 +6,16 @@
     <head>
         <title>We-Art Project</title>
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
+		    <script type="text/javascript">
+			    var optionSelect = (target) => {
+					var optionValue = target.options[target.selectedIndex].value;
+					alert("선택된 옵션 value 값=" + optionValue);
+				}
+			    var pieceSelect = (target) => {
+					var pieceValue = target.options[target.selectedIndex].value;
+					alert("선택된 수량 value 값=" + pieceValue);
+				}
+	</script>
     </head>
 	<body>
 		<header class="header navbar-area">
@@ -54,29 +64,29 @@
 							<div class="product-images">
 								<main id="gallery">
 									<div class="main-img">
-										<img src="${pageContext.request.contextPath}/resources/img/item/item_sample.png" style="max-width: 500px; max-height: 500px;" alt="#">
+										<img src="${pageContext.request.contextPath}/resources/upload/${itemVo.item_img}" style="max-width: 500px; max-height: 500px;" alt="#">
 									</div>
 								</main>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-12 col-12">
 							<div class="product-info">
-								<h2 class="title">쭝꿔러 낚시대</h2>
+								<h2 class="title">${itemVo.item_name}</h2>
 							    <hr class="featurette-divider">
-								<h3 class="price">&#8361; 50,000,000</h3>
-								<p class="info-text">이건 낚시대입니다. 중국산 낚시대. 하나 둘 셋 넷 다섯 여섯 일곱 레인보우 낚시대. 이건 낚시대입니다. 중국산 낚시대. 하나 둘 셋 넷 다섯 여섯 일곱 레인보우 낚시대.</p>
-								<p class="info-text">판매자 : ㅇㅇ컴퍼니<br>택배사 : ㅇㅇ택배<br>배송비 : 3000원</p>
+								<h3 class="price">&#8361; ${itemVo.item_price}</h3>
+								<p class="info-text">${itemVo.item_input1}</p>
+								<p class="info-text">판매자 : ㅇㅇ컴퍼니<br>택배회사 : ${itemVo.item_input2}<br>배송비 : ${itemVo.item_postPrice}원</p>
 		
 								<div class="row">
 									<div class="col-lg-6 col-md-6 col-6">
 										<div class="form-group">
-											<label for="color">옵션 선택</label>
-											<select class="form-control" id="color">
-												<option>1번 옵션</option>
-												<option>2번 옵션</option>
-												<option>3번 옵션</option>
-												<option>4번 옵션</option>
-												<option>5번 옵션</option>
+											<label for="optionValue">옵션 선택</label>
+											<select class="form-control" id="optionValue" onchange="optionSelect(this)">
+												<c:forEach var="optionVo" items="${optionList}">
+													<c:if test="${optionVo.option_delyn == 'N'}">
+														<option value="${optionVo.option_idx}">${optionVo.option_name}</option>
+													</c:if>
+												</c:forEach>
 											</select>
 										</div>
 									</div>
@@ -84,12 +94,12 @@
 									<div class="col-lg-6 col-md-6 col-6">
 										<div class="form-group quantity">
 											<label for="color">수량</label>
-											<select class="form-control">
-												<option>1개</option>
-												<option>2개</option>
-												<option>3개</option>
-												<option>4개</option>
-												<option>5개</option>
+											<select class="form-control" id="pieceValue" onchange="pieceSelect(this)">
+												<option value="1">1개</option>
+												<option value="2">2개</option>
+												<option value="3">3개</option>
+												<option value="4">4개</option>
+												<option value="5">5개</option>
 											</select>
 										</div>
 									</div>
@@ -125,7 +135,7 @@
 							<div class="col-lg-12 col-12">
 								<div class="info-body">
 									<h4>상품상세 정보</h4>
-									<p>${itemDetail.item_content}
+									<p>${itemVo.item_content}
 									</p>
 								</div>
 							</div>
@@ -146,19 +156,19 @@
 									<table class="product-details-table">
 										<tr>
 											<th>품명 및 모델명</th>
-											<td>상세페이지 참조</td>
+											<td>${itemVo.item_input3}</td>
 											<th>인증/허가 사항</th>
-											<td>상세페이지 참조</td>
+											<td>${itemVo.item_input4}</td>
 										</tr>
 										<tr>
 											<th>제조국</th>
-											<td>상세페이지 참조</td>
+											<td>${itemVo.item_input5}</td>
 											<th>제조자/수입자</th>
-											<td>상세페이지 참조</td>
+											<td>${itemVo.item_input6}</td>
 										</tr>
 										<tr>
 											<th colspan="2">소비자상담 관련 전화번호</th>
-											<td colspan="2">상세페이지 참조</td>
+											<td colspan="2">${itemVo.item_input7}</td>
 										</tr>
 									</table>
 								</div>
@@ -170,17 +180,17 @@
 									<table class="product-details-table">
 										<tr>
 											<th>배송방법</th>
-											<td>상세페이지 참조</td>
+											<td>${itemVo.item_input8}</td>
 											<th rowspan="2">배송비</th>
-											<td rowspan="2">기본 : 3000원<br>-추가배송비-<br>제주도 : 5000원<br>도서산간 : 8000원</td>
+											<td rowspan="2">기본 : ${itemVo.item_postPrice}원<br>-추가배송비-<br>제주도 : ${itemVo.item_input9}원<br>도서산간 : ${itemVo.item_input10}원</td>
 										</tr>
 										<tr>
 											<th>택배회사</th>
-											<td>ㅇㅇ택배</td>
+											<td>${itemVo.item_input2}</td>
 										</tr>
 										<tr>
 											<th colspan="2">묶음배송 여부</th>
-											<td colspan="2">불가능</td>
+											<td colspan="2">${itemVo.item_input11}</td>
 										</tr>
 									</table>
 								</div>
@@ -209,19 +219,19 @@
 											</td>
 										</tr>
 										<tr>
-											<th>교환/반품 비용</th>
+											<th>교환/반품 기준일</th>
 										</tr>
 										<tr>
-											<td>ㆍ단순변심에 의한 로켓배송 상품의 교환/반품은 제품 수령 후 30일 이내까지, 교환/반품 제한사항에 해당하지 않는 경우에만 가능
+											<td>ㆍ단순변심에 의한 상품의 교환/반품은 제품 수령 후 30일 이내까지, 교환/반품 제한사항에 해당하지 않는 경우에만 가능
 											<br>(교환/반품 비용 고객부담)
 											<br>ㆍ상품의 내용이 표시·광고의 내용과 다른 경우에는 상품을 수령한 날부터 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 청약철회 가능</td>
 										</tr>
 									</table>
-									
+
 									<table class="product-details-table">
 										<tr>
 											<th>취소 기준일</th>
-											<td>취소</td>
+											<td>${itemVo.item_input12}</td>
 										</tr>
 									</table>
 								</div>
