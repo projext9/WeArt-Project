@@ -28,6 +28,9 @@
 	<select id="getItemOption" resultType="optionVo"> <!-- 상품 상세 호출(옵션) -->
 		select * from weart_option WHERE item_idx=#{item_idx}
 	</select>
-
-
+	
+	<insert id="addItemCart" parameterType="map"> <!-- 장바구니 담기 -->
+		INSERT INTO weart_cart(member_idx,option_idx,cart_count) VALUES(#{member_idx}, #{option_idx}, #{cart_count})
+	</insert>
+	
 </mapper>

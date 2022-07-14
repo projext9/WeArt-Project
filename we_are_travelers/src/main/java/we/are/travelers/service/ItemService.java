@@ -1,5 +1,6 @@
 package we.are.travelers.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,12 @@ public class ItemService {
 	
 	public List<OptionVo> getItemOption(int item_idx) { //상품 상세 호출(옵션)
 		return itemDao.getItemOption(item_idx);
+	}
+	
+	public int addItemCart(HashMap<String, Object> map) { //장바구니 담기
+		int result = 0;
+		result = itemDao.addItemCart(map);
+		System.out.println(result);
+		return result;
 	}
 }

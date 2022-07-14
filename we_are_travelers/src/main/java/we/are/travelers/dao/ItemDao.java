@@ -40,5 +40,9 @@ public class ItemDao {
 	public List<OptionVo> getItemOption(int item_idx) { //상품 상세 호출(옵션)
 		return sqlSession.selectList(MAPPER+".getItemOption", item_idx);
 	}
+	
+	public int addItemCart(HashMap<String, Object> map) { //장바구니 담기
+		return sqlSession.insert(MAPPER+".addItemCart", map);
+	}
 
 }

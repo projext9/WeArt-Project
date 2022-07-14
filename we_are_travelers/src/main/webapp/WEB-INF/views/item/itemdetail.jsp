@@ -6,15 +6,41 @@
     <head>
         <title>We-Art Project</title>
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
-		    <script type="text/javascript">
-			    var optionSelect = (target) => {
-					var optionValue = target.options[target.selectedIndex].value;
-					alert("선택된 옵션 value 값=" + optionValue);
-				}
-			    var pieceSelect = (target) => {
-					var pieceValue = target.options[target.selectedIndex].value;
-					alert("선택된 수량 value 값=" + pieceValue);
-				}
+		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+	    <script type="text/javascript">
+	    	var optionValue = "";
+	    	var pieceValue = "";
+	    	
+		    var optionSelect = (target) => {
+				optionValue = target.options[target.selectedIndex].value;
+				alert("선택된 옵션 value 값=" + optionValue);
+			}
+		    var pieceSelect = (target) => {
+				pieceValue = target.options[target.selectedIndex].value;
+				alert("선택된 수량 value 값=" + pieceValue);
+			}
+
+			$(function(){
+				//장바구니 담기
+				$("#additemcart").click(function(){
+					$.ajax({
+						type: "post",
+						url: "${pageContext.request.contextPath}/itemcartadd.do",
+						data: {
+							"optionValue": $("#optionValue option:selected").val(),
+							"pieceValue": $("#pieceValue option:selected").val()
+						},
+						success: function(data){
+							if(data == "N"){
+								alert("장바구니 담기 실패!");
+							}else{
+								alert("장바구니 담기 성공!");
+							}
+						},
+						error: function(error){ alert("장바구니 에러발생"); }
+					});
+				});
+			});
 	</script>
     </head>
 	<body>
@@ -109,13 +135,13 @@
 									<div class="row align-items-end">
 										<div class="col-lg-6 col-md-6 col-12" style="margin-top: 20px;">
 											<div class="button cart-button">
-												<button class="btn" style="width: 100%;" onclick="location.href='${pageContext.request.contextPath}/itemcart.do'">장바구니 담기</button>
+												<button class="btn" id="additemcart" style="width: 100%;" >장바구니 담기</button>
 											</div>
 										</div>
 			
 										<div class="col-lg-6 col-md-6 col-12" style="margin-top: 20px;">
 											<div class="wish-button">
-												<button class="btn">바로구매</button>
+												<button class="btn" onclick="location.href='${pageContext.request.contextPath}/itemcart.do'">바로구매</button>
 											</div>
 										</div>
 									</div>

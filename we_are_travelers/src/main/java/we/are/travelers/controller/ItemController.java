@@ -66,6 +66,25 @@ public class ItemController {
 		return "item/itemdetail";
 	}
 
+	@PostMapping("/itemcartadd.do") //카트 상품담기
+	public String itemcartadd(HttpServletRequest request, @RequestParam("optionValue") int option_idx, @RequestParam("pieceValue") int cart_count) {
+		HttpSession session = request.getSession();
+		String member_idx = (String)session.getAttribute("member_idx");
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_idx", member_idx);
+		map.put("option_idx", option_idx);
+		map.put("cart_count", cart_count);
+
+		String result="N"; //정보수정 실패
+		
+		int flag = itemService.addItemCart(map);
+		
+		if(flag == 1) result = "Y"; //정보수정 성공
+		System.out.println("플레그" + flag);
+		return result;
+	}
+	
 	
 }
 

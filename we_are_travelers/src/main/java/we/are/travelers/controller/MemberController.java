@@ -88,8 +88,11 @@ public class MemberController {
 		String viewPage = null;
 		if(member_auth==1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("member_id", member_id);//회원인증 추가	
+			session.setAttribute("member_idx", member_id);//회원인증 추가	
 			session.setAttribute("member_grade", member_grade);//회원등급 추가
+			System.out.println(member_id);
+			System.out.println(member_grade);
+			System.out.println("로그인완료");
 			viewPage = "redirect:/home.do";
 		
 		}else{
