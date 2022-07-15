@@ -30,27 +30,13 @@ body {
 
 .join_gude_1 {
 	font-size : 24px;
-	
 }
 
-.mail_check_area {
+.mail_input_box {
+	display : flex;
+	flex-wrap : nowrap;
+
+}
+h1{
 	display : inline-block;
-	margin : 0;
-	padding : 0;
-	width : 100%;
-	}
-	
-#mail_check_input_box_false{
-    background-color : #ebebe4;
-}
- 
-#mail_check_input_box_true{
-    background-color : white;
-}
-
-.correct{
-    color : green;
-}
-.incorrect{
-    color : red;
 }

@@ -10,51 +10,121 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	
+	var code = "";
+	var timer = null;
+	var isRunning = false;
 	
 	$(function(){
 		
-		var code = "";
-		
-		/*인증번호 이메일 전송*/
-		$('.mail_check_button').click(function(){
+		/*인증번호 버튼 클릭시 유효성 및 중복 검사 후 통과 시 인증번호 발송*/
+		$('.mail_check_button').on('click' , function(){
 			
-			var email = $(".mail_input").val();           // 입력한 이메일
-			var checkBox = $(".mail_check_input");        // 인증번호 입력란
-		    var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
+			var email = $(".mail_input").val(); //이메일 input 입력값
+			var display = $('.time'); // 타이머 class
+	    	var leftSec = 180; //3분      
+			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // 알파벳+숫자@알파벳+숫자
+			var member_id = $(".mail_input").val(); // 입력한 이메일     
 			
+			if(exptext.test(email)==false){
+				//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우			
+
+				$(".mail_input_check").html("이메일형식이 올바르지 않습니다.").css("color" , "red");
+				
+	            $(".mail_input").focus();
+
+			     return false; // 함수 동작 중단
+			     
+	        }else{
+	        	
+			$.ajax({
+				type:'post',
+				url:"/travelers/checkId.do",
+				data: {"member_id":member_id},
+				success: function(data){
+					if(data == "N"){
+						result = "사용 가능한 아이디입니다.";
+						$(".mail_input_check").html(result).css("color", "green");
+					}else{
+						result = "이미 사용중인 아이디입니다.";
+						$(".mail_input_check").html(result).css("color", "red");
+						$(".mail_input").val("").trigger("focus");
+					}
+				},
+				error: function(error){alert(error);}
+			});			
+
 			$.ajax({
 				
 			        type:"GET",
 			        url:"mailCheck?email=" + email,
 			        success:function(data){
+			        	
+			        	
+			        	
+			            $(".mail_check_input").attr('type' , 'text');
+
+			            if (isRunning){
+				    		clearInterval(timer);
+				    		display.html("");
+				    		startTimer(leftSec, display);
+				    		
+			            }else{	
+			            startTimer(leftSec, display);	          
+			            alert("인증번호가 전송되었습니다.")
+			            code = data;
+			            }
 			            
 			            console.log("data : " + data);
-			            checkBox.attr('disabled' , false);
-			            boxWrap.attr("id", "mail_check_input_box_true");
-			            code = data;
-			            alert("인증번호가 전송되었습니다.")
-			        }   
-			
+			        }
+			        
 			});
 		    
-			alert("ajax controller 전송")
-			
-		});
-		
+	
 		/* 인증번호 비교 */
-		$(".mail_check_input").blur(function(){
+		$(".mail_check_input").on('focusout' , function(){
 		    
 		    var inputCode = $(".mail_check_input").val();        // 입력코드    
-		    var checkResult = $("#mail_check_input_box_warn");    // 비교 결과     
+		    var checkResult = $(".mail_check_input_box_warn");    // 비교 결과     
 		    
 		    if(inputCode == code){                            // 일치할 경우
 		        checkResult.html("인증번호가 일치합니다.");
-		        checkResult.attr("class", "correct");        
+		        checkResult.css("color", "green");
+		        $(".next").attr('disabled' , false);
+		        $(".mail_input").attr('disabled' , true);
+		        $(".mail_check_input").attr('disabled' , true);
+		        $('.mail_check_button').attr('disabled' , true);
+		        
 		    } else {                                            // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
-		        checkResult.attr("class", "incorrect");
+		        checkResult.css("color", "red");
 		    }    
 		    
+		});
+				    
+		function startTimer(count, display){
+		            
+		    		var minutes, seconds;
+		            timer = setInterval(function () {
+		            minutes = parseInt(count / 60, 10);
+		            seconds = parseInt(count % 60, 10);
+		     
+		            minutes = minutes < 10 ? "0" + minutes : minutes;
+		            seconds = seconds < 10 ? "0" + seconds : seconds;
+		     
+		            display.html(minutes + ":" + seconds);
+		     
+		            // 타이머 끝
+		            if (--count < 0) {
+		    	     clearInterval(timer);
+		    	     alert("유효시간초과");
+		    	     display.html("유효시간초과");
+		    	     location.reload();
+		    	     isRunning = false;
+		            }
+		        }, 1000);
+		             isRunning = true;
+		}
+	}
 		});
 	});
 		
@@ -62,36 +132,44 @@
 </head>
 
 <body class="join_member">
-<h1>We Are Travelers!</h1>
+
 <div class="join_container">
 <main class="join_cont">
 <form class="join_form" name="joinForm" action="/travelers/joinProcess.do" method="post">
-
+    <h1>We Are Travelers!</h1>
+    <br>
+    <div>
     <progress value="20" max="100"></progress>
-    
+    </div>
+    <br>
       <p class="join_guide_1">위아트 계정으로 사용할 이메일(아이디)를 입력해주세요 <p/>
     <div class="mail_wrap">
     <div class="mail_name">이메일</div>
     <div class="mail_input_box">
-        <input class="mail_input" name="member_id">
+        <input class="mail_input" id="mail_input_id" name="email_id">
+        <div class="mail_check_button_wrap">
+       <input type="button" class="mail_check_button" value="인증번호">
+   </div> 
     </div>
     </div>
+    <font class="mail_input_check"></font>
     <div class="mail_check_wrap">
-    <div class="mail_check_input_box" id="mail_check_input_box_false">
-        <input class="mail-check_input" disabled="disabled">
+    <div class="mail_check_input_box">
+        <input type="hidden" class="mail_check_input">
       </div>
       
-   <div class="mail_check_button">
-     <span>인증번호</span>
-   </div> 
    
+       <span class="mail_check_input_box_warn"></span>
+   
+   <div class="time"></div>
    <div class="clearfix">
-    <span id="mail_check_input_box_warn"></span>
     </div>
     </div>
-
-	<input type="submit" value="다음">
-	<input type="reset"  value="취소하기">
+    <br>
+    <div>
+	<input type="submit" class="next" value="다음" disabled="disabled">
+	<input type="reset"  class="cancel" value="취소하기">
+	</div>
 </form> 
 </main>
 </div>
