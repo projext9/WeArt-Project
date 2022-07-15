@@ -34,7 +34,7 @@ body {
   font-weight: 400;
   position: relative;
     top: -120px;
-    left: -90px;
+    left: -130px;
 }
 
 .form-signin .form-floating:focus-within {
@@ -54,10 +54,16 @@ body {
 }
 .form-floating-btn {
 	position : relative;
-	left : 230px;
+	left : 200px;
 	top : -125px;
 }
+.form-floating {
+	left:-43px;
+}
+.form-control {
+	width : 90%;
 
+	}
 .social_login{
 	display : flex;
 	text-align : center;
@@ -75,4 +81,15 @@ body {
 .join {
 	display : flex;
 
+}
+
+.mb-3 {
+	position : relative;
+	left : -10px;
+}
+.join_member .join_company {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    text-decoration : none;
 }

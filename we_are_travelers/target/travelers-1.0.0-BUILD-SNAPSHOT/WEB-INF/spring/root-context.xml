@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:context="http://www.springframework.org/schema/context"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	
-xsi:schemaLocation="http://www.springframework.org/schema/context   	   
-http://www.springframework.org/schema/beans/spring-context-3.0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -25,13 +23,13 @@ http://www.springframework.org/schema/beans/spring-context-3.0.xsd"
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
-		  
-	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	  <context:property-placeholder location="classpath:config/mybatis-config.xml" />
+	
+	<!-- 이메일 인증 관련 빈 등록 -->
+   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
       <property name="host" value="smtp.gmail.com" />
       <property name="port" value="587" />
-      <property name="username" value="${member_id.account}" />
-      <property name="password" value="${member_id.password}" />
+      <property name="username" value="seokcheol0000@gmail.com" />
+      <property name="password" value="eqpmygiyvgxuatmv" />
       <property name="javaMailProperties">
          <props>
                 <prop key="mail.transport.protocol">smtp</prop>
@@ -46,5 +44,6 @@ http://www.springframework.org/schema/beans/spring-context-3.0.xsd"
       </property>
       
    </bean>
-   
+	 
 </beans>
+	  

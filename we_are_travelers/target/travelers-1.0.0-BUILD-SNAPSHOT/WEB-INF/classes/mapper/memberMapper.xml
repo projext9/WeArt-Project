@@ -10,8 +10,9 @@
 		social_sns_token,social_reg_code,social_naver,social_facebook,social_google,social_kakao,
 		member_regdate,member_delyn) 
 		
-		 values(#{member_id}, #{member_pwd}, #{member_name}, #{member_nickname},#{member_phone},#{member_phone},
-		 #{member_grade},#{member_ip},#{social_sns_token})
+		 values(#{member_id}, #{member_pwd}, #{member_name}, #{member_nickname},#{member_phone},#{member_grade},
+		 #{member_ip},#{social_sns_token},#{social_reg_code},#{social_reg_code},#{social_reg_code},#{social_naver},#{social_facebook},#{social_kakao}
+		 ,#{member_regdate},#{member_delyn})
 	</insert>
 	
 	<!-- <select id="loginMember" parameterType="memberVo" resultType="map">
@@ -19,11 +20,11 @@
 	</select> -->
 	
 	<select id="loginMember" parameterType="map" resultType="map">
-		select count(*) as member_auth, member_grade from member where member_id=#{member_id} and member_pw=#{member_pw}
+		select count(*) as member_auth, member_grade from member where member_id=#{member_id} and member_pw=#{member_pwd}
 	</select>
 	
 	<select id="getMemberInfo" parameterType="string" resultType="memberVo">
-		select member_id, member_name, member_pw, member_phone from member where member_id=#{member_id}
+		select member_id, member_name, member_pwd, member_phone from member where member_id=#{member_id}
 	</select>
 
 	<select id="checkId" parameterType="string" resultType="int">

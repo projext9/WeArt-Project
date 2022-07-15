@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -57,12 +58,12 @@
  </div>
  
  
- <div class="join">
-   <div class="joinM">
-    <button class="btn btn-outline-success"><a href="${pageContext.request.contextPath}/join.do">일반회원가입</a></button>
+ <div class="join_wrap">
+   <div class="join_wrap_box">
+    <button class="join_member" onclick="location.href'${pageContext.request.contextPath}/join.do'">일반회원가입</button>
    </div>
-     <div class="joinC">
-     <button class="btn btn-outline-success"><a href="${pageContext.request.contextPath}/joinCompany.do">기업회원가입</a></button>
+     <div class="join_company">
+     <button class="join_company"onclick="location.href'${pageContext.request.contextPath}/joinCompany.do'">기업회원가입</button>
    </div>
  </div>
     <p class="mt-5 mb-6 text-muted">&copy; Copyright 2022. Team We-Art. all rights reserved.</p>
