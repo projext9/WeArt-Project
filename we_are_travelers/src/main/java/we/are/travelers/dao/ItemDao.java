@@ -2,6 +2,7 @@ package we.are.travelers.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,4 +46,9 @@ public class ItemDao {
 		return sqlSession.insert(MAPPER+".addItemCart", map);
 	}
 
+	public List<Map<String, Object>> getCartList(String member_idx) { //카트 호출
+		return sqlSession.selectList(MAPPER+".getCartList", member_idx);
+	}
+
 }
+

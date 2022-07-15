@@ -22,15 +22,21 @@
 	</select>
 
 	<select id="getItemDetail" resultType="itemVo">	<!-- 상품 상세 호출 -->
-		SELECT * FROM weart_item WHERE item_idx=#{item_idx}
+		SELECT * FROM weart_item WHERE item_idx = #{item_idx}
 	</select>
 	
 	<select id="getItemOption" resultType="optionVo"> <!-- 상품 상세 호출(옵션) -->
-		select * from weart_option WHERE item_idx=#{item_idx}
+		select * from weart_option WHERE item_idx = #{item_idx}
 	</select>
 	
 	<insert id="addItemCart" parameterType="map"> <!-- 장바구니 담기 -->
 		INSERT INTO weart_cart(member_idx,option_idx,cart_count) VALUES(#{member_idx}, #{option_idx}, #{cart_count})
 	</insert>
+
+	<select id="getCartList" resultType="map"> <!-- 상품 상세 호출(옵션) -->
+		Select * FROM weart_cart a 
+			INNER JOIN weart_option b ON a.option_idx = b.option_idx
+			INNER JOIN weart_item c ON b.item_idx = c.item_idx where a.member_idx = #{member_idx};
+	</select>
 	
 </mapper>

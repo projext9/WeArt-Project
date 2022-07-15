@@ -31,13 +31,15 @@
 							"pieceValue": $("#pieceValue option:selected").val()
 						},
 						success: function(data){
-							if(data == "N"){
-								alert("장바구니 담기 실패!");
-							}else{
+							if(data == "L"){
+								alert("로그인 후 이용해주세요!");
+							} else if (data == "Y") {
 								alert("장바구니 담기 성공!");
+							} else if (data == "N") {
+								alert("장바구니 담기 실패!");
 							}
 						},
-						error: function(error){ alert("장바구니 에러발생"); }
+						error: function(error){ alert("장바구니 에러발생!"); }
 					});
 				});
 			});

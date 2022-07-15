@@ -7,6 +7,9 @@
         <title>We-Art Project</title>
  		<link href="${pageContext.request.contextPath}/resources/css/weart_itemcart.css" rel="stylesheet" />
     </head>
+    <script>
+    	var total = 0;
+    </script>
 	<body>
 		<div class="container">
 			<div style="padding-top:100px;"></div>
@@ -45,50 +48,38 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="align-middle text-center">
-                                                            <a href="#delete" data-toggle="modal" data-title="Delete your product ?">
-                                                                <i class="fal fa-trash-alt"></i>X
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <div class="rounded" style="background-image: url(https://unsplash.com/photos/ZBwQ2bCbJjw/download?force=true&w=640); width: 60px; height: 60px; background-size: cover;"></div>
-                                                        </td>
-														<td class="align-middle text-left">상품명 아바다 카다브라 훌랄라 챠챠</td>
-														<td class="align-middle text-center" rowspan="3" style="border-left-width: 1px;">&#8361;50,000,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle text-left" colspan="3">가격 : &#8361;50,000,000 | 수량 : 5 개</td>
-                                                    </tr>
-                                                    <tr style="border-bottom-width: 2px; border-color: black;">
-                                                        <td class="align-middle text-left" colspan="3">배송비 : &#8361;3,000 | 묶음배송 : O</td>
-                                                    </tr>
 
-                                                    <tr>
-                                                        <td class="align-middle text-center">
-                                                            <a href="#delete" data-toggle="modal" data-title="Delete your product ?">
-                                                                <i class="fal fa-trash-alt"></i>X
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <div class="rounded" style="background-image: url(https://unsplash.com/photos/ZBwQ2bCbJjw/download?force=true&w=640); width: 60px; height: 60px; background-size: cover;"></div>
-                                                        </td>
-														<td class="align-middle text-left">상품명 아바다 카다브라 훌랄라 챠챠</td>
-														<td class="align-middle text-center" rowspan="3" style="border-left-width: 1px;">&#8361;50,000,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle text-left" colspan="3">가격 : &#8361;50,000,000 | 수량 : 5 개</td>
-                                                    </tr>
-                                                    <tr style="border-bottom-width: 2px; border-color: black;">
-                                                        <td class="align-middle text-left" colspan="3">배송비 : &#8361;3,000 | 묶음배송 : O</td>
-                                                    </tr>
+													<c:forEach var="map" items="${CartListMap}">
+														<tr>
+															<td class="align-middle text-center">
+																<a href="#delete" data-toggle="modal" data-title="Delete your product ?">
+																	<i class="fal fa-trash-alt"></i>X
+																</a>
+								                         	</td>
+															<td>
+																<div class="rounded" style="background-image: url(${pageContext.request.contextPath}/resources/upload/${map.item_img}); width: 60px; height: 60px; background-size: cover;"></div>
+															</td>
+															<td class="align-middle text-left">${map.item_name} | ${map.option_name}</td>
+															<td class="align-middle text-center" rowspan="3" style="border-left-width: 1px;">&#8361; ${map.option_price*map.cart_count}</td>
+														</tr>                    
+														<tr>
+															<td class="align-middle text-left" colspan="3">가격 : &#8361;${map.option_price} | 수량 : ${map.cart_count} 개</td>
+														</tr>
+														<tr style="border-bottom-width: 2px; border-color: black;">
+															<td class="align-middle text-left" colspan="3">배송비 : &#8361;${map.item_postPrice} | 묶음배송 : O</td>
+														</tr>
+														<script>
+															total = total + ${map.option_price*map.cart_count};
+														</script>
+													</c:forEach>
+
                                                 </tbody>
                                             </table>
                                             <br>
                                             <div style="clear: both; border: 3px solid #c8c8c8; text-align: center;">
                                             	<div style="display: inline-block; margin: 0 auto; vertical-align: top;"> 
                                             		<div style="padding: 20px 15px 18px; font-size: 16px; line-height: 25px; color: #555; text-align: center;">
-														총 가격 : <span style="color: #000; font-weight: bold;">&#8361;2222</span>&nbsp;<span style="background-color: #000; color: #fff; font-size: 20px; font-weight: bold;">+</span> 적용 배송비 : <span style="color: #000; font-weight: bold;">&#8361;2222</span> <br><span style="color: #000; font-weight: bold;">=> 최종 결제 금액 : </span><span style="color: #ff0000; font-weight: bold;">&#8361;2222</span>
+														총 가격 : <span style="color: #000; font-weight: bold;">&#8361;<script>document.writeln(total)</script></span>&nbsp;<span style="background-color: #000; color: #fff; font-size: 20px; font-weight: bold;">+</span> 적용 배송비 : <span style="color: #000; font-weight: bold;">&#8361;2222</span> <br><span style="color: #000; font-weight: bold;">=> 최종 결제 금액 : </span><span style="color: #ff0000; font-weight: bold;">&#8361;2222</span>
 													</div>
 												</div>
 											</div>

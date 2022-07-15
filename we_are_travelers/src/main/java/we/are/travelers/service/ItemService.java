@@ -2,13 +2,13 @@ package we.are.travelers.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import we.are.travelers.dao.ItemDao;
 import we.are.travelers.vo.ItemVo;
-import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OptionVo;
 
 @Service
@@ -42,5 +42,9 @@ public class ItemService {
 		result = itemDao.addItemCart(map);
 		System.out.println(result);
 		return result;
+	}
+	
+	public List<Map<String, Object>> getCartList(String member_idx) { //장바구니 호출
+		return itemDao.getCartList(member_idx);
 	}
 }
