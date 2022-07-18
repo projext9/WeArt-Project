@@ -2,6 +2,8 @@ package we.are.travelers.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,11 +34,6 @@ public class ItemController {
 	@Autowired //자동 의존 주입: 생성자 방식
 	public ItemController(ItemService itemService) {
 		this.itemService = itemService;
-	}
-	
-	@GetMapping("/itemorder.do")
-	public String itemorder() {
-		return "item/itemorder";
 	}
 
 	@GetMapping("/itempay.do")
@@ -103,11 +100,51 @@ public class ItemController {
 			List<Map<String, Object>> map = itemService.getCartList(member_idx);
 
 			model.addAttribute("CartListMap", map);
-			System.out.println(map);
-			System.out.println("맵 담기");
+
 			return "item/itemcart";
 		}
 	}
+	
+	@PostMapping("/itemorder.do")
+	public String itemorder(HttpServletRequest request, Model model) {
+		String[] cart_idx_list = request.getParameterValues("cart_idx");
+		List<String> cart_idx_list_ = Arrays.asList(cart_idx_list);	
+		
+		System.out.println("아이템 컨트롤러 - 선택된 cart_idx 값" + cart_idx_list_);
+		
+		List<Map<String, Object>> map = itemService.getItemOrder(cart_idx_list_);
+		
+		model.addAttribute("ItemOrderMap", map);
+		System.out.println("아이템 컨트롤러 - map : " + map);
+		
+		return "item/itemorder";
+	}
+		
+		    
+
+
+
+	
+	
+//	@PostMapping("/itemorder.do")
+//	public String itemorder(HttpServletRequest request, Model model) {
+//		String[] chkBox = request.getParameterValues("cart_idx");
+//		
+//		String cart_idx_list = "";
+//		
+//		for(int i = 0; i <= chkBox.length-1; i++){
+//			cart_idx_list = cart_idx_list+","+"'"+chkBox[i]+"'";
+//			System.out.println("아이템 컨트롤러 - "+ cart_idx_list);
+//		}
+//		cart_idx_list = cart_idx_list.substring(1);
+//		System.out.println("아이템 컨트롤러 - 최종 : " + cart_idx_list);
+//		List<Map<String, Object>> map = itemService.getItemOrder(cart_idx_list);
+//		System.out.println("아이템 컨트롤러 - " + map);
+//		model.addAttribute("ItemOrderMap", map);
+//
+//		System.out.println("아이템 컨트롤러 - " + "카트 선택 맵 담기");
+//		
+//		return "item/itemorder";}
 
 
 }

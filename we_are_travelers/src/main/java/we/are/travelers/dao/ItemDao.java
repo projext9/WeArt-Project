@@ -49,6 +49,11 @@ public class ItemDao {
 	public List<Map<String, Object>> getCartList(String member_idx) { //카트 호출
 		return sqlSession.selectList(MAPPER+".getCartList", member_idx);
 	}
-
+	
+	public List<Map<String, Object>> getItemOrder(List<String> cart_idx_list_) { //카트 주문 호출
+		System.out.println("아이템 DAO - 선택된 cart_idx 값" + cart_idx_list_);
+		return sqlSession.selectList(MAPPER+".getItemOrder", cart_idx_list_);
+	}
+	
 }
 

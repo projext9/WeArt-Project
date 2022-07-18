@@ -46,16 +46,17 @@
 															<th style="text-align: left; width: 90%;">&nbsp;&nbsp;&nbsp;상품명</th>
 															<th style="width: 10%;">수량</th>
 														</tr>
-														
-														<tr>
-															<td>상품명 가나다라마바사</td>
-															<td style="text-align: center;">1</td>
-														</tr>
 
-														<tr>
-															<td>할렐루야 중국산 낚시대</td>
-															<td style="text-align: center;">1</td>
-														</tr>
+														<c:forEach var="map" items="${ItemOrderMap}">
+															<tr>
+																<td>${map.item_name}<input type="hidden" name="cart_idx" value="${map.cart_idx}" /></td>
+																<td rowspan="2" style="text-align: center;">${map.cart_count}</td>
+															</tr>
+															<tr>
+																<td>${map.option_name}</td>
+															</tr>
+
+														</c:forEach>
 														
 													</table>
 												</div>

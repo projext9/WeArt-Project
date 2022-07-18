@@ -9,6 +9,14 @@
     </head>
     <script>
     	var total = 0;
+
+        function fn_itemOrder() { //체크 된 항목 전송
+        	var fm = document.frm;
+			alert("회원가입 전송");
+			fm.action = "${pageContext.request.contextPath}/itemorder.do";
+			fm.method = "post";
+			fm.submit();
+        }
     </script>
 	<body>
 		<div class="container">
@@ -38,6 +46,7 @@
 	                            <div class="row">
 									<div class="card border-0">
 										<div>
+											<form name="frm">
 											<table class="table table-sm">
 												<thead>
                                                 	<tr class="ml-3">
@@ -52,14 +61,12 @@
 													<c:forEach var="map" items="${CartListMap}">
 														<tr>
 															<td class="align-middle text-center">
-																<a href="#delete" data-toggle="modal" data-title="Delete your product ?">
-																	<i class="fal fa-trash-alt"></i>X
-																</a>
+																<input type="checkbox" name="cart_idx" value="${map.cart_idx}" />
 								                         	</td>
 															<td>
 																<div class="rounded" style="background-image: url(${pageContext.request.contextPath}/resources/upload/${map.item_img}); width: 60px; height: 60px; background-size: cover;"></div>
 															</td>
-															<td class="align-middle text-left">${map.item_name} | ${map.option_name}</td>
+															<td class="align-middle text-left"><a href="${pageContext.request.contextPath}/itemdetail.do?iidx=${map.item_idx}">${map.item_name}</a> | ${map.option_name}</td>
 															<td class="align-middle text-center" rowspan="3" style="border-left-width: 1px;">&#8361; ${map.option_price*map.cart_count}</td>
 														</tr>                    
 														<tr>
@@ -75,6 +82,7 @@
 
                                                 </tbody>
                                             </table>
+											</form>
                                             <br>
                                             <div style="clear: both; border: 3px solid #c8c8c8; text-align: center;">
                                             	<div style="display: inline-block; margin: 0 auto; vertical-align: top;"> 
@@ -95,7 +103,7 @@
 			<div class="list-group mt-5 p-0 justify-content-center active" id="allList" role="tablist" style="flex-direction: row;">
 				<a href="javascript:window.history.back();" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">돌아가기<i class="fal fa-arrow-circle-right"></i></a>
 	           	&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="${pageContext.request.contextPath}/itemorder.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">배송지 입력<i class="fal fa-arrow-circle-right"></i></a>
+				<div class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab" onclick="fn_itemOrder()">배송지 입력<i class="fal fa-arrow-circle-right"></i></div>
 			</div>
 		</div>
 		<%@ include file="footer.jsp"%>

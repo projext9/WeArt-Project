@@ -47,4 +47,8 @@ public class ItemService {
 	public List<Map<String, Object>> getCartList(String member_idx) { //장바구니 호출
 		return itemDao.getCartList(member_idx);
 	}
+	
+	public List<Map<String, Object>> getItemOrder(List<String> cart_idx_list_) { //장바구니 호출
+		return itemDao.getItemOrder(cart_idx_list_);
+	}
 }

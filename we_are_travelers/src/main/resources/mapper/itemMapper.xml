@@ -29,6 +29,7 @@
 		select * from weart_option WHERE item_idx = #{item_idx}
 	</select>
 	
+	
 	<insert id="addItemCart" parameterType="map"> <!-- 장바구니 담기 -->
 		INSERT INTO weart_cart(member_idx,option_idx,cart_count) VALUES(#{member_idx}, #{option_idx}, #{cart_count})
 	</insert>
@@ -36,7 +37,17 @@
 	<select id="getCartList" resultType="map"> <!-- 상품 상세 호출(옵션) -->
 		Select * FROM weart_cart a 
 			INNER JOIN weart_option b ON a.option_idx = b.option_idx
-			INNER JOIN weart_item c ON b.item_idx = c.item_idx where a.member_idx = #{member_idx};
+			INNER JOIN weart_item c ON b.item_idx = c.item_idx WHERE a.member_idx = #{member_idx}
 	</select>
 	
+	<select id="getItemOrder" parameterType="list" resultType="map"> <!-- 배송지 입력 -->
+		Select * FROM weart_cart a
+			INNER JOIN weart_option b ON a.option_idx = b.option_idx
+			INNER JOIN weart_item c ON b.item_idx = c.item_idx WHERE a.cart_idx IN
+			<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+				#{item}
+			</foreach>
+	</select>
+	
+
 </mapper>
