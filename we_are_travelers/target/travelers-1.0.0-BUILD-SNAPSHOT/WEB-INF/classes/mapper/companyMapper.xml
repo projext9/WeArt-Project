@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "we.are.travelers.company">
+
+	<insert id="joinCompany" parameterType="companyVo">
+		insert into weart_company (company_idx, company_id, company_pwd, company_buis_number, company_name, company_ceoName,
+		 company_phone, company_buisAddress, company_auth_file_name, company_auth_file_size, company_phone_auth, company_auth,
+		 comapny_regdate,company_delyn,company_ip)
+		
+		 values(#{company_idx}, #{company_id}, #{company_pwd}, #{company_buis_number},#{company_name},#{company_ceoName},
+		 #{company_phone},#{company_buisAddress},#{company_auth_file_name},#{company_auth_file_size},#{company_phone_auth},#{company_auth},
+		 #{comapny_regdate},#{company_delyn}, #{company_ip})
+	</insert>
+	
+	<!-- <select id="loginMember" parameterType="memberVo" resultType="map">
+		select count(*) as member_auth, member_grade from member where member_id=#{member_id} and member_pw=#{member_pw}
+	</select> -->
+	
+	<select id="loginCompany" parameterType="map" resultType="map">
+		select count(*) as member_auth, member_grade from member where member_id=#{member_id} and member_pw=#{member_pwd}
+	</select>
+	
+
+
+	<select id="checkId" parameterType="string" resultType="int">
+		SELECT * FROM weart_member LEFT JOIN weart_company ON weart_member.member_id = weart_company.company_id
+        UNION ALL
+        SELECT * FROM weart_member 
+        RIGHT JOIN weart_company ON weart_member.member_id = weart_company.company_id
+	</select>
+
+
+</mapper>

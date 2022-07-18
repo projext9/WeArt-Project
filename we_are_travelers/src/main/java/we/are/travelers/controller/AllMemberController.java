@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import we.are.travelers.service.AllMemberService;
+import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.MemberVo;
 
 @Controller
-@RequestMapping(value = {"member/*", "company/*"})
 public class AllMemberController {
 
 	
@@ -25,38 +26,13 @@ public class AllMemberController {
 	public AllMemberController(AllMemberService AllmemberService) {
 		this.AllmemberService = AllmemberService;
 	}
-	@RequestMapping("/join.do")
-	public String join() {
-		return "member/join";
-	}
-	@RequestMapping("/joinCompany.do")
-	public String joinCompany() {
-		return "company/joinCompany";
-	}
 	
-	@RequestMapping("/joinProcess.do")
-	public String joinProcess(MemberVo memberVo) {
-		//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌
-		//이러한 객체를 커맨드 객체라고 함.
-		int result=AllmemberService.joinMember(memberVo);
-		
-		
-		String viewPage = null;
-		if(result==1) {
-			viewPage = "redirect:/home.do";
-		}else{
-			viewPage = "member/join";
-		}
-		
-		return viewPage;
-	}
-	
-	@RequestMapping("/login.do")
+	@RequestMapping(value="/login.do" , method = RequestMethod.GET)
 	public String login() {
 		return "member/login";
 	}
 	
-	@RequestMapping("/loginProcess.do")
+    @RequestMapping(value="/loginProcess.do" , method = RequestMethod.POST)
 	public String loginProcess(@RequestParam("member_id") String member_id,
 			 					@RequestParam("member_pwd") String member_pwd, 
 			 					HttpServletRequest request) {
@@ -84,6 +60,53 @@ public class AllMemberController {
 		
 		return viewPage;
 	}
+	
+	
+	@RequestMapping(value="/joinMember.do", method = RequestMethod.GET)
+	public String join() {
+		return "member/join_member";
+	}
+	@RequestMapping(value="/join_Member_email.do", method = RequestMethod.POST)
+	public String join1() {
+		return "member/join_emial";
+	}
+	@RequestMapping(value="/joinCompany.do", method = RequestMethod.GET)
+	public String joinCompany() {
+		return "company/join_company";
+	}
+	
+	@RequestMapping(value="/joinMemberProcess.do" , method = RequestMethod.POST)
+	public String joinMemberProcess(MemberVo memberVo) {
+		//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌
+		//이러한 객체를 커맨드 객체라고 함.
+		int result=AllmemberService.joinMember(memberVo);
+		
+		String viewPage = null;
+		if(result==1) {
+			viewPage = "redirect:/home.do";
+		}else{
+			viewPage = "member/join_member";
+		}
+		
+		return viewPage;
+	
+}	
+	@RequestMapping(value="/joinCompanyProcess.do" , method = RequestMethod.POST)
+	public String joinCompanyProcess(CompanyVo companyVo) {
+		//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌
+		//이러한 객체를 커맨드 객체라고 함.
+		int result=AllmemberService.joinCompany(companyVo);
+		
+		String viewPage = null;
+		if(result==1) {
+			viewPage = "redirect:/home.do";
+		}else{
+			viewPage = "member/join_member";
+		}
+		
+		return viewPage;
+	
+}	
 	
 	@RequestMapping("/memberInfo.do")
 	public String memberInfo(Model model, HttpServletRequest request) {

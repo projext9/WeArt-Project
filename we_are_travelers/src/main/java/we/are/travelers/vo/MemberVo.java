@@ -3,52 +3,69 @@ package we.are.travelers.vo;
 import java.util.Date;
 
 public class MemberVo {
-	private int member_idx;
-	private String member_id;
-	private String member_name;
-	private String member_pw;
-	private String member_phone;
-	private Date member_regdate;
-	
-	private int member_grade;
-	private String member_delyn;
-	private Date member_deldate;
-	
-	public Date getMember_regdate() {
-		return member_regdate;
+	private String member_idx=""; // 회원 고유호
+    private String member_id; // 아이디
+    private String member_pwd; // 비밀번호
+    private String member_name; // 이름
+    private String member_nick; // 닉네임
+    private String member_phone; // 휴대폰
+    private String member_address; //주소(배송지)
+    private String social_token; //소셜 토큰 정보
+    private String social_naver; // 네이버(아이디)
+    private String social_facebook;// 페이스북
+    private String social_google; // 구글
+    private String social_kakao; // 카카오
+    private int member_grade; // 회원등급(일반/관리자)
+    private int member_regCode; // 가입구분(일반/소셜)
+    private int member_phone_auth; //휴대폰 인증상태
+    private int member_delyn; //사용자 이용상태(N(정상) Y(삭제) S(정지))
+    private Date member_regdate; //가입일자
+    private int member_ip; //
+    
+	public String getMember_idx() {
+		for (int i = 1; i <= 12; i++) {
+            int pick = (int)((Math.random() * (20 - 1)) + 1);
+                if (pick <= 5) {
+                    char ch = (char) ((Math.random() * 26) + 65);
+                    member_idx= member_idx + String.valueOf(ch);
+                } else if (pick <= 9) {
+                    char ch = (char) ((Math.random() * 26) + 97);
+                    member_idx= member_idx + String.valueOf(ch);
+                } else if (pick <= 12) {
+                    char ch = (char) ((Math.random() * 10) + 48);
+                    member_idx= member_idx + String.valueOf(ch);
+                } else if (pick <= 14) {
+                    char ch = 33;
+                    member_idx= member_idx + String.valueOf(ch);
+                } else if (pick <= 16) {
+                    char ch = 35;
+                    member_idx= member_idx + String.valueOf(ch);
+                } else if (pick <= 18) {
+                    char ch = 63;
+                    member_idx= member_idx + String.valueOf(ch);
+                } else if (pick <= 20) {
+                    char ch = 94;
+                    member_idx= member_idx + String.valueOf(ch);
+                }
+            }
+
+		return member_idx;		
 	}
-	public void setMember_regdate(Date member_regdate) {
-		this.member_regdate = member_regdate;
-	}
-	public int getMember_grade() {
-		return member_grade;
-	}
-	public void setMember_grade(int member_grade) {
-		this.member_grade = member_grade;
-	}
-	public String getMember_delyn() {
-		return member_delyn;
-	}
-	public void setMember_delyn(String member_delyn) {
-		this.member_delyn = member_delyn;
-	}
-	public Date getMember_deldate() {
-		return member_deldate;
-	}
-	public void setMember_deldate(Date member_deldate) {
-		this.member_deldate = member_deldate;
-	}
-	public int getMember_idx() {
-		return member_idx;
-	}
-	public void setMember_idx(int member_idx) {
+	public void setMember_idx(String member_idx) {
 		this.member_idx = member_idx;
 	}
+		       
 	public String getMember_id() {
 		return member_id;
 	}
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
+	}
+	public String getMember_pwd() {
+		return member_pwd;
+	}
+	public void setMember_pwd(String member_pwd) {
+		this.member_pwd = member_pwd;
 	}
 	public String getMember_name() {
 		return member_name;
@@ -56,11 +73,11 @@ public class MemberVo {
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
 	}
-	public String getMember_pw() {
-		return member_pw;
+	public String getMember_nick() {
+		return member_nick;
 	}
-	public void setMember_pw(String member_pw) {
-		this.member_pw = member_pw;
+	public void setMember_nick(String member_nick) {
+		this.member_nick = member_nick;
 	}
 	public String getMember_phone() {
 		return member_phone;
@@ -68,7 +85,78 @@ public class MemberVo {
 	public void setMember_phone(String member_phone) {
 		this.member_phone = member_phone;
 	}
-
+	public String getMember_address() {
+		return member_address;
+	}
+	public void setMember_address(String member_address) {
+		this.member_address = member_address;
+	}
+	public String getSocial_token() {
+		return social_token;
+	}
+	public void setSocial_token(String social_token) {
+		this.social_token = social_token;
+	}
+	public String getSocial_naver() {
+		return social_naver;
+	}
+	public void setSocial_naver(String social_naver) {
+		this.social_naver = social_naver;
+	}
+	public String getSocial_facebook() {
+		return social_facebook;
+	}
+	public void setSocial_facebook(String social_facebook) {
+		this.social_facebook = social_facebook;
+	}
+	public String getSocial_google() {
+		return social_google;
+	}
+	public void setSocial_google(String social_google) {
+		this.social_google = social_google;
+	}
+	public String getSocial_kakao() {
+		return social_kakao;
+	}
+	public void setSocial_kakao(String social_kakao) {
+		this.social_kakao = social_kakao;
+	}
+	public int getMember_grade() {
+		return member_grade;
+	}
+	public void setMember_grade(int member_grade) {
+		this.member_grade = member_grade;
+	}
+	public int getMember_regCode() {
+		return member_regCode;
+	}
+	public void setMember_regCode(int member_regCode) {
+		this.member_regCode = member_regCode;
+	}
+	public int getMember_phone_auth() {
+		return member_phone_auth;
+	}
+	public void setMember_phone_auth(int member_phone_auth) {
+		this.member_phone_auth = member_phone_auth;
+	}
+	public int getMember_delyn() {
+		return member_delyn;
+	}
+	public void setMember_delyn(int member_delyn) {
+		this.member_delyn = member_delyn;
+	}
+	public Date getMember_regdate() {
+		return member_regdate;
+	}
+	public void setMember_regdate(Date member_regdate) {
+		this.member_regdate = member_regdate;
+	}
+	public int getMember_ip() {
+		return member_ip;
+	}
+	public void setMember_ip(int member_ip) {
+		this.member_ip = member_ip;
+	}
 	
 
 }

@@ -15,6 +15,7 @@ public class MemberDao {
 	
 	private SqlSession sqlSession;
 	
+	
 	public static final String MAPPER = "we.are.travelers.member";
 	
 	@Autowired
@@ -26,8 +27,11 @@ public class MemberDao {
 		//sqlSession객체를 이용한 입력작업: insert("Mapper파일의 네임스페이스.id값", 입력값/입력객체)
 		
 		return sqlSession.insert(MAPPER+".joinMember", memberVo);
+		
+		
+	    
 	}
-
+      
 	/*
 	 * public HashMap<String, Long> loginMember(MemberVo memberVo) { HashMap<String,
 	 * Long> resultMap = sqlSession.selectOne(MAPPER+".loginMember", memberVo);

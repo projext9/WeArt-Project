@@ -27,7 +27,7 @@
     <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
  <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" >
+      <input type="text" class="form-control" id="floatingInput" >
       <label for="floatingInput">이메일(아이디)</label> 
     </div>
  <div class="form-floating">
@@ -56,18 +56,18 @@
     <img src="${pageContext.request.contextPath}/resources/images/facebook_login.png" width="200" height="50" alt="페이스북 로그인">
      </div>
  </div>
- 
+  </form>
  
  <div class="join_wrap">
    <div class="join_wrap_box">
-    <button class="join_member" onclick="location.href'${pageContext.request.contextPath}/join.do'">일반회원가입</button>
+    <button class="join_member" onclick="location.href='/travelers/joinMember.do'" type="button">일반회원가입</button>
    </div>
      <div class="join_company">
-     <button class="join_company"onclick="location.href'${pageContext.request.contextPath}/joinCompany.do'">기업회원가입</button>
+     <button class="join_company"onclick="location.href='/travelers/joinCompany.do'" type="button">기업회원가입</button>
    </div>
  </div>
     <p class="mt-5 mb-6 text-muted">&copy; Copyright 2022. Team We-Art. all rights reserved.</p>
-  </form>
+ 
 </main>
 
   </body>

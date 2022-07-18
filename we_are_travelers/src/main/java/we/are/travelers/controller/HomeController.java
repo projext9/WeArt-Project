@@ -16,15 +16,11 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class HomeController {
 	
-	@GetMapping("/")//get방식 요청 처리
-	public String home1() {
+	@GetMapping("/home.do")//get방식 요청 처리
+	public String home() {
 		return "home";
 	}
 	
-	@GetMapping("/home.do")//get방식 요청 처리
-	public String home2() {
-		return "home";
-	}
 	
 	@GetMapping("/fileUpload.do")//get방식 요청 처리
 	public String fileUpload() {

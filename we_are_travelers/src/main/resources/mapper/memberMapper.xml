@@ -5,22 +5,19 @@
 <mapper namespace = "we.are.travelers.member">
 
 	<insert id="joinMember" parameterType="memberVo">
-		insert into member(member_idx,member_id,member_pwd,member_name,
-		member_nickname,member_phone,member_grade,member_ip,
-		social_sns_token,social_reg_code,social_naver,social_facebook,social_google,social_kakao,
-		member_regdate,member_delyn) 
+		insert into weart_member(member_idx,member_id,member_pwd,member_name,member_nick,member_phone,member_address,
+		social_token,social_naver, social_facebook, social_google ,social_kakao,member_grade,member_regCode, member_phone_auth,
+		member_delyn, member_regdate, member_ip
 		
-		 values(#{member_id}, #{member_pwd}, #{member_name}, #{member_nickname},#{member_phone},#{member_grade},
-		 #{member_ip},#{social_sns_token},#{social_reg_code},#{social_reg_code},#{social_reg_code},#{social_naver},#{social_facebook},#{social_kakao}
-		 ,#{member_regdate},#{member_delyn})
+		 values(#{member_idx}, #{member_id}, #{member_pwd}, #{member_name}, #{member_nick}, #{member_phone}, #{member_address},
+		 #{social_token},#{social_naver},#{social_facebook},#{social_kakao},#{member_grade},#{member_regCode},#{member_phone_auth},		 
+		 #{member_delyn}, #{member_regdate}, #{member_ip})
+
 	</insert>
 	
-	<!-- <select id="loginMember" parameterType="memberVo" resultType="map">
-		select count(*) as member_auth, member_grade from member where member_id=#{member_id} and member_pw=#{member_pw}
-	</select> -->
 	
 	<select id="loginMember" parameterType="map" resultType="map">
-		select count(*) as member_auth, member_grade from member where member_id=#{member_id} and member_pw=#{member_pwd}
+		select count(*) as member_grade from member where member_id=#{member_id} and member_pw=#{member_pwd}
 	</select>
 	
 	<select id="getMemberInfo" parameterType="string" resultType="memberVo">
@@ -28,7 +25,10 @@
 	</select>
 
 	<select id="checkId" parameterType="string" resultType="int">
-		select count(*) from member where member_id=#{member_id}
+		SELECT * FROM weart_member LEFT JOIN weart_company ON weart_member.member_id = weart_company.company_id
+        UNION ALL
+        SELECT * FROM weart_member
+        RIGHT JOIN weart_company ON weart_member.member_id = weart_company.company_id
 	</select>
 
 

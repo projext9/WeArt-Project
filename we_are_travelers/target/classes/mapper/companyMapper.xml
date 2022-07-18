@@ -5,14 +5,13 @@
 <mapper namespace = "we.are.travelers.company">
 
 	<insert id="joinCompany" parameterType="companyVo">
-		insert into member(member_idx,member_id,member_pwd,member_name,
-		member_nickname,member_phone,member_grade,member_ip,
-		social_sns_token,social_reg_code,social_naver,social_facebook,social_google,social_kakao,
-		member_regdate,member_delyn) 
+		insert into weart_company (company_idx, company_id, company_pwd, company_buis_number, company_name, company_ceoName,
+		 company_phone, company_buisAddress, company_auth_file_name, company_auth_file_size, company_phone_auth, company_auth,
+		 comapny_regdate,company_delyn,company_ip)
 		
-		 values(#{member_id}, #{member_pwd}, #{member_name}, #{member_nickname},#{member_phone},#{member_grade},
-		 #{member_ip},#{social_sns_token},#{social_reg_code},#{social_reg_code},#{social_reg_code},#{social_naver},#{social_facebook},#{social_kakao}
-		 ,#{member_regdate},#{member_delyn})
+		 values(#{company_idx}, #{company_id}, #{company_pwd}, #{company_buis_number},#{company_name},#{company_ceoName},
+		 #{company_phone},#{company_buisAddress},#{company_auth_file_name},#{company_auth_file_size},#{company_phone_auth},#{company_auth},
+		 #{comapny_regdate},#{company_delyn}, #{company_ip})
 	</insert>
 	
 	<!-- <select id="loginMember" parameterType="memberVo" resultType="map">
@@ -23,12 +22,13 @@
 		select count(*) as member_auth, member_grade from member where member_id=#{member_id} and member_pw=#{member_pwd}
 	</select>
 	
-	<select id="getMemberInfo" parameterType="string" resultType="memberVo">
-		select member_id, member_name, member_pwd, member_phone from member where member_id=#{member_id}
-	</select>
+
 
 	<select id="checkId" parameterType="string" resultType="int">
-		select count(*) weart_member.member_id from A full outer join weart_company on weart_member.member_id = weart_company.company_id 
+		SELECT * FROM weart_member LEFT JOIN weart_company ON weart_member.member_id = weart_company.company_id
+        UNION ALL
+        SELECT * FROM weart_member 
+        RIGHT JOIN weart_company ON weart_member.member_id = weart_company.company_id
 	</select>
 
 
