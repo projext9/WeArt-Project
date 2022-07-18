@@ -42,7 +42,7 @@
 												<div class="info-body">
 													<h4>구매예정 상품</h4>
 													<table class="product-details-table">
-														<tr>
+														<tr style="border-bottom-width: 2px; border-color: black;">
 															<th style="text-align: left; width: 90%;">&nbsp;&nbsp;&nbsp;상품명</th>
 															<th style="width: 10%;">수량</th>
 														</tr>
@@ -50,10 +50,10 @@
 														<c:forEach var="map" items="${ItemOrderMap}">
 															<tr>
 																<td>${map.item_name}<input type="hidden" name="cart_idx" value="${map.cart_idx}" /></td>
-																<td rowspan="2" style="text-align: center;">${map.cart_count}</td>
+																<td rowspan="2" style="text-align: center; border-left: 1px solid #eee; border-bottom-width: 1px; border-bottom-color: black;">${map.cart_count}</td>
 															</tr>
 															<tr>
-																<td>${map.option_name}</td>
+																<td style="border-bottom-width: 1px; border-bottom-color: black;">옵션 : ${map.option_name}</td>
 															</tr>
 
 														</c:forEach>
