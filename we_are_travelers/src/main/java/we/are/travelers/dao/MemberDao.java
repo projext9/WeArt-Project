@@ -31,16 +31,17 @@ public class MemberDao {
 		
 	    
 	}
-      
-	/*
-	 * public HashMap<String, Long> loginMember(MemberVo memberVo) { HashMap<String,
-	 * Long> resultMap = sqlSession.selectOne(MAPPER+".loginMember", memberVo);
-	 * 
-	 * System.out.println("resultMap:"+resultMap);
-	 * 
-	 * if(resultMap.get("member_auth") == 0) { resultMap.put("member_grade", 0L); }
-	 * return resultMap; }
-	 */
+	  public HashMap<String, Long> loginMember(MemberVo memberVo) { HashMap<String,
+	  Long> resultMap = sqlSession.selectOne(MAPPER+".loginMember", memberVo);
+	  
+	  System.out.println("resultMap:"+resultMap);
+	  
+	  if(resultMap.get("member_auth") == 0) { resultMap.put("member_grade", 0L); }
+	  
+	  return resultMap; 
+	  
+	  }
+
 	
 	public HashMap<String, Long> loginMember(HashMap<String, String> loginInfo) {
 		HashMap<String, Long> resultMap = sqlSession.selectOne(MAPPER+".loginMember", loginInfo);
@@ -49,10 +50,6 @@ public class MemberDao {
 			resultMap.put("member_grade", 0L);
 		}
 		return resultMap;
-	}
-
-	public MemberVo getMemberInfo(String member_id) {
-		return sqlSession.selectOne(MAPPER+".getMemberInfo", member_id);
 	}
 
 	public int checkId(String id) {

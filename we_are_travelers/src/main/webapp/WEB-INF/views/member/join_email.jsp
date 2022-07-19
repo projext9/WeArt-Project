@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
-    <link href="${pageContext.request.contextPath}/resources/css/join_weart.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/join_email.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	
@@ -44,41 +44,44 @@
 					if(data == "N"){
 						result = "사용 가능한 아이디입니다.";
 						$(".mail_input_check").html(result).css("color", "green");
+						
+						$.ajax({
+							
+					        type:"GET",
+					        url:"mailCheck?email=" + email,
+					        success:function(data){
+					        	
+					        	
+					        	
+					            $(".mail_check_input").attr('type' , 'text');
+
+					            if (isRunning){
+						    		clearInterval(timer);
+						    		display.html("");
+						    		startTimer(leftSec, display);
+						    		
+					            }else{	
+					            startTimer(leftSec, display);	          
+					            alert("인증번호가 전송되었습니다.")
+					            code = data;
+					            }
+					            
+					            console.log("data : " + data);
+					        }
+					        
+					});
+						
 					}else{
 						result = "이미 사용중인 아이디입니다.";
 						$(".mail_input_check").html(result).css("color", "red");
 						$(".mail_input").val("").trigger("focus");
+						
+						return false;
 					}
 				},
 				error: function(error){alert(error);}
-			});			
-
-			$.ajax({
-				
-			        type:"GET",
-			        url:"mailCheck?email=" + email,
-			        success:function(data){
-			        	
-			        	
-			        	
-			            $(".mail_check_input").attr('type' , 'text');
-
-			            if (isRunning){
-				    		clearInterval(timer);
-				    		display.html("");
-				    		startTimer(leftSec, display);
-				    		
-			            }else{	
-			            startTimer(leftSec, display);	          
-			            alert("인증번호가 전송되었습니다.")
-			            code = data;
-			            }
-			            
-			            console.log("data : " + data);
-			        }
-			        
 			});
-		    
+			    
 	
 		/* 인증번호 비교 */
 		$(".mail_check_input").on('focusout' , function(){
@@ -135,7 +138,7 @@
 
 <div class="join_container">
 <main class="join_cont">
-<form class="join_form" name="joinForm" action="/travelers/joinProcess.do" method="post">
+<form class="join_form" name="joinForm" action="/travelers/joinNext##.do" method="post">
     <h1>We Are Travelers!</h1>
     <br>
     <div>

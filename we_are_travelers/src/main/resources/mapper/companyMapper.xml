@@ -25,10 +25,9 @@
 
 
 	<select id="checkId" parameterType="string" resultType="int">
-		SELECT * FROM weart_member LEFT JOIN weart_company ON weart_member.member_id = weart_company.company_id
-        UNION ALL
-        SELECT * FROM weart_member 
-        RIGHT JOIN weart_company ON weart_member.member_id = weart_company.company_id
+		SELECT a.company_id, b.member_id
+		FROM (SELECT COUNT(*) company_id FROM weart_company) a,
+		     (SELECT COUNT(*) member_id FROM weart_member) b ,
 	</select>
 
 

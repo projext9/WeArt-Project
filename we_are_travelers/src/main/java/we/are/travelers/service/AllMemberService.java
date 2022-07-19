@@ -49,9 +49,5 @@ public class AllMemberService {
 	}
 
 
-	public MemberVo getMemberInfo(String member_id) {
-		 
-		return memberDao.getMemberInfo(member_id);
-	}
 
 }

@@ -4,14 +4,11 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import we.are.travelers.service.AllMemberService;
 import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.MemberVo;
@@ -60,15 +57,40 @@ public class AllMemberController {
 		
 		return viewPage;
 	}
-	
-	
+    //이용약관 상세 보기
+    @RequestMapping(value="/WeArtTermsOfService.do", method = RequestMethod.GET)
+	public String terms1() {
+		return "member/agr_terms_of_service";
+	}
+    @RequestMapping(value="/WeArtPersnolInfo.do", method = RequestMethod.GET)
+	public String terms2() {
+		return "member/agr_persnol_info";
+	}
+    @RequestMapping(value="/WeArtMarketing.do", method = RequestMethod.GET)
+	public String terms3() {
+		return "member/agr_marketing";
+	}
+    
+	//회원가입 로직
 	@RequestMapping(value="/joinMember.do", method = RequestMethod.GET)
 	public String join() {
-		return "member/join_member";
+		return "member/join_terms_of";
 	}
-	@RequestMapping(value="/join_Member_email.do", method = RequestMethod.POST)
+	@RequestMapping(value="/joinNext1.do", method = RequestMethod.GET)
 	public String join1() {
-		return "member/join_emial";
+		return "member/join_email";
+	}
+	@RequestMapping(value="/joinNext2.do", method = RequestMethod.GET)
+	public String join2() {
+		return "member/join_pwd";
+	}
+	@RequestMapping(value="/joinNext3.do", method = RequestMethod.GET)
+	public String join3() {
+		return "member/join_persnol_info";
+	}
+	@RequestMapping(value="/joinNextfianl.do", method = RequestMethod.GET)
+	public String join4() {
+		return "member/join_finish";
 	}
 	@RequestMapping(value="/joinCompany.do", method = RequestMethod.GET)
 	public String joinCompany() {
@@ -83,7 +105,7 @@ public class AllMemberController {
 		
 		String viewPage = null;
 		if(result==1) {
-			viewPage = "redirect:/home.do";
+			viewPage = "redirect:/join####.do";
 		}else{
 			viewPage = "member/join_member";
 		}
@@ -107,19 +129,6 @@ public class AllMemberController {
 		return viewPage;
 	
 }	
-	
-	@RequestMapping("/memberInfo.do")
-	public String memberInfo(Model model, HttpServletRequest request) {
-		//회원정보를 가져오기 위해 세션객체에 저장된 member_id 이용
-		HttpSession session = request.getSession();
-		String member_id = (String)session.getAttribute("member_id");
-		
-		MemberVo memberVo = AllmemberService.getMemberInfo(member_id);
-		//Spring MVC에서 Controller에서 생성되는 Model객체는 뷰단(JSP페이지)에서 참조 가능
-		model.addAttribute("memberVo", memberVo);
-		
-		return "member/memberInfo";
-	}
 	
 	@RequestMapping("/logout.do")
 	public String logout(HttpServletRequest request) {
