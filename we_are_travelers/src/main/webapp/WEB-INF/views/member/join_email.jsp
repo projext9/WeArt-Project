@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
-    <link href="${pageContext.request.contextPath}/resources/css/join_email.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/join_member.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	
@@ -84,7 +84,7 @@
 			    
 	
 		/* 인증번호 비교 */
-		$(".mail_check_input").on('focusout' , function(){
+		$(".mail_check_input").on('blur' , function(){
 		    
 		    var inputCode = $(".mail_check_input").val();        // 입력코드    
 		    var checkResult = $(".mail_check_input_box_warn");    // 비교 결과     
@@ -92,14 +92,18 @@
 		    if(inputCode == code){                            // 일치할 경우
 		        checkResult.html("인증번호가 일치합니다.");
 		        checkResult.css("color", "green");
-		        $(".next").attr('disabled' , false);
-		        $(".mail_input").attr('disabled' , true);
-		        $(".mail_check_input").attr('disabled' , true);
+		        $(".next").attr('disabled' , false);	       
 		        $('.mail_check_button').attr('disabled' , true);
+		        $(".mail_input").attr('readonly' , true);
+		        $(".mail_check_input").attr('readonly' , true);
 		        
 		    } else {                                            // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
 		        checkResult.css("color", "red");
+		        $(".next").attr('disabled' , true);       
+		        $('.mail_check_button').attr('disabled' , false);
+		        $(".mail_input").attr('readonly' , false);
+		        $(".mail_check_input").attr('readonly' , false);
 		    }    
 		    
 		});
@@ -138,7 +142,7 @@
 
 <div class="join_container">
 <main class="join_cont">
-<form class="join_form" name="joinForm" action="/travelers/joinNext##.do" method="post">
+<form class="join_form" name="joinForm" action="/travelers/joinNext2.do" method="post">
     <h1>We Are Travelers!</h1>
     <br>
     <div>
@@ -149,7 +153,7 @@
     <div class="mail_wrap">
     <div class="mail_name">이메일</div>
     <div class="mail_input_box">
-        <input class="mail_input" id="mail_input_id" name="email_id">
+        <input class="mail_input" id="mail_input_id" name="email">     
         <div class="mail_check_button_wrap">
        <input type="button" class="mail_check_button" value="인증번호">
    </div> 
@@ -160,18 +164,14 @@
     <div class="mail_check_input_box">
         <input type="hidden" class="mail_check_input">
       </div>
-      
-   
        <span class="mail_check_input_box_warn"></span>
-   
    <div class="time"></div>
    <div class="clearfix">
     </div>
     </div>
     <br>
     <div>
-	<input type="submit" class="next" value="다음" disabled="disabled">
-	<input type="button" class="cancel" value="취소하기" onclick="location.href='${pageContext.request.contextPath}/login.do'">
+	<input type="submit" class="next" value="다음" disabled="disabled" >
 	</div>
 </form> 
 </main>

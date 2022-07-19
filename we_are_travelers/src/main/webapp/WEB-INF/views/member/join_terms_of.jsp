@@ -45,7 +45,7 @@ $(".checkbox_group").on("click", ".normal", function() {
   <input type="checkbox" id="check_3" class="normal" >
   <label for="check_3">마케팅 수신에 동의합니다.(선택)</label><a target="_blank" href="/travelers/WeArtMarketing.do">></a>
   </li>
-  <button class="join_agree" onclick="location.href='/travelers/joinNext1.do'" type="button">확인</button>
+  <button class="join_agree" onclick="location.href='/travelers/joinNext.do'" type="button">확인</button>
   </ul>
 </div>
  

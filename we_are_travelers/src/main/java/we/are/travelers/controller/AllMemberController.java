@@ -6,9 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import we.are.travelers.service.AllMemberService;
 import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.MemberVo;
@@ -76,20 +79,25 @@ public class AllMemberController {
 	public String join() {
 		return "member/join_terms_of";
 	}
-	@RequestMapping(value="/joinNext1.do", method = RequestMethod.GET)
-	public String join1() {
+	@RequestMapping(value="/joinNext.do", method = RequestMethod.GET)
+	public String joinNext() {
 		return "member/join_email";
 	}
-	@RequestMapping(value="/joinNext2.do", method = RequestMethod.GET)
-	public String join2() {
+	@RequestMapping(value="/joinNext2.do", method = RequestMethod.POST)
+	public String joinNext2(@RequestParam("email")String email , Model model) {
+		
+		
+		model.addAttribute("email", email);
+		
 		return "member/join_pwd";
 	}
-	@RequestMapping(value="/joinNext3.do", method = RequestMethod.GET)
-	public String join3() {
+	@RequestMapping(value="/joinNext3.do", method = RequestMethod.POST)
+		public String joinNext3()  {		
+		
 		return "member/join_persnol_info";
 	}
-	@RequestMapping(value="/joinNextfianl.do", method = RequestMethod.GET)
-	public String join4() {
+	@RequestMapping(value="/joinNextfinal.do", method = RequestMethod.GET)
+	public String joinNext4() {
 		return "member/join_finish";
 	}
 	@RequestMapping(value="/joinCompany.do", method = RequestMethod.GET)
@@ -105,7 +113,7 @@ public class AllMemberController {
 		
 		String viewPage = null;
 		if(result==1) {
-			viewPage = "redirect:/join####.do";
+			viewPage = "redirect:/join_finish.do";
 		}else{
 			viewPage = "member/join_member";
 		}

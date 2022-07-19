@@ -31,7 +31,7 @@ public class AjaxController {
 		this.ajaxService = ajaxService;
 	}
 	
-	@PostMapping("/checkId.do")
+	@RequestMapping("/checkId.do")
 	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시
 	public String checkId(@RequestParam("member_id") String id) {
 		
@@ -47,7 +47,6 @@ public class AjaxController {
 	}
 	 /* 이메일 인증 */
     @RequestMapping(value="/mailCheck" , method=RequestMethod.GET)
-    @ResponseBody
     public String mailCheckGET(@RequestParam("email")String email) throws Exception{
         
         /* 뷰(View)로부터 넘어온 데이터 확인 */
