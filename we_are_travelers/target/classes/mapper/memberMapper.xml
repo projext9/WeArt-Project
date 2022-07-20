@@ -5,27 +5,26 @@
 <mapper namespace = "we.are.travelers.member">
 
 	<insert id="joinMember" parameterType="memberVo">
-		insert into weart_member(member_idx,member_id,member_pwd,member_name,member_nick,member_phone,member_address,
-		social_token,social_naver, social_facebook, social_google ,social_kakao,member_grade,member_regCode, member_phone_auth,
-		member_delyn, member_regdate, member_ip
+		insert into weart_member(member_idx,member_id,member_pwd,member_name, member_nick, member_birth)
 		
-		 values(#{member_idx}, #{member_id}, #{member_pwd}, #{member_name}, #{member_nick}, #{member_phone}, #{member_address},
-		 #{social_token},#{social_naver},#{social_facebook},#{social_kakao},#{member_grade},#{member_regCode},#{member_phone_auth},		 
-		 #{member_delyn}, #{member_regdate}, #{member_ip})
+		 values(#{member_idx}, #{member_id}, #{member_pwd}, #{member_name}, #{member_nick}, #{member_birth})
 
 	</insert>
 	
 	
 	<select id="loginMember" parameterType="map" resultType="map">
-		select count(*) as member_grade from member where member_id=#{member_id} and member_pwd=#{member_pwd}
+		select count(*) as member_grade from weart_member where member_id=#{member_id} and member_pwd=#{member_pwd}
 	</select>
-	
 
 	<select id="checkId" parameterType="string" resultType="int">  
 		SELECT a.member_id,b.company_id
 		FROM (SELECT COUNT(*) member_id FROM weart_member where member_id=#{member_id}) a ,
 		     (SELECT COUNT(*) company_id FROM weart_company where company_id=#{company_id}) b
-		     
+	</select> 
+	
+	<select id="checkNick" parameterType="string" resultType="int">  
+	    select count(*) from weart_member where member_nick=#{member_nick}
+		
 	</select>
 
 

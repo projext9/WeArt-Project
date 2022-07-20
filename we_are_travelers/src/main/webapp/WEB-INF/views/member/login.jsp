@@ -20,7 +20,7 @@
  <body class="text-center">
     
 <main class="form-signin">
-  <form class="login_form" action="${pageContext.request.contextPath}/loginProcess.do" method="post">
+  <form class="login_form" action="/travelers/loginProcess.do" method="GET">
     <a href="${pageContext.request.contextPath}/home.do">
     <img class="mb-4" src="${pageContext.request.contextPath}/resources/images/logo.jpg" alt="로고" width="72" height="57">
     </a>

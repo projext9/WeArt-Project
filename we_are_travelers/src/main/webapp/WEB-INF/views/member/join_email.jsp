@@ -52,10 +52,8 @@
 					        success:function(data){
 					        	
 					        	
-					        	
 					            $(".mail_check_input").attr('type' , 'text');
-
-					            if (isRunning){
+					            if(isRunning){
 						    		clearInterval(timer);
 						    		display.html("");
 						    		startTimer(leftSec, display);
@@ -139,7 +137,6 @@
 </head>
 
 <body class="join_member">
-
 <div class="join_container">
 <main class="join_cont">
 <form class="join_form" name="joinForm" action="/travelers/joinNext2.do" method="post">

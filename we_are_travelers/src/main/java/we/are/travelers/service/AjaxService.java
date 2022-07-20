@@ -16,12 +16,17 @@ public class AjaxService {
 	}
 
 	public int checkId(String id) {
-		int result=0;
-		result = memberDao.checkId(id);
-		return result;
+		int id_check_result=0;
+		id_check_result = memberDao.checkId(id);
+		return id_check_result;
 	}
 	
+	public int checkNick(String nick) {
+		int nick_check_result=0;
+		nick_check_result = memberDao.checkNick(nick);
+		return nick_check_result;
 	
+	}
 
 
 }

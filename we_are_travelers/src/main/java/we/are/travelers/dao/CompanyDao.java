@@ -42,8 +42,8 @@ public class CompanyDao {
 	public HashMap<String, Long> loginCompany(HashMap<String, String> loginInfo) {
 		HashMap<String, Long> resultMap = sqlSession.selectOne(MAPPER+".loginMember", loginInfo);
 		
-		if(resultMap.get("Company_member_auth") == 0) {
-			resultMap.put("Company_member_grade", 0L);
+		if(resultMap.get("Company_auth") == 0) {
+			resultMap.put("Company_m_grade", 0L);
 		}
 		return resultMap;
 	}

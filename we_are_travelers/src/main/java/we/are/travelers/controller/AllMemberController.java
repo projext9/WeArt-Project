@@ -19,7 +19,6 @@ import we.are.travelers.vo.MemberVo;
 @Controller
 public class AllMemberController {
 
-	
 	private AllMemberService AllmemberService;
 	
 	@Autowired //자동 의존 주입: 생성자 방식
@@ -32,26 +31,26 @@ public class AllMemberController {
 		return "member/login";
 	}
 	
-    @RequestMapping(value="/loginProcess.do" , method = RequestMethod.POST)
+    @RequestMapping(value="/loginProcess.do" , method = RequestMethod.GET)
 	public String loginProcess(@RequestParam("member_id") String member_id,
 			 					@RequestParam("member_pwd") String member_pwd, 
 			 					HttpServletRequest request) {
 
 		//2개의 전달값을 HashMap객체에 저장해서 MyBatis 입력값으로 사용
-		HashMap<String, String> loginInfo = new HashMap<String, String>();
-		loginInfo.put("member_id", member_id);
-		loginInfo.put("member_pw", member_pwd);
+		HashMap<String, String> loginMemberInfo = new HashMap<String, String>();
+		loginMemberInfo.put("member_id", member_id);
+		loginMemberInfo.put("member_pwd", member_pwd);
 		
 		//2개의 결과값을 얻고자 HashMap 객체 사용
-		HashMap<String, Long> resultMap=AllmemberService.login(loginInfo);
-		long member_auth = resultMap.get("member_auth");//회원인증
+		HashMap<String, Long> resultMap=AllmemberService.loginMember(loginMemberInfo);
 		long member_grade = resultMap.get("member_grade");//회원등급
-		
+		long member_auth = resultMap.get("member_auth");//회원등급
 		String viewPage = null;
 		if(member_auth==1) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member_id", member_id);//회원인증 추가	
 			session.setAttribute("member_grade", member_grade);//회원등급 추가
+			
 			viewPage = "redirect:/home.do";
 		
 		}else{
@@ -92,19 +91,30 @@ public class AllMemberController {
 		return "member/join_pwd";
 	}
 	@RequestMapping(value="/joinNext3.do", method = RequestMethod.POST)
-		public String joinNext3()  {		
+		public String joinNext3(@RequestParam("email")String email , @RequestParam("pwd")String pwd , Model model)  {		
+		
+		model.addAttribute("email", email);
+		model.addAttribute("pwd", pwd);
 		
 		return "member/join_persnol_info";
 	}
-	@RequestMapping(value="/joinNextfinal.do", method = RequestMethod.GET)
-	public String joinNext4() {
+	@RequestMapping(value="/joinfinish.do", method = RequestMethod.POST)
+	public String joinNext4(@RequestParam("email")String email , @RequestParam("pwd")String pwd , @RequestParam("nick") String nick
+			, @RequestParam("name") String name , @RequestParam("birth") String birth, Model model) {
+		
+		model.addAttribute("email", email);
+		model.addAttribute("pwd", pwd);
+		model.addAttribute("nick", nick);
+		model.addAttribute("name", name);
+		model.addAttribute("birth", birth);
+		
 		return "member/join_finish";
 	}
 	@RequestMapping(value="/joinCompany.do", method = RequestMethod.GET)
 	public String joinCompany() {
 		return "company/join_company";
 	}
-	
+	//회원가입 완료 로직
 	@RequestMapping(value="/joinMemberProcess.do" , method = RequestMethod.POST)
 	public String joinMemberProcess(MemberVo memberVo) {
 		//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌
@@ -113,7 +123,7 @@ public class AllMemberController {
 		
 		String viewPage = null;
 		if(result==1) {
-			viewPage = "redirect:/join_finish.do";
+			viewPage = "redirect:/login.do";
 		}else{
 			viewPage = "member/join_member";
 		}

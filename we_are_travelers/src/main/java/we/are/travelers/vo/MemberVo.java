@@ -4,11 +4,12 @@ import java.util.Date;
 
 public class MemberVo {
 	private String member_idx=""; // 회원 고유호
-    private String member_id; // 아이디
+    private String member_id; // 아이디(이메일)
     private String member_pwd; // 비밀번호
     private String member_name; // 이름
     private String member_nick; // 닉네임
-    private String member_phone; // 휴대폰
+    private String member_birth; // 생년월일
+	private String member_phone; // 휴대폰
     private String member_address; //주소(배송지)
     private String social_token; //소셜 토큰 정보
     private String social_naver; // 네이버(아이디)
@@ -157,6 +158,11 @@ public class MemberVo {
 	public void setMember_ip(int member_ip) {
 		this.member_ip = member_ip;
 	}
-	
+	public String getMember_birth() {
+		return member_birth;
+	}
+	public void setMember_birth(String member_birth) {
+		this.member_birth = member_birth;
+	}
 
 }

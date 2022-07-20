@@ -12,6 +12,7 @@ import we.are.travelers.vo.MemberVo;
 
 @Service
 public class AllMemberService {
+	
 	private CompanyDao companyDao;
 	private MemberDao memberDao;
 	
@@ -39,15 +40,26 @@ public class AllMemberService {
 	
 
 	}
-	/*
-	 * public HashMap<String, Long> login(MemberVo memberVo) { return
-	 * memberDao.loginMember(memberVo); }
-	 */
 	
-	public HashMap<String, Long> login(HashMap<String,String> loginInfo) {
-		return memberDao.loginMember(loginInfo);
-	}
+	public HashMap<String, Long> loginMember(MemberVo memberVo) { 
+		
+		 return memberDao.loginMember(memberVo); 
+}
 
+	
+	public HashMap<String, Long> loginMember(HashMap<String,String> loginMemberInfo) {
+		return memberDao.loginMember(loginMemberInfo);
+	}
+     
+//	public HashMap<String, Long> loginCompany(CompanyVo companyVo) { 
+//		
+//		 return companyDao.loginCompany(companyVo); 
+//}
+//
+//	
+//	public HashMap<String, Long> loginCompany(HashMap<String,String> loginInfo) {
+//		return companyDao.loginCompany(loginCompanyInfo);
+//	}
 
 
 }

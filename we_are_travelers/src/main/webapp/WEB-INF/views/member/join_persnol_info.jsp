@@ -6,169 +6,132 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
-    <link href="${pageContext.request.contextPath}/resources/css/join_weart.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/join_member.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
-	
-	var code = "";
-	var timer = null;
-	var isRunning = false;
-	
 	$(function(){
 		
-		/*인증번호 버튼 클릭시 유효성 및 중복 검사 후 통과 시 인증번호 발송*/
-		$('.mail_check_button').on('click' , function(){
-			
-			var email = $(".mail_input").val(); //이메일 input 입력값
-			var display = $('.time'); // 타이머 class
-	    	var leftSec = 180; //3분      
-			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // 알파벳+숫자@알파벳+숫자
-			var member_id = $(".mail_input").val(); // 입력한 이메일     
-			
-			if(exptext.test(email)==false){
-				//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우			
-
-				$(".mail_input_check").html("이메일형식이 올바르지 않습니다.").css("color" , "red");
+		$('.nick_input').on('focusout' , function(){
+			var nn_RegExp = /^[가-힣|a-z|A-Z|0-9|]{2,10}$/;
+			var member_nick = $(".nick_input").val();
+		  
+		$.ajax({
+			type:'post',
+			url:"/travelers/checkNick.do",
+			data: {"member_nick":member_nick},
+			success: function(data){
 				
-	            $(".mail_input").focus();
-
-			     return false; // 함수 동작 중단
-			     
-	        }else{
-	        	
-			$.ajax({
-				type:'post',
-				url:"/travelers/checkId.do",
-				data: {"member_id":member_id},
-				success: function(data){
-					if(data == "N"){
-						result = "사용 가능한 아이디입니다.";
-						$(".mail_input_check").html(result).css("color", "green");
-					}else{
-						result = "이미 사용중인 아이디입니다.";
-						$(".mail_input_check").html(result).css("color", "red");
-						$(".mail_input").val("").trigger("focus");
-					}
-				},
-				error: function(error){alert(error);}
-			});			
-
-			$.ajax({
+				if(nn_RegExp.test(member_nick)==false){
+			        result = "닉네임은 2~10자리 까지이며 한글,영문,숫자로 조합가능합니다";
+				    $(".nick_input_check").html(result).css("color", "red");
+				    $(".next").attr('disabled' , true)	
 				
-			        type:"GET",
-			        url:"mailCheck?email=" + email,
-			        success:function(data){
-			        	
-			        	
-			        	
-			            $(".mail_check_input").attr('type' , 'text');
+			  }else if(data == "N"){
+					result = "사용 가능한 닉네임입니다.";
+					$(".nick_input_check").html(result).css("color", "green");
+					
+			  }else{
+				  result = "이미 사용중인 닉네임입니다.";
+					$(".nick_input_check").html(result).css("color", "red");
+					$(".nick_input").val("").trigger("focus");
+					
+					return false;
+			  }	        
+		  }
+	  });
+	   
+   });
+		$('.name_input').on('focusout' , function(){
+			
+		     var name = $('.name_input').val();
+			 var n_RegExp = /^[가-힣]{2,5}$/; //이름 유효성검사 정규식
+			 
+			 if(n_RegExp.test(name)==false){
+				 
+				 $(".name_input_check").html("이름은 5자 이하의 한글로 작성 해주세요.").css("color" , "red");		
 
-			            if (isRunning){
-				    		clearInterval(timer);
-				    		display.html("");
-				    		startTimer(leftSec, display);
-				    		
-			            }else{	
-			            startTimer(leftSec, display);	          
-			            alert("인증번호가 전송되었습니다.")
-			            code = data;
-			            }
-			            
-			            console.log("data : " + data);
-			        }
-			        
-			});
-		    
+			 }else{
+				 $(".name_input_check").html("")
+			 }
 	
-		/* 인증번호 비교 */
-		$(".mail_check_input").on('focusout' , function(){
-		    
-		    var inputCode = $(".mail_check_input").val();        // 입력코드    
-		    var checkResult = $(".mail_check_input_box_warn");    // 비교 결과     
-		    
-		    if(inputCode == code){                            // 일치할 경우
-		        checkResult.html("인증번호가 일치합니다.");
-		        checkResult.css("color", "green");
-		        $(".next").attr('disabled' , false);
-		        $(".mail_input").attr('disabled' , true);
-		        $(".mail_check_input").attr('disabled' , true);
-		        $('.mail_check_button').attr('disabled' , true);
-		        
-		    } else {                                            // 일치하지 않을 경우
-		        checkResult.html("인증번호를 다시 확인해주세요.");
-		        checkResult.css("color", "red");
-		    }    
-		    
+        });
+		
+		$('.birth_input').on('focusout' , function(){
+			
+			     var birth = $('.birth_input').val();
+		         var b_RegExp = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		         
+             if(b_RegExp.test(birth)==false){
+				 
+				 $(".birth_input_check").html("생년월일 8자리를 입력해주세요").css("color" , "red");		 
+				     
+			 }else{
+				 $(".birth_input_check").html("")
+				 $(".next").attr('disabled' , false);       
+				 return false; // 함수 동작 중단
+				 
+			 }
 		});
-				    
-		function startTimer(count, display){
-		            
-		    		var minutes, seconds;
-		            timer = setInterval(function () {
-		            minutes = parseInt(count / 60, 10);
-		            seconds = parseInt(count % 60, 10);
-		     
-		            minutes = minutes < 10 ? "0" + minutes : minutes;
-		            seconds = seconds < 10 ? "0" + seconds : seconds;
-		     
-		            display.html(minutes + ":" + seconds);
-		     
-		            // 타이머 끝
-		            if (--count < 0) {
-		    	     clearInterval(timer);
-		    	     alert("유효시간초과");
-		    	     display.html("유효시간초과");
-		    	     location.reload();
-		    	     isRunning = false;
-		            }
-		        }, 1000);
-		             isRunning = true;
-		}
-	}
+			
+		$('.next').on('click' , function(){
+			if(member_nick == ""){
+				 result = "닉네임을 입력해주세요";
+				 $(".nick_input_check").html(result).css("color", "red");
+				 $(".nick_input").trigger("focus");
+				 return false;
+			}
+			if(name == ""){
+				 result = "닉네임을 입력해주세요";
+				 $(".nick_input_check").html(result).css("color", "red");
+				 $(".nick_input").trigger("focus");
+				 return false;
+			}
+			if(birth == ""){
+				 result = "생년월일을 입력해주세요";
+				 $(".nick_input_check").html(result).css("color", "red");
+				 $(".nick_input").trigger("focus");
+				 
+				 return false;
+			}
 		});
 	});
-		
 	</script>
 </head>
 
 <body class="join_member">
-
 <div class="join_container">
 <main class="join_cont">
-<form class="join_form" name="joinForm" action="/travelers/joinProcess.do" method="post">
+<form class="join_form" name="joinForm" action="/travelers/joinfinish.do" method="post">
+
+    <input type="hidden" name="email" value="${email }">
+    <input type="hidden" name="pwd" value="${pwd }">
+    
     <h1>We Are Travelers!</h1>
     <br>
     <div>
-    <progress value="20" max="100"></progress>
+    <progress value="80" max="100"></progress>
     </div>
     <br>
-      <p class="join_guide_1">위아트 계정으로 사용할 이메일(아이디)를 입력해주세요 <p/>
+      <p class="join_guide_1">위아트 계정의 프로필 내용을 입력해주세요 <p/>
     <div class="mail_wrap">
-    <div class="mail_name">이메일</div>
-    <div class="mail_input_box">
-        <input class="mail_input" id="mail_input_id" name="email_id">
-        <div class="mail_check_button_wrap">
-       <input type="button" class="mail_check_button" value="인증번호">
-   </div> 
+    <div class="nick_name">닉네임</div>
+    <div class="info_input_box">
+        <input class="nick_input" id="nick_input_id" name="nick">
+        <p class="nick_input_check"></p>
+    <div class="name">이름</div>
+        <input class="name_input" id="name_input_id" name="name">
+        <p class="name_input_check"></p>  
+    <div class="birth_name">생년월일</div>
+        <input class="birth_input" id="birth_input_id" name="birth">
+        <p class="birth_input_check"></p>
     </div>
     </div>
-    <font class="mail_input_check"></font>
-    <div class="mail_check_wrap">
-    <div class="mail_check_input_box">
-        <input type="hidden" class="mail_check_input">
-      </div>
-      
-   
-       <span class="mail_check_input_box_warn"></span>
-   
-   <div class="time"></div>
    <div class="clearfix">
-    </div>
-    </div>
+   <br>
+   </div>
     <br>
     <div>
 	<input type="submit" class="next" value="다음" disabled="disabled">
-	<input type="button" class="cancel" value="취소하기" onclick="location.href='${pageContext.request.contextPath}/login.do'">
 	</div>
 </form> 
 </main>

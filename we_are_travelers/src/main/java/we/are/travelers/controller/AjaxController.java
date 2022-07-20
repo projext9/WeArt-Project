@@ -37,14 +37,30 @@ public class AjaxController {
 		
 		System.out.println("id: "+id);
 		
-		String result="N";//중복된 아이디 없음
+		String id_check_result="N";//중복된 아이디 없음
 		
 		int flag = ajaxService.checkId(id);
 		
-		if(flag == 1) result = "Y";//중복된 아이디 있음
+		if(flag == 1) id_check_result = "Y";//중복된 아이디 있음
 		
-		return result;
+		return id_check_result;
 	}
+	
+	@RequestMapping("/checkNick.do")
+	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시
+	public String checkNick(@RequestParam("member_nick") String nick) {
+		
+		System.out.println("ncik: "+nick);
+		
+		String nick_check_result="N";//중복된 아이디 없음
+		
+		int flag = ajaxService.checkNick(nick);
+		
+		if(flag == 1) nick_check_result = "Y";//중복된 아이디 있음
+		
+		return nick_check_result;
+	}
+	
 	 /* 이메일 인증 */
     @RequestMapping(value="/mailCheck" , method=RequestMethod.GET)
     public String mailCheckGET(@RequestParam("email")String email) throws Exception{
