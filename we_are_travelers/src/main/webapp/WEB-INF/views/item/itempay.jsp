@@ -43,20 +43,21 @@
 													<h4>구매예정 상품</h4>
 
 													<table class="product-details-table">
-														<tr>
+														<tr style="border-bottom-width: 2px; border-color: black;">
 															<th style="text-align: left; width: 90%;">&nbsp;&nbsp;&nbsp;상품명</th>
 															<th style="width: 10%;">수량</th>
 														</tr>
-														
-														<tr>
-															<td>상품명 가나다라마바사</td>
-															<td style="text-align: center;">1</td>
-														</tr>
 
-														<tr>
-															<td>할렐루야 중국산 낚시대</td>
-															<td style="text-align: center;">1</td>
-														</tr>
+														<c:forEach var="orderVo" items="${orderVo}">
+															<tr>
+																<td>${orderVo.order_itemName}</td>
+																<td rowspan="2" style="text-align: center; border-left: 1px solid #eee; border-bottom-width: 1px; border-bottom-color: black;">${orderVo.order_count}</td>
+															</tr>
+															<tr>
+																<td style="border-bottom-width: 1px; border-bottom-color: black;">옵션 : ${orderVo.order_optionName}</td>
+															</tr>
+														</c:forEach>
+														
 													</table>
 												</div>
 											</div>
@@ -68,15 +69,15 @@
 													<table class="product-details-table">
 														<tr>
 															<th>총 가격</th>
-															<td>&#8361;5000</td>
+															<td>&#8361;${orderLastVo.orderLast_itemPrice}</td>
 														</tr>
 														<tr>
 															<th>배송비</th>
-															<td>&#8361;5000</td>
+															<td>&#8361;${orderLastVo.orderLast_postPrice}</td>
 														</tr>
 														<tr>
-															<th><span style="color: #ff0000; font-weight: bold;">결제예정금액</span></th>
-															<td><span style="color: #000; font-weight: bold;">&#8361;2222</span></td>
+															<th><span style="color: #ff0000; font-weight: bold;">결제금액</span></th>
+															<td><span style="color: #000; font-weight: bold;">&#8361;${orderLastVo.orderLast_totalPrice}</span></td>
 														</tr>
 													</table>
 												</div>

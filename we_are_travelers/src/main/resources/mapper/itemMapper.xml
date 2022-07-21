@@ -18,7 +18,7 @@
 	</insert>
 	
 	<select id="getItemList" resultType="itemVo"> <!-- 상품 리스트 호출 -->
-		select * from weart_item
+		SELECT * FROM weart_item
 	</select>
 
 	<select id="getItemDetail" resultType="itemVo">	<!-- 상품 상세 호출 -->
@@ -26,22 +26,21 @@
 	</select>
 	
 	<select id="getItemOption" resultType="optionVo"> <!-- 상품 상세 호출(옵션) -->
-		select * from weart_option WHERE item_idx = #{item_idx}
+		SELECT * FROM weart_option WHERE item_idx = #{item_idx}
 	</select>
-	
-	
+
 	<insert id="addItemCart" parameterType="map"> <!-- 장바구니 담기 -->
 		INSERT INTO weart_cart(member_idx,option_idx,cart_count) VALUES(#{member_idx}, #{option_idx}, #{cart_count})
 	</insert>
 
-	<select id="getCartList" resultType="map"> <!-- 상품 상세 호출(옵션) -->
-		Select * FROM weart_cart a 
+	<select id="getCartList" resultType="map"> <!-- 1. 장바구니 호출 -->
+		SELECT * FROM weart_cart a 
 			INNER JOIN weart_option b ON a.option_idx = b.option_idx
 			INNER JOIN weart_item c ON b.item_idx = c.item_idx WHERE a.member_idx = #{member_idx}
 	</select>
 	
-	<select id="getItemOrder" parameterType="list" resultType="map"> <!-- 배송지 입력 -->
-		Select * FROM weart_cart a
+	<select id="getItemOrder" parameterType="list" resultType="map"> <!-- 2. 배송지 입력 호출(상품) -->
+		SELECT * FROM weart_cart a
 			INNER JOIN weart_option b ON a.option_idx = b.option_idx
 			INNER JOIN weart_item c ON b.item_idx = c.item_idx WHERE a.cart_idx IN
 			<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
@@ -49,5 +48,40 @@
 			</foreach>
 	</select>
 	
+	<select id="getMemberDetail" resultType="map">	<!-- 2. 배송지 입력 호출(회원정보) -->
+		SELECT * FROM weart_member a INNER JOIN weart_address b WHERE a.member_idx = #{member_idx}
+	</select>
+	
+	<delete id="deleteAllOrder"> <!-- 찌꺼기 제거 -->
+		DELETE FROM weart_order WHERE member_idx = #{member_idx} AND order_state = "A"
+	</delete>
+	
+	<delete id="deleteAllOrderLast"> <!-- 찌꺼기 제거 -->
+		DELETE FROM weart_order_last WHERE member_idx = #{member_idx} AND orderLast_state = "A"
+	</delete>
+	
+	<select id="getItemSelected" resultType="map">	<!-- 카트 선택 상품 호출 -->
+		SELECT * FROM weart_cart a 
+			INNER JOIN weart_option b ON a.option_idx = b.option_idx
+			INNER JOIN weart_item c ON b.item_idx = c.item_idx WHERE a.cart_idx = #{cart_idx}
+	</select>
+	
+	<insert id="addOrderDetail" parameterType="map"> <!-- 주문서 등록(개별상품) -->
+		INSERT INTO weart_order(member_idx,orderLast_num,option_idx,company_idx,order_itemName,order_optionName,order_price,order_count,order_postPrice,order_totalPrice) 
+		VALUES(#{member_idx}, #{orderLast_num}, #{option_idx}, #{company_idx}, #{order_itemName}, #{order_optionName}, #{order_price}, #{order_count}, #{order_postPrice}, #{order_totalPrice})
+	</insert>
+
+	<insert id="addOrderLast" parameterType="map"> <!-- 주문서 등록 -->
+		INSERT INTO weart_order_last(orderLast_num,member_idx,orderLast_itemPrice,orderLast_postPrice,orderLast_totalPrice,orderLast_name,orderLast_phone,orderLast_address,orderLast_msg) 
+		VALUES(#{orderLast_num}, #{member_idx}, #{orderLast_itemPrice}, #{orderLast_postPrice}, #{orderLast_totalPrice}, #{orderLast_name}, #{orderLast_phone}, #{orderLast_address}, #{orderLast_msg})
+	</insert>
+	
+	<select id="getOrderList" parameterType="map" resultType="orderVo"> <!-- 주문예정 상품 호출 -->
+		SELECT * FROM weart_order WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND order_state = #{order_state}
+	</select>
+	
+	<select id="getOrderLast" resultType="orderLastVo">	<!-- 상품 상세 호출 -->
+		SELECT * FROM weart_order_last WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND orderLast_state = #{orderLast_state}
+	</select>
 
 </mapper>

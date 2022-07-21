@@ -6,9 +6,13 @@
 
 	<typeAliases>
 		<typeAlias alias="memberVo" type="we.are.travelers.vo.MemberVo"/>
+		<typeAlias alias="addressVo" type="we.are.travelers.vo.AddressVo"/>
 		<typeAlias alias="galleryVo" type="we.are.travelers.vo.GalleryVo"/>
 		<typeAlias alias="itemVo" type="we.are.travelers.vo.ItemVo"/>
 		<typeAlias alias="optionVo" type="we.are.travelers.vo.OptionVo"/>
+		<typeAlias alias="cartVo" type="we.are.travelers.vo.CartVo"/>
+		<typeAlias alias="orderVo" type="we.are.travelers.vo.OrderVo"/>
+		<typeAlias alias="orderLastVo" type="we.are.travelers.vo.OrderLastVo"/>
 	</typeAliases>  
 
 </configuration>  

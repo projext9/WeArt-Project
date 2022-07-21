@@ -1,7 +1,10 @@
+
 package we.are.travelers.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,6 +28,8 @@ import we.are.travelers.service.ItemService;
 import we.are.travelers.vo.ItemVo;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OptionVo;
+import we.are.travelers.vo.OrderLastVo;
+import we.are.travelers.vo.OrderVo;
 
 @Controller
 public class ItemController {
@@ -34,11 +39,6 @@ public class ItemController {
 	@Autowired //자동 의존 주입: 생성자 방식
 	public ItemController(ItemService itemService) {
 		this.itemService = itemService;
-	}
-
-	@GetMapping("/itempay.do")
-	public String itempay() {
-		return "item/itempay";
 	}
 	
 	@GetMapping("/fishingshop.do") //낚시 상품페이지 호출
@@ -107,45 +107,150 @@ public class ItemController {
 	
 	@PostMapping("/itemorder.do")
 	public String itemorder(HttpServletRequest request, Model model) {
-		String[] cart_idx_list = request.getParameterValues("cart_idx");
-		List<String> cart_idx_list_ = Arrays.asList(cart_idx_list);	
-		
-		System.out.println("아이템 컨트롤러 - 선택된 cart_idx 값" + cart_idx_list_);
-		
-		List<Map<String, Object>> map = itemService.getItemOrder(cart_idx_list_);
-		
-		model.addAttribute("ItemOrderMap", map);
-		System.out.println("아이템 컨트롤러 - map : " + map);
+		HttpSession session = request.getSession();
+		String member_idx = (String)session.getAttribute("member_idx");
 
-		return "item/itemorder";
+		if (member_idx == null) {
+			return "home"; //로그인 필요
+
+		} else {
+			String total_itemPrice = request.getParameter("hidden_itemPrice");
+			String total_postPrice = request.getParameter("hidden_postPrice");
+			String total_price = request.getParameter("hidden_price");
+			
+			String[] cart_idx_list = request.getParameterValues("cart_idx");
+			List<String> cart_idx_list_ = Arrays.asList(cart_idx_list);	
+			List<Map<String, Object>> map1 = itemService.getItemOrder(cart_idx_list_);
+			model.addAttribute("ItemOrderMap", map1);
+			
+			Map<String, Object> map2 = itemService.getMemberDetail(member_idx);
+			model.addAttribute("map2", map2);
+
+			request.setAttribute("total_itemPrice", total_itemPrice);
+			request.setAttribute("total_postPrice", total_postPrice);
+			request.setAttribute("total_price", total_price);
+
+			return "item/itemorder";
+		}
+
 	}
+
+	@PostMapping("/itemorderadd.do")
+	@ResponseBody
+	public String itemorderadd(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String member_idx = (String)session.getAttribute("member_idx");
+	    	
+		if (member_idx == null) {
+			return "home"; //로그인 필요
+
+		} else {
+			itemService.deleteAllOrder(member_idx); //찌꺼기 제거
+			itemService.deleteAllOrderLast(member_idx); //찌꺼기 제거
+			
+			LocalDate now = LocalDate.now(); //현재 날짜
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd"); //포맷 정의
+			String formatedNow = now.format(formatter); //포맷 적용
+			
+			String num = "";
+		    for (int i = 1; i <= 8; i++) {
+		        char ch = (char) ((Math.random() * 10) + 48);
+		        num = num + String.valueOf(ch);
+		    }
+			System.out.println("uid : " + num);
+			
+			String orderLast_num = formatedNow+num;
+			System.out.println("orderLast_num : " + orderLast_num);
+			
+			String[] cart_idx_list = request.getParameterValues("cart_idx");
+			int length = cart_idx_list.length;
+			
+			String orderLast_name = request.getParameter("orderLast_name");
+			String orderLast_phone = request.getParameter("orderLast_phone");
+			String orderLast_address = request.getParameter("orderLast_address");
+			String orderLast_msg = request.getParameter("orderLast_msg");
+			String orderLast_cashReceipt = request.getParameter("orderLast_cashReceipt");
+			int orderLast_itemPrice = 0;
+			int orderLast_postPrice = 0;
+			int orderLast_totalPrice = 0;
+			System.out.println(orderLast_name);
+			for(int i = 0; i < length; i++) {
+				String cart_idx = cart_idx_list[i];
+				HashMap<String, Object> map1 = itemService.getItemSelected(cart_idx);
+				int option_idx = (int)map1.get("option_idx");
+				String company_idx = (String)map1.get("company_idx");
+				String order_itemName = (String)map1.get("item_name");
+				String order_optionName = (String)map1.get("option_name");
+				int order_price = (int)map1.get("option_price");
+				int order_count = (int)map1.get("cart_count");
+				int order_postPrice = (int)map1.get("option_postPrice");
+				int order_totalPrice = order_price*order_count;
+				
+				HashMap<String, Object> map2 = new HashMap<String, Object>();
+				map2.put("member_idx", member_idx);
+				map2.put("orderLast_num", orderLast_num);
+				map2.put("option_idx", option_idx);
+				map2.put("company_idx", company_idx);
+				map2.put("order_itemName", order_itemName);
+				map2.put("order_optionName", order_optionName);
+				map2.put("order_price", order_price);
+				map2.put("order_count", order_count);
+				map2.put("order_postPrice", order_postPrice);
+				map2.put("order_totalPrice", order_totalPrice);
+				
+				orderLast_itemPrice = orderLast_itemPrice+order_totalPrice;
+				orderLast_postPrice = orderLast_postPrice+order_postPrice;
+				orderLast_totalPrice = orderLast_totalPrice+order_postPrice+order_totalPrice;
+
+				itemService.addOrderDetail(map2);
+			}
+			
+			HashMap<String, Object> map3 = new HashMap<String, Object>();
+			map3.put("member_idx", member_idx);
+			map3.put("orderLast_num", orderLast_num);
+			map3.put("orderLast_itemPrice", orderLast_itemPrice);
+			map3.put("orderLast_postPrice", orderLast_postPrice);
+			map3.put("orderLast_totalPrice", orderLast_totalPrice);
+			map3.put("orderLast_name", orderLast_name);
+			map3.put("orderLast_phone", orderLast_phone);
+			map3.put("orderLast_address", orderLast_address);
+			map3.put("orderLast_msg", orderLast_msg);
+			map3.put("orderLast_cashReceipt", orderLast_cashReceipt);
+			
+			itemService.addOrderLast(map3);
+
+			return orderLast_num;
+		}
+	}
+	
+	@GetMapping("/itempay.do")
+	public String itempay(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String member_idx = (String)session.getAttribute("member_idx");
 		
-		    
-
-
-
+		String orderLast_num = request.getParameter("idx");
+		
+		System.out.println("아이템페이 orderLast_num : " + orderLast_num);
+		
+		HashMap<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("member_idx", member_idx);
+		map1.put("orderLast_num", orderLast_num);
+		map1.put("order_state", "A");
+		
+		List<OrderVo> orderVo = itemService.getOrderList(map1);
+		model.addAttribute("orderVo", orderVo);
+		
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("member_idx", member_idx);
+		map2.put("orderLast_num", orderLast_num);
+		map2.put("orderLast_state", "A");
+		
+		OrderLastVo orderLastVo = itemService.getOrderLast(map2);
+		model.addAttribute("orderLastVo", orderLastVo);
+		
+		System.out.println(model);
+		
+		return "item/itempay";
+	}
 	
-	
-//	@PostMapping("/itemorder.do")
-//	public String itemorder(HttpServletRequest request, Model model) {
-//		String[] chkBox = request.getParameterValues("cart_idx");
-//		
-//		String cart_idx_list = "";
-//		
-//		for(int i = 0; i <= chkBox.length-1; i++){
-//			cart_idx_list = cart_idx_list+","+"'"+chkBox[i]+"'";
-//			System.out.println("아이템 컨트롤러 - "+ cart_idx_list);
-//		}
-//		cart_idx_list = cart_idx_list.substring(1);
-//		System.out.println("아이템 컨트롤러 - 최종 : " + cart_idx_list);
-//		List<Map<String, Object>> map = itemService.getItemOrder(cart_idx_list);
-//		System.out.println("아이템 컨트롤러 - " + map);
-//		model.addAttribute("ItemOrderMap", map);
-//
-//		System.out.println("아이템 컨트롤러 - " + "카트 선택 맵 담기");
-//		
-//		return "item/itemorder";}
-
-
 }
-

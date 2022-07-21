@@ -72,27 +72,22 @@ public class MemberController {
 	
 	@PostMapping("/loginProcess.do")
 	public String loginProcess(@RequestParam("member_id") String member_id,
-			 					@RequestParam("member_pw") String member_pw, 
+			 					@RequestParam("member_pwd") String member_pwd, 
 			 					HttpServletRequest request) {
 
 		//2개의 전달값을 HashMap객체에 저장해서 MyBatis 입력값으로 사용
 		HashMap<String, String> loginInfo = new HashMap<String, String>();
 		loginInfo.put("member_id", member_id);
-		loginInfo.put("member_pw", member_pw);
+		loginInfo.put("member_pwd", member_pwd);
 		
 		//2개의 결과값을 얻고자 HashMap 객체 사용
 		HashMap<String, Long> resultMap=memberService.login(loginInfo);
 		long member_auth = resultMap.get("member_auth");//회원인증
-		long member_grade = resultMap.get("member_grade");//회원등급
 		
 		String viewPage = null;
 		if(member_auth==1) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member_idx", member_id);//회원인증 추가	
-			session.setAttribute("member_grade", member_grade);//회원등급 추가
-			System.out.println(member_id);
-			System.out.println(member_grade);
-			System.out.println("로그인완료");
 			viewPage = "redirect:/home.do";
 		
 		}else{
