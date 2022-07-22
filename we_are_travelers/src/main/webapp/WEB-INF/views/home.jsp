@@ -89,9 +89,17 @@
                             </ul>
 						</li>
 					</ul>
-					<button class="btn btn-outline-success" type="submit"><a href="${pageContext.request.contextPath}/login.do">로그인</a></button>
+					<c:if test="${sessionScope.list.member_idx == null }">
+					<button class="btn btn-outline-success" type="button"><a href="${pageContext.request.contextPath}/login.do">로그인</a></button>
 					&nbsp;&nbsp;
-					<button class="btn btn-outline-success" type="submit"><a href="${pageContext.request.contextPath}/join.do">회원가입</a></button>
+					<button class="btn btn-outline-success" type="button"><a href="${pageContext.request.contextPath}/join.do">회원가입</a></button>
+				     </c:if>
+				    <c:if test="${sessionScope.list.member_id != null }">
+					<span>${sessionScope.list.member_nick }님</span>
+					&nbsp;&nbsp;
+					<a href="/travelers/logout.do">로그아웃</a>
+					</c:if>
+				
 				</div>
 			</div>
 		</nav>

@@ -20,23 +20,24 @@
  <body class="text-center">
     
 <main class="form-signin">
-  <form class="login_form" action="/travelers/loginProcess.do" method="GET">
+  <form class="login_form" action="/travelers/loginProcess.do" method="POST">
     <a href="${pageContext.request.contextPath}/home.do">
     <img class="mb-4" src="${pageContext.request.contextPath}/resources/images/logo.jpg" alt="로고" width="72" height="57">
     </a>
     <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
  <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" >
+      <input type="text" class="form-control" id="member_id" name="member_id" >
       <label for="floatingInput">이메일(아이디)</label> 
     </div>
  <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" >
+      <input type="password" class="form-control" id="member_pwd" name="member_pwd" >
       <label for="floatingPassword">비밀번호</label> 
     <div class="form-floating-btn">
     <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
  </div>
  </div>
+ </form>
     <div class="checkbox mb-3">
     <label><input type="checkbox" value="remember-me"> 아이디 저장 </label>
  </div>
@@ -56,7 +57,7 @@
     <img src="${pageContext.request.contextPath}/resources/images/facebook_login.png" width="200" height="50" alt="페이스북 로그인">
      </div>
  </div>
-  </form>
+
  
  <div class="join_wrap">
    <div class="join_wrap_box">

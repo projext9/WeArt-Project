@@ -55,7 +55,7 @@
 
 <h3>회원정보를 입력해주세요</h3>
 
-<form name="joinCompanyForm" action="/travelers/joinProcess.do" method="post">
+<form name="joinCompanyForm" action="/travelers/joinCnext2.do" method="post">
     <input type="text" name="b_no" id="b_no" maxlength="10" placeholder="사업자 등록번호" />
     <font id="no_b" size ="2"></font>
     

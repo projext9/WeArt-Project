@@ -12,9 +12,10 @@
 	</insert>
 	
 	
-	<select id="loginMember" parameterType="map" resultType="map">
-		select count(*) as member_grade from weart_member where member_id=#{member_id} and member_pwd=#{member_pwd}
+	<select id="loginMember" parameterType="memberVo" resultType="memberVo">
+		select * from weart_member
 	</select>
+	
 
 	<select id="checkId" parameterType="string" resultType="int">  
 		SELECT a.member_id,b.company_id

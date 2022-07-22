@@ -1,16 +1,20 @@
 package we.are.travelers.controller;
 
-import java.util.HashMap;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import we.are.travelers.service.AllMemberService;
 import we.are.travelers.vo.CompanyVo;
@@ -30,36 +34,35 @@ public class AllMemberController {
 	public String login() {
 		return "member/login";
 	}
-	
-    @RequestMapping(value="/loginProcess.do" , method = RequestMethod.GET)
-	public String loginProcess(@RequestParam("member_id") String member_id,
-			 					@RequestParam("member_pwd") String member_pwd, 
-			 					HttpServletRequest request) {
-
-		//2개의 전달값을 HashMap객체에 저장해서 MyBatis 입력값으로 사용
-		HashMap<String, String> loginMemberInfo = new HashMap<String, String>();
-		loginMemberInfo.put("member_id", member_id);
-		loginMemberInfo.put("member_pwd", member_pwd);
-		
-		//2개의 결과값을 얻고자 HashMap 객체 사용
-		HashMap<String, Long> resultMap=AllmemberService.loginMember(loginMemberInfo);
-		long member_grade = resultMap.get("member_grade");//회원등급
-		long member_auth = resultMap.get("member_auth");//회원등급
-		String viewPage = null;
-		if(member_auth==1) {
+	///////////////////////로그인 로직
+    @RequestMapping(value="/loginProcess.do" , method = RequestMethod.POST)
+	public String loginProcess (MemberVo mv , CompanyVo cv , HttpServletRequest request , HttpServletRequest request1) {
+    	String viewPage = null;
+    	
+	MemberVo member_grade=AllmemberService.loginMember(mv);
+		if(member_grade != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("member_id", member_id);//회원인증 추가	
-			session.setAttribute("member_grade", member_grade);//회원등급 추가
-			
-			viewPage = "redirect:/home.do";
-		
+			session.setAttribute("list", AllmemberService.loginMember(mv));
+			session.setAttribute("member_grade", mv.getMember_grade());//회원등급 추가
+			session.setAttribute("member_nick",mv.getMember_nick());//회원닉네임
+
+	        viewPage = "redirect:/home.do";
+	        
+	CompanyVo company_auth=AllmemberService.loginCompany(cv);     
+	     if(company_auth == null) {
+	    	 HttpSession session1 = request1.getSession();
+	    	 session1.setAttribute("company_name",cv.getCompany_name());//회사이름
+	    	 session1.setAttribute("company_auth",cv.getCompany_name());//회사인증
+	    	 
+	    	 viewPage = "redirect:/home.do";
+	     }
 		}else{
 			viewPage = "member/login";
 		}
 		
 		return viewPage;
 	}
-    //이용약관 상세 보기
+    /////////////////////////////////이용약관 상세 보기
     @RequestMapping(value="/WeArtTermsOfService.do", method = RequestMethod.GET)
 	public String terms1() {
 		return "member/agr_terms_of_service";
@@ -73,7 +76,7 @@ public class AllMemberController {
 		return "member/agr_marketing";
 	}
     
-	//회원가입 로직
+	///////////////////////////////////회원가입 로직
 	@RequestMapping(value="/joinMember.do", method = RequestMethod.GET)
 	public String join() {
 		return "member/join_terms_of";
@@ -84,7 +87,6 @@ public class AllMemberController {
 	}
 	@RequestMapping(value="/joinNext2.do", method = RequestMethod.POST)
 	public String joinNext2(@RequestParam("email")String email , Model model) {
-		
 		
 		model.addAttribute("email", email);
 		
@@ -108,11 +110,114 @@ public class AllMemberController {
 		model.addAttribute("name", name);
 		model.addAttribute("birth", birth);
 		
-		return "member/join_finish";
-	}
+		
+	  return "member/join_finish";
+    }
+		@RequestMapping("/fileUploadProcess.do")
+		public String fileUploadProcess(@RequestParam("uploadFile") MultipartFile uploadFile,
+				MemberVo memberVo, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
+			//<input type ="file" name="uploadFile" />에서 업로드된 파일객체를 MultipartFile uploadFile에 저장
+			
+			//업로드된 파일을 프로젝트 내의 upload 폴더에 저장하기 전에 DB의 upload_file 테이블에 저장할 
+			//origin_filename과 system_filename 값을 세팅함
+			
+			String origin_fileName = uploadFile.getOriginalFilename();
+			
+			//시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
+			int dot_idx = origin_fileName.lastIndexOf(".");
+			String fileName1 = origin_fileName.substring(0, dot_idx);
+			String extension = origin_fileName.substring(dot_idx+1);
+			String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
+			String system_fileName = fileName2+"."+extension;
+			
+			//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+			String upload_dir = "resources/upload/";
+			
+			String realPath = request.getServletContext().getRealPath(upload_dir);
+			System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+			
+			//지정된 경로에 파일 저장
+			//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
+			String fullPath = realPath+system_fileName;
+			uploadFile.transferTo(new File(fullPath));
+			
+			
+			//파일업로드가 정상적으로 이루어진 것을 gallery_home.jsp에서 확인
+			//model객체에 입력내용(content)와 system_fileName을 추가함
+			//model.addAttribute("content", content);
+			//model.addAttribute("fileName", system_fileName);
+			
+			//파일 업로드 디렉토리에 저장된 모든 파일이름을 가져와서 model객체에 추가
+			/*File[] files = new File(realPath).listFiles();
+			String[] fileNames = new String[files.length];
+			
+			for(int i=0; i<files.length; i++) {
+				fileNames[i] = files[i].getName();
+			}*/
+			
+			String[] fileNames = new File(realPath).list();
+			model.addAttribute("fileNames", fileNames);
+			
+			
+			return "gallery/gallery_home";
+		}
+		
+
+	
+	//////////////////////////////////////기업회원 회원가입 및 약관동의 상세보기
 	@RequestMapping(value="/joinCompany.do", method = RequestMethod.GET)
 	public String joinCompany() {
-		return "company/join_company";
+		return "company/join_c_terms_of";
+	}
+	 //이용약관 상세 보기
+    @RequestMapping(value="/c_WeArtTermsOfService.do", method = RequestMethod.GET)
+	public String termsC1() {
+		return "company/agr_c_terms_of_service";
+	}
+    @RequestMapping(value="/c_WeArtPersnolInfo.do", method = RequestMethod.GET)
+	public String termsC2() {
+		return "company/agr_c_persnol_info";
+	}
+    @RequestMapping(value="/c_WeArtPersnolInfo_other.do", method = RequestMethod.GET)
+	public String termsC3() {
+		return "company/agr_c_persnol_info_other";
+	}
+    @RequestMapping(value="/c_WeArtMarketing.do", method = RequestMethod.GET)
+	public String termsC4() {
+		return "company/agr_c_marketing";
+	}
+    
+    @RequestMapping(value="/joinCnext.do", method = RequestMethod.GET)
+	public String joinCNext() {
+		return "company/join_c_buisNumber";
+	}
+	@RequestMapping(value="/joinCnext2.do", method = RequestMethod.POST)
+	public String joinCNext2(@RequestParam("buisNum")String buisNum , Model model) {
+		
+		model.addAttribute("buisNum", buisNum);
+		
+		return "company/join_c_email";
+	}
+	@RequestMapping(value="/joinCnext3.do", method = RequestMethod.POST)
+		public String joinCNext3(@RequestParam("buisNum")String buisNum , @RequestParam("c_email")String c_email , Model model)  {		
+		
+		model.addAttribute("buisNum", buisNum);
+		model.addAttribute("c_email", c_email);
+		
+		return "member/join_persnol_info";
+	}
+	@RequestMapping(value="/joinCfinish.do", method = RequestMethod.POST)
+	public String joinCNext4(@RequestParam("buisNum")String buisNum , @RequestParam("c_email")String c_email , @RequestParam("c_name") String c_name,
+			@RequestParam("ceo") String ceo , @RequestParam("c_address") String c_address , Model model) {
+		
+		model.addAttribute("buisNum", buisNum);
+		model.addAttribute("c_email", c_email);
+		model.addAttribute("c_name", c_name );
+		model.addAttribute("ceo", ceo);
+		model.addAttribute("name", c_address);
+		
+		
+		return "member/join_finish";
 	}
 	//회원가입 완료 로직
 	@RequestMapping(value="/joinMemberProcess.do" , method = RequestMethod.POST)
@@ -139,7 +244,7 @@ public class AllMemberController {
 		
 		String viewPage = null;
 		if(result==1) {
-			viewPage = "redirect:/home.do";
+			viewPage = "redirect:/login.do";
 		}else{
 			viewPage = "member/join_member";
 		}

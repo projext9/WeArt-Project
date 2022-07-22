@@ -19,7 +19,7 @@ public class MemberVo {
     private int member_grade; // 회원등급(일반/관리자)
     private int member_regCode; // 가입구분(일반/소셜)
     private int member_phone_auth; //휴대폰 인증상태
-    private int member_delyn; //사용자 이용상태(N(정상) Y(삭제) S(정지))
+    private String member_delyn; //사용자 이용상태(N(정상) Y(삭제) S(정지))
     private Date member_regdate; //가입일자
     private int member_ip; //
     
@@ -140,10 +140,10 @@ public class MemberVo {
 	public void setMember_phone_auth(int member_phone_auth) {
 		this.member_phone_auth = member_phone_auth;
 	}
-	public int getMember_delyn() {
+	public String getMember_delyn() {
 		return member_delyn;
 	}
-	public void setMember_delyn(int member_delyn) {
+	public void setMember_delyn(String member_delyn) {
 		this.member_delyn = member_delyn;
 	}
 	public Date getMember_regdate() {

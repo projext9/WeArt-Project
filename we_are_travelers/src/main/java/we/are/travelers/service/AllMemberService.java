@@ -23,10 +23,10 @@ public class AllMemberService {
 	
 	
 	//회원가입 처리 메소드:join()
-	public int joinMember(MemberVo memberVo) {
+	public int joinMember(MemberVo mv) {
 		int result_member=0;//입력 실패
 		
-		result_member = memberDao.joinMember(memberVo);
+		result_member = memberDao.joinMember(mv);
 		
 		return result_member;
 	}
@@ -41,15 +41,23 @@ public class AllMemberService {
 
 	}
 	
-	public HashMap<String, Long> loginMember(MemberVo memberVo) { 
+	public MemberVo loginMember(MemberVo mv) { 
 		
-		 return memberDao.loginMember(memberVo); 
+		 return memberDao.loginMember(mv); 
 }
 
+	public CompanyVo loginCompany(CompanyVo cv) { 
+		
+		 return companyDao.loginCompany(cv); 
+}
 	
-	public HashMap<String, Long> loginMember(HashMap<String,String> loginMemberInfo) {
-		return memberDao.loginMember(loginMemberInfo);
-	}
+	
+	
+	
+}
+//	public HashMap<String, Long> loginMember(HashMap<String,String> loginMemberInfo) {
+//		return memberDao.loginMember(loginMemberInfo);
+
      
 //	public HashMap<String, Long> loginCompany(CompanyVo companyVo) { 
 //		
@@ -61,5 +69,3 @@ public class AllMemberService {
 //		return companyDao.loginCompany(loginCompanyInfo);
 //	}
 
-
-}

@@ -14,21 +14,29 @@
 		 #{comapny_regdate},#{company_delyn}, #{company_ip})
 	</insert>
 	
-	<!-- <select id="loginMember" parameterType="memberVo" resultType="map">
-		select count(*) as member_auth, member_grade from member where member_id=#{member_id} and member_pw=#{member_pw}
-	</select> -->
-	
-	<select id="loginCompany" parameterType="map" resultType="map">
-		select count(*) as member_auth, member_grade from member where member_id=#{member_id} and member_pw=#{member_pwd}
+	<select id="loginCompany" parameterType="companyVo" resultType="companyVo">
+		select * from weart_company
 	</select>
 	
-
-
 	<select id="checkId" parameterType="string" resultType="int">
 		SELECT a.company_id, b.member_id
 		FROM (SELECT COUNT(*) company_id FROM weart_company) a,
 		     (SELECT COUNT(*) member_id FROM weart_member) b ,
 	</select>
+	
 
+	<!-- 동적 SQL문으로 처리: choose-when-otherwise 구문 -->
+	<insert id="companyAuth" parameterType="companyVo">
+		insert into gallery(gallery_content, origin_filename, system_filename)
+		<choose>
+			<when test="gallery_content != null">
+				values(#{gallery_content}, #{origin_filename}, #{system_filename})
+			</when>
+			<otherwise>
+				values(default, #{origin_filename}, #{system_filename})
+			</otherwise>
+		</choose>
+	</insert>
+	
 
 </mapper>

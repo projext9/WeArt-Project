@@ -35,17 +35,21 @@ $(".checkbox_group").on("click", ".normal", function() {
   </li>
   <li>
   <input type="checkbox" id="check_1" class="normal" >
-  <label for="check_1">일반회원 이용약관에 동의합니다.(필수)</label><a target="_blank" href="/travelers/WeArtTermsOfService.do">></a>
+  <label for="check_1">기업회원 이용약관에 동의합니다.(필수)</label><a target="_blank" href="/travelers/c_WeArtTermsOfService.do">></a>
    </li>
    <li>
   <input type="checkbox" id="check_2" class="normal" >
-  <label for="check_2">일반회원 개인정보 처리방침에 동의합니다.(필수)</label><a target="_blank" href="/travelers/WeArtPersnolInfo.do">></a>
+  <label for="check_2">기업회원 개인정보 처리방침에 동의합니다.(필수)</label><a target="_blank" href="/travelers/c_WeArtPersnolInfo.do">></a>
   </li>
   <li>
   <input type="checkbox" id="check_3" class="normal" >
-  <label for="check_3">일반회원 마케팅 수신에 동의합니다.(선택)</label><a target="_blank" href="/travelers/WeArtMarketing.do">></a>
+  <label for="check_3">기업회원 개인정보의 제3자 제공동의.(필수)</label><a target="_blank" href="/travelers/c_WeArtPersnolInfo_other.do">></a>
   </li>
-  <button class="join_agree" onclick="location.href='/travelers/joinNext.do'" type="button">확인</button>
+  <li>
+  <input type="checkbox" id="check_3" class="normal" >
+  <label for="check_3">기업회원 마케팅 수신에 동의합니다.(선택)</label><a target="_blank" href="/travelers/c_WeArtMarketing.do">></a>
+  </li>
+  <input type="button" class="join_agree" value="확인" onclick="location.href='/travelers/joinCnext.do'" >
   </ul>
 </div>
  

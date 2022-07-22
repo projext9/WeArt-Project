@@ -39,13 +39,8 @@ public class CompanyDao {
 	 * return resultMap; }
 	 */
 	
-	public HashMap<String, Long> loginCompany(HashMap<String, String> loginInfo) {
-		HashMap<String, Long> resultMap = sqlSession.selectOne(MAPPER+".loginMember", loginInfo);
-		
-		if(resultMap.get("Company_auth") == 0) {
-			resultMap.put("Company_m_grade", 0L);
-		}
-		return resultMap;
+	  public CompanyVo loginCompany(CompanyVo cv){
+		  return sqlSession.selectOne(MAPPER + ".loginCompany", cv);
 	}
 
 	public MemberVo getCompanyInfo(String company_id) {
