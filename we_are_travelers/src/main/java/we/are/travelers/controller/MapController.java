@@ -62,6 +62,23 @@ public class MapController {
 		model.addAttribute("mapSearch",mapList);
 		
 		return "map/fishing/fishingMap";
+	}@GetMapping("/campingMap.do")
+	public String campingMap(int map_idx,Model model)
+	{
+		
+		List<MapVo> mapList = mapService.getMapSearch(map_idx); 
+		model.addAttribute("mapSearch",mapList);
+		
+		return "map/fishing/fishingMap";
+	}
+	@GetMapping("/lodgingMap.do")
+	public String lodgingMap(int map_idx,Model model)
+	{
+		
+		List<MapVo> mapList = mapService.getMapSearch(map_idx); 
+		model.addAttribute("mapSearch",mapList);
+		
+		return "map/lodging/lodgingMap";
 	}
 	
 

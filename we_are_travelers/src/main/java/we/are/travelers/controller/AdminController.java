@@ -37,6 +37,16 @@ public class AdminController {
 		
 		return "admin/admin_memberList"; //저장된 객체를 여기로 보냅
 	}
+	
+	@GetMapping("/admin_mapSearch.do") //get방식 요청 처리 <!-- admin_mapSearch.jsp 호출 -->
+	public String getAdmin_mapSearch(int map_idx,Model model) {
+		
+		List<MapVo> mapList = mapService.getMapSearch(map_idx); //MemberVo를 memberList 라는 이름으로...
+		//모델객체에 회원목록을 추가함 //adminService의 getMemberList 메소드 실행
+		model.addAttribute("mapSearch",mapList); //모델객체에 memberList라는 이름으로 저장
+		
+		return "admin/mapList/admin_mapSearch"; //저장된 객체를 여기로 보냅
+	}
 
 	
 	

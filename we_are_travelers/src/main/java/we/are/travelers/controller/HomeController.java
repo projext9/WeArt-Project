@@ -80,7 +80,26 @@ public class HomeController {
 		model.addAttribute("mapList",mapList);
 		
 		return "map/fishing/fishingList";
+	}@GetMapping("/campingList.do")
+	public String camping(Model model)
+	{
+		
+	
+		List<MapVo> mapList = mapService.getMapList(); 
+		model.addAttribute("mapList",mapList);
+		
+		return "map/camping/campingList";
 	}
+	@GetMapping("/lodgingList.do")
+	public String lodging(Model model)
+	{
+		List<MapVo> mapList = mapService.getMapList();
+		model.addAttribute("mapList",mapList);
+		
+		return "map/lodging/lodgingList";
+		
+	}
+	
 	
 	
 	@GetMapping("/admin_CompanyList.do")

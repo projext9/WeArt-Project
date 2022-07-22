@@ -3,20 +3,7 @@
 <html>
 <head>
 <style>
-  .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-    .wrap * {padding: 0;margin: 0;}
-    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-    .info .close:hover {cursor: pointer;}
-    .info .body {position: relative;overflow: hidden;}
-    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-    .info .link {color: #5085BB;}
+
 </style>
 <title>관리자 지도 관리 페이지</title>
 </head>
@@ -40,7 +27,7 @@
 		<c:forEach var="mapVo" items="${mapList}">
 			<tr>
 				<td>${mapVo.map_idx}</td>
-				<td class="company_name">${mapVo.company_name}</td>
+				<td class="company_name"><a href = "${pageContext.request.contextPath}/admin_mapSearch.do?map_idx=${mapVo.map_idx}">${mapVo.company_name}</a></td>
 				<td>${mapVo.map_region}</td>
 
 				<td class="map_addr">${mapVo.map_addr}</td>
@@ -54,12 +41,11 @@
 		</c:forEach>
 
 	</table>
-
 	<script>
 		$(function() {
 			var addr = new Array();
 			var Company_name = new Array();
-
+            var region;
 			$(".map_addr").each(function(index, item) {
 				//console.log($(item).text());
 				addr[index] = $(item).text();
@@ -74,44 +60,22 @@
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = {
 				center : new kakao.maps.LatLng(37.450701, 127.570667), // 지도의 중심좌표
-				level : 13
+				level : 10
 			// 지도의 확대 레벨
 			};
 
 			// 지도를 생성합니다    
 			var map = new kakao.maps.Map(mapContainer, mapOption);
 
-			function resizeMap() {
-				var mapContainer = document.getElementById('map');
-				mapContainer.style.width = '650px';
-				mapContainer.style.height = '650px';
-			}
-
-			function relayout() {
-
-				// 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-				// 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
-				// window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-				map.relayout();
-			}
+	
 
 			// 주소-좌표 변환 객체를 생성합니다
 			var geocoder = new kakao.maps.services.Geocoder();
-
+          
 			for (var i = 0; i < addr.length; i++) {
 
 				(function(addr, Company_name) {
-					var content = '<div class="wrap">'
-							+ '    <div class="info">'
-							+ '        <div class="title">'
-							+ Company_name
-							+ '            <div class="close" onclick="closeOverlay()" title="닫기"></div>'
-							+ '        </div>'
-							+ '        <div class="body">'
-							+ '            <div class="desc">'
-							+ '                <div class="ellipsis">' + addr
-							+ '</div>' + '            </div>'
-							+ '        </div>' + '    </div>' + '</div>';
+				    
 					geocoder.addressSearch(addr, function(result, status) {
 						console.log(addr + "addr의값");
 
@@ -129,29 +93,18 @@
 							map.setCenter(coords);
 							// 인포윈도우로 장소에 대한 설명을 표시합니다
 
-							var overlay = new kakao.maps.CustomOverlay({
-								content : content,
-								map : map,
-								position : marker.getPosition()
-							});
+					        var infowindow = new kakao.maps.InfoWindow({
+					            content: '<div style="width:150px;text-align:center;padding:6px 0; font-size:3px; height : 3px">'+Company_name+'</div>'
+					        });
+					        infowindow.open(map, marker);
 
-							// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-							kakao.maps.event.addListener(marker, 'click',
-									function() {
-										overlay.setMap(map);
-									});
-
-							// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-							function closeOverlay() {
-								overlay.setMap(null);
-							}
 
 						}
 
 					});
 				})(addr[i], Company_name[i]);
 
-			}
+			}   
 
 		});
 	</script>
