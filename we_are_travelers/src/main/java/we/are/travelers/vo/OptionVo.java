@@ -1,6 +1,5 @@
 package we.are.travelers.vo;
 
-
 public class OptionVo {
 	
 	private int option_idx;

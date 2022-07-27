@@ -1,8 +1,7 @@
 package we.are.travelers.vo;
 
-import java.util.Date;
-
 public class AddressVo {
+	
 	private int address_idx;
 	private String member_idx;
 	private String address_input1;

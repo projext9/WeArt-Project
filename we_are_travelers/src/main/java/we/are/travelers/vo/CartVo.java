@@ -1,6 +1,5 @@
 package we.are.travelers.vo;
 
-
 public class CartVo {
 	
 	private int cart_idx;

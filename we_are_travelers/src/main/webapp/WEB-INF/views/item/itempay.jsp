@@ -6,8 +6,17 @@
     <head>
         <title>We-Art Project</title>
  		<link href="${pageContext.request.contextPath}/resources/css/weart_itemorder.css" rel="stylesheet" />
+ 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+ 		<script>
+	 		function fn_callpayapi() { //결제창 호출
+	 			var fm = document.frm;
+	 			alert("결제창 호출");
+	 			fm.action = "itempayapi.do";
+	 			fm.method = "post";
+	 			fm.submit();
+	 		}
+ 		</script>
     </head>
-
 	<body>
 		<div class="container">
 			<div style="padding-top:100px;"></div>
@@ -103,12 +112,16 @@
 											<br>
 
 											<div class="col-lg-12 col-12">
+												<form name="frm" id="frm">
 												<div class="info-body">
 													<h4>현금영수증(소득공제)</h4>
+													<input type="hidden" name="orderLast_num" id="orderLast_num" value="${orderLastVo.orderLast_num}" />
+													<input type="hidden" name="orderLast_cashReceipt" id="orderLast_cashReceipt" value="01047603511" />
 		                                            <div style="clear: both; border: 2px solid #c8c8c8; text-align: left; padding: 20px 15px 18px; font-size: 16px; line-height: 4px; color: #555;">
 														<button type="button" class="btn btn-outline-info btn-sm">변경</button>&nbsp;&nbsp;휴대폰 번호 : <span style="color: #000; font-weight: bold;">010-4760-3511</span><br><br>
 													</div>
 												</div>
+												</form>
 											</div>
 
 	                                  	</div>
@@ -123,7 +136,7 @@
 			<div class="list-group mt-5 p-0 justify-content-center active" id="allList" role="tablist" style="flex-direction: row;">
 				<a href="${pageContext.request.contextPath}/itemcart.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">결제 취소<i class="fal fa-arrow-circle-right"></i></a>
 	           	&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="${pageContext.request.contextPath}/itempay.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">결제 진행<i class="fal fa-arrow-circle-right"></i></a>
+				<div class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab" onClick="fn_callpayapi();">결제 진행<i class="fal fa-arrow-circle-right"></i></div>
 			</div>
 		</div>
 		<%@ include file="footer.jsp"%>

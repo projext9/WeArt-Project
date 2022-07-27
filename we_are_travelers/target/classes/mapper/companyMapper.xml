@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "we.are.travelers.company">
+
+	<insert id="joinCompany" parameterType="companyVo">
+		insert into weart_company (company_idx, company_id, company_pwd, company_buis_number, company_name, company_ceoName,
+		 company_phone, company_buisAddress,company_origin_auth_file,company_system_auth_file)
+		
+		 values(#{company_idx}, #{company_id}, #{company_pwd}, #{company_buis_number},#{company_name},#{company_ceoName},
+		 #{company_phone},#{company_buisAddress},#{company_origin_auth_file},#{company_system_auth_file})
+	</insert>
+	
+	<select id="checkComId" parameterType="string" resultType="int">
+		SELECT a.company_id , b.member_id
+		FROM (SELECT COUNT(*) company_id FROM weart_company where company_id=#{company_id}) a ,
+		     (SELECT COUNT(*) member_id FROM weart_member where member_id=#{member_id}) b
+	</select>
+	
+	<select id="loginCompany" parameterType="companyVo" resultType="companyVo">
+		select * from weart_company
+	</select>
+	
+	<select id="checkComName" parameterType="string" resultType="int">
+	   SELECT count(*) FROM weart_company where company_name=#{company_name}
+	</select>
+	   
+	
+	
+
+</mapper>

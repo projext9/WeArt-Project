@@ -3,12 +3,14 @@ package we.are.travelers.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -16,10 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -105,7 +111,7 @@ public class ItemController {
 		}
 	}
 	
-	@PostMapping("/itemorder.do")
+	@PostMapping("/itemorder.do") //배송지 입력 페이지
 	public String itemorder(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String member_idx = (String)session.getAttribute("member_idx");
@@ -132,10 +138,9 @@ public class ItemController {
 
 			return "item/itemorder";
 		}
-
 	}
 
-	@PostMapping("/itemorderadd.do")
+	@PostMapping("/itemorderadd.do") //주문서 생성
 	@ResponseBody
 	public String itemorderadd(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -157,10 +162,8 @@ public class ItemController {
 		        char ch = (char) ((Math.random() * 10) + 48);
 		        num = num + String.valueOf(ch);
 		    }
-			System.out.println("uid : " + num);
 			
 			String orderLast_num = formatedNow+num;
-			System.out.println("orderLast_num : " + orderLast_num);
 			
 			String[] cart_idx_list = request.getParameterValues("cart_idx");
 			int length = cart_idx_list.length;
@@ -173,7 +176,7 @@ public class ItemController {
 			int orderLast_itemPrice = 0;
 			int orderLast_postPrice = 0;
 			int orderLast_totalPrice = 0;
-			System.out.println(orderLast_name);
+
 			for(int i = 0; i < length; i++) {
 				String cart_idx = cart_idx_list[i];
 				HashMap<String, Object> map1 = itemService.getItemSelected(cart_idx);
@@ -223,34 +226,132 @@ public class ItemController {
 		}
 	}
 	
-	@GetMapping("/itempay.do")
+	@GetMapping("/itempay.do") //결제 페이지
+	public String itempayapi(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String member_idx = (String)session.getAttribute("member_idx");
+		
+		if (member_idx == null) {
+			return "home"; //로그인 필요
+
+		} else {
+			String orderLast_num = request.getParameter("idx");
+			
+			HashMap<String, Object> map1 = new HashMap<String, Object>();
+			map1.put("member_idx", member_idx);
+			map1.put("orderLast_num", orderLast_num);
+			map1.put("order_state1", "A");
+			
+			List<OrderVo> orderVo = itemService.getOrderList(map1);
+			model.addAttribute("orderVo", orderVo);
+			
+			HashMap<String, Object> map2 = new HashMap<String, Object>();
+			map2.put("member_idx", member_idx);
+			map2.put("orderLast_num", orderLast_num);
+			map2.put("orderLast_state1", "A");
+			
+			OrderLastVo orderLastVo = itemService.getOrderLast(map2);
+			model.addAttribute("orderLastVo", orderLastVo);
+			
+			return "item/itempay";
+		}
+	}
+	
+	@PostMapping("/itempayapi.do") //결제 api 호출
 	public String itempay(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String member_idx = (String)session.getAttribute("member_idx");
 		
-		String orderLast_num = request.getParameter("idx");
-		
-		System.out.println("아이템페이 orderLast_num : " + orderLast_num);
-		
-		HashMap<String, Object> map1 = new HashMap<String, Object>();
-		map1.put("member_idx", member_idx);
-		map1.put("orderLast_num", orderLast_num);
-		map1.put("order_state", "A");
-		
-		List<OrderVo> orderVo = itemService.getOrderList(map1);
-		model.addAttribute("orderVo", orderVo);
-		
-		HashMap<String, Object> map2 = new HashMap<String, Object>();
-		map2.put("member_idx", member_idx);
-		map2.put("orderLast_num", orderLast_num);
-		map2.put("orderLast_state", "A");
-		
-		OrderLastVo orderLastVo = itemService.getOrderLast(map2);
-		model.addAttribute("orderLastVo", orderLastVo);
-		
-		System.out.println(model);
-		
-		return "item/itempay";
+		if (member_idx == null) {
+			return "home"; //로그인 필요
+
+		} else {
+			String orderLast_num = request.getParameter("orderLast_num");
+			
+			MemberVo memberVo = itemService.getMemberDetail2(member_idx);
+			model.addAttribute("memberVo", memberVo);
+			
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("member_idx", member_idx);
+			map.put("orderLast_num", orderLast_num);
+			map.put("orderLast_state1", "A");
+			
+			OrderLastVo orderLastVo = itemService.getOrderLast(map);
+			model.addAttribute("orderLastVo", orderLastVo);
+
+			return "item/itempayapi";
+		}
 	}
+	
+	@GetMapping("/itemgettoken.do") //토큰받기 테스트
+	public String itemgettoken(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String member_idx = (String)session.getAttribute("member_idx");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_idx", member_idx);
+		map.put("orderLast_num", "2022072629764612");
+		map.put("orderLast_state1", "A");
+		
+		int stateResult1 = itemService.updateOrderList(map);
+		int stateResult2 = itemService.updateOrderLast(map);
+		System.out.println("stateResult1 출력: "+ stateResult1);
+		System.out.println("stateResult2 출력: "+ stateResult2);
+		
+		
+		return "item/itemgettoken";
+	}
+	
+	@PostMapping("/itempaycheck.do") //결제 api 검증
+	@ResponseBody
+	public String itempaycheck(HttpServletRequest request, HttpServletResponse response, @RequestParam("imp_uid") String imp_uid, @RequestParam("merchant_uid") String merchant_uid) throws Exception {
+		HttpSession session = request.getSession();
+		String member_idx = (String)session.getAttribute("member_idx");
+		String result = "N";
+		
+		if (member_idx == null) {
+			return "home"; //로그인 필요
+	
+		} else {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("member_idx", member_idx);
+			map.put("orderLast_num", merchant_uid);
+			map.put("orderLast_state1", "A");
+			
+			OrderLastVo orderLastVo = itemService.getOrderLast(map);
+			int amountDb = orderLastVo.getOrderLast_totalPrice();			
+			System.out.println("amountDb 출력: "+ amountDb);
+			
+			String imp_key = "";
+			String imp_secret = "";
+			JSONObject json1 = new JSONObject();
+			json1.put("imp_key", imp_key);
+			json1.put("imp_secret", imp_secret);
+		
+			String requestURL = "https://api.iamport.kr/users/getToken";
+			String Authorization = itemService.getToken(request, response, json1, requestURL);
+			
+			JSONObject json2 = new JSONObject();
+			json2.put("Authorization", Authorization);
+			
+			String requestURL2 = "https://api.iamport.kr/payments/"+imp_uid;
+			
+			int amount = itemService.getAmount(request, response, json2, requestURL2, Authorization);
+			System.out.println("Amount 출력: "+ amount);
+			if (amountDb == amount) {
+				int stateResult1 = itemService.updateOrderList(map);
+				int stateResult2 = itemService.updateOrderLast(map);
+				System.out.println("stateResult1 출력: "+ stateResult1);
+				System.out.println("stateResult2 출력: "+ stateResult2);
+				result = "Y";
+			} else {
+				result = "N";
+			}
+
+			System.out.println("result 출력: "+ result);
+			return result;
+		}
+	}
+	
 	
 }

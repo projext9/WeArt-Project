@@ -1,9 +1,19 @@
 package we.are.travelers.service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -85,4 +95,93 @@ public class ItemService {
 	public OrderLastVo getOrderLast(HashMap<String, Object> map) { //주문서 호출
 		return itemDao.getOrderLast(map);
 	}
+	
+	public MemberVo getMemberDetail2(String member_idx) { //회원정보 호출
+		return itemDao.getMemberDetail2(member_idx);
+	}
+	
+	public String getToken(HttpServletRequest request, HttpServletResponse response, JSONObject json, String requestURL) throws Exception{
+		String token = "";
+		try{
+			String requestString = "";
+			URL url = new URL(requestURL);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true); 				
+			connection.setInstanceFollowRedirects(false);  
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type", "application/json");
+			OutputStream os= connection.getOutputStream();
+			os.write(json.toString().getBytes());
+			connection.connect();
+			StringBuilder sb = new StringBuilder(); 
+			if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+				String line = null;  
+				while ((line = br.readLine()) != null) {  
+					sb.append(line + "\n");  
+				}
+				br.close();
+				requestString = sb.toString();
+			}
+			os.flush();
+			connection.disconnect();
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObj = (JSONObject) jsonParser.parse(requestString);
+			if((Long)jsonObj.get("code")  == 0){
+				JSONObject getToken = (JSONObject) jsonObj.get("response");
+				token = (String)getToken.get("access_token");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			token = "";
+		}
+		return token;
+	}
+	
+	public int getAmount(HttpServletRequest request, HttpServletResponse response, JSONObject json, String requestURL, String Authorization) throws Exception{
+		int amount = 0;
+		try{
+			String requestString = "";
+			URL url = new URL(requestURL);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true); 				
+			connection.setInstanceFollowRedirects(false);  
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Authorization", Authorization);
+			OutputStream os= connection.getOutputStream();
+			os.write(json.toString().getBytes());
+			connection.connect();
+			StringBuilder sb = new StringBuilder(); 
+			if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+				String line = null;  
+				while ((line = br.readLine()) != null) {  
+					sb.append(line + "\n");  
+				}
+				br.close();
+				requestString = sb.toString();
+			}
+			os.flush();
+			connection.disconnect();
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObj = (JSONObject) jsonParser.parse(requestString);
+			if((Long)jsonObj.get("code")  == 0){
+				JSONObject getAmount = (JSONObject) jsonObj.get("response");
+				amount = (int)(long)getAmount.get("amount");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			amount = 0;
+		}
+		return amount;
+	}
+	
+	public int updateOrderList(HashMap<String, Object> map) { //주문서(개별상품) 상태변경(결제완료)
+		return itemDao.updateOrderList(map);
+	}
+	
+	public int updateOrderLast(HashMap<String, Object> map) { //주문서 상태변경(결제완료)
+		return itemDao.updateOrderLast(map);
+	}
+	
 }

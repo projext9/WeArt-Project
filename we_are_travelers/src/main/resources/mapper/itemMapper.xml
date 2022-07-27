@@ -83,5 +83,9 @@
 	<select id="getOrderLast" resultType="orderLastVo">	<!-- 상품 상세 호출 -->
 		SELECT * FROM weart_order_last WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND orderLast_state = #{orderLast_state}
 	</select>
+	
+	<select id="getMemberDetail2" resultType="memberVo"> <!-- 회원정보 호출 -->
+		SELECT * FROM weart_member WHERE member_idx = #{member_idx}
+	</select>
 
 </mapper>

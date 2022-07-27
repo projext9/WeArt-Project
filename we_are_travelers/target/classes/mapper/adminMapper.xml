@@ -5,20 +5,101 @@
 <mapper namespace = "we.are.travelers.admin">
 
 	<select id="getMemberList" resultType="memberVo">
-		select * from member
+		select * from weart_member where member_grade is null
+			<if test="searchType=='member_id'">and member_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getMemberTotal" resultType="int">
+		select count(*) as cnt from weart_member where member_delyn='N'
+			<if test="searchType=='member_id'">and member_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getSellorList" resultType="memberVo">
+		select * from weart_member where member_grade is not null
+			<if test="searchType=='member_id'">and member_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getSellorTotal" resultType="int">
+		select count(*) as cnt from weart_member where member_grade is not null
+			<if test="searchType=='member_id'">and member_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getMemberContent" resultType = "memberVo">
+		select * from weart_member where member_idx = #{member_idx}
+	</select>
+	
+	<select id="getBoardList" resultType="boardVo">
+		select a.*, b.member_nickname from weart_board a inner join weart_member b on a.member_idx = b.member_idx where board_reply = 'N'
+			<if test="searchType=='board_subject'">and a.board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and b.member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getBoardTotal" resultType="int">
+		select count(*) as cnt from weart_board a inner join weart_member b on a.member_idx = b.member_idx where board_reply = 'N' and board_code = 'n%'
+			<if test="searchType=='board_subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getBoardContent" resultType="boardVo">
+		select * from weart_board where board_idx = #{board_idx}
+	</select>
+	
+	<select id="getReplyList" resultType="boardVo">
+		select a.*, b.member_nickname from weart_board a inner join weart_member b on a.member_idx = b.member_idx where board_reply = 'Y'
+			<if test="searchType=='board_subject'">and a.board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and b.member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getReplyTotal" resultType="int">
+		select count(*) as cnt from weart_board a inner join weart_member b on a.member_idx = b.member_idx where board_reply = 'Y'
+			<if test="searchType=='board_subject'">and a.board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and b.member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getOrderList" resultType="orderVo">
+		select * from weart_order
+	</select>
+	
+	<select id="getNoticeMember" resultType="boardVo">
+		select a.*, b.member_nickname from weart_board a inner join weart_member b on a.member_idx = b.member_idx where board_delyn = 'N' and board_reply = 'N' and board_code like 'm%'
+			<if test="searchType=='board_subject'">and a.board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and b.member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	<select id="getNoticeMemberTotal" resultType="int">
+		select count(*) as cnt from weart_board where board_delyn='N' and board_reply='N' and board_code like 'm%'
+			<if test="searchType=='board_subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='member_nickname'">and member_nickname like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getNoticeSellor" resultType="boardVo">
+		select * from weart_board where board_reply = 'N' and board_code like 's%'
+	</select>
+	
+	<select id="getOutstanding" resultType="memberVo">
+		select * from weart_member where member_grade = 'outstanding'
 	</select>
 	
 	<update id="updateMemberGrade" parameterType="map">
-		update member set member_grade = #{member_grade}
+		update weart_member set member_grade = #{member_grade}
+			where member_idx = #{member_idx}
+	</update>
+	
+	<update id="updateMemberDelyn" parameterType="map">
+		update weart_member set member_delyn = #{member_delyn}
 			where member_idx = #{member_idx}
 	</update>
 	
 	<delete id="deleteMemberInfo" parameterType="list">
-		delete from member where member_idx in 
+		delete from weart_member where member_idx in
 		<foreach collection="list" item="member_idx" open="(" separator="," close=")" >
 			#{member_idx}
 		</foreach>
-	
 	</delete>
+	
+	
 
 </mapper>

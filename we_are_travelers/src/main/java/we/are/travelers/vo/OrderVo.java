@@ -13,7 +13,8 @@ public class OrderVo {
 	private int order_count;
 	private int order_postPrice;
 	private int order_totalPrice;
-	private String order_state;
+	private String order_state1;
+	private String order_state2;
 	private String order_delyn;
 	
 	public int getOrder_idx() {
@@ -28,10 +29,10 @@ public class OrderVo {
 	public void setMember_idx(String member_idx) {
 		this.member_idx = member_idx;
 	}
-	public String getorderLast_num() {
+	public String getOrderLast_num() {
 		return orderLast_num;
 	}
-	public void setorderLast_num(String orderLast_num) {
+	public void setOrderLast_num(String orderLast_num) {
 		this.orderLast_num = orderLast_num;
 	}
 	public int getOption_idx() {
@@ -82,11 +83,17 @@ public class OrderVo {
 	public void setOrder_totalPrice(int order_totalPrice) {
 		this.order_totalPrice = order_totalPrice;
 	}
-	public String getOrder_state() {
-		return order_state;
+	public String getOrder_state1() {
+		return order_state1;
 	}
-	public void setOrder_state(String order_state) {
-		this.order_state = order_state;
+	public void setOrder_state1(String order_state1) {
+		this.order_state1 = order_state1;
+	}
+	public String getOrder_state2() {
+		return order_state2;
+	}
+	public void setOrder_state2(String order_state2) {
+		this.order_state2 = order_state2;
 	}
 	public String getOrder_delyn() {
 		return order_delyn;
@@ -94,5 +101,6 @@ public class OrderVo {
 	public void setOrder_delyn(String order_delyn) {
 		this.order_delyn = order_delyn;
 	}
+
 
 }

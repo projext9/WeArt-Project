@@ -3,17 +3,15 @@
 <html>
 <head>
 	<title>관리자페이지</title>
+	<%@include file="./nav/navMain.jsp" %>
+	<%@include file = "./nav/navMember.jsp" %>
 </head>
-<body>
-<h2>Hello, Administrator!</h2>
+<body style = "margin : 5% 10% 0 10%;">
 
-<h3>  관리자 페이지입니다...2 </h3>
-
-<hr/>
-
+	
 	<a href="/travelers/memberList.do">회원목록보기</a><p/>
 	<a href="/travelers/home.do">메인페이지2</a>
 	
-
+	
 </body>
 </html>

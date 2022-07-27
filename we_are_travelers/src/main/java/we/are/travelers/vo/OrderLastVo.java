@@ -17,7 +17,8 @@ public class OrderLastVo {
 	private String orderLast_address;
 	private String orderLast_msg;
 	private String orderLast_cashReceipt;
-	private String orderLast_state;
+	private String orderLast_state1;
+	private String orderLast_state2;
 	private Date orderLast_regDate;
 	private String orderLast_delyn;
 	
@@ -99,11 +100,17 @@ public class OrderLastVo {
 	public void setOrderLast_cashReceipt(String orderLast_cashReceipt) {
 		this.orderLast_cashReceipt = orderLast_cashReceipt;
 	}
-	public String getOrderLast_state() {
-		return orderLast_state;
+	public String getOrderLast_state1() {
+		return orderLast_state1;
 	}
-	public void setOrderLast_state(String orderLast_state) {
-		this.orderLast_state = orderLast_state;
+	public void setOrderLast_state1(String orderLast_state1) {
+		this.orderLast_state1 = orderLast_state1;
+	}
+	public String getOrderLast_state2() {
+		return orderLast_state2;
+	}
+	public void setOrderLast_state2(String orderLast_state2) {
+		this.orderLast_state2 = orderLast_state2;
 	}
 	public Date getOrderLast_regDate() {
 		return orderLast_regDate;
@@ -117,6 +124,5 @@ public class OrderLastVo {
 	public void setOrderLast_delyn(String orderLast_delyn) {
 		this.orderLast_delyn = orderLast_delyn;
 	}
-	
 	
 }

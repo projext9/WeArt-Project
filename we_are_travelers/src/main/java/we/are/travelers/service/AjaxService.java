@@ -1,45 +1,49 @@
 package we.are.travelers.service;
 
-import java.util.HashMap;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import we.are.travelers.dao.AdminDao;
+import we.are.travelers.dao.CompanyDao;
 import we.are.travelers.dao.MemberDao;
 
 @Service
 public class AjaxService {
 	
 	private MemberDao memberDao;
-	private AdminDao adminDao;
+	private CompanyDao companyDao;
 	
-	@Autowired //의존 자동주입: 생성자 방식
-	public AjaxService(MemberDao memberDao) {
+	@Autowired
+	public AjaxService(MemberDao memberDao , CompanyDao companyDao) {
 		this.memberDao = memberDao;
+		this.companyDao = companyDao;
 	}
 	
-	@Autowired //의존 자종주입: setter 방식
-	public void serAdminDao(AdminDao adminDao) {
-		this.adminDao = adminDao;
-	}
 
 	public int checkId(String id) {
-		int result=0;
-		result = memberDao.checkId(id);
-		return result;
-	}
-
-	public int updateMemberGrade(HashMap<String, Integer> map) {
-		return adminDao.updateMemberGrade(map);
-	}
-
-	public int deleteMemberInfo(List<Integer> member_idx_list) {
-		return adminDao.deleteMemberInfo(member_idx_list);
+		int id_check_result=0;
+		id_check_result = memberDao.checkId(id);
+		return id_check_result;
 	}
 	
+	public int checkComId(String id) {
+		int id_check_result=0;
+		id_check_result = companyDao.checkComId(id);
+		return id_check_result;
+	}
 	
+	public int checkNick(String nick) {
+		int nick_check_result=0;
+		nick_check_result = memberDao.checkNick(nick);
+		return nick_check_result;
+	
+	}
+	
+	public int checkComName(String name) {
+		int name_check_result=0;
+		name_check_result = companyDao.checkComName(name);
+		return name_check_result;
+	
+	}
 
 
 }
