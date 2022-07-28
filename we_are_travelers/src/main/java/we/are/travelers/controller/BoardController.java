@@ -40,6 +40,11 @@ public class BoardController {
 		return BoardService.uploadImg(img, session);
 	}
 	
+	@GetMapping("/board_write.do")
+	public String board_write() {
+		return "board_write";
+	}
+	
 	@PostMapping("/insert_board.do")
 	public String insert_board(BoardVo boardVo) throws IOException {
 
@@ -69,7 +74,7 @@ public class BoardController {
 		if(result==1) {
 			viewPage = "redirect:/board_list.do";
 		}else {
-			viewPage = "/board_write";
+			viewPage = "board_write";
 		}return viewPage;
 	}
 
@@ -222,6 +227,11 @@ public class BoardController {
 		int result = boardService.like_count(board_idx);
 		
 		return result;
+	}
+	
+	@GetMapping("/test.do")
+	public String test() {
+		return "test";
 	}
 	
 }

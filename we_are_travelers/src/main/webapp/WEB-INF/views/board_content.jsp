@@ -9,6 +9,7 @@
 <title>게시판</title>
 <script src="https://kit.fontawesome.com/51dc5b459d.js" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/form-validation.css" rel="stylesheet">
 <script>
 	$(function() {
 		$("*>img").css("max-width", "100%");
@@ -17,20 +18,22 @@
 			
 			let board_idx = $("#board_idx").val();
 			let board_content = $("#board_content").val();
-			
-			$.ajax({
-				type:'post',
-				url:"${pageContext.request.contextPath}/insert_reply.do",
-				data: {"board_idx":board_idx, "board_content":board_content},
-				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-				dataType: "json",
-				success: function(data) {
-					location.href = "${pageContext.request.contextPath}/board_content.do?board_idx="+board_idx;
-				},
-				error: function(error) {
-					alert("실패");
-				}
-			});
+
+			if(board_content!="") {
+				$.ajax({
+					type:'post',
+					url:"${pageContext.request.contextPath}/insert_reply.do",
+					data: {"board_idx":board_idx, "board_content":board_content},
+					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+					dataType: "json",
+					success: function(data) {
+						location.href = "${pageContext.request.contextPath}/board_content.do?board_idx="+board_idx;
+					},
+					error: function(error) {
+						alert("실패");
+					}
+				});
+			}
 		});
 		
 		$("input:radio[name=order_by]").click(function() {
@@ -190,12 +193,15 @@
 				</div>
 			</div>
 		</div>
-		<form>
-			<div class="input-group">
+		<form class="row g-1 needs-validation" novalidate>
+			<div class="col-md-12">
 				<input type="hidden" name="board_idx" id="board_idx" value="${boardVo.board_idx}">
 				<span class="input-group-text">댓글 </span>
-				<textarea class="form-control" name="board_content" id="board_content"></textarea>
-				<input type="submit" class="btn btn-primary" id="insert_reply" value="확인">
+				<textarea class="form-control" name="board_content" id="board_content" placeholder="내용을 입력하세요" required></textarea>
+				<div class="invalid-feedback">
+					내용을 입력하세요
+				</div>
+				<button class="btn btn-primary" id="insert_reply" type="submit">확인</button>
 			</div>
 		</form>
 		<!-- 순서 정렬 -->
@@ -265,6 +271,7 @@
 			</c:if>
 		</ul>
 	</nav>
+<script src="${pageContext.request.contextPath}/resources/js/form-validation.js"></script>
 </main>
 </html>
 <%@ include file="./footer.jsp"%>
