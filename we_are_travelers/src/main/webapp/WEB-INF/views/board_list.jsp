@@ -176,7 +176,7 @@
 												${boardVo.board_image}
 											</c:when>
 											<c:otherwise>
-												<img src="${pageContext.request.contextPath}/resources/image/no image.png">
+												<img src="${pageContext.request.contextPath}/resources/img/no image.png">
 											</c:otherwise>
 										</c:choose>
 									</div>
