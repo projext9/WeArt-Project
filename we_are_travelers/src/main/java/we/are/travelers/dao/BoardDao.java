@@ -79,4 +79,8 @@ public class BoardDao {
 		return sqlSession.selectOne(MAPPER+".like_count", board_idx);
 	}
 
+	public List<BoardVo> my_board(SearchCriteria scri) {
+		return sqlSession.selectList(MAPPER+".my_board", scri);
+	}
+
 }

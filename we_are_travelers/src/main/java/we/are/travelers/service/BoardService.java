@@ -126,4 +126,8 @@ public class BoardService {
 		return boardDao.like_count(board_idx);
 	}
 
+	public List<BoardVo> my_board(SearchCriteria scri) {
+		return boardDao.my_board(scri);
+	}
+
 }

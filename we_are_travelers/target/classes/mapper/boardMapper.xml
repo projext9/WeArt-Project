@@ -12,6 +12,7 @@
 	<select id="board_list" resultType="boardVo">
 		select A.* from(
 			select * from weart_board where board_delyn='N' and board_idx=board_originidx
+			<if test="my_board!=''">and board_writer=#{my_board}</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='content'">and board_remove_tag like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
@@ -22,6 +23,7 @@
 	</select>
 	<select id="board_total" resultType="int">
 		select count(*) as cnt from weart_board where board_delyn='N'
+			<if test="my_board!=''">and board_writer=#{my_board}</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='content'">and board_content like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
@@ -75,4 +77,16 @@
 		where board_idx=#{board_idx}
 	</update>
 	
+	<!-- my_board -->
+	<select id="my_board" resultType="boardVo">
+		select A.* from(
+			select * from weart_board where board_delyn='N' and board_idx=board_originidx and board_writer=#{board_writer}
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='content'">and board_remove_tag like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			<if test="order_by=='order_new'">order by board_date desc</if>
+			<if test="order_by=='order_like'">order by board_like desc</if>
+			<if test="order_by=='order_reply'">order by board_reply desc</if>
+		)A limit ${(page-1)*12}, ${page*12}
+	</select>
 </mapper>

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +47,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("/insert_board.do")
-	public String insert_board(BoardVo boardVo) throws IOException {
+	public String insert_board(BoardVo boardVo, HttpServletRequest request) throws IOException {
 
-		String writer = "writer";
+		HttpSession session = request.getSession();
+		String writer = (String) session.getAttribute("member_nick");
 		boardVo.setBoard_writer(writer);
         String ip = InetAddress.getLocalHost().getHostAddress();
         boardVo.setBoard_ip(ip);
@@ -84,7 +86,11 @@ public class BoardController {
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="order_by", defaultValue="order_new") String order_by,
-			@RequestParam(value="view", defaultValue="view_frame") String view) {
+			@RequestParam(value="view", defaultValue="view_frame") String view,
+			@RequestParam(value="my_board", defaultValue="") String my_board, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		session.getAttribute("member_nick");
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
@@ -92,7 +98,9 @@ public class BoardController {
 		scri.setSearchType(searchType);
 		scri.setOrder_by(order_by);
 		scri.setView(view);
+		scri.setMy_board(my_board);
 
+		System.out.println("my_board : "+my_board);
 		int cnt = boardService.board_total(scri);
 		
 		PageMaker pm = new PageMaker();
@@ -104,7 +112,7 @@ public class BoardController {
 		model.addAttribute("pm", pm);
 		model.addAttribute("scri", scri);
 		
-		return "/board_list";
+		return "board_list";
 	}
 	
 	@GetMapping("/board_content.do")
@@ -131,7 +139,7 @@ public class BoardController {
 		model.addAttribute("pm", pm);
 		model.addAttribute("scri", scri);
 		
-		return "/board_content";
+		return "board_content";
 	}
 
 	@ResponseBody
@@ -139,8 +147,10 @@ public class BoardController {
 	public int insert_reply(BoardVo boardVo,
 			@RequestParam(value="board_idx", defaultValue="0") int board_idx,
 			@RequestParam(value="board_code", defaultValue="0") String board_code,
-			@RequestParam(value="board_content", defaultValue="") String board_content,
-			@RequestParam(value="board_writer", defaultValue="writer") String board_writer) throws IOException {
+			@RequestParam(value="board_content", defaultValue="") String board_content, HttpServletRequest request) throws IOException {
+		
+		HttpSession session = request.getSession();
+		String writer = (String) session.getAttribute("member_nick");
 		
 		String board_ip = InetAddress.getLocalHost().getHostAddress();
 		
@@ -148,7 +158,7 @@ public class BoardController {
 		boardVo.setBoard_content(board_content);
 		boardVo.setBoard_ip(board_ip);
 		boardVo.setBoard_originidx(board_idx);
-		boardVo.setBoard_writer(board_writer);
+		boardVo.setBoard_writer(writer);
 		
 		int result = boardService.insert_reply(boardVo);
 		boardService.update_reply(board_idx);
