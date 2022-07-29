@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		<!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container">
@@ -27,7 +26,7 @@
 			    </div>
             </div>
         </footer>
-        <!-- Bootstrap core JS-->
-        <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+        <!-- JS-->
+		<script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

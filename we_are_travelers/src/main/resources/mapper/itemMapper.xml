@@ -53,11 +53,11 @@
 	</select>
 	
 	<delete id="deleteAllOrder"> <!-- 찌꺼기 제거 -->
-		DELETE FROM weart_order WHERE member_idx = #{member_idx} AND order_state = "A"
+		DELETE FROM weart_order WHERE member_idx = #{member_idx} AND order_state1 = "A"
 	</delete>
 	
 	<delete id="deleteAllOrderLast"> <!-- 찌꺼기 제거 -->
-		DELETE FROM weart_order_last WHERE member_idx = #{member_idx} AND orderLast_state = "A"
+		DELETE FROM weart_order_last WHERE member_idx = #{member_idx} AND orderLast_state1 = "A"
 	</delete>
 	
 	<select id="getItemSelected" resultType="map">	<!-- 카트 선택 상품 호출 -->
@@ -77,15 +77,31 @@
 	</insert>
 	
 	<select id="getOrderList" parameterType="map" resultType="orderVo"> <!-- 주문예정 상품 호출 -->
-		SELECT * FROM weart_order WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND order_state = #{order_state}
+		SELECT * FROM weart_order WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND order_state1 = #{order_state1}
 	</select>
 	
 	<select id="getOrderLast" resultType="orderLastVo">	<!-- 상품 상세 호출 -->
-		SELECT * FROM weart_order_last WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND orderLast_state = #{orderLast_state}
+		SELECT * FROM weart_order_last WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND orderLast_state1 = #{orderLast_state1}
 	</select>
 	
 	<select id="getMemberDetail2" resultType="memberVo"> <!-- 회원정보 호출 -->
 		SELECT * FROM weart_member WHERE member_idx = #{member_idx}
 	</select>
+	
+	<update id="updateOrderState1B" parameterType="map"> <!--  주문서(개별상품) 상태변경(결제완료) -->
+		UPDATE weart_order SET order_state1 = "B" WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND order_state1 = "A"
+	</update>
+	
+	<update id="updateOrderLastState1B" parameterType="map">	<!-- 주문서 상태변경(결제완료) -->
+		UPDATE weart_order_last SET orderLast_state1 = "B" WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND orderLast_state1 = "A"
+	</update>
+	
+	<update id="updateOrderState1C" parameterType="map"> <!--  주문서(개별상품) 상태변경(검증완료) -->
+		UPDATE weart_order SET order_state1 = "C" WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND order_state1 = "B"
+	</update>
+	
+	<update id="updateOrderLastState1C" parameterType="map">	<!-- 주문서 상태변경(검증완료) -->
+		UPDATE weart_order_last SET orderLast_state1 = "C" WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND orderLast_state1 = "B"
+	</update>
 
 </mapper>
