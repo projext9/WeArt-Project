@@ -13,6 +13,7 @@ import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OptionVo;
 import we.are.travelers.vo.OrderLastVo;
 import we.are.travelers.vo.OrderVo;
+import we.are.travelers.vo.SearchCriteria;
 
 @Repository
 public class ItemDao {
@@ -32,8 +33,12 @@ public class ItemDao {
 		return sqlSession.insert(MAPPER+".addItem", itemVo);
 	}
 
-	public List<ItemVo> getItemList() { //상품 리스트 호출
-		return sqlSession.selectList(MAPPER+".getItemList");
+	public int item_total_fishing(SearchCriteria scri) {
+		return sqlSession.selectOne(MAPPER+".item_total_fishing", scri);
+	}
+	
+	public List<ItemVo> getList_fishing(SearchCriteria scri) { //상품 리스트 호출
+		return sqlSession.selectList(MAPPER+".getList_fishing", scri);
 	}
 	
 	public ItemVo getItemDetail(int item_idx) { //상품 상세 호출

@@ -7,6 +7,18 @@
     <head>
         <title>We-Art Project</title>
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemlist.css" rel="stylesheet" />
+		<script>
+			window.onload = function(){
+				document.getElementById('searchType').value = "${pm.scri.searchType}";
+	 		}
+
+			function fn_search() { //검색
+	 			var fm = document.frm;
+	 			fm.action = "fishingshop.do";
+	 			fm.method = "get";
+	 			fm.submit();
+	 		}
+		</script>
     </head>
 	<body>
         <!-- Header-->
@@ -68,24 +80,22 @@
 				<div class="row align-items-center">
 					<div class="col-lg-8 col-md-8 col-10" style="float: none; margin:0 auto;">
 						<div class="main-menu-search">
+							<form name="frm">
 							<div class="navbar-search search-style-5">
 								<div class="search-select">
 									<div class="select-position">
-										<select id="select1">
-											<option selected="">All</option>
-											<option value="1">option 01</option>
-											<option value="2">option 02</option>
-											<option value="3">option 03</option>
-											<option value="4">option 04</option>
-											<option value="5">option 05</option>
+										<select id="searchType" name="searchType">
+											<option value="subject">상품명</option>
+											<option value="content">내용</option>
+											<option value="all">상품명+내용</option>
 										</select>
 									</div>
 								</div>
 								<div class="search-input">
-									<input type="text" placeholder="Search">
+									<input type="text" placeholder="${scri.keyword}" name="keyword">
 								</div>
 								<div class="search-btn">
-									<button><i class="bi bi-search"></i></button>
+									<button onClick="fn_search()"><i class="bi bi-search"></i></button>
 								</div>
 								&nbsp
 								&nbsp
@@ -94,6 +104,7 @@
 								&nbsp
 								<a href="#"><img class="img-icon" src="${pageContext.request.contextPath}/resources/img/icon/icon_cart.png" alt="..." /></a>
 							</div>
+							</form>
 						</div>
 					</div>
 
@@ -101,7 +112,7 @@
 			</div>
 		</div>
 
-            <div class="container px-4 px-lg-5 mt-5">
+			<div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
 					<c:forEach var="itemVo" items="${fishingShopList}">
@@ -130,6 +141,28 @@
 
                 </div>
             </div>
+            
+            
+			<!-- 페이징 -->
+			<div>
+				<ul class="pagination justify-content-center">
+					<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1">
+						<c:choose>
+							<c:when test="${i==scri.page}">
+								<li class="page-item active">
+									<a class="page-link" href="${pageContext.request.contextPath}/fishingshop.do?page=${i}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}">${i}</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item">
+									<a class="page-link" href="${pageContext.request.contextPath}/fishingshop.do?page=${i}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}">${i}</a>
+								</li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</ul>
+			</div>
+
         </section>
 		<%@ include file="../footer.jsp"%>
     </body>

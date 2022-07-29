@@ -36,6 +36,8 @@ import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OptionVo;
 import we.are.travelers.vo.OrderLastVo;
 import we.are.travelers.vo.OrderVo;
+import we.are.travelers.vo.PageMaker;
+import we.are.travelers.vo.SearchCriteria;
 
 @Controller
 public class ItemController {
@@ -48,10 +50,28 @@ public class ItemController {
 	}
 	
 	@GetMapping("/fishingshop.do") //낚시 상품페이지 호출
-	public String fishingshop(Model model) {
+	public String fishingshop(Model model,
+			@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam(value="searchType", defaultValue="subject") String searchType,
+			@RequestParam(value="keyword", defaultValue="") String keyword, HttpServletRequest request) {
 		
-		List<ItemVo> fishingShopList = itemService.getItemList();
+		SearchCriteria scri = new SearchCriteria();
+		scri.setPage(page);
+		scri.setKeyword(keyword);
+		scri.setSearchType(searchType);
+		
+		int cnt = itemService.item_total_fishing(scri);
+		
+		System.out.println("cnt : "+cnt);
+		
+		PageMaker pm = new PageMaker();
+		pm.setScri(scri);
+		pm.setTotalCount(cnt);
+		
+		List<ItemVo> fishingShopList = itemService.getList_fishing(scri);
 		model.addAttribute("fishingShopList", fishingShopList);
+		model.addAttribute("pm", pm);
+		model.addAttribute("scri", scri);
 		
 		return "item/fishingshop";
 	}
