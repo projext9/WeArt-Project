@@ -91,12 +91,20 @@ public class ItemDao {
 		return sqlSession.selectOne(MAPPER+".getMemberDetail2", member_idx);
 	}
 
-	public int updateOrderList(HashMap<String, Object> map) { //주문서(개별상품) 상태변경(결제완료)
-		return sqlSession.update(MAPPER+".updateOrderList", map);
+	public int updateOrderState1B(HashMap<String, Object> map) { //주문서(개별상품) 상태변경(결제완료)
+		return sqlSession.update(MAPPER+".updateOrderState1B", map);
 	}
 	
-	public int updateOrderLast(HashMap<String, Object> map) { //주문서 상태변경(결제완료)
-		return sqlSession.update(MAPPER+".updateOrderLast", map);
+	public int updateOrderLastState1B(HashMap<String, Object> map) { //주문서 상태변경(결제완료)
+		return sqlSession.update(MAPPER+".updateOrderLastState1B", map);
+	}
+	
+	public int updateOrderState1C(HashMap<String, Object> map) { //주문서(개별상품) 상태변경(검증완료)
+		return sqlSession.update(MAPPER+".updateOrderState1C", map);
+	}
+	
+	public int updateOrderLastState1C(HashMap<String, Object> map) { //주문서 상태변경(검증완료)
+		return sqlSession.update(MAPPER+".updateOrderLastState1C", map);
 	}
 }
 
