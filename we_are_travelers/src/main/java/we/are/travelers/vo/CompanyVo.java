@@ -21,32 +21,6 @@ public class CompanyVo {
 	private int company_ip;
 	
 	public String getCompany_idx() {
-			for (int i = 1; i <= 12; i++) {
-	            int pick = (int)((Math.random() * (20 - 1)) + 1);
-	                if (pick <= 5) {
-	                    char ch = (char) ((Math.random() * 26) + 65);
-	                    company_idx= company_idx + String.valueOf(ch);
-	                } else if (pick <= 9) {
-	                    char ch = (char) ((Math.random() * 26) + 97);
-	                    company_idx= company_idx + String.valueOf(ch);
-	                } else if (pick <= 12) {
-	                    char ch = (char) ((Math.random() * 10) + 48);
-	                    company_idx= company_idx + String.valueOf(ch);
-	                } else if (pick <= 14) {
-	                    char ch = 33;
-	                    company_idx= company_idx + String.valueOf(ch);
-	                } else if (pick <= 16) {
-	                    char ch = 35;
-	                    company_idx= company_idx + String.valueOf(ch);
-	                } else if (pick <= 18) {
-	                    char ch = 63;
-	                    company_idx= company_idx + String.valueOf(ch);
-	                } else if (pick <= 20) {
-	                    char ch = 94;
-	                    company_idx= company_idx + String.valueOf(ch);
-	                }
-	            }
-			
 		return company_idx;
 	}
 	public void setCompany_idx(String company_idx) {

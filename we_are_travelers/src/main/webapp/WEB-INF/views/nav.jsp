@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -9,11 +9,28 @@
         <meta name="description" content="We-Art Project" />
         <meta name="author" content="team We-Art" />
         <title>We-Art Project</title>
+		<!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
+        <!-- CSS -->
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" />
 		<link href="${pageContext.request.contextPath}/resources/css/weart_common.css" rel="stylesheet" />
+		<!-- JS -->
+		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+		<script>
+			function fn_login() { //로그인 페이지 이동
+				location.href="login.do";
+	 		}
+	 		
+			function fn_join() { //회원가입 페이지 이동
+				location.href="joinMember.do";
+	 		}
+			 
+			function fn_logout() { //로그아웃
+				location.href="logout.do";
+	 		}
+		</script>
     </head>
 	<body>
         <!-- Navigation-->
@@ -84,9 +101,16 @@
                             </ul>
 						</li>
 					</ul>
-					<button class="btn btn-outline-success" type="submit">로그인</button>
-					&nbsp&nbsp
-					<button class="btn btn-outline-success" type="submit">회원가입</button>
+					<c:if test="${sessionScope.member_idx == null }">
+					<button class="btn btn-outline-success" type="button" onClick="fn_login()">로그인</button>
+					&nbsp;&nbsp;
+					<button class="btn btn-outline-success" type="button"onClick="fn_join()">회원가입</button>
+				     </c:if>
+				    <c:if test="${sessionScope.member_idx != null }">
+					<span>${sessionScope.member_nick }님</span>
+					&nbsp;&nbsp;
+					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
+					</c:if>
 				</div>
 			</div>
 		</nav>

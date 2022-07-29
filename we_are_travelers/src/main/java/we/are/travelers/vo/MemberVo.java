@@ -24,32 +24,6 @@ public class MemberVo {
 	private int member_ip; //
     
 	public String getMember_idx() {
-		for (int i = 1; i <= 12; i++) {
-            int pick = (int)((Math.random() * (20 - 1)) + 1);
-                if (pick <= 5) {
-                    char ch = (char) ((Math.random() * 26) + 65);
-                    member_idx= member_idx + String.valueOf(ch);
-                } else if (pick <= 9) {
-                    char ch = (char) ((Math.random() * 26) + 97);
-                    member_idx= member_idx + String.valueOf(ch);
-                } else if (pick <= 12) {
-                    char ch = (char) ((Math.random() * 10) + 48);
-                    member_idx= member_idx + String.valueOf(ch);
-                } else if (pick <= 14) {
-                    char ch = 33;
-                    member_idx= member_idx + String.valueOf(ch);
-                } else if (pick <= 16) {
-                    char ch = 35;
-                    member_idx= member_idx + String.valueOf(ch);
-                } else if (pick <= 18) {
-                    char ch = 63;
-                    member_idx= member_idx + String.valueOf(ch);
-                } else if (pick <= 20) {
-                    char ch = 94;
-                    member_idx= member_idx + String.valueOf(ch);
-                }
-            }
-
 		return member_idx;		
 	}
 	public void setMember_idx(String member_idx) {
