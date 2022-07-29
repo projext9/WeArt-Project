@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../nav.jsp"%>
+<%@ include file="./nav.jsp"%>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -20,7 +20,8 @@
 				alert("선택된 수량 value 값=" + pieceValue);
 			}
 
-			$(function(){ //장바구니 담기
+			$(function(){
+				//장바구니 담기
 				$("#additemcart").click(function(){
 					$.ajax({
 						type: "post",
@@ -30,7 +31,7 @@
 							"pieceValue": $("#pieceValue option:selected").val()
 						},
 						success: function(data){
-							if(data == "L") {
+							if(data == "L"){
 								alert("로그인 후 이용해주세요!");
 							} else if (data == "Y") {
 								alert("장바구니 담기 성공!");
@@ -287,6 +288,6 @@
 		</section>
 		<a href="javascript:window.history.back();" class="scroll-back" style="display: flex;"><i class="bi bi-arrow-return-left"></i></a>
 		<a href="#" class="scroll-top" style="display: flex;"><i class="bi bi-arrow-up"></i></a>
-		<%@ include file="../footer.jsp"%>
+        <%@ include file="footer.jsp"%>
     </body>
 </html>

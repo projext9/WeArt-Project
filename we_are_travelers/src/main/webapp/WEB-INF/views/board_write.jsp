@@ -16,12 +16,13 @@
 	<style>
 		.ck-editor__editable {min-height:500px;}
 	</style>
+	<link href="${pageContext.request.contextPath}/resources/css/form-validation.css" rel="stylesheet">
 </head>
 <body>
 	<main>
 		<form class="row g-1 needs-validation" method="post" action="${pageContext.request.contextPath}/insert_board.do" enctype="multipart/form-data" style="margin:5% 20% 5% 20%;" novalidate>
 			<div class="col-md-12">
-				<input type="text" name="board_subject" class="form-control" id="validationCustom05" required placeholder="제목을 입력하세요">
+				<input type="text" name="board_subject" class="form-control" id="validationCustom05" placeholder="제목을 입력하세요" required>
 				<div class="invalid-feedback">
 					제목을 입력하세요
 				</div>
@@ -61,6 +62,7 @@
 			} );
 	</script>
 	<!-- /CKEditor5 -->
+<script src="${pageContext.request.contextPath}/resources/js/form-validation.js"></script>
 </body>
 </html>
 <%@ include file="./footer.jsp"%>

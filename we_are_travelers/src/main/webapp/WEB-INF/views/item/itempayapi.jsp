@@ -11,6 +11,7 @@
  		<script>
 			$(function requestPay() {
 				alert("${orderLastVo.orderLast_num}");
+				alert("${requestScope.order_itemName}");
 				alert("${orderLastVo.orderLast_totalPrice}");
 				alert("${memberVo.member_id}");
 				alert("${memberVo.member_name}");
@@ -23,29 +24,25 @@
 					pg: "html5_inicis",
 					pay_method: "card",
 					merchant_uid: "${orderLastVo.orderLast_num}",
-					name: "We-Art 상품",
 					amount: "${orderLastVo.orderLast_totalPrice}",
 					buyer_email: "${memberVo.member_id}",
 					buyer_name: "${memberVo.member_name}",
 					buyer_tel: "${memberVo.member_phone}"
 				}, function (rsp) { // callback
 					if (rsp.success) {
-						alert("rsp 석세스!");
-						$.ajax({
-							method: "post",
-							url: "${pageContext.request.contextPath}/itempaycheck.do",
-							data: {	"imp_uid": rsp.imp_uid, "merchant_uid": rsp.merchant_uid},
-							success: function(data) {
-								if(data == "Y") {
-									location.href="${pageContext.request.contextPath}/home.do";
-								} else if (data == "N") {
-									alert("결제 내역 검증 실패. 관리자에게 문의하세요.");
-								}
-							},
-							error: function(error){ alert("에러!"); }
+						jQuery.ajax({
+							url: "${pageContext.request.contextPath}/itempaycheck.do", // 예: https://www.myservice.com/payments/complete
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+							data: {
+								imp_uid: rsp.imp_uid,
+								merchant_uid: rsp.merchant_uid
+							}
+						}).done(function (data) {
+							alert("성공");
 						})
 					} else {
-						alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+						alert("실패");
 					}
 				});
 			});

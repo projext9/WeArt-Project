@@ -131,7 +131,7 @@ public class ItemService {
 				JSONObject getToken = (JSONObject) jsonObj.get("response");
 				token = (String)getToken.get("access_token");
 			}
-		} catch(Exception e) {
+		}catch(Exception e){
 			e.printStackTrace();
 			token = "";
 		}
@@ -169,27 +169,19 @@ public class ItemService {
 				JSONObject getAmount = (JSONObject) jsonObj.get("response");
 				amount = (int)(long)getAmount.get("amount");
 			}
-		} catch(Exception e) {
+		}catch(Exception e){
 			e.printStackTrace();
 			amount = 0;
 		}
 		return amount;
 	}
 	
-	public int updateOrderState1B(HashMap<String, Object> map) { //주문서(개별상품) 상태변경(결제완료)
-		return itemDao.updateOrderState1B(map);
+	public int updateOrderList(HashMap<String, Object> map) { //주문서(개별상품) 상태변경(결제완료)
+		return itemDao.updateOrderList(map);
 	}
 	
-	public int updateOrderLastState1B(HashMap<String, Object> map) { //주문서 상태변경(결제완료)
-		return itemDao.updateOrderLastState1B(map);
-	}
-	
-	public int updateOrderState1C(HashMap<String, Object> map) { //주문서(개별상품) 상태변경(검증완료)
-		return itemDao.updateOrderState1C(map);
-	}
-	
-	public int updateOrderLastState1C(HashMap<String, Object> map) { //주문서 상태변경(검증완료)
-		return itemDao.updateOrderLastState1C(map);
+	public int updateOrderLast(HashMap<String, Object> map) { //주문서 상태변경(결제완료)
+		return itemDao.updateOrderLast(map);
 	}
 	
 }

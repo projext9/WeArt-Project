@@ -283,6 +283,25 @@ public class ItemController {
 		}
 	}
 	
+	@GetMapping("/itemgettoken.do") //토큰받기 테스트
+	public String itemgettoken(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String member_idx = (String)session.getAttribute("member_idx");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("member_idx", member_idx);
+		map.put("orderLast_num", "2022072629764612");
+		map.put("orderLast_state1", "A");
+		
+		int stateResult1 = itemService.updateOrderList(map);
+		int stateResult2 = itemService.updateOrderLast(map);
+		System.out.println("stateResult1 출력: "+ stateResult1);
+		System.out.println("stateResult2 출력: "+ stateResult2);
+		
+		
+		return "item/itemgettoken";
+	}
+	
 	@PostMapping("/itempaycheck.do") //결제 api 검증
 	@ResponseBody
 	public String itempaycheck(HttpServletRequest request, HttpServletResponse response, @RequestParam("imp_uid") String imp_uid, @RequestParam("merchant_uid") String merchant_uid) throws Exception {
@@ -297,10 +316,7 @@ public class ItemController {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("member_idx", member_idx);
 			map.put("orderLast_num", merchant_uid);
-			map.put("orderLast_state1", "B");
-			
-			int stateResult1 = itemService.updateOrderState1B(map);
-			int stateResult2 = itemService.updateOrderLastState1B(map);
+			map.put("orderLast_state1", "A");
 			
 			OrderLastVo orderLastVo = itemService.getOrderLast(map);
 			int amountDb = orderLastVo.getOrderLast_totalPrice();			
@@ -311,25 +327,28 @@ public class ItemController {
 			JSONObject json1 = new JSONObject();
 			json1.put("imp_key", imp_key);
 			json1.put("imp_secret", imp_secret);
-
+		
 			String requestURL = "https://api.iamport.kr/users/getToken";
 			String Authorization = itemService.getToken(request, response, json1, requestURL);
 			
 			JSONObject json2 = new JSONObject();
 			json2.put("Authorization", Authorization);
-
+			
 			String requestURL2 = "https://api.iamport.kr/payments/"+imp_uid;
 			
 			int amount = itemService.getAmount(request, response, json2, requestURL2, Authorization);
-
+			System.out.println("Amount 출력: "+ amount);
 			if (amountDb == amount) {
-				int stateResult3 = itemService.updateOrderState1C(map);
-				int stateResult4 = itemService.updateOrderLastState1C(map);
-				
+				int stateResult1 = itemService.updateOrderList(map);
+				int stateResult2 = itemService.updateOrderLast(map);
+				System.out.println("stateResult1 출력: "+ stateResult1);
+				System.out.println("stateResult2 출력: "+ stateResult2);
 				result = "Y";
 			} else {
 				result = "N";
 			}
+
+			System.out.println("result 출력: "+ result);
 			return result;
 		}
 	}

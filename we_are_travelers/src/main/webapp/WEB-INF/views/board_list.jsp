@@ -27,58 +27,82 @@
 				$("h6 > figure").css("display", "none");
 				$("#view_frame>*").css("display", "none");
 			}
-			$("input:radio[name=view]").click(function() {
-				if($("input[name=view]:checked").val() == "view_frame") {
-					$("#view_frame>*").css("display", "");
-					$("#view_list>*").css("display", "none");
-				}else if($("input[name=view]:checked").val() == "view_list") {
-					$("#view_list>*").css("display", "");
-					$("p > img").css("display", "none");
-					$("h6 > figure").css("display", "none");
-					$("#view_frame>*").css("display", "none");
-				}
-			});
 			
 			$("input:radio[name=order_by]").click(function() {
 				
+				let my_board = "${scri.my_board}";
 				let page = "${scri.page}";
 				let keyword = "${scri.keyword}";
 				let searchType = "${scri.searchType}";
 				let order_by = $("input:radio[name=order_by]:checked").val();
 				let view = $("input:radio[name=view]:checked").val();
 				
-				$.ajax({
-					url:"${pageContext.request.contextPath}/board_list.do",
-					method:"get",
-					data: {"page":page, "keyword":keyword, "searchType":searchType, "order_by":order_by, "view":view},
-					success: function(data) {
-						location.href = "${pageContext.request.contextPath}/board_list.do?order_by="+order_by+"&searchType="+searchType+"&keyword="+keyword+"&view="+view+"&page="+page;
-					},
-					error: function(error) {
-						alert("실패");
-					}
-				});
+				if(my_board!="") {
+					$.ajax({
+						url:"${pageContext.request.contextPath}/board_list.do",
+						method:"get",
+						data: {"my_board":my_board, "page":page, "keyword":keyword, "searchType":searchType, "order_by":order_by, "view":view},
+						success: function(data) {
+							location.href = "${pageContext.request.contextPath}/board_list.do?my_board="+my_board+"&order_by="+order_by+"&searchType="+searchType+"&keyword="+keyword+"&view="+view+"&page="+page;
+						},
+						error: function(error) {
+							alert("실패");
+						}
+					});
+				}else if(my_board=="") {
+					$.ajax({
+						url:"${pageContext.request.contextPath}/board_list.do",
+						method:"get",
+						data: {"page":page, "keyword":keyword, "searchType":searchType, "order_by":order_by, "view":view},
+						success: function(data) {
+							location.href = "${pageContext.request.contextPath}/board_list.do?order_by="+order_by+"&searchType="+searchType+"&keyword="+keyword+"&view="+view+"&page="+page;
+						},
+						error: function(error) {
+							alert("실패");
+						}
+					});
+				}
 			});
 			
 			$("input:radio[name=view]").click(function() {
 				
+				let my_board = "${scri.my_board}";
 				let page = "${scri.page}";
 				let keyword = "${scri.keyword}";
 				let searchType = "${scri.searchType}";
 				let order_by = $("input:radio[name=order_by]:checked").val();
 				let view = $("input:radio[name=view]:checked").val();
 				
-				$.ajax({
-					url:"${pageContext.request.contextPath}/board_list.do",
-					method:"get",
-					data: {"page":page, "keyword":keyword, "searchType":searchType, "order_by":order_by, "view":view},
-					success: function(data) {
-						location.href = "${pageContext.request.contextPath}/board_list.do?order_by="+order_by+"&searchType="+searchType+"&keyword="+keyword+"&view="+view+"&page="+page;
-					},
-					error: function(error) {
-						alert("실패");
-					}
-				});
+				if(my_board!="") {
+					$.ajax({
+						url:"${pageContext.request.contextPath}/board_list.do",
+						method:"get",
+						data: {"my_board":my_board, "page":page, "keyword":keyword, "searchType":searchType, "order_by":order_by, "view":view},
+						success: function(data) {
+							location.href = "${pageContext.request.contextPath}/board_list.do?my_board="+my_board+"&order_by="+order_by+"&searchType="+searchType+"&keyword="+keyword+"&view="+view+"&page="+page;
+						},
+						error: function(error) {
+							alert("실패");
+						}
+					});
+				}else if(my_board=="") {
+					$.ajax({
+						url:"${pageContext.request.contextPath}/board_list.do",
+						method:"get",
+						data: {"page":page, "keyword":keyword, "searchType":searchType, "order_by":order_by, "view":view},
+						success: function(data) {
+							location.href = "${pageContext.request.contextPath}/board_list.do?order_by="+order_by+"&searchType="+searchType+"&keyword="+keyword+"&view="+view+"&page="+page;
+						},
+						error: function(error) {
+							alert("실패");
+						}
+					});
+				}
+			});
+			
+			$("#my_board").click(function() {
+				$("#my_board").val("${scri.my_board}");
+				alert($("#my_board").val());
 			});
 		});
 	</script>
@@ -86,7 +110,7 @@
 <main style="padding-top:60px;">
 	<h3>게시판</h3>
 	<!-- 게시판 버튼 -->
-	<div class="container row row-cols-2 mb-3" style="padding:0; margin:auto;">
+	<div class="container row row-cols-2 mb-3" style="padding-right:0.7em; padding-left:0.7em; margin:auto;">
 		<form class="col-12" style="padding:0; margin:auto;">
 			<!-- 순서 정렬 -->
 			<div class="btn-group col-12 col-sm-12 col-md-2 col-lg-2 col-xl-3 g-1" role="group" style="min-width:250px;">
@@ -135,7 +159,12 @@
 					</c:if>
 				</select>
 				<input type="text" class="form-control" placeholder="${scri.keyword}" name="keyword">
-				<button class="btn btn-outline-primary" type="submit" onclick="location.href='${pageContext.request.contextPath}/board_list.do'"><i class="bi bi-search"></i></button>
+				<c:if test="${pm.scri.my_board!=''}">
+					<button class="btn btn-outline-primary" type="submit" onclick="location.href='${pageContext.request.contextPath}/board_list.do'"><i class="bi bi-search"></i></button>
+				</c:if>
+				<c:if test="${pm.scri.my_board==''}">
+					<button class="btn btn-outline-primary" type="submit" onclick="location.href='${pageContext.request.contextPath}/board_list.do'"><i class="bi bi-search"></i></button>
+				</c:if>
 			</div>
 			<!-- 게시판 출력 방법 -->
 			<div class="btn-group col-1 g-1" role="group">
@@ -152,6 +181,12 @@
 					<label class="btn btn-outline-primary" for="view_frame"><i class="bi bi-grid"></i></label>
 				</c:if>
 			</div>
+		<!-- 내 글 보기 -->
+		<c:if test="${member_nick!=null}">
+			<div class="btn-group col-3 col-md-3 col-lg-2 col-xl-1 g-1">
+				<button type="button" name="my_board" id="my_board" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board_list.do?my_board=${member_nick}'" value="">내 글 보기</button>
+			</div>
+		</c:if>
 		<!-- 글 작성 -->
 		<div class="btn-group col-2 col-md-2 col-lg-1 col-xl-1 g-1" style="float:right;">
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board_write.do'" style="float:right;">글 작성</button>
@@ -162,7 +197,7 @@
 	<div id="view"></div>
 	<!-- 이미지 형식 -->
 	<div id="view_frame">
-		<div class="album py-5">
+		<div class="album py-6">
 			<div class="container">
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
 					<c:forEach var="boardVo" items="${board_list}">
@@ -176,7 +211,7 @@
 												${boardVo.board_image}
 											</c:when>
 											<c:otherwise>
-												<img src="${pageContext.request.contextPath}/resources/image/no image.png">
+												<img src="${pageContext.request.contextPath}/resources/img/no image.png">
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -206,7 +241,7 @@
 	<!-- 리스트 형식 -->
 	<div id="view_list">
 		<c:forEach var="boardVo" items="${board_list}">
-			<div class="list-group col-12" style="margin:auto; max-width:1320px;">
+			<div class="list-group col-12" style="margin:auto; max-width:1320px; padding-right:0.7em; padding-left:0.7em;">
 				<a href="${pageContext.request.contextPath}/board_content.do?board_idx=${boardVo.board_idx}" class="list-group-item list-group-item-action">
 					<table class="table table-borderless">
 						<tr>
@@ -236,29 +271,57 @@
 	<!-- 페이지네이션 -->
 	<nav>
 		<ul class="pagination justify-content-center">
-		    <c:if test="${pm.prev==true}">
-				<li class="page-item">
-					<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${pm.startPage-1}">Previous</a>
-			    </li>
+			<c:if test="${pm.scri.my_board!=''}">
+				<c:if test="${pm.prev==true}">
+					<li class="page-item">
+						<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?my_board=${pm.scri.my_board}&order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${pm.startPage-1}">Previous</a>
+				    </li>
+				</c:if>
+				<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1">
+					<c:choose>
+						<c:when test="${i==scri.page}">
+							<li class="page-item active">
+								<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?my_board=${pm.scri.my_board}&order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${i}">${i}</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+								<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?my_board=${pm.scri.my_board}&order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${i}">${i}</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			    <c:if test="${pm.next&&pm.endPage>0}">
+					<li class="page-item">
+						<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?my_board=${pm.scri.my_board}&order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${pm.endPage+1}">Next</a>
+				    </li>
+				</c:if>
 			</c:if>
-			<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1">
-				<c:choose>
-					<c:when test="${i==scri.page}">
-						<li class="page-item active">
-							<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${i}">${i}</a>
-						</li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item">
-							<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${i}">${i}</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		    <c:if test="${pm.next&&pm.endPage>0}">
-				<li class="page-item">
-					<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${pm.endPage+1}">Next</a>
-			    </li>
+			<c:if test="${pm.scri.my_board==''}">
+			    <c:if test="${pm.prev==true}">
+					<li class="page-item">
+						<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${pm.startPage-1}">Previous</a>
+				    </li>
+				</c:if>
+				<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1">
+					<c:choose>
+						<c:when test="${i==scri.page}">
+							<li class="page-item active">
+								<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${i}">${i}</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item">
+								<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${i}">${i}</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			    <c:if test="${pm.next&&pm.endPage>0}">
+					<li class="page-item">
+						<a class="page-link" href="${pageContext.request.contextPath}/board_list.do?order_by=${pm.scri.order_by}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&view=${pm.scri.view}&page=${pm.endPage+1}">Next</a>
+				    </li>
+				</c:if>
 			</c:if>
 		</ul>
 	</nav>

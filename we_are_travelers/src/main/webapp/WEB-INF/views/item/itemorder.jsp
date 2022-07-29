@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../nav.jsp"%>
+<%@ include file="./nav.jsp"%>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -174,6 +174,6 @@
 				<div class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab" onClick="fn_itemPay()">결제 방법 선택<i class="fal fa-arrow-circle-right"></i></div>
 			</div>
 		</div>
-		<%@ include file="../footer.jsp"%>
+		<%@ include file="footer.jsp"%>
     </body>
 </html>

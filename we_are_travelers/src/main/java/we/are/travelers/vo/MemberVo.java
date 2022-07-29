@@ -24,12 +24,11 @@ public class MemberVo {
 	private int member_ip; //
     
 	public String getMember_idx() {
-		return member_idx;		
+		return member_idx;
 	}
 	public void setMember_idx(String member_idx) {
 		this.member_idx = member_idx;
-	}
-		       
+	}       
 	public String getMember_id() {
 		return member_id;
 	}
