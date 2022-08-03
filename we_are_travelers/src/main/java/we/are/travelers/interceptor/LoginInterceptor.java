@@ -12,20 +12,19 @@ public class LoginInterceptor implements HandlerInterceptor {
 	//이들 가운데 필요한 메소드를 Override해서 사용함
 
 	@Override//사용자 요청이 Controller로 전달되기 전에 요청을 가로채어서 메소드 실행
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
-		String member_id = (String)session.getAttribute("member_id");
+		String member_idx = (String)session.getAttribute("member_idx");
+		String company_idx = (String)session.getAttribute("company_idx");
 		
-		if(member_id == null) {
-			response.sendRedirect(request.getContextPath()+"/login.do");
-			return false;//Controller로 사용자 요청이 전달되지 못하도록 함
+		if(member_idx == null) {
+			if(company_idx == null) {
+				response.sendRedirect(request.getContextPath()+"/login.do");
+				return false;//Controller로 사용자 요청이 전달되지 못하도록 함
+			}
 		}
 		
 		return true;//Controller로 사용자 요청이 전달되게 함
 	}
-	
-	
-	
 
 }

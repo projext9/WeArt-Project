@@ -28,13 +28,13 @@
     height: 45px;
     border: 1px solid #e2e2e2;
     border-right: 0px;
-    padding: 0 20px;
+	padding: 0 5px 0 5px;
     background: transparent;
     border-radius: 4px 0 0 4px;
     position: relative;
-    padding-right: 30px;
     -webkit-appearance: none;
     font-size: 14px;
+    text-align: center;
 }
 
 select {

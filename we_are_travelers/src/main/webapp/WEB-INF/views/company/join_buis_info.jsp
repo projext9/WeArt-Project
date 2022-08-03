@@ -9,8 +9,53 @@
     <link href="${pageContext.request.contextPath}/resources/css/weart_join_form.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script type="text/javascript">		
-	 function sample6_execDaumPostcode(){
+	<script type="text/javascript">	
+	   
+		$(function() {
+			 
+			$(':input[type="submit"]').prop('disabled', true);
+	
+			$('input[type="text"]').on('blur',function() {
+				
+	            if($('.company_name_input').val() && $('.ceo_input').val() && $('.company_address').val() && $('.company_detail_address').val() && $('.company_auth_name').val() != null){
+				  $(':input[type="submit"]').prop('disabled', false);	
+			    }
+		    });
+		});
+	    
+	    $(function() {
+	    	 
+		$("#file").on('change',function(){
+			  var fileName = $("#file").val();
+			  $(".company_auth_name").val(fileName);
+		});
+		
+		$('.next').on('click' , function(){
+			   var company_name = $('.company_name_input').val();
+			   var ceo = $('.ceo_input').val();
+			   var company_address = $('.company_address').val();
+			   var company_deatailaddress = $('.company_detail_address').val();
+			   var company_auth = $('.company_auth_name').val();
+			    
+			if(company_name ==""){	
+				$('.company_name_input_check').html('기업명을 입력해주세요').css('color' , 'red' )
+				return false;
+		    }if(ceo ==""){	
+		    	$('.ceo_input_check').html('대표자를 입력해주세요').css('color' , 'red' )
+		    	return false;
+		    }if(company_address ==""){	
+				$('.detail_address_check').html('상세주소를 입력해주세요').css('color' , 'red' )
+				return false;	
+			}if(company_deatailaddress ==""){	
+				$('.detail_address_check').html('상세주소를 입력해주세요').css('color' , 'red' )
+				return false;
+			}if(company_auth ==""){
+				$('.company_auth_check').html('사업자등록증명원을 첨부해주세요').css('color' , 'red' )
+				return false;
+		    }
+		});
+   });
+	    function sample6_execDaumPostcode(){
 	        new daum.Postcode({
 	            oncomplete: function(data) {
 	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -43,54 +88,22 @@
 	                        extraAddr =  data.buildingName;
 	                    }
 	                    // 조합된 참고항목을 해당 필드에 넣는다.
-	                    document.getElementById("company_detailAddress").value = extraAddr;
+	                    document.getElementById("company_detailAddress_id").value = extraAddr;
 	                
 	                } else {
-	                    document.getElementById("company_detailAddress").value = '';
+	                    document.getElementById("company_detailAddress_id").value = '';
 	                }
 
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	               // document.getElementById("sample6_address").value = data.zonecode;
-	                document.getElementById("company_address").value = addr;
+	                document.getElementById("company_address_id").value = addr;
 	                // 커서를 상세주소 필드로 이동한다.
-	                document.getElementById("company_detailAddress").focus();
+	                document.getElementById("company_detailAddress_id").focus();
 	                
 	            }
-	        }).open();     
+	        }).open();
+	     }
 		
-		$("#file").on('change',function(){
-			  var fileName = $("#file").val();
-			  $(".company_auth_name").val(fileName);
-			});
-		$('.next').ready(function(){
-			var company_name = $('.company_name_input').val();
-			var ceo = $('.ceo_input').val();
-			var company_Address = $('.company_Address').val();
-			var company_deatailaddress = $('.company_detailaddress').val();
-			var company_auth_name = $(".company_auth_name").val();
-			$('.next').prop('disabled' , false);
-			if(company_name == ""){	
-				$('.company_name_input_check').html('기업명을 입력해주세요').css('color' , 'red' )
-				return false;
-		    }else if(ceo == ""){	
-		    	$('.ceo_input_check').html('대표자를 입력해주세요').css('color' , 'red' )
-		    	return false;
-			}else if(company_deatailaddress == ""){
-				$('.company_Address_check').html('기업주소를 입력해주세요').css('color' , 'red' )
-				return false;
-			}else if(company_deatailaddress == ""){	
-				$('.company_detailaddress_check').html('상세주소를 입력해주세요').css('color' , 'red' )
-				return false;
-			}else if(company_auth_name == ""){
-				$('.company_auth').html('사업자등록증명원을 첨부해주세요').css('color' , 'red' )
-		    }else{$
-		       $('.next').attr('disabled' , true);
-			   $('.next').attr('disabled' , false);
-		   }
-		});
-	}
-		
-			
 </script>
 </head>
 
@@ -109,38 +122,34 @@
     </div>
     <br>
       <p class="join_guide_1">위아트 기업 계정의 프로필을 입력해주세요 <p/>
+      
     <div class="company_info_wrap">
-    <div class="company_name">기업명</div>
+    <div class="company_name_wrap">기업명</div>
     <div class="info_input_box">
         <input class="company_name_input" id="company_name_input_id" name="company_name" placeholder="사업자등록증명원 기업명">
-        <p class="company_name_input_check"></p>
-    <div class="ceo">대표자</div>
+        <span class="company_name_input_check"></span>
+        
+    <div class="ceo_wrap">대표자</div>
         <input class="ceo_input" id="ceo_input_id" name="ceo" placeholder="사업자등록증명원 대표자명">
-        <p class="name_input_check"></p>
-        <div class="company_addre">기업 주소</div>
-        <input type="text" id="company_address" onclick="sample6_execDaumPostcode()" placeholder="주소찾기" name="address"><br>
-        <input type="text" id="company_detailAddress" placeholder="상세주소">
-        </div>  
+        <span class="ceo_input_check"></span>
+        
+        <div class="company_address_wrap">기업 주소</div>
+        <input type="text" class="company_address" id="company_address_id" onclick="sample6_execDaumPostcode()" placeholder="주소찾기" name="address"><br>
+        <input type="text" class="company_detail_address" id="company_detailAddress_id" placeholder="상세주소" name="detail_address">
+        <span class="detail_address_check"></span>
+    </div>  
+    
     </div>
      <div class=>기업인증</div>
      <div class="filebox">
-    <input class="company_auth_name" value="" placeholder="사업자등록증명원을 첨부해주세요" readonly>
-    <label for="file">파일첨부</label> 
-    <input type="file" class="company_auth" id="file" name="company_auth">
+        <input class="company_auth_name" placeholder="사업자등록증명원을 첨부해주세요" readonly>
+        <label for="file">파일첨부</label> 
+        <input type="file" class="company_auth" id="file" name="company_auth">
+        <span class="company_auth_check"></span> 
     </div>
-    	<input type="submit" class="next" value="다음" disabled="disabled">
+    	<input type="submit" class="next" value="다음">
     </div>
-   <div class="clearfix">
-   <br>
-   </div>
-  
-    <br>
-    <div>
-
-	</div>
 </form> 
 </main>
-</div>
-
 </body>
 </html>        

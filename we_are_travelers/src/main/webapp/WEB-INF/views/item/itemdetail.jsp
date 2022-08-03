@@ -8,42 +8,7 @@
         <title>We-Art Project</title>
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-	    <script type="text/javascript">
-	    	var optionValue = "";
-	    	var pieceValue = "";
-	    	
-		    var optionSelect = (target) => {
-				optionValue = target.options[target.selectedIndex].value;
-				alert("선택된 옵션 value 값=" + optionValue);
-			}
-		    var pieceSelect = (target) => {
-				pieceValue = target.options[target.selectedIndex].value;
-				alert("선택된 수량 value 값=" + pieceValue);
-			}
-
-			$(function(){ //장바구니 담기
-				$("#additemcart").click(function(){
-					$.ajax({
-						type: "post",
-						url: "${pageContext.request.contextPath}/itemcartadd.do",
-						data: {
-							"optionValue": $("#optionValue option:selected").val(),
-							"pieceValue": $("#pieceValue option:selected").val()
-						},
-						success: function(data){
-							if(data == "L") {
-								alert("로그인 후 이용해주세요!");
-							} else if (data == "Y") {
-								alert("장바구니 담기 성공!");
-							} else if (data == "N") {
-								alert("장바구니 담기 실패!");
-							}
-						},
-						error: function(error){ alert("장바구니 에러발생!"); }
-					});
-				});
-			});
-	</script>
+		<script src="${pageContext.request.contextPath}/resources/js/weart_itemdetail.js"></script>
     </head>
 	<body>
 		<header class="header navbar-area">
@@ -52,38 +17,36 @@
 					<div class="row align-items-center">
 						<div class="col-lg-8 col-md-8 col-10" style="float: none; margin:0 auto;">
 							<div class="main-menu-search">
+								<form name="frm">
 								<div class="navbar-search search-style-5">
 									<div class="search-select">
 										<div class="select-position">
-											<select id="select1">
-												<option selected="">All</option>
-												<option value="1">option 01</option>
-												<option value="2">option 02</option>
-												<option value="3">option 03</option>
-												<option value="4">option 04</option>
-												<option value="5">option 05</option>
+											<select id="searchType" name="searchType">
+												<option value="subject">상품명</option>
+												<option value="content">내용</option>
+												<option value="all">상품명+내용</option>
 											</select>
+											<input type="hidden" id="itemCode" value="${itemCode}">
 										</div>
 									</div>
 									<div class="search-input">
-										<input type="text" placeholder="Search">
+										<input type="text" placeholder="${scri.keyword}" name="keyword">
 									</div>
 									<div class="search-btn">
-										<button><i class="bi bi-search"></i></button>
+										<button onClick="fn_search()"><i class="bi bi-search"></i></button>
 									</div>
 									&nbsp
 									&nbsp
-									<a href="#"><img class="img-icon" src="${pageContext.request.contextPath}/resources/img/icon/icon_person.png" alt="..." /></a>
-									&nbsp
-									&nbsp
-									<a href="#"><img class="img-icon" src="${pageContext.request.contextPath}/resources/img/icon/icon_cart.png" alt="..." /></a>
+									<a href="${pageContext.request.contextPath}/itemcart.do"><img class="img-icon" src="${pageContext.request.contextPath}/resources/img/icon/icon_cart.png" alt="..." /></a>
 								</div>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</header>
+		
 		<section class="item-details section">
 			<div class="container">
 				<div class="top-area">
@@ -104,7 +67,7 @@
 								<h3 class="price">&#8361; ${itemVo.item_price}</h3>
 								<p class="info-text">${itemVo.item_input1}</p>
 								<p class="info-text">판매자 : ㅇㅇ컴퍼니<br>택배회사 : ${itemVo.item_input2}<br>배송비 : ${itemVo.item_postPrice}원</p>
-		
+
 								<div class="row">
 									<div class="col-lg-6 col-md-6 col-6">
 										<div class="form-group">
@@ -137,13 +100,13 @@
 									<div class="row align-items-end">
 										<div class="col-lg-6 col-md-6 col-12" style="margin-top: 20px;">
 											<div class="button cart-button">
-												<button class="btn" id="additemcart" style="width: 100%;" >장바구니 담기</button>
+												<button class="btn" id="additemcart" style="width: 100%;">장바구니 담기</button>
 											</div>
 										</div>
-			
+
 										<div class="col-lg-6 col-md-6 col-12" style="margin-top: 20px;">
 											<div class="wish-button">
-												<button class="btn" onclick="location.href='${pageContext.request.contextPath}/itemcart.do'">바로구매</button>
+												<button class="btn" onClick="location.href='${pageContext.request.contextPath}/itemcart.do'">바로구매</button>
 											</div>
 										</div>
 									</div>
@@ -210,7 +173,7 @@
 											<th>배송방법</th>
 											<td>${itemVo.item_input8}</td>
 											<th rowspan="2">배송비</th>
-											<td rowspan="2">기본 : ${itemVo.item_postPrice}원<br>-추가배송비-<br>제주도 : ${itemVo.item_input9}원<br>도서산간 : ${itemVo.item_input10}원</td>
+											<td rowspan="2">기본 : ${itemVo.item_postPrice}원<br>-기타배송비-<br>제주도 : ${itemVo.item_input9}원<br>도서산간 : ${itemVo.item_input10}원</td>
 										</tr>
 										<tr>
 											<th>택배회사</th>
@@ -242,8 +205,8 @@
 											<th>교환/반품 비용</th>
 										</tr>
 										<tr>
-											<td>19,800원 미만인 경우 반품비 5,000원
-											<br>19,800원 이상인 경우 반품비 2,500원
+											<td>20,000원 미만인 경우 반품비 5,000원
+											<br>20,000원 이상인 경우 반품비 2,500원
 											</td>
 										</tr>
 										<tr>
@@ -259,7 +222,7 @@
 									<table class="product-details-table">
 										<tr>
 											<th>취소 기준일</th>
-											<td>${itemVo.item_input12}</td>
+											<td>상품발송전(구매당일)</td>
 										</tr>
 									</table>
 								</div>

@@ -14,9 +14,35 @@
 
 			function fn_search() { //검색
 	 			var fm = document.frm;
-	 			fm.action = "fishingshop.do";
-	 			fm.method = "get";
-	 			fm.submit();
+	 			var itemCode = document.getElementById("itemCode").value;
+				if (itemCode == 1) {
+					alert(itemCode);
+		 			fm.action = "cultureshop.do";
+		 			fm.method = "get";
+		 			fm.submit();
+				} else if (itemCode == 2) {
+					alert(itemCode);
+		 			fm.action = "activityshop.do";
+		 			fm.method = "get";
+		 			fm.submit();
+				} else if (itemCode == 3) {
+					alert(itemCode);
+		 			fm.action = "fishingshop.do";
+		 			fm.method = "get";
+		 			fm.submit();
+				} else if (itemCode == 4) {
+					alert(itemCode);
+		 			fm.action = "campingshop.do";
+		 			fm.method = "get";
+		 			fm.submit();
+				} else if (itemCode == 5) {
+					alert(itemCode);
+						fm.action = "stayshop.do";
+						fm.method = "get";
+						fm.submit();
+				} else {
+					alert("에러가 발생했습니다.");
+				}
 	 		}
 		</script>
     </head>
@@ -89,6 +115,7 @@
 											<option value="content">내용</option>
 											<option value="all">상품명+내용</option>
 										</select>
+										<input type="hidden" id="itemCode" value="${itemCode}">
 									</div>
 								</div>
 								<div class="search-input">
@@ -99,10 +126,7 @@
 								</div>
 								&nbsp
 								&nbsp
-								<a href="#"><img class="img-icon" src="${pageContext.request.contextPath}/resources/img/icon/icon_person.png" alt="..." /></a>
-								&nbsp
-								&nbsp
-								<a href="#"><img class="img-icon" src="${pageContext.request.contextPath}/resources/img/icon/icon_cart.png" alt="..." /></a>
+								<a href="${pageContext.request.contextPath}/itemcart.do"><img class="img-icon" src="${pageContext.request.contextPath}/resources/img/icon/icon_cart.png" alt="..." /></a>
 							</div>
 							</form>
 						</div>
@@ -115,7 +139,7 @@
 			<div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-					<c:forEach var="itemVo" items="${fishingShopList}">
+					<c:forEach var="itemVo" items="${ItemVoList}">
                     <div class="col mb-5">
                         <div class="card h-100">
 							<!-- Hot badge-->
@@ -133,7 +157,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/itemdetail.do?iidx=${itemVo.item_idx}">상세보기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/itemdetail.do?iidx=${itemVo.item_idx}&itemCode=3">상세보기</a></div>
                             </div>
                         </div>
                     </div>
@@ -141,7 +165,6 @@
 
                 </div>
             </div>
-            
             
 			<!-- 페이징 -->
 			<div>
@@ -162,6 +185,7 @@
 					</c:forEach>
 				</ul>
 			</div>
+			
 
         </section>
 		<%@ include file="../footer.jsp"%>

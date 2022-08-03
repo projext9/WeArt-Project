@@ -25,29 +25,28 @@ public class CompanyDao {
 	
 	public int joinCompany(CompanyVo companyVo) {
 		//sqlSession객체를 이용한 입력작업: insert("Mapper파일의 네임스페이스.id값", 입력값/입력객체)
-		
-		return sqlSession.insert(MAPPER+".joinCompany", companyVo);
-	}
-
-	/*
-	 * public HashMap<String, Long> loginMember(MemberVo memberVo) { HashMap<String,
-	 * Long> resultMap = sqlSession.selectOne(MAPPER+".loginMember", memberVo);
-	 * 
-	 * System.out.println("resultMap:"+resultMap);
-	 * 
-	 * if(resultMap.get("member_auth") == 0) { resultMap.put("member_grade", 0L); }
-	 * return resultMap; }
-	 */
 	
-	  public CompanyVo loginCompany(CompanyVo cv){
-		  return sqlSession.selectOne(MAPPER + ".loginCompany", cv);
+		return sqlSession.insert(MAPPER + ".joinCompany", companyVo);
 	}
-
+	  public CompanyVo loginCompany(CompanyVo cv){
+		  
+		  return sqlSession.selectOne(MAPPER + ".loginCompany", cv);   
+	}
+      public CompanyVo loginCompany_auth(CompanyVo cv){
+		  
+		  return sqlSession.selectOne(MAPPER + ".loginCompany_auth", cv);   
+		  
+	}public CompanyVo loginCompany_delynS(CompanyVo cv){
+		  
+		  return sqlSession.selectOne(MAPPER + ".loginCompany_delynS", cv);   
+	}
 	  public int checkComId(String id) {
+		  
 			return sqlSession.selectOne(MAPPER+".checkComId", id);
-		}
+	}
 	  public int checkComName(String name) {
+		  
 			return sqlSession.selectOne(MAPPER+".checkComName", name);
-		}
+	}
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,26 +13,53 @@
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/weart_login.css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-   
-    <!-- Custom styles for this template -->
-    <link href="${pageContext.request.contextPath}/resources/css/weart_login.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+   <script>
+      $(document).ready(function() {
+    	  $("#member_form").keydown(function(){
+    	        $('#company_form').val($(this).val());
+    	  });
+    	  
+    	  $("#member_form").change(function(){
+    	        $('#company_form').val($(this).val());
+    	  });
+    	  
+    	  $("#member_form_pwd").keydown(function(){
+  	           $('#company_form_pwd').val($(this).val());
+  	    });
+  	  
+  	      $("#member_form_pwd").change(function(){
+  	          $('#company_form_pwd').val($(this).val());
+  	    });	
+    	  
+    	  
+    	  
+      });
+   </script>
  </head>
   
- <body class="text-center">
-    
+ <body class="text-center"> 
 <main class="form-signin">
-  <form class="login_form" action="/travelers/loginProcess.do" method="POST">
+  <form class="login_form" action="/travelers/MemberloginProcess.do" method="POST">
+  <div class="logo_login_box">
     <a href="${pageContext.request.contextPath}/home.do">
     <img class="mb-4" src="${pageContext.request.contextPath}/resources/images/logo.jpg" alt="로고" width="72" height="57">
     </a>
-    <h1 class="h3 mb-3 fw-normal">로그인</h1>
-
+   <div class="login_wrap">
+   <div class="login_member_box">
+    <button class="all_member_login_btn" onclick="location.href='/travelers/login.do'" type="button">통합로그인</button>
+   </div>
+   </div>
+   </div>
+<br>
  <div class="form-floating">
-      <input type="text" class="form-control" id="member_id" name="member_id" >
+      <input type="text" class="form-control"  id="member_form"  name="member_id">
+      <input type="hidden" class="form-control"  id='company_form' name="company_id">
       <label for="floatingInput">이메일(아이디)</label> 
     </div>
  <div class="form-floating">
-      <input type="password" class="form-control" id="member_pwd" name="member_pwd" >
+      <input type="password" class="form-control"  id="member_form_pwd" name="member_pwd">
+       <input type="hidden" class="form-control"  id="company_form_pwd" name="company_pwd">
       <label for="floatingPassword">비밀번호</label> 
     <div class="form-floating-btn">
     <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
@@ -44,7 +72,9 @@
     
  <div class="social_login">
      <div class="social_logoK">
+     <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=8a2ee7f6ccee51f630888d04e48e6d7b&redirect_uri=http://localhost:8090${pageContext.request.contextPath}/kakaoLogin.do&response_type=code">
     <img src="${pageContext.request.contextPath}/resources/images/kakao_login.png" width="200" height="50" alt="카카오 로그인">
+    </a>
     </div>
     <div class="social_logoN">
     <img src="${pageContext.request.contextPath}/resources/images/naver_login.png" width="200" height="50" alt="네이버 로그인">

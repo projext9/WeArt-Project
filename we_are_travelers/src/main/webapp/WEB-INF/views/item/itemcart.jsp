@@ -73,6 +73,7 @@
 
                                                 </tbody>
                                             </table>
+											<div><button type="button" class="btn btn-secondary btn-sm" onClick="fn_itemDel()">삭제</button></div>
 											</form>
                                             <br>
                                             <div style="clear: both; border: 3px solid #c8c8c8; text-align: center;">

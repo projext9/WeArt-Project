@@ -84,10 +84,10 @@
 		/* 인증번호 비교 */
 		$(".mail_check_input").on('blur' , function(){
 		    
-		    var inputCode = $(".mail_check_input").val();        // 입력코드    
+		    var inputCode = $(".mail_check_input").val();         // 입력코드값  
 		    var checkResult = $(".mail_check_input_box_warn");    // 비교 결과     
 		    
-		    if(inputCode == code){                            // 일치할 경우
+		    if(inputCode == code){                                // 일치할 경우
 		        checkResult.html("인증번호가 일치합니다.");
 		        checkResult.css("color", "green");
 		        $(".next").attr('disabled' , false);	       
@@ -95,7 +95,7 @@
 		        $(".mail_input").attr('readonly' , true);
 		        $(".mail_check_input").attr('readonly' , true);
 		        
-		    } else {                                            // 일치하지 않을 경우
+		    } else {                                              // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
 		        checkResult.css("color", "red");
 		        $(".next").attr('disabled' , true);       

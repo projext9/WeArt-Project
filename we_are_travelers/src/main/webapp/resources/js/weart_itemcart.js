@@ -1,3 +1,7 @@
+/*
+* Copyright 2022 Team We-Art
+* Licensed under MIT (https://github.com/projext9/WeArt-Project)
+*/
 var itemTotal = 0;
 var postTotal = 0;
 
@@ -74,4 +78,12 @@ function fn_itemOrder() { //체크 된 항목 전송
 	fm.action = "itemorder.do";
 	fm.method = "post";
 	fm.submit();
+}
+
+function fn_itemDel() { //체크 된 항목 삭제
+	var fm2 = document.frm;
+	alert("삭제 실행");
+	fm2.action = "itemcartdelete.do";
+	fm2.method = "post";
+	fm2.submit();
 }

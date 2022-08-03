@@ -1,5 +1,8 @@
 package we.are.travelers.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,12 +26,16 @@ public class MemberDao {
 		//sqlSession객체를 이용한 입력작업: insert("Mapper파일의 네임스페이스.id값", 입력값/입력객체)
 		
 		return sqlSession.insert(MAPPER+".joinMember", memberVo);
-	
 	}
-	
-	//로그인 처리
+	  //로그인 처리
 	  public MemberVo loginMember(MemberVo mv){
-		  return sqlSession.selectOne(MAPPER + ".loginMember", mv);
+		  	  
+		  return sqlSession.selectOne(MAPPER+".loginMember", mv);	  
+	}
+	  //사용 정지 회원 로그인 처리
+	  public MemberVo loginMemberDelynS(MemberVo mv){
+	  	  
+		  return sqlSession.selectOne(MAPPER+".loginMemberDelynS", mv);	  
 	}
 	  
     //회원가입 아이디 , 닉네임 중복 체크

@@ -19,16 +19,18 @@ public class MemberVo {
 	private int member_grade; // 회원등급(일반/관리자)
 	private int member_regCode; // 가입구분(일반/소셜)
 	private int member_phone_auth; //휴대폰 인증상태
-	private String member_delyn; //사용자 이용상태(N(정상) Y(삭제) S(정지))
+	private char member_delyn; //사용자 이용상태(N(정상) Y(삭제) S(정지))
 	private Date member_regdate; //가입일자
 	private int member_ip; //
     
 	public String getMember_idx() {
-		return member_idx;
+		
+		return member_idx;		
 	}
 	public void setMember_idx(String member_idx) {
 		this.member_idx = member_idx;
-	}       
+	}
+		       
 	public String getMember_id() {
 		return member_id;
 	}
@@ -107,10 +109,10 @@ public class MemberVo {
 	public void setMember_phone_auth(int member_phone_auth) {
 		this.member_phone_auth = member_phone_auth;
 	}
-	public String getMember_delyn() {
+	public char getMember_delyn() {
 		return member_delyn;
 	}
-	public void setMember_delyn(String member_delyn) {
+	public void setMember_delyn(char member_delyn) {
 		this.member_delyn = member_delyn;
 	}
 	public Date getMember_regdate() {
@@ -130,6 +132,10 @@ public class MemberVo {
 	}
 	public void setMember_birth(String member_birth) {
 		this.member_birth = member_birth;
+	}
+	public Object get(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

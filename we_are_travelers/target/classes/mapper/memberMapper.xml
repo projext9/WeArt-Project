@@ -23,9 +23,13 @@
 	</insert>
 	
 	<select id="loginMember" parameterType="memberVo" resultType="memberVo">
-		select * from weart_member
-	</select>
+		select * from weart_member where member_id=#{member_id} and member_pwd=#{member_pwd} and member_delyn='N'
 	
+	</select>
+	<select id="loginMemberDelynS" parameterType="memberVo" resultType="memberVo">
+		select * from weart_member where member_id=#{member_id} and member_pwd=#{member_pwd} and member_delyn='S'
+	
+	</select>
 
 	
 

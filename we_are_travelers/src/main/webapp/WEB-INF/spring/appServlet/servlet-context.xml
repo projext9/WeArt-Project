@@ -33,6 +33,33 @@
 	<context:component-scan base-package="we.are.travelers.service" />
 	<context:component-scan base-package="we.are.travelers.vo" />
 	
+	<!-- Interceptor 설정: 로그인 여부 체크하는 LoginInterceptor 설정 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/*.do"/>
+			<!-- 예외처리 시작 -->
+			<!-- AllMemberController -->
+			<exclude-mapping path="/home.do"/>
+			<exclude-mapping path="/join.do"/>
+			<exclude-mapping path="/checkId.do"/>
+			<exclude-mapping path="/joinProcess.do"/>
+			<exclude-mapping path="/login.do"/>
+			<exclude-mapping path="/loginProcess.do"/>
+			
+			<!-- ItemController -->
+			<exclude-mapping path="/cultureshop.do"/>
+			<exclude-mapping path="/activityshop.do"/>
+			<exclude-mapping path="/fishingshop.do"/>
+			<exclude-mapping path="/campingshop.do"/>
+			<exclude-mapping path="/stayshop.do"/>
+			<exclude-mapping path="/itemdetail.do"/>
+
+			<!-- 예외처리 종료 -->
+
+			<beans:bean id="loginInterceptor" class="we.are.travelers.interceptor.LoginInterceptor"/>
+		</interceptor>
+	
+	</interceptors>
 	
 	
 </beans:beans>

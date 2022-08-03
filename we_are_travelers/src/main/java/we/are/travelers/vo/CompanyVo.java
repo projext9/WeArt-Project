@@ -9,17 +9,15 @@ public class CompanyVo {
 	private String company_pwd;
 	private String company_buis_number;
 	private String company_name;
-	private String company_ceoName;
+	private String company_ceo_name;
 	private String company_phone;
-	private String company_buisAddress;
+	private String company_buis_address;
 	private String company_auth_file_name;
-	private int company_auth_file_size;
 	private int company_phone_auth;
 	private int company_auth;
-	private Date comapny_regdate;
-	private String company_delyn;
+	private Date company_regdate;
+	private char company_delyn;
 	private int company_ip;
-	
 	public String getCompany_idx() {
 		return company_idx;
 	}
@@ -50,11 +48,11 @@ public class CompanyVo {
 	public void setCompany_name(String company_name) {
 		this.company_name = company_name;
 	}
-	public String getCompany_ceoName() {
-		return company_ceoName;
+	public String getCompany_ceo_name() {
+		return company_ceo_name;
 	}
-	public void setCompany_ceoName(String company_ceoName) {
-		this.company_ceoName = company_ceoName;
+	public void setCompany_ceo_name(String company_ceo_name) {
+		this.company_ceo_name = company_ceo_name;
 	}
 	public String getCompany_phone() {
 		return company_phone;
@@ -62,23 +60,17 @@ public class CompanyVo {
 	public void setCompany_phone(String company_phone) {
 		this.company_phone = company_phone;
 	}
-	public String getCompany_buisAddress() {
-		return company_buisAddress;
+	public String getCompany_buis_address() {
+		return company_buis_address;
 	}
-	public void setCompany_buisAddress(String company_buisAddress) {
-		this.company_buisAddress = company_buisAddress;
+	public void setCompany_buis_address(String company_buis_address) {
+		this.company_buis_address = company_buis_address;
 	}
 	public String getCompany_auth_file_name() {
 		return company_auth_file_name;
 	}
 	public void setCompany_auth_file_name(String company_auth_file_name) {
 		this.company_auth_file_name = company_auth_file_name;
-	}
-	public int getCompany_auth_file_size() {
-		return company_auth_file_size;
-	}
-	public void setCompany_auth_file_size(int company_auth_file_size) {
-		this.company_auth_file_size = company_auth_file_size;
 	}
 	public int getCompany_phone_auth() {
 		return company_phone_auth;
@@ -92,16 +84,16 @@ public class CompanyVo {
 	public void setCompany_auth(int company_auth) {
 		this.company_auth = company_auth;
 	}
-	public Date getComapny_regdate() {
-		return comapny_regdate;
+	public Date getCompany_regdate() {
+		return company_regdate;
 	}
-	public void setComapny_regdate(Date comapny_regdate) {
-		this.comapny_regdate = comapny_regdate;
+	public void setCompany_regdate(Date company_regdate) {
+		this.company_regdate = company_regdate;
 	}
-	public String getCompany_delyn() {
+	public char getCompany_delyn() {
 		return company_delyn;
 	}
-	public void setCompany_delyn(String company_delyn) {
+	public void setCompany_delyn(char company_delyn) {
 		this.company_delyn = company_delyn;
 	}
 	public int getCompany_ip() {

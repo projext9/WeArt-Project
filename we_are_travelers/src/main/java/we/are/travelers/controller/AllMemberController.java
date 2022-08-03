@@ -4,13 +4,14 @@ package we.are.travelers.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,49 +21,137 @@ import we.are.travelers.service.AllMemberService;
 import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.MemberVo;
 
-@Controller
-public class AllMemberController {
 
+@Controller
+@RequestMapping(value="/*")
+public class AllMemberController {
+	
 	private AllMemberService AllmemberService;
 	
 	@Autowired //자동 의존 주입: 생성자 방식
 	public AllMemberController(AllMemberService AllmemberService) {
 		this.AllmemberService = AllmemberService;
 	}
+
 	
-	@RequestMapping(value="/login.do" , method = RequestMethod.GET)
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login() {
+		
+	
 		return "login";
 	}
+	
+	@RequestMapping(value="/kakaoLogin.do")
+	public String kakaologin(@RequestParam("code") String code, HttpSession session) {	
+	System.out.println("code : " + code);
+
+    String access_Token = AllmemberService.getAccessToken(code);
+    System.out.println("access_Token : " + access_Token);
+    
+    // userInfo의 타입을 KakaoDTO로 변경 및 import.
+ 	    MemberVo userInfo = AllmemberService.getUserInfo(access_Token);
+        System.out.println("login Controller : " + userInfo);
+
+    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+    if (userInfo.get("email") != null) {
+        session.setAttribute("social_kakao", userInfo.get("email"));
+        session.setAttribute("social_token", access_Token);
+    }
+
+    return "home";
+}
+	 @RequestMapping(value="/kakaoLogout.do")
+	    public String kakaoLogout(HttpSession session) {
+	        String access_Token = (String)session.getAttribute("access_Token");
+
+	        if(access_Token != null && !"".equals(access_Token)){
+	        	AllmemberService.kakaoLogout(access_Token);
+	            session.removeAttribute("social_token");
+	            session.removeAttribute("social_kakao");
+	        }else{
+	            System.out.println("social_token is null");
+	            //return "redirect:/";
+	        }
+	        //return "index";
+	        return "redirect:/home.do";
+	    }
+
 	///////////////////////로그인 로직
-    @RequestMapping(value="/loginProcess.do" , method = RequestMethod.POST)
-	public String loginProcess (MemberVo mv , CompanyVo cv , HttpServletRequest request , HttpServletRequest request1) {
-    	String viewPage = null;
+    @RequestMapping(value="/MemberloginProcess.do" , method = RequestMethod.POST , produces="text/html; charset=UTF-8;")
+	public String loginProcess (MemberVo mv , CompanyVo cv , HttpServletRequest request)
+			throws Exception {
     	
-	MemberVo memberVo = AllmemberService.loginMember(mv);
-		if(memberVo != null) {
+    	MemberVo memberVo = AllmemberService.loginMember(mv);
+    	MemberVo memberVo2 = AllmemberService.loginMemberDelynS(mv);
+    	CompanyVo companyVo = AllmemberService.loginCompany(cv);
+    	CompanyVo companyVo2 = AllmemberService.loginCompany_auth(cv);
+    	CompanyVo companyVo3 = AllmemberService.loginCompany_delynS(cv);
+
+    	int msg = 0;
+    	    	
+    	if(memberVo != null || companyVo != null) {
+    		
+    	 if(memberVo != null) {	
 			HttpSession session = request.getSession();
 			session.setAttribute("member_idx", memberVo.getMember_idx());//회원등급 추가
-			session.setAttribute("member_grade", memberVo.getMember_grade());//회원등급 추가
-			session.setAttribute("member_nick",memberVo.getMember_nick());//회원닉네임
+			session.setAttribute("member_grade",memberVo.getMember_grade());//회원등급 추가
+			session.setAttribute("member_nick", memberVo.getMember_nick());//회원닉네임
+			msg = 0;
+			
+		   if(msg==0) {
+			  return "redirect:/home.do";
+		 }
+		   
+    	 }else {
+		    	 HttpSession session1 = request.getSession();
+		    	 session1.setAttribute("company_idx", companyVo.getCompany_idx());//회원등급 추가
+		    	 session1.setAttribute("company_name", companyVo.getCompany_name());//회사이름
+		    	 session1.setAttribute("company_auth", companyVo.getCompany_auth());//회사인증
+		    	 session1.setAttribute("company_delyn", companyVo.getCompany_delyn());//회사인증
+		    msg = 0;
+		    
+		if(msg==0) {
+			return "redirect:/home.do";
+	    }
+    
+    	}
+    	 
+    	}else if(memberVo2 != null) {
+			 msg=1;
+			 
+		 if(msg==1) {
+			request.setAttribute("msg", "사용이 정지된 회원입니다.");
+			request.setAttribute("url", "/travelers/login.do");
+			return "alert";
+		 }	
+		 }else if(companyVo2 != null) {
+	    	 msg=2;
+	    	
+		  if(msg==2){
+			     request.setAttribute("msg", "기업회원은 승인절차 이후 로그인이 가능합니다.");
+		    	 request.setAttribute("url", "/travelers/login.do");
+		    	 return "alert";
+	     }
+		 }else if(companyVo3 != null) {
+	    	 msg=2;
+	    	
+		  if(msg==2){
+			     request.setAttribute("msg", "사용 정지된 기업회원 입니다.");
+		    	 request.setAttribute("url", "/travelers/login.do");
+		    	 return "alert";
+	     } 
 
-	        viewPage = "redirect:/home.do";
-		} else {
-	        
-	CompanyVo company_auth=AllmemberService.loginCompany(cv);     
-	     if(company_auth == null) {
-	    	 HttpSession session1 = request1.getSession();
-	    	 session1.setAttribute("company_name",cv.getCompany_name());//회사이름
-	    	 session1.setAttribute("company_auth",cv.getCompany_auth());//회사인증
-	    	 
-	    	 viewPage = "redirect:/home.do";
-		} else {
-			viewPage = "member/login";
-		}
-	}
-		
-		return viewPage;
-	}
+		  
+    	 }else{	
+    		msg=3;
+    		request.setAttribute("msg", "아이디 혹은 비밀번호가 맞지 않습니다.");
+	  		request.setAttribute("url", "/travelers/login.do");
+			return "alert";
+    	 }
+    	 return null;
+    	
+    }
+
     /////////////////////////////////이용약관 상세 보기
     @RequestMapping(value="/WeArtTermsOfService.do", method = RequestMethod.GET)
 	public String terms1() {
@@ -104,7 +193,34 @@ public class AllMemberController {
 	@RequestMapping(value="/joinfinish.do", method = RequestMethod.POST)
 	public String joinNext4(@RequestParam("email")String email , @RequestParam("pwd")String pwd , @RequestParam("nick") String nick
 			, @RequestParam("name") String name , @RequestParam("birth") String birth, Model model) {
-		
+		String idx ="";
+		for (int i = 1; i <= 12; i++) {
+            int pick = (int)((Math.random() * (20 - 1)) + 1);
+                if (pick <= 5) {
+                    char ch = (char) ((Math.random() * 26) + 65);
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 9) {
+                    char ch = (char) ((Math.random() * 26) + 97);
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 12) {
+                    char ch = (char) ((Math.random() * 10) + 48);
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 14) {
+                    char ch = 33;
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 16) {
+                    char ch = 35;
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 18) {
+                    char ch = 63;
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 20) {
+                    char ch = 94;
+                    idx= idx + String.valueOf(ch);
+                }
+            }
+
+		model.addAttribute("idx", idx);
 		model.addAttribute("email", email);
 		model.addAttribute("pwd", pwd);
 		model.addAttribute("nick", nick);
@@ -116,7 +232,7 @@ public class AllMemberController {
     }
 		@RequestMapping("/fileUploadProcess.do")
 		public String fileUploadProcess(@RequestParam("company_auth") MultipartFile uploadFile,
-				MemberVo memberVo, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
+				CompanyVo CompanyVo, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
 			//<input type ="file" name="uploadFile" />에서 업로드된 파일객체를 MultipartFile uploadFile에 저장
 			
 			//업로드된 파일을 프로젝트 내의 upload 폴더에 저장하기 전에 DB의 upload_file 테이블에 저장할 
@@ -218,17 +334,43 @@ public class AllMemberController {
 }
 	@RequestMapping(value="/join_com_finish.do", method = RequestMethod.POST)
 	public String joinCNext4(@RequestParam("b_no")String b_no , @RequestParam("email")String email , @RequestParam("company_name") String company_name,
-			@RequestParam("ceo") String ceo , @RequestParam("address") String address , @RequestParam("detailAddress") String detailAddress , Model model) {
-		
-		String id= address + detailAddress;
-		  
+			@RequestParam("ceo") String ceo , @RequestParam("address") String address , @RequestParam("detail_address") String detail_address , Model model) {
+		String add= address + detail_address;
+		String idx ="";
+		for (int i = 1; i <= 12; i++) {
+            int pick = (int)((Math.random() * (20 - 1)) + 1);
+                if (pick <= 5) {
+                    char ch = (char) ((Math.random() * 26) + 65);
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 9) {
+                    char ch = (char) ((Math.random() * 26) + 97);
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 12) {
+                    char ch = (char) ((Math.random() * 10) + 48);
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 14) {
+                    char ch = 33;
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 16) {
+                    char ch = 35;
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 18) {
+                    char ch = 63;
+                    idx= idx + String.valueOf(ch);
+                } else if (pick <= 20) {
+                    char ch = 94;
+                    idx= idx + String.valueOf(ch);
+                }
+            }
+	
+		model.addAttribute("idx", idx);
 		model.addAttribute("b_no", b_no);
 		model.addAttribute("email", email);
 		model.addAttribute("company_name", company_name );
 		model.addAttribute("ceo", ceo);
-		model.addAttribute("address" , id ); 
+		model.addAttribute("address" , add ); 
 
-		return "company/join_finish";
+		return "company/join_buis_finish";
 	}
 	//회원가입 완료 로직
 	@RequestMapping(value="/joinMemberProcess.do" , method = RequestMethod.POST)
@@ -241,7 +383,8 @@ public class AllMemberController {
 		if(result==1) {
 			viewPage = "redirect:login.do";
 		}else{
-			viewPage = "member/join_member";
+			
+			viewPage = "redirect:joinMember.do";
 		}
 		
 		return viewPage;
@@ -252,12 +395,11 @@ public class AllMemberController {
 		//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌
 		//이러한 객체를 커맨드 객체라고 함.
 		int result=AllmemberService.joinCompany(companyVo);
-		
 		String viewPage = null;
 		if(result==1) {
 			viewPage = "redirect:login.do";
 		}else{
-			viewPage = "member/join_member";
+			viewPage = "redirect:joinCompany.do";
 		}
 		
 		return viewPage;
@@ -274,21 +416,4 @@ public class AllMemberController {
 
 }
 
-/*
- * @PostMapping("/loginProcess.do") public String loginProcess(MemberVo
- * memberVo, HttpServletRequest request) { //요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는
- * 경우 전달된 값을 그 객체에 매핑시켜줌 //이러한 객체를 커맨드 객체라고 함.
- * 
- * HashMap<String, Long> resultMap=memberService.login(memberVo); long
- * member_auth = resultMap.get("member_auth");//회원인증 long member_grade =
- * resultMap.get("member_grade");//회원등급
- * 
- * String viewPage = null; if(member_auth==1) { HttpSession session =
- * request.getSession(); session.setAttribute("member_id",
- * memberVo.getMember_id());//회원인증 추가 session.setAttribute("member_grade",
- * member_grade);//회원등급 추가 viewPage = "redirect:/home.do";
- * 
- * }else{ viewPage = "member/login"; }
- * 
- * return viewPage; }
- */
+
