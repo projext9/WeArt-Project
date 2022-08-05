@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import we.are.travelers.dao.MemberDao;
 import we.are.travelers.service.AllMemberService;
 import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.MemberVo;
@@ -34,48 +35,6 @@ public class AllMemberController {
 	}
 
 	
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String login() {
-		
-	
-		return "login";
-	}
-	
-	@RequestMapping(value="/kakaoLogin.do")
-	public String kakaologin(@RequestParam("code") String code, HttpSession session) {	
-	System.out.println("code : " + code);
-
-    String access_Token = AllmemberService.getAccessToken(code);
-    System.out.println("access_Token : " + access_Token);
-    
-    // userInfo의 타입을 KakaoDTO로 변경 및 import.
- 	    MemberVo userInfo = AllmemberService.getUserInfo(access_Token);
-        System.out.println("login Controller : " + userInfo);
-
-    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
-    if (userInfo.get("email") != null) {
-        session.setAttribute("social_kakao", userInfo.get("email"));
-        session.setAttribute("social_token", access_Token);
-    }
-
-    return "home";
-}
-	 @RequestMapping(value="/kakaoLogout.do")
-	    public String kakaoLogout(HttpSession session) {
-	        String access_Token = (String)session.getAttribute("access_Token");
-
-	        if(access_Token != null && !"".equals(access_Token)){
-	        	AllmemberService.kakaoLogout(access_Token);
-	            session.removeAttribute("social_token");
-	            session.removeAttribute("social_kakao");
-	        }else{
-	            System.out.println("social_token is null");
-	            //return "redirect:/";
-	        }
-	        //return "index";
-	        return "redirect:/home.do";
-	    }
-
 	///////////////////////로그인 로직
     @RequestMapping(value="/MemberloginProcess.do" , method = RequestMethod.POST , produces="text/html; charset=UTF-8;")
 	public String loginProcess (MemberVo mv , CompanyVo cv , HttpServletRequest request)
@@ -196,28 +155,21 @@ public class AllMemberController {
 		String idx ="";
 		for (int i = 1; i <= 12; i++) {
             int pick = (int)((Math.random() * (20 - 1)) + 1);
-                if (pick <= 5) {
+                if (pick <= 8) {
                     char ch = (char) ((Math.random() * 26) + 65);
                     idx= idx + String.valueOf(ch);
-                } else if (pick <= 9) {
+                } else if (pick <= 14) {
                     char ch = (char) ((Math.random() * 26) + 97);
                     idx= idx + String.valueOf(ch);
-                } else if (pick <= 12) {
+                } else if (pick <= 16) {
                     char ch = (char) ((Math.random() * 10) + 48);
                     idx= idx + String.valueOf(ch);
-                } else if (pick <= 14) {
+                } else if (pick <= 18) {
                     char ch = 33;
                     idx= idx + String.valueOf(ch);
-                } else if (pick <= 16) {
-                    char ch = 35;
-                    idx= idx + String.valueOf(ch);
-                } else if (pick <= 18) {
-                    char ch = 63;
-                    idx= idx + String.valueOf(ch);
                 } else if (pick <= 20) {
-                    char ch = 94;
+                    char ch = 64;
                     idx= idx + String.valueOf(ch);
-                }
             }
 
 		model.addAttribute("idx", idx);
@@ -227,53 +179,17 @@ public class AllMemberController {
 		model.addAttribute("name", name);
 		model.addAttribute("birth", birth);
 		
-		
+		}
 	  return "member/join_finish";
     }
 		@RequestMapping("/fileUploadProcess.do")
-		public String fileUploadProcess(@RequestParam("company_auth") MultipartFile uploadFile,
+		public String fileUploadProcess(@RequestParam("company_auth") MultipartFile company_auth,
 				CompanyVo CompanyVo, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
 			//<input type ="file" name="uploadFile" />에서 업로드된 파일객체를 MultipartFile uploadFile에 저장
 			
 			//업로드된 파일을 프로젝트 내의 upload 폴더에 저장하기 전에 DB의 upload_file 테이블에 저장할 
 			//origin_filename과 system_filename 값을 세팅함
 			
-			String origin_fileName = uploadFile.getOriginalFilename();
-			
-			//시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
-			int dot_idx = origin_fileName.lastIndexOf(".");
-			String fileName1 = origin_fileName.substring(0, dot_idx);
-			String extension = origin_fileName.substring(dot_idx+1);
-			String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
-			String system_fileName = fileName2+"."+extension;
-			
-			//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
-			String upload_dir = "resources/upload/";
-			
-			String realPath = request.getServletContext().getRealPath(upload_dir);
-			System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
-			
-			//지정된 경로에 파일 저장
-			//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
-			String fullPath = realPath+system_fileName;
-			uploadFile.transferTo(new File(fullPath));
-			
-			
-			//파일업로드가 정상적으로 이루어진 것을 gallery_home.jsp에서 확인
-			//model객체에 입력내용(content)와 system_fileName을 추가함
-			//model.addAttribute("content", content);
-			//model.addAttribute("fileName", system_fileName);
-			
-			//파일 업로드 디렉토리에 저장된 모든 파일이름을 가져와서 model객체에 추가
-			/*File[] files = new File(realPath).listFiles();
-			String[] fileNames = new String[files.length];
-			
-			for(int i=0; i<files.length; i++) {
-				fileNames[i] = files[i].getName();
-			}*/
-			
-			String[] fileNames = new File(realPath).list();
-			model.addAttribute("fileNames", fileNames);
 			
 			
 			return "gallery/gallery_home";
@@ -334,7 +250,9 @@ public class AllMemberController {
 }
 	@RequestMapping(value="/join_com_finish.do", method = RequestMethod.POST)
 	public String joinCNext4(@RequestParam("b_no")String b_no , @RequestParam("email")String email , @RequestParam("company_name") String company_name,
-			@RequestParam("ceo") String ceo , @RequestParam("address") String address , @RequestParam("detail_address") String detail_address , Model model) {
+			@RequestParam("ceo") String ceo , @RequestParam("address") String address , @RequestParam("detail_address") String detail_address , @RequestParam("company_auth") 
+	   MultipartFile company_auth , Model model , HttpServletRequest request) throws IllegalStateException, IOException {
+		System.out.println("asdasdasdasd:");
 		String add= address + detail_address;
 		String idx ="";
 		for (int i = 1; i <= 12; i++) {
@@ -362,13 +280,50 @@ public class AllMemberController {
                     idx= idx + String.valueOf(ch);
                 }
             }
+		String origin_fileName = company_auth.getOriginalFilename();
+		
+		//시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
+		int dot_idx = origin_fileName.lastIndexOf(".");
+		String fileName1 = origin_fileName.substring(0, dot_idx);
+		String extension = origin_fileName.substring(dot_idx+1);
+		String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
+		String system_fileName = fileName2+"."+extension;
+		
+		//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+		String upload_dir = "resources/upload/";
+		
+		String realPath = request.getServletContext().getRealPath(upload_dir);
+		System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+		
+		//지정된 경로에 파일 저장
+		//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
+		String fullPath = realPath+system_fileName;
+		company_auth.transferTo(new File(fullPath));
+		
+		
+		//파일업로드가 정상적으로 이루어진 것을 gallery_home.jsp에서 확인
+		//model객체에 입력내용(content)와 system_fileName을 추가함
+		//model.addAttribute("content", content);
+		//model.addAttribute("fileName", system_fileName);
+		
+		//파일 업로드 디렉토리에 저장된 모든 파일이름을 가져와서 model객체에 추가
+		/*File[] files = new File(realPath).listFiles();
+		String[] fileNames = new String[files.length];
+		
+		for(int i=0; i<files.length; i++) {
+			fileNames[i] = files[i].getName();
+		}*/
+		
+		String[] fileNames = new File(realPath).list();
+		//companyVo.setCompany_auth_origin_file_name("company_auth_origin_file_name", fileNames);
 	
 		model.addAttribute("idx", idx);
 		model.addAttribute("b_no", b_no);
 		model.addAttribute("email", email);
 		model.addAttribute("company_name", company_name );
 		model.addAttribute("ceo", ceo);
-		model.addAttribute("address" , add ); 
+		model.addAttribute("address" , add );
+		model.addAttribute("company_auth" , company_auth ); 
 
 		return "company/join_buis_finish";
 	}

@@ -21,10 +21,9 @@ public class MemberVo {
 	private int member_phone_auth; //휴대폰 인증상태
 	private char member_delyn; //사용자 이용상태(N(정상) Y(삭제) S(정지))
 	private Date member_regdate; //가입일자
-	private int member_ip; //
+	private String member_ip; //
     
 	public String getMember_idx() {
-		
 		return member_idx;		
 	}
 	public void setMember_idx(String member_idx) {
@@ -121,10 +120,10 @@ public class MemberVo {
 	public void setMember_regdate(Date member_regdate) {
 		this.member_regdate = member_regdate;
 	}
-	public int getMember_ip() {
+	public String getMember_ip() {
 		return member_ip;
 	}
-	public void setMember_ip(int member_ip) {
+	public void setMember_ip(String member_ip) {
 		this.member_ip = member_ip;
 	}
 	public String getMember_birth() {

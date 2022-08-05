@@ -110,7 +110,7 @@
 <body class="join_member">
 <div class="join_container">
 <main class="join_cont">
-<form class="join_form" name="joinForm" action="/travelers/join_com_finish.do" method="post">
+<form class="join_form" name="joinForm" action="/travelers/join_com_finish.do" method="post" enctype="multipart/form-data">
     <input type="text" name="b_no" value="${b_no }">
     <input type="text" name="email" value="${email }">
     <input type="text" name="pwd" value="${pwd }">

@@ -1,8 +1,11 @@
 package we.are.travelers.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +33,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import we.are.travelers.service.ItemService;
+import we.are.travelers.vo.BoardVo;
+import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.ItemVo;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OptionVo;
@@ -195,6 +203,10 @@ public class ItemController {
 		
 		List<OptionVo> optionList = itemService.getItemOption(item_idx_); //상품 상세 호출(옵션)
 		model.addAttribute("optionList", optionList);
+		
+		String company_idx = itemVo.getCompany_idx();
+		CompanyVo companyVo = itemService.getItemCompany(company_idx); //상품 상세 호출(판매자명)
+		model.addAttribute("companyVo", companyVo);
 		
 		request.setAttribute("itemCode", itemCode_);
 
@@ -505,7 +517,6 @@ public class ItemController {
 	
 	@GetMapping("/itemwrite.do") //판매상품 입력 페이지
 	public String itemwrite(HttpServletRequest request, Model model) {
-		System.out.println("a");
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
 
@@ -513,13 +524,14 @@ public class ItemController {
 			return "login"; //로그인 필요
 
 		} else {
+			itemService.deleteAllItem(company_idx); //찌꺼기 제거
 			return "item/itemwrite";
 		}
 	}
 
 	@PostMapping("/itemwriteaction.do") //판매상품 입력 진행
-	public String itemwriteaction(HttpServletRequest request, Model model) {
-		System.out.println("a2");
+	@ResponseBody
+	public String itemwriteaction(ItemVo itemVo, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
 
@@ -527,9 +539,91 @@ public class ItemController {
 			return "login"; //로그인 필요
 
 		} else {
-			return "item/itemwrite";
+			itemService.deleteAllItem(company_idx); //찌꺼기 제거
+			
+			itemVo.setCompany_idx(company_idx); //기업번호 입력
+			int result = itemService.addItem(itemVo); //게시글 작성
+			if(result == 1) {
+				ItemVo itemVo2 = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
+				int item_idx = itemVo2.getItem_idx();
+				String item_idx_ = String.valueOf(item_idx);
+				
+				return item_idx_;
+			} else {
+				return "home";
+			}
+		}
+	}
+
+	@GetMapping("/itemwrite2.do") //판매상품 입력 페이지
+	public String itemwrite2(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String company_idx = (String)session.getAttribute("company_idx");
+
+		if (company_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+			ItemVo itemVo = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
+			model.addAttribute("itemVo", itemVo);
+			
+			CompanyVo companyVo = itemService.getItemCompany(company_idx); //상품 상세 호출(판매자명)
+			model.addAttribute("companyVo", companyVo);
+			
+			return "item/itemwrite2";
 		}
 	}
 	
+	@PostMapping("/itemimgupload.do") //판매상품 입력 진행
+	@ResponseBody
+	public String itemimgupload(@RequestParam("item_originImg") MultipartFile item_originImg, HttpServletRequest request, Model model) throws IllegalStateException, IOException{
+		HttpSession session = request.getSession();
+		String company_idx = (String)session.getAttribute("company_idx");
+		System.out.println("들어옴");
+
+		if (company_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+			//<input type ="file" name="uploadFile" />에서 업로드된 파일객체를 MultipartFile uploadFile에 저장
+			
+			//업로드된 파일을 프로젝트 내의 upload 폴더에 저장하기 전에 DB의 upload_file 테이블에 저장할 
+			//origin_filename과 system_filename 값을 세팅함
+			
+			String origin_fileName = item_originImg.getOriginalFilename();
+			
+			//시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
+			int dot_idx = origin_fileName.lastIndexOf(".");
+			String fileName1 = origin_fileName.substring(0, dot_idx);
+			String extension = origin_fileName.substring(dot_idx+1);
+			String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
+			String system_fileName = fileName2+"."+extension;
+			
+			//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
+			String upload_dir = "resources/itemimg/";
+
+			String realPath = request.getServletContext().getRealPath(upload_dir);
+			System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+			
+			//지정된 경로에 파일 저장
+			//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
+			String fullPath = realPath+system_fileName;
+			item_originImg.transferTo(new File(fullPath));
+			
+			int result=0; //0:입력 실패
+			
+			ItemVo itemVo = new ItemVo();
+			itemVo.setCompany_idx(company_idx);
+			itemVo.setItem_originImg(origin_fileName);
+			itemVo.setItem_img(system_fileName);
+			
+			result = itemService.addItemImg(itemVo);
+			
+			String result_ = String.valueOf(result);
+			System.out.println(result_);
+			
+			return result_;
+		}
+	}
 	
 }

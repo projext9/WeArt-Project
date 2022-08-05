@@ -1,4 +1,7 @@
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+/*
+* Copyright 2022 Team We-Art
+* Licensed under MIT (https://github.com/projext9/WeArt-Project)
+*/
 (function () {
   'use strict'
 

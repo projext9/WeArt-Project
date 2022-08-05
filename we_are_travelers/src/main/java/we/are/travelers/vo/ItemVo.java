@@ -7,8 +7,8 @@ public class ItemVo {
 	private int item_idx;
 	private String company_idx;
 	private String item_code;
-	private String item_codeName;
 	private String item_name;
+	private String item_originImg;
 	private String item_img;
 	private int item_price;
 	private int item_postPrice;
@@ -26,7 +26,6 @@ public class ItemVo {
 	private String item_input12;
 	private String item_content;
 	private String item_addr;
-	private String item_cashReceipt;
 	private Date item_date;
 	private String item_delyn;
 	
@@ -48,17 +47,17 @@ public class ItemVo {
 	public void setItem_code(String item_code) {
 		this.item_code = item_code;
 	}
-	public String getItem_codeName() {
-		return item_codeName;
-	}
-	public void setItem_codeName(String item_codeName) {
-		this.item_codeName = item_codeName;
-	}
 	public String getItem_name() {
 		return item_name;
 	}
 	public void setItem_name(String item_name) {
 		this.item_name = item_name;
+	}
+	public String getItem_originImg() {
+		return item_originImg;
+	}
+	public void setItem_originImg(String item_originImg) {
+		this.item_originImg = item_originImg;
 	}
 	public String getItem_img() {
 		return item_img;
@@ -161,12 +160,6 @@ public class ItemVo {
 	}
 	public void setItem_addr(String item_addr) {
 		this.item_addr = item_addr;
-	}
-	public String getItem_cashReceipt() {
-		return item_cashReceipt;
-	}
-	public void setItem_cashReceipt(String item_cashReceipt) {
-		this.item_cashReceipt = item_cashReceipt;
 	}
 	public Date getItem_date() {
 		return item_date;

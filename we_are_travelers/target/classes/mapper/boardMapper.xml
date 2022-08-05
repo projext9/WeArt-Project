@@ -6,24 +6,49 @@
 
 	<!-- board_list -->
 	<insert id="insert_board" parameterType="boardVo">
-		insert into weart_board(board_originidx, board_code, board_subject, board_content, board_writer, board_image, board_ip, board_remove_tag)
-			select ifnull(MAX(board_idx)+1, 1), 0, #{board_subject}, #{board_content}, #{board_writer}, #{board_image}, #{board_ip}, #{board_remove_tag} from weart_board
+		insert into weart_board(board_originidx, board_code, board_subject, board_content, board_writer, board_image, board_ip, board_remove_tag, member_idx)
+			select ifnull(MAX(board_idx)+1, 1), #{board_code}, #{board_subject}, #{board_content}, #{board_writer}, #{board_image}, #{board_ip}, #{board_remove_tag}, #{member_idx} from weart_board
 	</insert>
 	<select id="board_list" resultType="boardVo">
 		select A.* from(
 			select * from weart_board where board_delyn='N' and board_idx=board_originidx
 			<if test="my_board!=''">and board_writer=#{my_board}</if>
+			<if test="board_code!=''">and board_code=#{board_code}</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='content'">and board_remove_tag like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
 			<if test="order_by=='order_new'">order by board_date desc</if>
 			<if test="order_by=='order_like'">order by board_like desc</if>
 			<if test="order_by=='order_reply'">order by board_reply desc</if>
-		)A limit ${(page-1)*12}, ${page*12}
+		)A limit ${(page-1)*12}, 12
 	</select>
 	<select id="board_total" resultType="int">
-		select count(*) as cnt from weart_board where board_delyn='N'
+		select count(*) as cnt from weart_board where board_delyn='N' and board_idx=board_originidx
 			<if test="my_board!=''">and board_writer=#{my_board}</if>
+			<if test="board_code!=''">and board_code=#{board_code}</if>
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='content'">and board_content like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<!-- inquiry -->
+	<select id="inquiry_list" resultType="boardVo">
+		select A.* from(
+			select * from weart_board where board_delyn='N' and board_idx=board_originidx
+			<if test="my_board!=''">and board_writer=#{my_board}</if>
+			<if test="board_code==''">and board_code like CONCAT('%','inquiry','%')</if>
+			<if test="board_code!=''">and board_code like CONCAT('%',#{board_code})</if>
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='content'">and board_remove_tag like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			order by board_date desc
+		)A limit ${(page-1)*12}, ${page*12}
+	</select>
+	<select id="inquiry_total" resultType="int">
+		select count(*) as cnt from weart_board where board_delyn='N' and board_code like CONCAT('%','inquiry','%')
+			<if test="my_board!=''">and board_writer=#{my_board}</if>
+			<if test="board_code==''">and board_code like CONCAT('%','inquiry','%')</if>
+			<if test="board_code!=''">and board_code like CONCAT('%',#{board_code})</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='content'">and board_content like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
@@ -39,11 +64,8 @@
 	<update id="delete_board">
 		update weart_board set board_delyn='Y', board_date=now() where board_idx=#{board_idx}
 	</update>
-	<select id="board_modify_content" resultType="boardVo">
-		select * from weart_board where board_delyn='N' and board_idx=#{board_idx}
-	</select>
 	<update id="modify_board">
-		update weart_board set board_subject=#{board_subject}, board_content=#{board_content}, board_image=#{board_image}, board_remove_tag=#{board_remove_tag}, board_date=now() where board_idx=#{board_idx}
+		update weart_board set board_subject=#{board_subject}, board_content=#{board_content}, board_image=#{board_image}, board_remove_tag=#{board_remove_tag}, board_ip=#{board_ip}, board_date=now() where board_idx=#{board_idx}
 	</update>
 	
 	<!-- board_reply -->
@@ -59,11 +81,20 @@
 		select count(*) as cnt from weart_board where board_delyn='N' and board_originidx=#{board_idx} and board_idx!=#{board_idx}
 	</select>
 	<insert id="insert_reply">
-		insert into weart_board(board_originidx, board_code, board_content, board_writer, board_ip)
-			values(#{board_idx}, 0, #{board_content}, #{board_writer}, #{board_ip})
+		insert into weart_board(board_originidx, board_code, board_content, board_writer, board_ip, member_idx)
+			values(#{board_idx}, #{board_code}, #{board_content}, #{board_writer}, #{board_ip}, #{member_idx})
 	</insert>
+	<update id="delete_reply">
+		update weart_board set board_delyn='Y', board_date=now() where board_idx=#{board_idx} and board_originidx!=#{board_idx}
+	</update>
+	<update id="modify_reply">
+		update weart_board set board_content=#{board_content}, board_ip=#{board_ip}, board_date=now() where board_idx=#{board_idx}
+	</update>
 	<update id="update_reply">
-		update weart_board set board_reply = board_reply+1 where board_idx=#{board_idx}
+		update weart_board set board_reply = 
+			<if test="board_reply==1">board_reply+1</if>
+			<if test="board_reply==0">board_reply-1</if>
+		where board_idx=#{board_idx}
 	</update>
 	
 	<!-- board_like -->
@@ -76,17 +107,14 @@
 			<if test="board_like!=1">board_like-1</if>
 		where board_idx=#{board_idx}
 	</update>
-	
-	<!-- my_board -->
-	<select id="my_board" resultType="boardVo">
-		select A.* from(
-			select * from weart_board where board_delyn='N' and board_idx=board_originidx and board_writer=#{board_writer}
-			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
-			<if test="searchType=='content'">and board_remove_tag like CONCAT('%',#{keyword},'%')</if>
-			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
-			<if test="order_by=='order_new'">order by board_date desc</if>
-			<if test="order_by=='order_like'">order by board_like desc</if>
-			<if test="order_by=='order_reply'">order by board_reply desc</if>
-		)A limit ${(page-1)*12}, ${page*12}
+	<insert id="insert_board_like">
+		insert into weart_board_like(board_idx, member_idx)
+			values(#{board_idx}, #{member_idx})
+	</insert>
+	<delete id="delete_board_like">
+		delete from weart_board_like where board_idx=#{board_idx} and member_idx=#{member_idx}
+	</delete>
+	<select id="select_like_count" resultType="int">
+		select count(*) from weart_board_like where board_idx=#{board_idx} and member_idx=#{member_idx}
 	</select>
 </mapper>

@@ -17,7 +17,8 @@ public class CompanyVo {
 	private int company_auth;
 	private Date company_regdate;
 	private char company_delyn;
-	private int company_ip;
+	private String company_ip;
+	
 	public String getCompany_idx() {
 		return company_idx;
 	}
@@ -96,10 +97,10 @@ public class CompanyVo {
 	public void setCompany_delyn(char company_delyn) {
 		this.company_delyn = company_delyn;
 	}
-	public int getCompany_ip() {
+	public String getCompany_ip() {
 		return company_ip;
 	}
-	public void setCompany_ip(int company_ip) {
+	public void setCompany_ip(String company_ip) {
 		this.company_ip = company_ip;
 	}
 	

@@ -57,7 +57,7 @@
 		    	</div>
 		    	<div class="carousel-inner">
 					<div class="carousel-item active">
-				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishing2.png" aria-hidden="true"></img>
+				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing2.png" aria-hidden="true"></img>
 					        <div class="container">
 								<div class="carousel-caption text-start">
 									<h1 style="text-shadow:5px 5px 5px #000;">이것은 낚시상품</h1>
@@ -67,7 +67,7 @@
 					        </div>
 					</div>
 					<div class="carousel-item">
-						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishing3.png" aria-hidden="true"></img>
+						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing3.png" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption">
 								<h1 style="text-shadow:5px 5px 5px #000;">극강의 퀄리티</h1>
@@ -77,7 +77,7 @@
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishing1.png" aria-hidden="true"></img>
+						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing1.png" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption text-end">
 								<h1 style="text-shadow:5px 5px 5px #000;">환상적인 중국산 제품</h1>
@@ -145,7 +145,7 @@
 							<!-- Hot badge-->
                             <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="${pageContext.request.contextPath}/resources/upload/${itemVo.item_img}" alt="..." />
+                            <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${itemVo.item_img}" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">

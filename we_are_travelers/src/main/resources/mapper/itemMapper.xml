@@ -4,6 +4,23 @@
 
 <mapper namespace = "we.are.travelers.item">
 
+	<delete id="deleteAllItem"> <!-- 찌꺼기 제거 -->
+		DELETE FROM weart_item WHERE company_idx = #{company_idx} AND item_delyn = "T"
+	</delete>
+	
+	<insert id="addItem" parameterType="itemVo"> <!-- 아이템 작성 -->
+		INSERT INTO weart_item(company_idx,item_code,item_name,item_originImg,item_img,item_price,item_postPrice,item_input1,item_input2,item_input3,item_input4,item_input5,item_input6,item_input7,item_input8,item_input9,item_input10,item_input11,item_content,item_delyn)
+			VALUES(#{company_idx},#{item_code},#{item_name},#{item_originImg},#{item_img},#{item_price},#{item_postPrice},#{item_input1},#{item_input2},#{item_input3},#{item_input4},#{item_input5},#{item_input6},#{item_input7},#{item_input8},#{item_input9},#{item_input10},#{item_input11},#{item_content},"T")
+	</insert>
+	
+	<select id="getAddedItem" resultType="itemVo"> <!-- 최근 작성 상품 호출 -->
+		SELECT * FROM weart_item WHERE company_idx = #{company_idx} AND item_delyn = "T" ORDER BY item_idx DESC LIMIT 0,1
+	</select>
+	
+	<update id="addItemImg"> <!-- 상품 이미지 업로드 -->
+		UPDATE weart_item SET item_originImg = #{item_originImg}, item_img = #{item_img} WHERE company_idx = #{company_idx} AND item_delyn = "T"
+	</update>
+	
 	<select id="item_total_culture" resultType="int"> <!-- 상품 cnt 계산(문화) -->
 		SELECT COUNT(*) as cnt FROM weart_item WHERE item_delyn="N" AND item_code="1"
 			<if test="searchType=='subject'">AND item_name LIKE CONCAT('%',#{keyword},'%')</if>
@@ -90,11 +107,15 @@
 	</select>
 
 	<select id="getItemDetail" resultType="itemVo">	<!-- 상품 상세 호출 -->
-		SELECT * FROM weart_item WHERE item_idx = #{item_idx}
+		SELECT * FROM weart_item WHERE item_idx = #{item_idx} AND item_delyn='N'
 	</select>
 	
 	<select id="getItemOption" resultType="optionVo"> <!-- 상품 상세 호출(옵션) -->
-		SELECT * FROM weart_option WHERE item_idx = #{item_idx}
+		SELECT * FROM weart_option WHERE item_idx = #{item_idx} AND option_delyn='N'
+	</select>
+	
+	<select id="getItemCompany" resultType="companyVo"> <!-- 상품 상세 호출(판매자명) -->
+		SELECT * FROM weart_company WHERE company_idx = #{company_idx} AND company_delyn = 'N'
 	</select>
 
 	<insert id="addItemCart" parameterType="map"> <!-- 장바구니 담기 -->
@@ -154,12 +175,12 @@
 	
 	<insert id="addOrderDetail" parameterType="map"> <!-- 주문서 등록(개별상품) -->
 		INSERT INTO weart_order(member_idx,orderLast_num,option_idx,company_idx,order_itemName,order_optionName,order_price,order_count,order_postPrice,order_totalPrice) 
-		VALUES(#{member_idx}, #{orderLast_num}, #{option_idx}, #{company_idx}, #{order_itemName}, #{order_optionName}, #{order_price}, #{order_count}, #{order_postPrice}, #{order_totalPrice})
+			VALUES(#{member_idx}, #{orderLast_num}, #{option_idx}, #{company_idx}, #{order_itemName}, #{order_optionName}, #{order_price}, #{order_count}, #{order_postPrice}, #{order_totalPrice})
 	</insert>
 
 	<insert id="addOrderLast" parameterType="map"> <!-- 주문서 등록 -->
 		INSERT INTO weart_order_last(orderLast_num,member_idx,orderLast_itemPrice,orderLast_postPrice,orderLast_totalPrice,orderLast_name,orderLast_phone,orderLast_address,orderLast_msg) 
-		VALUES(#{orderLast_num}, #{member_idx}, #{orderLast_itemPrice}, #{orderLast_postPrice}, #{orderLast_totalPrice}, #{orderLast_name}, #{orderLast_phone}, #{orderLast_address}, #{orderLast_msg})
+			VALUES(#{orderLast_num}, #{member_idx}, #{orderLast_itemPrice}, #{orderLast_postPrice}, #{orderLast_totalPrice}, #{orderLast_name}, #{orderLast_phone}, #{orderLast_address}, #{orderLast_msg})
 	</insert>
 	
 	<select id="getOrderList" parameterType="map" resultType="orderVo"> <!-- 주문예정 상품 호출 -->

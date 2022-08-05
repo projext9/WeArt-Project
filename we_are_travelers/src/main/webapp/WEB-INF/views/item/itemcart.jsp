@@ -54,7 +54,7 @@
 																<input type="checkbox" name="cart_idx" value="${map.cart_idx}" onClick="sum_itemPrice(this.form); sum_postPrice(this.form); sum_totalPrice(this.form); " checked="checked"/>
 								                         	</td>
 															<td>
-																<div class="rounded" style="background-image: url(${pageContext.request.contextPath}/resources/upload/${map.item_img}); width: 60px; height: 60px; background-size: cover;"></div>
+																<div class="rounded" style="background-image: url(${pageContext.request.contextPath}/resources/img/item/${map.item_img}); width: 60px; height: 60px; background-size: cover;"></div>
 															</td>
 															<td class="align-middle text-left"><a href="${pageContext.request.contextPath}/itemdetail.do?iidx=${map.item_idx}">${map.item_name}</a> | ${map.option_name}</td>
 															<td class="align-middle text-center" rowspan="3" style="border-bottom-color: black; border-left-width: 1px;">&#8361;${map.option_price*map.cart_count}<input type="hidden" name="item_price" value="${map.option_price*map.cart_count}" /></td>

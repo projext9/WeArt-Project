@@ -13,6 +13,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/weart_login.css" rel="stylesheet" />
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
    <script>
       $(document).ready(function() {
@@ -30,12 +31,11 @@
   	  
   	      $("#member_form_pwd").change(function(){
   	          $('#company_form_pwd').val($(this).val());
-  	    });	
-    	  
-    	  
+  	    });	  
     	  
       });
    </script>
+   
  </head>
   
  <body class="text-center"> 
@@ -76,8 +76,11 @@
     <img src="${pageContext.request.contextPath}/resources/images/kakao_login.png" width="200" height="50" alt="카카오 로그인">
     </a>
     </div>
-    <div class="social_logoN">
+
+    <div class="social_logoN" id="naver_id_login">
+    <a href="${url}">
     <img src="${pageContext.request.contextPath}/resources/images/naver_login.png" width="200" height="50" alt="네이버 로그인">
+    </a>
     </div>
     <br />
      <div class="social_logoG">

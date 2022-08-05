@@ -53,6 +53,10 @@
 			<exclude-mapping path="/campingshop.do"/>
 			<exclude-mapping path="/stayshop.do"/>
 			<exclude-mapping path="/itemdetail.do"/>
+			
+			<!-- HomeController -->
+			<exclude-mapping path="/testlogin.do"/>
+			<exclude-mapping path="/testloginProcess.do"/>
 
 			<!-- 예외처리 종료 -->
 

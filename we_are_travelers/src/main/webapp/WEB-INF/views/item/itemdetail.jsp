@@ -55,7 +55,7 @@
 							<div class="product-images">
 								<main id="gallery">
 									<div class="main-img">
-										<img src="${pageContext.request.contextPath}/resources/upload/${itemVo.item_img}" style="max-width: 500px; max-height: 500px;" alt="#">
+										<img src="${pageContext.request.contextPath}/resources/itemimg/${itemVo.item_img}" style="max-width: 500px; max-height: 500px;" alt="#">
 									</div>
 								</main>
 							</div>
@@ -66,7 +66,7 @@
 							    <hr class="featurette-divider">
 								<h3 class="price">&#8361; ${itemVo.item_price}</h3>
 								<p class="info-text">${itemVo.item_input1}</p>
-								<p class="info-text">판매자 : ㅇㅇ컴퍼니<br>택배회사 : ${itemVo.item_input2}<br>배송비 : ${itemVo.item_postPrice}원</p>
+								<p class="info-text">판매자 : ${companyVo.company_name}<br>택배회사 : ${itemVo.item_input2}<br>배송비 : ${itemVo.item_postPrice}원</p>
 
 								<div class="row">
 									<div class="col-lg-6 col-md-6 col-6">
@@ -240,7 +240,12 @@
 										<li>ㆍ화면 색상이나 이미지가 실제와 달라, 고객이 단순 변심으로 교환/반품을 무료로 요청하는 경우</li>
 										<li>ㆍ제조사의 사정 (신제품 출시 등) 및 부품 가격 변동 등에 의해 무상 교환/반품을 요청하는 경우</li>
 									</ul>
-									<h4>상품별 취소/반품 제한 세부사항&nbsp;&nbsp;<button type="button" class="btn btn-outline-info btn-sm">팝업으로 확인</button></h4>
+									<h4>상품별 취소/반품 제한 세부사항&nbsp;&nbsp;
+									<!-- Button trigger modal -->
+									<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+									  팝업으로 확인
+									</button>
+									</h4>
 								</div>
 							</div>
 							
@@ -249,6 +254,66 @@
 				</div>
 			</div>
 		</section>
+		
+		<!-- Modal Start -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">취소/반품 제한 세부</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+
+						<div class="info-body">
+							<table class="product-details-table">
+								<tr>
+									<th>온라인 상품</th>
+								</tr>
+								<tr>
+									<td>ㆍ코드가 발급되어 코드만드로 사용 될 수 있는 상품(유출가능 품목)<br>
+										ㆍ이미 사용되어진 상품
+									</td>
+								</tr>
+								<tr>
+									<th>의류/잡화/수입명품</th>
+								</tr>
+								<tr>
+									<td>ㆍ주문/제작 상품의 경우, 상품의 제작이 이미 진행된 경우</td>
+								</tr>
+								<tr>
+									<th>계절상품/식품/화장품</th>
+								</tr>
+								<tr>
+									<td>ㆍ신선/냉장/냉동 식품의 단순변심의 경우<br>
+										ㆍ뷰티 상품 이용 시 트러블(알러지, 붉은 반점, 가려움, 따가움)이 발생하는 경우,<br>
+										   진료 확인서 및 소견서 등을 증빙하면 환불이 가능 (제반비용 고객부담)
+									</td>
+								</tr>
+								<tr>
+									<th>전자/가전/설치상품</th>
+								</tr>
+								<tr>
+									<td>ㆍ설치 또는 사용하여 재판매가 어려운 경우, 액정이 있는 상품의 전원을 켠 경우<br>
+										ㆍ상품의 시리얼 넘버 유출로 내장된 소프트웨어의 가치가 감소한 경우 (내비게이션, OS시리얼이 적힌 PMP)<br>
+										ㆍ홀로그램 등을 분리, 분실, 훼손하여 상품의 가치가 현저히 감소하여 재판매가 불가할 경우 (노트북, 데스크탑 PC 등)<br>
+									</td>
+								</tr>
+								<tr>
+									<th>CD/DVD/GAME/BOOK</th>
+								</tr>
+								<tr>
+									<td>ㆍ복제가 가능한 상품의 포장 등을 훼손한 경우</td>
+								</tr>
+							</table>
+						</div>
+
+					</div>
+		    	</div>
+		  	</div>
+		</div>
+		<!-- Modal End -->
+
 		<a href="javascript:window.history.back();" class="scroll-back" style="display: flex;"><i class="bi bi-arrow-return-left"></i></a>
 		<a href="#" class="scroll-top" style="display: flex;"><i class="bi bi-arrow-up"></i></a>
 		<%@ include file="../footer.jsp"%>

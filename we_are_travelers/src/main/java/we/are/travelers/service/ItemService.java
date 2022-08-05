@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import we.are.travelers.dao.ItemDao;
+import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.ItemVo;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OptionVo;
@@ -35,10 +36,22 @@ public class ItemService {
 		this.itemDao = itemDao;
 	}
 	
-	public int addItem(ItemVo itemVo) {
+	public int deleteAllItem(String company_idx) { //찌꺼기 제거
+		return itemDao.deleteAllItem(company_idx);
+	}
+	
+	public int addItem(ItemVo itemVo) { //판매상품 등록
 		return itemDao.addItem(itemVo);
 	}
 
+	public ItemVo getAddedItem(String company_idx) { //최근 작성 상품 호출
+		return itemDao.getAddedItem(company_idx);
+	}
+	
+	public int addItemImg(ItemVo itemVo) { //상품 이미지 업로드
+		return itemDao.addItemImg(itemVo);
+	}
+	
 	public int item_total_culture(SearchCriteria scri) { //상품 리스트 갯수(문화)
 		return itemDao.item_total_culture(scri);
 	}
@@ -85,6 +98,10 @@ public class ItemService {
 	
 	public List<OptionVo> getItemOption(int item_idx) { //상품 상세 호출(옵션)
 		return itemDao.getItemOption(item_idx);
+	}
+	
+	public CompanyVo getItemCompany(String company_idx) { //상품 상세 호출(판매자명)
+		return itemDao.getItemCompany(company_idx);
 	}
 	
 	public int addItemCart(HashMap<String, Object> map) { //장바구니 담기

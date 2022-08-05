@@ -6,9 +6,19 @@
 <html>
     <head>
         <title>We-Art Project</title>
+		<style>
+			.ck-editor__editable {min-height:500px;}
+		</style>
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 		<script>
+			<!-- CKEditor5 코드 -->
+			function MyCustomUploadAdapterPlugin(editor) {
+			    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+			        return new UploadAdapter(loader);
+			    }
+			}
+		
 			$(function(){
 			$("#item_input2_text").hide();
 			$("#item_input2").change(function() {
@@ -19,45 +29,87 @@
 					}
 				}) 
 			});
+			
+	 		function fn_itemwrite() {
+	 			alert("게시글 작성 실행");
+	 			var frmData = $("#frm1, #frm2, #frm3, #frm4, #frm5").serialize();
+				var item_idx = "";
+		 		$.ajax({
+					method: 'post',
+	 			    url: 'itemwriteaction.do',
+	 			    data: frmData,
+	 			    dataType: 'html',
+	 			    cache: false,
+					success: function(data) {
+						alert(data);
+						item_idx = data;
+						location.href = "${pageContext.request.contextPath}/itemwrite2.do";
+						},
+					error: function(error){ alert("에러!"); }
+				})
+	 		}
 		</script>
     </head>
 	<body>
-		<header class="header navbar-area">
-			<div class="header-middle">
+		<div class="container" style="padding-top: 80px;">
+			<div class="row text-center">
+				<div class="col-sm col-12">
+					<div class="alert alert-primary bg-alert-bg" role="alert">
+						1 . 상품 작성
+					</div>
+				</div>
+				<div class="col-sm col-12">
+					<div class="alert alert-secondary" role="alert">
+						2 . 옵션 등록
+					</div>
+				</div>
+				<div class="col-sm col-12">
+					<div class="alert alert-secondary" role="alert">
+						3 . 등록 완료
+					</div>
+				</div>
 			</div>
-		</header>
-		
+		</div>
+
 		<section class="item-details section">
 			<div class="container">
 				<div class="top-area">
 					<div class="row align-items-center">
 						<div class="col-lg-6 col-md-12 col-12">
-							<div class="product-images">
-								<main id="gallery">
-									<div class="main-img">
-										<input type="image" name="item_originImg"> <!-- @아이템 이미지 -->
+							<div class="main-img">
+								<div class="product-images" style="width: 500px; height: 500px; text-align: center; border: 1px solid black;">
+									<div style="margin-top: 30%;"><p style="font-size: 40px; color: blue;">대표사진</p></div>
+									<form name="frm1" id="frm1">
+									<div style="margin-top: 30%;">
+									카테고리 선택
+									<br>
+									<select id="item_code" name="item_code"> <!-- @아이템 코드 입력 -->
+										<option value="1">문화</option>
+										<option value="2">액티비티</option>
+										<option value="3">낚시</option>
+										<option value="4">캠핑</option>
+										<option value="5">숙박</option>
+									</select>
 									</div>
-								</main>
+									</form>
+								</div>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-12 col-12">
 							<div class="product-info">
-								<h2 class="title"><input type="text" name="item_name" value="상품이름" maxlength="20"></h2> <!-- @아이템 이름 -->
+								<form name="frm2" id="frm2">
+								<h2 class="title"><input type="text" name="item_name" value="상품 이름(20자)" maxlength="20"></h2> <!-- @아이템 이름 -->
 							    <hr class="featurette-divider">
-								<h3 class="price">&#8361; <input type="text" name="item_price" maxlength="10"></h3> <!-- @아이템 가격 -->
-								<p class="info-text"><input type="text" name="item_input1" maxlength="40"></p> <!-- @아이템 간단설명 -->
+								<h3 class="price">&#8361; <input type="text" name="item_price" value="1000" size="20" maxlength="10"></h3> <!-- @아이템 가격 -->
+								<p class="info-text"><input type="text" name="item_input1" value="상품 간단 설명(40자)" size="40" maxlength="40"></p> <!-- @아이템 간단설명 -->
 								<p class="info-text">판매자 : <br>택배회사 : <br>배송비 : 원</p>
+								</form>
 
 								<div class="row">
 									<div class="col-lg-6 col-md-6 col-6">
 										<div class="form-group">
 											<label for="optionValue">옵션 선택</label>
-											<select class="form-control" id="optionValue" onchange="optionSelect(this)">
-												<c:forEach var="optionVo" items="${optionList}">
-													<c:if test="${optionVo.option_delyn == 'N'}">
-														<option value="${optionVo.option_idx}">${optionVo.option_name}</option>
-													</c:if>
-												</c:forEach>
+											<select class="form-control">
 											</select>
 										</div>
 									</div>
@@ -65,12 +117,7 @@
 									<div class="col-lg-6 col-md-6 col-6">
 										<div class="form-group quantity">
 											<label for="color">수량</label>
-											<select class="form-control" id="pieceValue" onchange="pieceSelect(this)">
-												<option value="1">1개</option>
-												<option value="2">2개</option>
-												<option value="3">3개</option>
-												<option value="4">4개</option>
-												<option value="5">5개</option>
+											<select class="form-control">
 											</select>
 										</div>
 									</div>
@@ -106,9 +153,11 @@
 							<div class="col-lg-12 col-12">
 								<div class="info-body">
 									<h4>상품상세 정보</h4>
-									<p><input type="text" name="item_content" value="상품설명입니다."> <!-- @아이템 상세정보 -->
+									<form name="frm3" id="frm3">
+									<p><textarea class="editor" name="item_content" id="validationCustom05" required placeholder="내용을 입력하세요"></textarea> <!-- @아이템 상세정보 -->
 									</p>
 									<input type="text" name="item_addr"> <!-- @아이템 지도 주소 -->
+									</form>
 								</div>
 							</div>
 							
@@ -125,6 +174,7 @@
 							<div class="col-lg-6 col-12">
 								<div class="info-body">
 									<h4>기본 표기정보</h4>
+									<form name="frm4" id="frm4">
 									<table class="product-details-table">
 										<tr>
 											<th>품명 및 모델명</th>
@@ -143,12 +193,14 @@
 											<td colspan="2"><input type="text" name="item_input7" value="05012345678" maxlength="20"></td> <!-- @아이템 소비자상담 관련 전화번호 -->
 										</tr>
 									</table>
+									</form>
 								</div>
 							</div>
 							
 							<div class="col-lg-6 col-12">
 								<div class="info-body">
 									<h4>배송정보</h4>
+									<form name="frm5" id="frm5">
 									<table class="product-details-table">
 										<tr>
 											<th>배송방법</th>
@@ -232,7 +284,7 @@
 													<option value="GS택배">GS택배</option>
 													<option value="write">직접입력</option>
 												</select>
-												<input type="text" id="item_input2_text" name="item_input2_text" maxlength="10">
+												<input type="text" id="item_input2_text" name="item_input2_text" size="10" maxlength="10">
 											</td>
 										</tr>
 										<tr>
@@ -245,6 +297,7 @@
 											</td>
 										</tr>
 									</table>
+									</form>
 								</div>
 							</div>
 							
@@ -253,10 +306,34 @@
 				</div>
 			</div>
 			<br>
-			<div style="text-align: center;"><button type="button" class="btn btn-primary btn-lg" onClick="">상품 게시</button></div>
+			<div style="text-align: center;"><button type="button" class="btn btn-primary btn-lg" onClick="fn_itemwrite()">상품 게시(다음)</button></div>
 		</section>
-		<a href="javascript:window.history.back();" class="scroll-back" style="display: flex;"><i class="bi bi-arrow-return-left"></i></a>
-		<a href="#" class="scroll-top" style="display: flex;"><i class="bi bi-arrow-up"></i></a>
+
+		<!-- CKEditor5 -->
+		<script src="${pageContext.request.contextPath}/resources/ckeditor/build/ckeditor.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/ckeditor/UploadAdapter.js"></script>
+		<script>
+			ClassicEditor
+				.create( document.querySelector( '.editor' ), {
+					extraPlugins: [MyCustomUploadAdapterPlugin],	// 이미지 업로드 어댑터
+					licenseKey: '',
+					mediaEmbed: {									// 동영상 업로드
+					    previewsInData:true
+					},
+				} )
+				.then( editor => {
+					window.editor = editor;
+				} )
+				.catch( error => {
+					console.error( 'Oops, something went wrong!' );
+					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+					console.warn( 'Build id: epob765mepsi-71uxdxxu3a3m' );
+					console.error( error );
+				} );
+		</script>
+		<script src="${pageContext.request.contextPath}/resources/js/form-validation.js"></script>
+		<!-- /CKEditor5 -->
+		
 		<%@ include file="../footer.jsp"%>
     </body>
 </html>

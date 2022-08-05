@@ -8,12 +8,16 @@ public class SearchCriteria extends Criteria {
 	private String view;
 	private int board_idx;
 	private String my_board;
+	private String board_code;
 
 	public SearchCriteria() {
 		this.searchType = "";
 		this.keyword = "";
 		this.order_by = "";
 		this.view = "";
+		this.board_idx = 0;
+		this.my_board = "";
+		this.board_code = "";
 	}
 	public String getSearchType() {
 		return searchType;
@@ -50,6 +54,12 @@ public class SearchCriteria extends Criteria {
 	}
 	public void setMy_board(String my_board) {
 		this.my_board = my_board;
+	}
+	public String getBoard_code() {
+		return board_code;
+	}
+	public void setBoard_code(String board_code) {
+		this.board_code = board_code;
 	}
 	
 }

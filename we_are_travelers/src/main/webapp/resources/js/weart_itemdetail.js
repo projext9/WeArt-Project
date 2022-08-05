@@ -18,7 +18,7 @@ $(function(){ //장바구니 담기
 	$("#additemcart").click(function(){
 		$.ajax({
 			type: "post",
-			url: "${pageContext.request.contextPath}/itemcartadd.do",
+			url: "itemcartadd.do",
 			data: {
 				"optionValue": $("#optionValue option:selected").val(),
 				"pieceValue": $("#pieceValue option:selected").val()

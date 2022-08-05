@@ -427,3 +427,8 @@ span, a {
     transition: all .3s ease-out 0s;
     border-radius: 4px;
 }
+
+.bg-alert-bg {
+    box-shadow: 0 0 10px rgb(0 0 0 / 80%);
+    transform: scale(1.05);
+}
