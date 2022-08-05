@@ -132,9 +132,5 @@ public class MemberVo {
 	public void setMember_birth(String member_birth) {
 		this.member_birth = member_birth;
 	}
-	public Object get(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

@@ -8,10 +8,16 @@
 <link href="${pageContext.request.contextPath}/resources/css/weart_join_terms_of.css" rel="stylesheet" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+
 $(function() {
+
 // 체크박스 전체 선택
 $(".checkbox_group").on("click", "#check_all", function () {
-    $(this).parents(".checkbox_group").find('input').prop("checked", $(this).is(":checked"));
+	
+	
+	$(this).parents(".checkbox_group").find('input').prop("checked", $(this).is(":checked"));
+		
+   
 });
 
 // 체크박스 개별 선택
@@ -24,7 +30,29 @@ $(".checkbox_group").on("click", ".normal", function() {
 
     $("#check_all").prop("checked", is_checked);
 });
+
 });
+//필수체크 만족하면 버튼 활성화
+$(document).ready(function() {
+	
+	$('.join_agree').prop('disabled', true);
+	
+	$('input[type=checkbox]').on("input", function() {
+		var is_checked = true;
+		var agree_1 =$("#check_1").prop("checked");
+		var agree_2 =$("#check_2").prop("checked");
+		var agree_3 =$("#check_3").prop("checked");
+		
+	if(agree_1 && agree_2 && agree_3 == is_checked) {
+		$('.join_agree').prop('disabled', false);
+	}else{
+		$('.join_agree').prop('disabled', true);
+	}  
+	});
+});
+	
+
+
 </script>
 </head>
 <div class="checkbox_group">
@@ -49,7 +77,7 @@ $(".checkbox_group").on("click", ".normal", function() {
   <input type="checkbox" id="check_3" class="normal" >
   <label for="check_3">기업회원 마케팅 수신에 동의합니다.(선택)</label><a target="_blank" href="/travelers/CompanyMarketing.do">></a>
   </li>
-  <input type="button" class="join_agree" value="확인" onclick="location.href='/travelers/join_com_next.do'" >
+  <button class="join_agree" onclick="location.href='${pageContext.request.contextPath}/join_com_next.do'">확인</button>
   </ul>
 </div>
  

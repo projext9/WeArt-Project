@@ -39,13 +39,13 @@ public class SnsLoginService {
 	
 	
 	public String findNaver(HashMap<String, Object> naverInfo){
-	  	  System.out.println("카카오 아이디:"+naverInfo.get("social_naver"));
-	  	  System.out.println("카카오 닉네임:"+naverInfo.get("nickname"));
+	  	  System.out.println("네이버 아이디:"+naverInfo.get("social_naver"));
+	  	  System.out.println("네이버 닉네임:"+naverInfo.get("member_nick"));
 		  return memberDao.findNaver(naverInfo);  
 	}
 	public String insertNaver(HashMap<String, Object> naverInfo){
-	  	  System.out.println("카카오 아이디:"+naverInfo.get("social_naver"));
-	  	  System.out.println("카카오 닉네임:"+naverInfo.get("nickname"));
+	  	  System.out.println("네이버 아이디:"+naverInfo.get("social_naver"));
+	  	  System.out.println("네이버 닉네임:"+naverInfo.get("member_nick"));
 		  return memberDao.insertNaver(naverInfo);  
 	}
 	
@@ -115,8 +115,6 @@ public class SnsLoginService {
 		return (String) session.getAttribute(SESSION_STATE);	    
 		}	   
 
-	
-	
 	/* Access Token을 이용하여 네이버 사용자 프로필 API를 호출 */
 	public String getUserProfile(OAuth2AccessToken oauthToken) throws IOException{ 	       
 		OAuth20Service oauthService =new ServiceBuilder()	                
@@ -133,7 +131,7 @@ public class SnsLoginService {
 	
 	
 	//카카오 AccessToken 획득 로직
-	public String getAccessToken (String authorize_code) {
+	public String getAccessTokenK (String authorize_code) {
 		String access_Token = "";
 		String refresh_Token = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
@@ -226,8 +224,8 @@ public class SnsLoginService {
 	            String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 	            String email = kakao_account.getAsJsonObject().get("email").getAsString();
 
-	            userInfo.put("nickname", nickname);
-	            userInfo.put("email", email);
+	            userInfo.put("member_nick", nickname);
+	            userInfo.put("social_kakao", email);
 
 	        } catch (IOException e) {
 	         
@@ -247,7 +245,6 @@ public class SnsLoginService {
     			return memberDao.findKakao(userInfo);
     			
     		}else {
-    			
                    return result_kakao;
     			
     			// 정보가 이미 있기 때문에 result를 리턴함.

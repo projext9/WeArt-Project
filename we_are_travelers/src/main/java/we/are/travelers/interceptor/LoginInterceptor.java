@@ -17,10 +17,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 		String member_idx = (String)session.getAttribute("member_idx");
 		String company_idx = (String)session.getAttribute("company_idx");
 		
-		if(member_idx == null) {
+		if(member_idx == null) { //회원idx 체크 후 기업idx 체크
 			if(company_idx == null) {
 				response.sendRedirect(request.getContextPath()+"/login.do");
-				return false;//Controller로 사용자 요청이 전달되지 못하도록 함
+				return false; //Controller로 사용자 요청이 전달되지 못하도록 함
 			}
 		}
 		

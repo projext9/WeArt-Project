@@ -144,7 +144,7 @@
      <div class="filebox">
         <input class="company_auth_name" placeholder="사업자등록증명원을 첨부해주세요" readonly>
         <label for="file">파일첨부</label> 
-        <input type="file" class="company_auth" id="file" name="company_auth">
+        <input type="file" class="company_auth" id="file" name="company_auth_file" accept=".jpg,.pdf,.png,.jpeg,.svg">
         <span class="company_auth_check"></span> 
     </div>
     	<input type="submit" class="next" value="다음">

@@ -2,41 +2,29 @@ package we.are.travelers.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import we.are.travelers.service.ItemService;
-import we.are.travelers.vo.BoardVo;
 import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.ItemVo;
 import we.are.travelers.vo.MemberVo;
@@ -462,6 +450,7 @@ public class ItemController {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@PostMapping("/itempaycheck.do") //결제 api 검증
 	@ResponseBody
 	public String itempaycheck(HttpServletRequest request, HttpServletResponse response, @RequestParam("imp_uid") String imp_uid, @RequestParam("merchant_uid") String merchant_uid) throws Exception {
@@ -479,8 +468,8 @@ public class ItemController {
 			map.put("orderLast_num", merchant_uid);
 			map.put("orderLast_state1", "B");
 			
-			int stateResult1 = itemService.updateOrderState1B(map); //주문서(개별상품) 상태변경(결제완료)
-			int stateResult2 = itemService.updateOrderLastState1B(map); //주문서 상태변경(결제완료)
+			itemService.updateOrderState1B(map); //주문서(개별상품) 상태변경(결제완료)
+			itemService.updateOrderLastState1B(map); //주문서 상태변경(결제완료)
 			itemService.updateItemCartY(member_idx); //카트 상태 변경 "S" to "Y"
 			
 			OrderLastVo orderLastVo = itemService.getOrderLast(map); //주문서 호출
@@ -504,8 +493,8 @@ public class ItemController {
 			int amount = itemService.getAmount(request, response, json2, requestURL2, Authorization);
 
 			if (amountDb == amount) {
-				int stateResult3 = itemService.updateOrderState1C(map); //주문서(개별상품) 상태변경(검증완료)
-				int stateResult4 = itemService.updateOrderLastState1C(map); //주문서 상태변경(검증완료)
+				itemService.updateOrderState1C(map); //주문서(개별상품) 상태변경(검증완료)
+				itemService.updateOrderLastState1C(map); //주문서 상태변경(검증완료)
 				
 				result = "Y";
 			} else {

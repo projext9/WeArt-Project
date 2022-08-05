@@ -47,13 +47,7 @@ public class MemberDao {
 		return sqlSession.selectOne(MAPPER+".checkNick", nick);
 	}
 	
-	 //카카오 소셜로그인
-	  public MemberVo findKakao(HashMap<String, Object> userInfo){
-	  	  System.out.println("카카오 아이디:"+userInfo.get("email"));
-	  	  System.out.println("카카오 닉네임:"+userInfo.get("nickname"));
-		  return sqlSession.selectOne(MAPPER+".findkakao", userInfo);	  
-	}
-	public MemberVo insertKakao(HashMap<String, Object> userInfo) {
+    public Object insertKakao(HashMap<String, Object> userInfo) {
 		
 		String idx ="";
 		for (int i = 1; i <= 12; i++) {
@@ -81,9 +75,16 @@ public class MemberDao {
 		
 		userInfo.put("member_idx", idx);
 		
-		return sqlSession.selectOne(MAPPER+".insertkakao", userInfo);	
+		return sqlSession.selectOne(MAPPER+".insertKakao", userInfo);	
 		
 	}
+	 //카카오 소셜로그인
+	  public MemberVo findKakao(HashMap<String, Object> userInfo){
+	  	  System.out.println("카카오 아이디:"+userInfo.get("email"));
+	  	  System.out.println("카카오 닉네임:"+userInfo.get("nickname"));
+		  return sqlSession.selectOne(MAPPER+".findKakao", userInfo);	  
+	}
+	
 	 public String findNaver(HashMap<String, Object> naverInfo){
 	  	  System.out.println("네이버 아이디:"+naverInfo.get("social_naver"));
 	  	  System.out.println("네이버 닉네임:"+naverInfo.get("member_ncik"));

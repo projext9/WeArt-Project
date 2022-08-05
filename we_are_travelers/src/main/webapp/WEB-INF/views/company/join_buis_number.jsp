@@ -10,10 +10,14 @@
 	<script type="text/javascript">
 	$(function() {
 		
+	$('.buis_number').prop('disabled', true);
+	
    $('#b_no').on('focusout' , function(){
+	  
 	var b_no = {
 		    "b_no": [$('#b_no').val()] // 사업자번호 "xxxxxxxxx" 로 조회 시,
 		   };
+	
 		$.ajax({
 		  url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=5OCcftiK2BWuF05vmSimJ3TNjuhd1x25verVxMG30iwobpZDOnNM55UTbJ2jLjGqhk0niBb2PQTcKgj8DkHGKQ==", 
 		  type: "POST",
@@ -23,6 +27,7 @@
 		  accept: "application/json",
 		  async : false,
 		  success: function(data) {
+			  
 			  var check1 ="유효한 사업자 등록번호입니다."
 			  var check2 ="휴.폐업처리된 사업자입니다. 회원가입을 진행 하실 수 없습니다."
 			  var check3 ="유효하지 않은 사업자 등록번호입니다."
@@ -31,10 +36,13 @@
 			  
 			  if(obj['data'][0].b_stt_cd == '01') {
 				  $('.no_b').html(check1).css('color','green');
+				  $('.buis_number').prop('disabled', false);
 			  }else if(obj['data'][0].b_stt_cd == ""){
 				  $('.no_b').html(check3).css('color','red');
+				  $('.buis_number').prop('disabled', true);
 			  }else if(obj['data'][0].b_stt_cd == '02' || '03'){
 				  $('.no_b').html(check2).css('color','red');
+				  $('.buis_number').prop('disabled', true);
 				  
 		  }
 		      console.log(data);
@@ -58,8 +66,8 @@
 
 <form name="joinCompanyForm" action="/travelers/join_com_next2.do" method="post">
     <input type="text" name="b_no" id="b_no" maxlength="10" placeholder="사업자 등록번호" />
-    <span class="no_b"></span>     
-	<input type="submit" value="다음">
+    <p class="no_b"></p>     
+	<input type="submit" class="buis_number" value="다음">
 </form> 
 
 </body></html>        

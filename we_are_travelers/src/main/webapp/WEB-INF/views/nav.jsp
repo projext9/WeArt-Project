@@ -101,25 +101,26 @@
                             </ul>
 						</li>
 					</ul>
+		<c:choose>
+				    <c:when test="${sessionScope.member_idx != null }">
+					<span>${sessionScope.member_nick }님</span>&nbsp;
+					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
+					</c:when>
 					
-					<c:if test="${sessionScope.member_idx == null && sessionScope.company_idx == null }">
-					<button class="btn btn-outline-success" type="button" onClick="fn_login()">로그인</button>
-					&nbsp;&nbsp;
+                    <c:when test="${sessionScope.member_grade == 1 }">
+                    <a href="/travelers/memberList.do">관리자페이지</a>
+                    </c:when>
+                    
+                     <c:when test="${sessionScope.company_idx != null }">
+					<span>${sessionScope.company_name }님</span>&nbsp;
+					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
+					 </c:when>
+					
+					<c:otherwise>
+					<button class="btn btn-outline-success" type="button" onClick="fn_login()">로그인</button>&nbsp;
 					<button class="btn btn-outline-success" type="button"onClick="fn_join()">회원가입</button>
-				     </c:if>
-				     
-				    <c:if test="${sessionScope.member_idx != null }">
-					<span>${sessionScope.member_nick }님</span>
-					&nbsp;&nbsp;
-					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
-					</c:if>
-					
-					 <c:if test="${sessionScope.company_idx != null }">
-					<span>${sessionScope.company_name }님</span>
-					&nbsp;&nbsp;
-					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
-					</c:if>
-					
+				     </c:otherwise>					
+		</c:choose>
 				</div>
 			</div>
 		</nav>

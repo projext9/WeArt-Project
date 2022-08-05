@@ -3,8 +3,7 @@ package we.are.travelers.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,9 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import we.are.travelers.dao.MemberDao;
 import we.are.travelers.service.AllMemberService;
 import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.MemberVo;
@@ -127,7 +127,8 @@ public class AllMemberController {
     
 	///////////////////////////////////회원가입 로직
 	@RequestMapping(value="/joinMember.do", method = RequestMethod.GET)
-	public String join() {
+	public String join(@RequestParam("ip") String ip) {
+		
 		return "member/join_terms_of";
 	}
 	@RequestMapping(value="/joinNext.do", method = RequestMethod.GET)
@@ -171,6 +172,7 @@ public class AllMemberController {
                     char ch = 64;
                     idx= idx + String.valueOf(ch);
             }
+		}
 
 		model.addAttribute("idx", idx);
 		model.addAttribute("email", email);
@@ -178,8 +180,7 @@ public class AllMemberController {
 		model.addAttribute("nick", nick);
 		model.addAttribute("name", name);
 		model.addAttribute("birth", birth);
-		
-		}
+
 	  return "member/join_finish";
     }
 		@RequestMapping("/fileUploadProcess.do")
@@ -249,58 +250,76 @@ public class AllMemberController {
 	return "company/join_buis_info";
 }
 	@RequestMapping(value="/join_com_finish.do", method = RequestMethod.POST)
-	public String joinCNext4(@RequestParam("b_no")String b_no , @RequestParam("email")String email , @RequestParam("company_name") String company_name,
-			@RequestParam("ceo") String ceo , @RequestParam("address") String address , @RequestParam("detail_address") String detail_address , @RequestParam("company_auth") 
-	   MultipartFile company_auth , Model model , HttpServletRequest request) throws IllegalStateException, IOException {
-		System.out.println("asdasdasdasd:");
-		String add= address + detail_address;
-		String idx ="";
+	public String joinCNext4(@RequestParam("b_no")String b_no , @RequestParam("email")String email , @RequestParam("pwd")String pwd, @RequestParam("company_name") String company_name,
+			@RequestParam("ceo") String ceo , @RequestParam("address") String address , @RequestParam("detail_address") String detail_address , 
+			@RequestParam("company_auth_file") MultipartFile company_auth_file , Model model , HttpServletRequest request)  {
+		
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		String ip = req.getHeader("X-FORWARDED-FOR");
+		if (ip == null)
+			ip = req.getRemoteAddr();
+		
+		String add = address + detail_address;
+		
+		String idx = "";
 		for (int i = 1; i <= 12; i++) {
             int pick = (int)((Math.random() * (20 - 1)) + 1);
-                if (pick <= 5) {
+                if (pick <= 8) {
                     char ch = (char) ((Math.random() * 26) + 65);
                     idx= idx + String.valueOf(ch);
-                } else if (pick <= 9) {
+                } else if (pick <= 14) {
                     char ch = (char) ((Math.random() * 26) + 97);
                     idx= idx + String.valueOf(ch);
-                } else if (pick <= 12) {
+                } else if (pick <= 16) {
                     char ch = (char) ((Math.random() * 10) + 48);
                     idx= idx + String.valueOf(ch);
-                } else if (pick <= 14) {
+                } else if (pick <= 18) {
                     char ch = 33;
                     idx= idx + String.valueOf(ch);
-                } else if (pick <= 16) {
-                    char ch = 35;
-                    idx= idx + String.valueOf(ch);
-                } else if (pick <= 18) {
-                    char ch = 63;
-                    idx= idx + String.valueOf(ch);
                 } else if (pick <= 20) {
-                    char ch = 94;
+                    char ch = 64;
                     idx= idx + String.valueOf(ch);
-                }
             }
-		String origin_fileName = company_auth.getOriginalFilename();
+		}
+		
+		model.addAttribute("idx", idx);
+		model.addAttribute("b_no", b_no);
+		model.addAttribute("email", email);
+		model.addAttribute("pwd", pwd);
+		model.addAttribute("company_name", company_name );
+		model.addAttribute("ceo", ceo);
+		model.addAttribute("address" , add );
+		model.addAttribute("company_ip" , ip);
+		
 		
 		//시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
-		int dot_idx = origin_fileName.lastIndexOf(".");
-		String fileName1 = origin_fileName.substring(0, dot_idx);
-		String extension = origin_fileName.substring(dot_idx+1);
-		String fileName2 = fileName1 + new SimpleDateFormat("_yyyyMMdd_hhmmss").format(System.currentTimeMillis());
-		String system_fileName = fileName2+"."+extension;
+		String fileRealName = company_auth_file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+		System.out.println("filenaem"+fileRealName);
+		long size = company_auth_file.getSize(); //파일 사이즈
 		
+		model.addAttribute("company_auth_file" , fileRealName );
+		
+		
+		
+		System.out.println("파일명 : "  + fileRealName);
+		System.out.println("용량크기(byte) : " + size);
+		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+		String upload_dir = "C:\\Users\\MYCOM\\git\\WeArt-Project\\we_are_travelers\\src\\main\\webapp\\resources\\AuthUpload";
+
 		//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
-		String upload_dir = "resources/upload/";
 		
-		String realPath = request.getServletContext().getRealPath(upload_dir);
-		System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
+		UUID uuid = UUID.randomUUID();
+		System.out.println(uuid.toString());
+		String[] uuids = uuid.toString().split("-");
+		
+		String uniqueName = uuids[0];
+		System.out.println("생성된 고유문자열" + uniqueName);
+		System.out.println("확장자명" + fileExtension);
 		
 		//지정된 경로에 파일 저장
 		//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
-		String fullPath = realPath+system_fileName;
-		company_auth.transferTo(new File(fullPath));
-		
-		
+	
 		//파일업로드가 정상적으로 이루어진 것을 gallery_home.jsp에서 확인
 		//model객체에 입력내용(content)와 system_fileName을 추가함
 		//model.addAttribute("content", content);
@@ -314,17 +333,18 @@ public class AllMemberController {
 			fileNames[i] = files[i].getName();
 		}*/
 		
-		String[] fileNames = new File(realPath).list();
-		//companyVo.setCompany_auth_origin_file_name("company_auth_origin_file_name", fileNames);
-	
-		model.addAttribute("idx", idx);
-		model.addAttribute("b_no", b_no);
-		model.addAttribute("email", email);
-		model.addAttribute("company_name", company_name );
-		model.addAttribute("ceo", ceo);
-		model.addAttribute("address" , add );
-		model.addAttribute("company_auth" , company_auth ); 
-
+		
+		File saveFile = new File(upload_dir+"\\"+uniqueName + fileExtension); 
+		File saveFile1 = new File(uniqueName + fileExtension); 
+		model.addAttribute("company_auth_system_file" , saveFile1 );
+		try {
+			company_auth_file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return "company/join_buis_finish";
 	}
 	//회원가입 완료 로직

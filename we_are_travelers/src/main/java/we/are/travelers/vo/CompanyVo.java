@@ -12,7 +12,8 @@ public class CompanyVo {
 	private String company_ceo_name;
 	private String company_phone;
 	private String company_buis_address;
-	private String company_auth_file_name;
+	private String company_auth_origin_file;
+	private String company_auth_system_file;
 	private int company_phone_auth;
 	private int company_auth;
 	private Date company_regdate;
@@ -67,11 +68,17 @@ public class CompanyVo {
 	public void setCompany_buis_address(String company_buis_address) {
 		this.company_buis_address = company_buis_address;
 	}
-	public String getCompany_auth_file_name() {
-		return company_auth_file_name;
+	public String getCompany_auth_origin_file() {
+		return company_auth_origin_file;
 	}
-	public void setCompany_auth_file_name(String company_auth_file_name) {
-		this.company_auth_file_name = company_auth_file_name;
+	public void setCompany_auth_origin_file(String company_auth_origin_file) {
+		this.company_auth_origin_file = company_auth_origin_file;
+	}
+	public String getCompany_auth_system_file() {
+		return company_auth_system_file;
+	}
+	public void setCompany_auth_system_file(String company_auth_system_file) {
+		this.company_auth_system_file = company_auth_system_file;
 	}
 	public int getCompany_phone_auth() {
 		return company_phone_auth;
@@ -103,6 +110,7 @@ public class CompanyVo {
 	public void setCompany_ip(String company_ip) {
 		this.company_ip = company_ip;
 	}
+
 	
 	
 }

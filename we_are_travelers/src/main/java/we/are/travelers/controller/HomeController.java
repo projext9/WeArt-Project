@@ -1,8 +1,5 @@
 package we.are.travelers.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,15 +7,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import we.are.travelers.service.ItemService;
 import we.are.travelers.service.TestService;
-import we.are.travelers.vo.MemberVo;
 
 @Controller
 public class HomeController {
@@ -54,8 +48,6 @@ public class HomeController {
 			 					@RequestParam("member_pw") String member_pwd, 
 			 					HttpServletRequest request) {
 		HttpSession session = request.getSession();
-
-		int result = 0;
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("member_id", member_id);
@@ -64,7 +56,6 @@ public class HomeController {
 		HashMap<String, String> resultMap1 = testService.testlogin(map);
 
 		if(resultMap1 != null) {
-			result = 1;
 			String member_idx = resultMap1.get("member_idx"); //회원 idx
 			String member_nick = resultMap1.get("member_nick"); //회원 닉네임
 			
@@ -74,7 +65,6 @@ public class HomeController {
 		} else if(resultMap1 == null) {
 			HashMap<String, String> resultMap2 = testService.testlogincompany(map);
 			if(resultMap2 != null) { 
-				result = 2;
 				String company_idx = resultMap2.get("company_idx"); //기업회원 idx
 				String company_name = resultMap2.get("company_name"); //기업회원 닉네임
 				
