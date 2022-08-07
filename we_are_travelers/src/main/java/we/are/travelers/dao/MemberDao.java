@@ -48,7 +48,7 @@ public class MemberDao {
 	}
 	
     public Object insertKakao(HashMap<String, Object> userInfo) {
-		
+		int regCode = 1;
 		String idx ="";
 		for (int i = 1; i <= 12; i++) {
             int pick = (int)((Math.random() * (20 - 1)) + 1);
@@ -74,6 +74,7 @@ public class MemberDao {
 		memberVo.setMember_idx(idx);
 		
 		userInfo.put("member_idx", idx);
+		userInfo.put("member_regCode" , regCode);
 		
 		return sqlSession.selectOne(MAPPER+".insertKakao", userInfo);	
 		
@@ -92,7 +93,7 @@ public class MemberDao {
 	}
 	 
 	 public String insertNaver(HashMap<String, Object> naverInfo) {
-			
+		 int regCode = 2;
 			String idx ="";
 			for (int i = 1; i <= 12; i++) {
 	            int pick = (int)((Math.random() * (20 - 1)) + 1);
@@ -118,6 +119,7 @@ public class MemberDao {
 			memberVo.setMember_idx(idx);
 			
 			naverInfo.put("member_idx", idx);
+			naverInfo.put("member_regCode", regCode);
 			
 			return sqlSession.selectOne(MAPPER+".insertNaver", naverInfo);	
 			

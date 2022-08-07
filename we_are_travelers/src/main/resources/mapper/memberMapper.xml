@@ -35,7 +35,7 @@
 	<insert id="insertKakao" parameterType="java.util.HashMap">
 		insert into weart_member(member_idx, social_kakao, member_nick, member_regCode)
 		
-		 values(#{member_idx}, #{social_kakao}, #{member_nick}, '1')
+		 values(#{member_idx}, #{social_kakao}, #{member_nick}, #{member_regCode})
 	</insert>
 	
 	<select id="findNaver" parameterType="java.util.HashMap" resultType="String">
@@ -45,7 +45,7 @@
 	<insert id="insertNaver" parameterType="java.util.HashMap">
 		insert into weart_member(member_idx, social_naver, member_name, member_nick, member_birth, member_regCode)
 		
-		 values(#{member_idx}, #{social_naver}, #{member_name}, #{member_nick}, #{member_birth}, '2')
+		 values(#{member_idx}, #{social_naver}, #{member_name}, #{member_nick}, #{member_birth}, #{member_regCode})
 	</insert>
 
 	

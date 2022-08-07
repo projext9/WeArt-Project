@@ -127,7 +127,7 @@ public class AllMemberController {
     
 	///////////////////////////////////회원가입 로직
 	@RequestMapping(value="/joinMember.do", method = RequestMethod.GET)
-	public String join(@RequestParam("ip") String ip) {
+	public String join() {
 		
 		return "member/join_terms_of";
 	}

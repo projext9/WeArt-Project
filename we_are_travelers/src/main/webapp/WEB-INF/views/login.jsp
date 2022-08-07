@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
+    <meta name="google-signin-client_id" content="917082913901-5alh4m7o4lq42fsvo2k4jnfdcrdaqraq.apps.googleusercontent.com">
     <title>weart_login</title>
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
@@ -15,6 +16,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
    <script>
       $(document).ready(function() {
     	  $("#member_form").keydown(function(){
@@ -35,7 +37,49 @@
     	  
       });
    </script>
+   <script>
+   function onSignIn(googleUser) {
+   	  
+
+   </script>
    
+   <script>
+    function onSuccess(googleUser) {
+    	  var profile = googleUser.getBasicProfile();
+     	  var id_token = googleUser.getAuthResponse().id_token;
+     	  $("#googleBtn").click(function(){
+     		  $.ajax({
+     			  url: '승인된 리디렉션 URI',
+     			  type: 'POST',
+     			  data: 'idtoken=' + id_token, 
+     			  dataType: 'JSON',
+     			  beforeSend : function(xhr){
+     				  xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+     			  },
+     			  success: function(json) {
+     				  if (json.login_result == "success"){
+     					  location.href = "/travelers/home.do";
+     				  }//end if
+     	          }//success
+     		  });//ajax
+     	  });//click
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 200,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'white',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
  </head>
   
  <body class="text-center"> 
@@ -47,7 +91,7 @@
     </a>
    <div class="login_wrap">
    <div class="login_member_box">
-    <button class="all_member_login_btn" onclick="location.href='/travelers/login.do'" type="button">통합로그인</button>
+    <button class="all_member_login_btn" onclick="location.href='${pageContext.request.contextPath}/login.do'" type="button">통합로그인</button>
    </div>
    </div>
    </div>
@@ -82,11 +126,14 @@
     <img src="${pageContext.request.contextPath}/resources/images/naver_login.png" width="200" height="50" alt="네이버 로그인">
     </a>
     </div>
-    <br />
-     <div class="social_logoG">
-    <img src="${pageContext.request.contextPath}/resources/images/google_login.png" width="200" height="50" alt="구글 로그인">
-    </div>
-     <div class="social_logoF">
+
+  <div id="my-signin2"></div>
+  
+    <!--<div class="social_logoG" >
+    <img src="${pageContext.request.contextPath}/resources/images/google_login.png" width="200" height="50" alt="네이버 로그인">
+   </div>-->
+   
+     <div class="socia_LogoF">
     <img src="${pageContext.request.contextPath}/resources/images/facebook_login.png" width="200" height="50" alt="페이스북 로그인">
      </div>
  </div>
@@ -94,10 +141,10 @@
  
  <div class="join_wrap">
    <div class="join_wrap_box">
-    <button class="join_member" onclick="location.href='/travelers/joinMember.do'" type="button">일반회원가입</button>
+    <button class="join_member" onclick="location.href='${pageContext.request.contextPath}/joinMember.do'" type="button">일반회원가입</button>
    </div>
      <div class="join_company">
-     <button class="join_company"onclick="location.href='/travelers/joinCompany.do'" type="button">기업회원가입</button>
+     <button class="join_company"onclick="location.href='${pageContext.request.contextPath}/joinCompany.do'" type="button">기업회원가입</button>
    </div>
  </div>
     <p class="mt-5 mb-6 text-muted">&copy; Copyright 2022. Team We-Art. all rights reserved.</p>

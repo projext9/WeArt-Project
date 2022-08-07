@@ -2,17 +2,18 @@ package we.are.travelers.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpSession; 
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam; 
+import org.springframework.web.bind.annotation.RequestParam;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import we.are.travelers.service.SnsLoginService;
@@ -25,13 +26,14 @@ import we.are.travelers.vo.MemberVo;
 @RequestMapping("/*")
 public class SnsLoginController { 	
 	
-	/* NaverLoginService */	
+	/* NaverLoginService */
 	private SnsLoginService SnsLoginService;
 	private String apiResult = null;	
 	
 	@Autowired	
 	private void setSnsLoginService(SnsLoginService SnsLoginService) {		
-		this.SnsLoginService = SnsLoginService;	} 	
+		this.SnsLoginService = SnsLoginService;	
+		} 	
 	
 	//로그인 첫 화면 요청 메소드	
 	@RequestMapping(value = "login.do", method = { RequestMethod.GET, RequestMethod.POST })	
@@ -158,4 +160,7 @@ public class SnsLoginController {
 	        //return "index";
 	        return "redirect:/home.do";
     }
- }
+	 
+	 
+
+}

@@ -132,5 +132,6 @@ public class MemberVo {
 	public void setMember_birth(String member_birth) {
 		this.member_birth = member_birth;
 	}
+	
 
 }
