@@ -17,8 +17,8 @@
             <tr>
                 <td>
                     <select name = "searchType">
-                   		<option value = "board_subject">제목</option>
-                        <option value = "member_nickname">닉네임</option>
+                   		<option value = "subject">제목</option>
+                        <option value = "writer">작성자</option>
                     </select>
                 </td>
                 <td>
@@ -43,7 +43,7 @@
 					<td>${boardVo.board_idx}</td>
 					<td><a href = "${pageContext.request.contextPath}/boardContent.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
 					<td>${boardVo.board_content}</td>
-					<td>${boardVo.member_nickname}</td>
+					<td>${boardVo.board_writer}</td>
 					<td>${boardVo.board_date}</td>
 				</tr>
 			</c:forEach>
@@ -54,17 +54,17 @@
         <tr>
             <td style="width:200px; text-align:right;">
             	<c:if test = "${pm.prev == true}">
-            		<a href = "${pageContext.request.contextPath}/board/boardList.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
+            		<a href = "${pageContext.request.contextPath}/noticeMember.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
             	</c:if>
             </td>
             <td>
             	<c:forEach var = "i" begin = "${pm.startPage}" end = "${pm.endPage}" step = "1">
-            		<a href='${pageContext.request.contextPath}/board/boardList.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
+            		<a href='${pageContext.request.contextPath}/noticeMember.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
             	</c:forEach>
             </td>
             <td style="width:200px; text-align:left;">
             	<c:if test="${pm.next&&pm.endPage > 0}">
-            		<a href = '${pageContext.request.contextPath}/board/boardList.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
+            		<a href = '${pageContext.request.contextPath}/noticeMember.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
             	</c:if>
             </td>
         </tr>

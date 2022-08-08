@@ -17,9 +17,8 @@
             <tr>
                 <td>
                     <select name = "searchType">
-                   		<option value = "member_id">아이디</option>
-                        <option value = "member_nickname">닉네임</option>
-                        <option value = "member_name">이름</option>
+                   		<option value = "id">아이디</option>
+                        <option value = "name">기업명</option>
                     </select>
                 </td>
                 <td>
@@ -40,13 +39,13 @@
 		</thead>
 		
 		<tbody class = "table-group-divider">
-			<c:forEach var="memberVo" items="${sellorList}">
+			<c:forEach var="companyVo" items="${sellorList}">
 				<tr>
-					<td>${memberVo.member_idx}</td><td>${memberVo.member_name}</td>
-					<td><a href = "${pageContext.request.contextPath}/memberContent.do?member_idx=${memberVo.member_idx}">${memberVo.member_id}</a></td>
-					<td>${memberVo.member_pw}</td>
-					<td>${memberVo.member_phone}</td><td>${memberVo.member_regdate}</td>
-					<td>${memberVo.member_delyn}</td><td>${memberVo.member_deldate}</td>
+					<td>${companyVo.company_idx}</td><td>${companyVo.company_id}</td>
+					<td><a href = "${pageContext.request.contextPath}/sellorContent.do?company_idx=${companyVo.company_idx}">${companyVo.company_id}</a></td>
+					<td>${companyVo.company_id}</td>
+					<td>${companyVo.company_buis_number}</td><td>${companyVo.company_ceoName}</td>
+					<td>${companyVo.company_phone}</td>
 					<td>삭제<input type="checkbox" value="${memberVo.member_idx}" /></td>
 				</tr>
 			</c:forEach>
@@ -57,17 +56,17 @@
         <tr>
             <td style="width:200px; text-align:right;">
                 <c:if test = "${pm.prev == true}">
-            		<a href = "${pageContext.request.contextPath}/board/boardList.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
+            		<a href = "${pageContext.request.contextPath}/sellorList.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
             	</c:if>
             </td>
             <td>
             	<c:forEach var = "i" begin = "${pm.startPage}" end = "${pm.endPage}" step = "1">
-            		<a href='${pageContext.request.contextPath}/board/boardList.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
+            		<a href='${pageContext.request.contextPath}/sellorList.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
             	</c:forEach>
             </td>
             <td style="width:200px; text-align:left;">
             	<c:if test="${pm.next&&pm.endPage > 0}">
-            		<a href = '${pageContext.request.contextPath}/board/boardList.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
+            		<a href = '${pageContext.request.contextPath}/sellorList.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
             	</c:if>
             </td>
         </tr>

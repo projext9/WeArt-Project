@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "we.are.travelers.myPage">
+
+	<select id="getInfo" resultType="memberVo">
+		select * from weart_member where member_idx = #{member_idx}
+	</select>
+	
+	<select id="getPayment" resultType="orderLastVo">
+		select * from weart_order_last where member_idx = #{member_idx}
+	</select>
+	
+	<select id="getMyNotice" resultType="boardVo">
+		select * from weart_board where member_idx = #{member_idx}
+	</select>
+	
+	<select id="getInfoModify" resultType="memberVo">
+		select * from weart_member where member_idx = #{member_idx}
+	</select>
+	
+	<select id="getPaymentContent" resultType="orderVo">
+		select * from weart_order where member_idx = #{member_idx} and
+			orderLast_num = #{orderLast_num}
+	</select>
+	
+	<select id="getMyNoticeContent" resultType="boardVo">
+		select * from weart_board where board_idx = #{board_idx}
+	</select>
+	
+	<update id="modify_info">
+		update weart_member set member_name=#{member_name}, member_pwd=#{member_pwd}, member_nick=#{member_nick}, member_phone=#{member_phone} where member_idx=#{member_idx}
+	</update>
+	
+	<select id="info_checkPwd" resultType="int">
+		 select count(*) from weart_member where member_idx = #{member_idx} and member_pwd = #{member_pwd}
+	</select>
+	
+</mapper>

@@ -17,8 +17,8 @@
             <tr>
                 <td>
                     <select name = "searchType">
-                   		<option value = "member_id">아이디</option>
-                        <option value = "member_nickname">닉네임</option>
+                   		<option value = "id">아이디</option>
+                        <option value = "nickname">닉네임</option>
                     </select>
                 </td>
                 <td>
@@ -45,22 +45,22 @@
 					<td>${memberVo.member_idx}</td>
 					<td>
 						<c:choose>
-							<c:when test = "${memberVo.social_sns_token eq null}">일반</c:when>
-							<c:otherwise>${memberVo.social_sns_token}</c:otherwise>
+							<c:when test = "${memberVo.social_token eq null}">일반</c:when>
+							<c:otherwise>${memberVo.social_token}</c:otherwise>
 						</c:choose>
 					</td>
-					<td>${memberVo.member_nickname}</td>
+					<td>${memberVo.member_nick}</td>
 					<td><a href = "${pageContext.request.contextPath}/memberContent.do?member_idx=${memberVo.member_idx}">${memberVo.member_id}</a></td>
 					<td>${memberVo.member_ip}</td>
 					<td>${memberVo.member_phone}</td><td>${memberVo.member_regdate}</td>
-					<td>${memberVo.member_delyn}</td><td>${memberVo.member_deldate}</td>
+					<td>${memberVo.member_delyn}</td>
 					<td>삭제<input type="checkbox" value="${memberVo.member_idx}" /></td>
 				</tr>
 			</c:forEach>
-			<tr>
+			<!-- <tr>
 				<td colspan = "10"></td>
 				<td><button id = "adminDeleteInfo">삭제하기</button></td>
-			</tr>
+			</tr>-->
 		</tbody>
 	</table>
 	
@@ -72,12 +72,12 @@
                 //String searchType = pm.getScri().getSearchType();
                 //if(pm.isPrev() == true) out.println("<a href = '"+request.getContextPath()+"/board/boardList.do?page="+(pm.getStartPage()-1)+"&keyword="+keyword+"&searchType="+searchType+"'>◀</a>"); %>
             	<c:if test = "${pm.prev == true}">
-            		<a href = "${pageContext.request.contextPath}/board/boardList.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
+            		<a href = "${pageContext.request.contextPath}/memberList.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
             	</c:if>
             </td>
             <td>
             	<c:forEach var = "i" begin = "${pm.startPage}" end = "${pm.endPage}" step = "1">
-            		<a href='${pageContext.request.contextPath}/board/boardList.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
+            		<a href='${pageContext.request.contextPath}/memberList.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
             	</c:forEach>
                 <%
                    //for(int i = pm.getStartPage(); i <= pm.getEndPage(); i++){
@@ -87,7 +87,7 @@
             </td>
             <td style="width:200px; text-align:left;">
             	<c:if test="${pm.next&&pm.endPage > 0}">
-            		<a href = '${pageContext.request.contextPath}/board/boardList.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
+            		<a href = '${pageContext.request.contextPath}/memberList.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
             	</c:if>
                 <%// if(pm.isNext() && pm.getEndPage() > 0) out.println("<a href = '"+request.getContextPath()+"/board/boardList.do?page="+(pm.getEndPage()+1)+"&keyword="+keyword+"&searchType="+searchType+"'>▶</a>"); %>
             </td>

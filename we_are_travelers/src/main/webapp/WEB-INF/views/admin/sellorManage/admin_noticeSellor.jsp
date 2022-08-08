@@ -12,14 +12,13 @@
 <body style = "margin : 5% 10% 0 10%;">
 <h3>1:1문의(판매자)</h3>
 <hr/>
-	<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/admin/admin_memberList.do" method = "post">
+	<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/noticeSellor.do" method = "get">
         <table style = "text-align:right">
             <tr>
                 <td>
                     <select name = "searchType">
-                   		<option value = "member_id">아이디</option>
-                        <option value = "member_nickname">닉네임</option>
-                        <option value = "member_name">이름</option>
+                   		<option value = "subject">제목</option>
+                        <option value = "writer">작성자</option>
                     </select>
                 </td>
                 <td>
@@ -42,14 +41,34 @@
 		<tbody class = "table-group-divider">
 			<c:forEach var="boardVo" items="${noticeSellor}">
 				<tr>
-					<td>${boardVo.board_idx}</td><td>${boardVo.board_subject}</td>
+					<td>${boardVo.board_idx}</td>
+					<td><a href = "${pageContext.request.contextPath}/boardContent.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
 					<td>${boardVo.board_content}</td><td>${boardVo.board_ip}</td>
 					<td>${boardVo.board_date}</td><td></td>
 					<td>${boardVo.board_delyn}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
-		
 	</table>
+	
+	<table>
+        <tr>
+            <td style="width:200px; text-align:right;">
+                <c:if test = "${pm.prev == true}">
+            		<a href = "${pageContext.request.contextPath}/noticeSellor.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
+            	</c:if>
+            </td>
+            <td>
+            	<c:forEach var = "i" begin = "${pm.startPage}" end = "${pm.endPage}" step = "1">
+            		<a href='${pageContext.request.contextPath}/noticeSellor.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
+            	</c:forEach>
+            </td>
+            <td style="width:200px; text-align:left;">
+            	<c:if test="${pm.next&&pm.endPage > 0}">
+            		<a href = '${pageContext.request.contextPath}/noticeSellor.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
+            	</c:if>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

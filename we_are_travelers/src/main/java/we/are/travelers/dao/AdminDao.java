@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import we.are.travelers.vo.BoardVo;
+import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OrderVo;
 import we.are.travelers.vo.SearchCriteria;
@@ -30,15 +31,7 @@ public class AdminDao {
 		return sqlSession.selectList(MAPPER+".getMemberList",scri); //namespace가 "ezen.dev.spring.admin" 인 mapper 실행
 	} //해당 mapper의 getMemberList 메소드 실행 후 값 반환 -> sqlSession에 값 저장
 
-	public int updateMemberGrade(HashMap<String, Integer> map) {
-		return sqlSession.update(MAPPER+".updateMemberGrade", map);
-	}
-
-	public int deleteMemberInfo(List<Integer> member_idx_list) {
-		return sqlSession.delete(MAPPER+".deleteMemberInfo", member_idx_list);
-	}
-
-	public List<MemberVo> getSellorList(SearchCriteria scri) {
+	public List<CompanyVo> getSellorList(SearchCriteria scri) {
 		return sqlSession.selectList(MAPPER+".getSellorList", scri);
 	}
 
@@ -50,20 +43,20 @@ public class AdminDao {
 		return sqlSession.selectList(MAPPER+".getReplyList", scri);
 	}
 
-	public List<OrderVo> getOrderList() {
-		return sqlSession.selectList(MAPPER+".getOrderList");
+	public List<OrderVo> getOrderList(SearchCriteria scri) {
+		return sqlSession.selectList(MAPPER+".getOrderList", scri);
 	}
 	
 	public List<BoardVo> getNoticeMember(SearchCriteria scri){
 		return sqlSession.selectList(MAPPER+".getNoticeMember", scri);
 	}
 
-	public List<BoardVo> getNoticeSellor() {
+	public List<BoardVo> getNoticeSellor(SearchCriteria scri) {
 		return sqlSession.selectList(MAPPER+".getNoticeSellor");
 	}
 
-	public List<MemberVo> getOutstanding() {
-		return sqlSession.selectList(MAPPER+".getOutstanding");
+	public List<CompanyVo> getOutstanding(SearchCriteria scri) {
+		return sqlSession.selectList(MAPPER+".getOutstanding", scri);
 	}
 
 	public List<MemberVo> getMemberContent(String member_idx) {
@@ -94,9 +87,33 @@ public class AdminDao {
 		return sqlSession.selectOne(MAPPER+".getReplyTotal", scri);
 	}
 
-	public int updateMemberDelyn(MemberVo memberVo) {
-		return sqlSession.update(MAPPER+".updateMemberDelyn", memberVo);
+	public int getOutstandingTotal(SearchCriteria scri) {
+		return sqlSession.selectOne(MAPPER+".getOutstandingTotal", scri);
 	}
+
+	public int getOrderTotal(SearchCriteria scri) {
+		return sqlSession.selectOne(MAPPER+".getOrderTotal", scri);
+	}
+
+	public int getNoticeSellorTotal(SearchCriteria scri) {
+		return sqlSession.selectOne(MAPPER+".getNoticeSellorTotal", scri);
+	}
+
+	public int updateMemberGrade(HashMap<String, Integer> map) {
+		return sqlSession.update(MAPPER+".updateMemberGrade", map);
+	}
+
+	public int deleteMemberInfo(List<Integer> member_idx_list) {
+		return sqlSession.delete(MAPPER+".deleteMemberInfo", member_idx_list);
+	}
+
+	public List<CompanyVo> getSellorContent(String company_idx) {
+		return sqlSession.selectList(MAPPER+".getSellorContent", company_idx);
+	}
+	
+	/*public int updateMemberDelyn(MemberVo memberVo) {
+		return sqlSession.update(MAPPER+".updateMemberDelyn", memberVo);
+	}*/
 
 	/*
 	public List<ItemtVo> getItemList() {

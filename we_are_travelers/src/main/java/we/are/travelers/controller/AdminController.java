@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import we.are.travelers.service.AdminService;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.BoardVo;
+import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.OrderVo;
 import we.are.travelers.vo.PageMaker;
 import we.are.travelers.vo.SearchCriteria;
@@ -32,7 +33,7 @@ public class AdminController {
 	
 	@GetMapping("/memberList.do") //get방식 요청 처리 <!-- admin_memberList.jsp 호출 -->
 	public String getMemberList(Model model, 
-			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="subject") String searchType,
+			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="id") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword) {
 		
 		SearchCriteria scri = new SearchCriteria();
@@ -87,12 +88,19 @@ public class AdminController {
 		return "admin/memberManage/admin_memberContent";
 	}
 	
+	/*@GetMapping("/updateMemberDelyn.do")
+	public String getUpdateMemberDelyn(Model model, String member_idx) {
+		
+		List<MemberVo> updateMemberDelyn = adminService.getUpdateMemberDelyn(member_idx);
+		model.addAttribute("updateMemberDelyn", updateMemberDelyn);
+		return "admin/memberManage/admin_memberContent";
+	}*/
+	
 	@GetMapping("/sellorList.do")
 	public String getSellorList(Model model,
 			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword) {
 		
-
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
 		scri.setKeyword(keyword);
@@ -104,15 +112,23 @@ public class AdminController {
 		pm.setScri(scri);
 		pm.setTotalCount(cnt);
 		
-		List<MemberVo> sellorList = adminService.getSellorList(scri);
+		List<CompanyVo> sellorList = adminService.getSellorList(scri);
 		model.addAttribute("sellorList",sellorList);
 		model.addAttribute("pm", pm);
 		model.addAttribute("scri", scri);
 		return "admin/sellorManage/admin_sellorList";
 	}
 	
-	@GetMapping("/boardList.do")
-	public String getBoardList(Model model, 
+	@GetMapping("/sellorContent.do")
+	public String getSellorContent(Model model, String company_idx) {
+		
+		List<CompanyVo> sellorContent = adminService.getSellorContent(company_idx);
+		model.addAttribute("sellorContent", sellorContent);
+		return "admin/sellorManage/admin_sellorContent";
+	}
+	
+	@GetMapping("/outstanding.do")
+	public String getOutstanding(Model model,
 			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword) {
 		
@@ -120,6 +136,29 @@ public class AdminController {
 		scri.setPage(page);
 		scri.setKeyword(keyword);
 		scri.setSearchType(searchType);
+		int cnt = adminService.outstandingTotal(scri);
+		
+		PageMaker pm = new PageMaker();
+		pm.setScri(scri);
+		pm.setTotalCount(cnt);
+		
+		List<CompanyVo> outstanding = adminService.getOutstanding(scri);
+		model.addAttribute("outstanding", outstanding);
+		model.addAttribute("pm", pm);
+		model.addAttribute("scri", scri);
+		return "admin/sellorManage/admin_outstanding";
+	}
+	
+	@GetMapping("/boardList.do")
+	public String getBoardList(Model model, 
+			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="subject") String searchType,
+			@RequestParam(value="keyword", defaultValue="") String keyword, @RequestParam(value="board_code", defaultValue="") String board_code) {
+		
+		SearchCriteria scri = new SearchCriteria();
+		scri.setPage(page);
+		scri.setKeyword(keyword);
+		scri.setSearchType(searchType);
+		scri.setBoard_code(board_code);
 		
 		int cnt = adminService.board_total(scri);
 		
@@ -166,27 +205,49 @@ public class AdminController {
 	}
 	
 	@GetMapping("/orderList.do")
-	public String getOrderList(Model model) {
+	public String getOrderList(Model model, 
+			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="subject") String searchType,
+			@RequestParam(value="keyword", defaultValue="") String keyword) {
 		
-		List<OrderVo> orderList = adminService.getOrderList();
+		SearchCriteria scri = new SearchCriteria();
+		scri.setPage(page);
+		scri.setKeyword(keyword);
+		scri.setSearchType(searchType);
+		
+		int cnt = adminService.orderTotal(scri);
+		
+		PageMaker pm = new PageMaker();
+		pm.setScri(scri);
+		pm.setTotalCount(cnt);
+		
+		List<OrderVo> orderList = adminService.getOrderList(scri);
 		model.addAttribute("orderList", orderList);
+		model.addAttribute("pm", pm);
+		model.addAttribute("scri", scri);
 		return "admin/memberManage/admin_orderList";
 	}
 	
 	@GetMapping("/noticeSellor.do")
-	public String getNoticeSellor(Model model) {
+	public String getNoticeSellor(Model model, 
+			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="subject") String searchType,
+			@RequestParam(value="keyword", defaultValue="") String keyword) {
 		
-		List<BoardVo> noticeSellor = adminService.getNoticeSellor();
+		SearchCriteria scri = new SearchCriteria();
+		scri.setPage(page);
+		scri.setKeyword(keyword);
+		scri.setSearchType(searchType);
+		
+		int cnt = adminService.noticeSellorTotal(scri);
+		
+		PageMaker pm = new PageMaker();
+		pm.setScri(scri);
+		pm.setTotalCount(cnt);
+		
+		List<BoardVo> noticeSellor = adminService.getNoticeSellor(scri);
 		model.addAttribute("noticeSellor", noticeSellor);
+		model.addAttribute("pm", pm);
+		model.addAttribute("scri", scri);
 		return "admin/sellorManage/admin_noticeSellor";
-	}
-	
-	@GetMapping("/outstanding.do")
-	public String getOutstanding(Model model) {
-		
-		List<MemberVo> outstanding = adminService.getOutstanding();
-		model.addAttribute("outstanding", outstanding);
-		return "admin/sellorManage/admin_outstanding";
 	}
 	
 	/*

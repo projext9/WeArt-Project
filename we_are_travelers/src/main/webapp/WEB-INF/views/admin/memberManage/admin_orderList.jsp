@@ -12,7 +12,7 @@
 <body style = "margin : 5% 10% 0 10%;">
 	<h3>구매목록</h3>
 	<hr/>
-	<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/admin/admin_memberList.do" method = "post">
+	<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/orderList.do" method = "get">
         <table style = "text-align:right">
             <tr>
                 <td>
@@ -47,5 +47,25 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<table>
+        <tr>
+            <td style="width:200px; text-align:right;">
+            	<c:if test = "${pm.prev == true}">
+            		<a href = "${pageContext.request.contextPath}/orderList.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
+            	</c:if>
+            </td>
+            <td>
+            	<c:forEach var = "i" begin = "${pm.startPage}" end = "${pm.endPage}" step = "1">
+            		<a href='${pageContext.request.contextPath}/orderList.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
+            	</c:forEach>
+            </td>
+            <td style="width:200px; text-align:left;">
+            	<c:if test="${pm.next&&pm.endPage > 0}">
+            		<a href = '${pageContext.request.contextPath}/orderList.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
+            	</c:if>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
