@@ -18,6 +18,8 @@
 		<typeAlias alias="cartVo" type="we.are.travelers.vo.CartVo"/>
 		<typeAlias alias="orderVo" type="we.are.travelers.vo.OrderVo"/>
 		<typeAlias alias="orderLastVo" type="we.are.travelers.vo.OrderLastVo"/>
+		<typeAlias alias="mapVo" type="we.are.travelers.vo.MapVo"/>
+				
 	</typeAliases>  
 
 </configuration>  

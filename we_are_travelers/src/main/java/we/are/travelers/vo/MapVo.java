@@ -8,6 +8,13 @@ public class MapVo {
 	private String map_addr; 
 	private String map_date;
 	private String map_region;
+	private String map_image;
+	public String getMap_image() {
+		return map_image;
+	}
+	public void setMap_image(String map_image) {
+		this.map_image = map_image;
+	}
 	public int getMap_idx() {
 		return map_idx;
 	}
