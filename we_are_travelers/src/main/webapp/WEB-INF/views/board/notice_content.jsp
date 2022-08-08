@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://kit.fontawesome.com/51dc5b459d.js" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/form-validation.css" rel="stylesheet">
 <script>
@@ -16,7 +15,7 @@
 </script>
 </head>
 <main style="padding-top:60px;">
-	<div class="container">
+	<div class="container" style="padding-top:1em;">
 		<div class="card">
 			<div class="card-header d-flex">
 				<h3 class="mb-1 col-9">${boardVo.board_subject}</h3>

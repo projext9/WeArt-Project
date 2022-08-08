@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://kit.fontawesome.com/51dc5b459d.js" crossorigin="anonymous"></script>
 	<style>
 		* > h3 {display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:500px;}
 	</style>
@@ -24,7 +23,7 @@
 </head>
 <main style="padding-top:60px;">
 	<!-- 게시판 버튼 -->
-	<div class="container g-3 row row-cols-2 mb-3" style="padding-right:0.7em; padding-left:0.7em; margin:auto;">
+	<div class="container g-3 row row-cols-2 mb-3" style="padding-top:1em; padding-right:0.7em; padding-left:0.7em; margin:auto;">
 		<form class="col-12" style="padding:0; margin:auto;">
 			<input type="hidden" name="code" value="${scri.board_code}">
 			<!-- 검색 -->

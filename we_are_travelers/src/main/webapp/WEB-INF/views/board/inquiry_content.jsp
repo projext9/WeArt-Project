@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://kit.fontawesome.com/51dc5b459d.js" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/form-validation.css" rel="stylesheet">
 <script>
@@ -86,7 +85,7 @@
 </script>
 </head>
 <main style="padding-top:60px;">
-	<div class="container">
+	<div class="container" style="padding-top:1em;">
 		<div class="card">
 			<div class="card-header d-flex">
 				<input type="hidden" id="board_idx" value="${boardVo.board_idx}" style="display:none;">
@@ -162,9 +161,9 @@
 								</div>
 								<c:if test="${boardVo.board_writer==member_nick}">
 									<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
-										<button type="button" class="btn btn-outline-primary btn-sm" id="reply_modify">수정</button>
+										<button type="button" class="btn btn-outline-primary btn-sm" id="reply_modify" style="margin-right:0.3em;">수정</button>
 										<button type="button" data-bs-toggle="modal" data-bs-target="#delete_reply" class="btn btn-outline-danger btn-sm" id="reply_delete">삭제</button>
-										<button type="button" class="btn btn-outline-primary btn-sm" id="reply_modify_submit" style="display:none;">확인</button>
+										<button type="button" class="btn btn-outline-primary btn-sm" id="reply_modify_submit" style="display:none; margin-right:0.3em;">확인</button>
 										<button type="button" class="btn btn-outline-danger btn-sm" id="reply_modify_cancel" style="display:none;">취소</button>
 										<!-- Modal -->
 										<div class="modal fade" id="delete_reply" tabindex="-1">

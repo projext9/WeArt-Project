@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://kit.fontawesome.com/51dc5b459d.js" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/form-validation.css" rel="stylesheet">
 <script>
@@ -96,7 +95,7 @@
 </script>
 </head>
 <main style="padding-top:60px;">
-	<div class="container">
+	<div class="container" style="padding-top:1em;">
 		<div class="card">
 			<div class="card-header d-flex">
 				<h3 class="mb-1 col-9">${boardVo.board_subject}</h3>
@@ -166,54 +165,87 @@
 				<div class="invalid-feedback">
 					내용을 입력하세요
 				</div>
-				<button class="btn btn-primary d-md-flex justify-content-md-end" id="insert_reply" type="submit" style="margin-left:auto;">확인</button>
+				<button class="btn btn-outline-primary btn-sm d-md-flex justify-content-md-end" id="insert_reply" type="submit" style="margin-left:auto;">확인</button>
 			</div>
 		</form>
 		<c:forEach var="boardVo" items="${board_reply}">
-			<div class="list-group col-12">
-				<table class="table table-borderless">
-					<tr>
-						<td>
-							<div class="d-flex align-items-center">
-								<h5 class="mb-1 col-6 col-sm-7 col-md-8 col-lg-9">
-									<input type="hidden" id="reply_board_idx" value="${boardVo.board_idx}">
-									<span>${boardVo.board_content}</span>
-								</h5>
-								<div class="d-flex justify-content-end" style="margin-left:auto;">
-									<small class="text-muted">${boardVo.board_writer} / ${boardVo.board_date}</small>
-								</div>
-								<c:if test="${boardVo.board_writer==member_nick}">
-									<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
-										<button type="button" data-bs-toggle="modal" data-bs-target="#delete_reply" class="btn btn-secondary btn-sm">삭제</button>
-										<!-- Modal -->
-										<div class="modal fade" id="delete_reply" tabindex="-1">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title">댓글 삭제</h5>
-														<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-													</div>
-													<div class="modal-body">
-														댓글을 삭제하시겠습니까?
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-														<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/delete_reply.do?board_idx=${boardVo.board_idx}&board_originidx=${boardVo.board_originidx}'">확인</button>
-													</div>
-												</div>
+			<div class="list-group col-12" style="margin-top:0.5em;">
+				<div class="d-flex align-items-center" style="display: inline-block !important;">
+					<%-- <h5 class="mb-1 col-6 col-sm-7 col-md-8 col-lg-9">
+						<input type="hidden" id="reply_board_idx" value="${boardVo.board_idx}">
+						<span>${boardVo.board_content}</span>
+					</h5> --%>
+					<div class="card">
+					<div class="card-body">
+						<h5 class="mb-1 col-6 col-sm-7 col-md-8 col-lg-9">
+							<input type="hidden" id="reply_board_idx" value="${boardVo.board_idx}">
+							<span>${boardVo.board_content}</span>
+						</h5>
+						<%-- <blockquote class="blockquote mb-0 col-6 col-sm-7 col-md-8 col-lg-9">
+							<input type="hidden" id="reply_board_idx" value="${boardVo.board_idx}">
+							<p>${boardVo.board_content}</p>
+						</blockquote> --%>
+						<div class="d-flex justify-content-start">
+							<small class="text-muted align-items-center">${boardVo.board_writer} / ${boardVo.board_date}</small>
+													<c:if test="${boardVo.board_writer==member_nick}">
+							<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
+								<button type="button" data-bs-toggle="modal" data-bs-target="#delete_reply" class="btn btn-outline-danger btn-sm">삭제</button>
+								<!-- Modal -->
+								<div class="modal fade" id="delete_reply" tabindex="-1">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title">댓글 삭제</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+											</div>
+											<div class="modal-body">
+												댓글을 삭제하시겠습니까?
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/delete_reply.do?board_idx=${boardVo.board_idx}&board_originidx=${boardVo.board_originidx}'">확인</button>
 											</div>
 										</div>
 									</div>
-								</c:if>
+								</div>
 							</div>
-						</td>
-					</tr>
-				</table>
+						</c:if>
+						</div>
+
+					</div>
+					</div>
+					<%-- <div class="d-flex justify-content-end" style="margin-left:auto;">
+						<small class="text-muted">${boardVo.board_writer} / ${boardVo.board_date}</small>
+					</div> --%>
+					<%-- <c:if test="${boardVo.board_writer==member_nick}">
+						<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
+							<button type="button" data-bs-toggle="modal" data-bs-target="#delete_reply" class="btn btn-outline-danger btn-sm">삭제</button>
+							<!-- Modal -->
+							<div class="modal fade" id="delete_reply" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">댓글 삭제</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<div class="modal-body">
+											댓글을 삭제하시겠습니까?
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+											<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/delete_reply.do?board_idx=${boardVo.board_idx}&board_originidx=${boardVo.board_originidx}'">확인</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if> --%>
+				</div>
 			</div>
 		</c:forEach>
 	</div>
 	<!-- 페이지네이션 -->
-	<nav>
+	<div style="margin-top:1em;">
 		<ul class="pagination justify-content-center">
 		    <c:if test="${pm.prev==true}">
 				<li class="page-item">
@@ -240,7 +272,7 @@
 			    </li>
 			</c:if>
 		</ul>
-	</nav>
+	</div>
 <script src="${pageContext.request.contextPath}/resources/js/form-validation.js"></script>
 </main>
 </html>
