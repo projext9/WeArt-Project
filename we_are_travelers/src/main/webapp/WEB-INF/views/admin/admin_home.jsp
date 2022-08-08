@@ -10,7 +10,7 @@
 
 	
 	<a href="/travelers/memberList.do">회원목록보기</a><p/>
-	<a href="/travelers/home.do">메인페이지2</a>
+	<a href="/travelers/home.do">메인페이지</a>
 	
 	
 </body>
