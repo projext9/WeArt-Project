@@ -37,13 +37,25 @@ public class ItemDao {
 	public int addItem(ItemVo itemVo) { //판매상품 등록
 		return sqlSession.insert(MAPPER+".addItem", itemVo);
 	}
-	
+
+	public int addItemContent(ItemVo itemVo) { //판매상품 등록(상세설명)
+		return sqlSession.update(MAPPER+".addItemContent", itemVo);
+	}
+
 	public ItemVo getAddedItem(String company_idx) { //최근 작성 상품 호출
 		return sqlSession.selectOne(MAPPER+".getAddedItem", company_idx);
 	}
 	
 	public int addItemImg(ItemVo itemVo) { //상품 이미지 업로드
 		return sqlSession.update(MAPPER+".addItemImg", itemVo);
+	}
+	
+	public int addItemOption(Map<String, Object> map) { //옵션 등록
+		return sqlSession.insert(MAPPER+".addItemOption", map);
+	}
+	
+	public int updateItemOption(String item_idx) { //아이템 상태 변경 "T" to "N"
+		return sqlSession.insert(MAPPER+".updateItemOption", item_idx);
 	}
 	
 	public int item_total_culture(SearchCriteria scri) { //상품 리스트 갯수(문화)

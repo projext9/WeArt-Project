@@ -12,28 +12,21 @@
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 		<script>
-			<!-- CKEditor5 코드 -->
-			function MyCustomUploadAdapterPlugin(editor) {
-			    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-			        return new UploadAdapter(loader);
-			    }
-			}
-		
 			$(function(){
 			$("#item_input2_text").hide();
 			$("#item_input2").change(function() {
-					if($("#item_input2").val() == "write") {
+					if($("#item_input2_write").is(':selected') == true) {
 						$("#item_input2_text").show();
 					}  else {
 						$("#item_input2_text").hide();
 					}
-				}) 
+				})
 			});
-			
+	 		
 	 		function fn_itemwrite() {
 	 			alert("게시글 작성 실행");
-	 			var frmData = $("#frm1, #frm2, #frm3, #frm4, #frm5").serialize();
-				var item_idx = "";
+	 			document.getElementById("item_input2_write").value = document.getElementById("item_input2_text").value
+	 			var frmData = $("#frm1, #frm2, #frm3, #frm4").serialize();
 		 		$.ajax({
 					method: 'post',
 	 			    url: 'itemwriteaction.do',
@@ -41,10 +34,13 @@
 	 			    dataType: 'html',
 	 			    cache: false,
 					success: function(data) {
-						alert(data);
-						item_idx = data;
-						location.href = "${pageContext.request.contextPath}/itemwrite2.do";
-						},
+						if(data == "1") {
+							alert("게시글 작성 성공!");
+							location.href = "${pageContext.request.contextPath}/itemwrite2.do";
+						} else {
+							alert("게시글 작성 실패!");
+						}
+					},
 					error: function(error){ alert("에러!"); }
 				})
 	 		}
@@ -60,12 +56,17 @@
 				</div>
 				<div class="col-sm col-12">
 					<div class="alert alert-secondary" role="alert">
-						2 . 옵션 등록
+						2 . 상세정보 등록
 					</div>
 				</div>
 				<div class="col-sm col-12">
 					<div class="alert alert-secondary" role="alert">
-						3 . 등록 완료
+						3 . 옵션 등록
+					</div>
+				</div>
+				<div class="col-sm col-12">
+					<div class="alert alert-secondary" role="alert">
+						4 . 등록 완료
 					</div>
 				</div>
 			</div>
@@ -150,31 +151,10 @@
 					<div class="single-block">
 						<div class="row">
 						
-							<div class="col-lg-12 col-12">
-								<div class="info-body">
-									<h4>상품상세 정보</h4>
-									<form name="frm3" id="frm3">
-									<p><textarea class="editor" name="item_content" id="validationCustom05" required placeholder="내용을 입력하세요"></textarea> <!-- @아이템 상세정보 -->
-									</p>
-									<input type="text" name="item_addr"> <!-- @아이템 지도 주소 -->
-									</form>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-	
-			<div class="container">
-				<div class="product-details-info">
-					<div class="single-block">
-						<div class="row">
-						
 							<div class="col-lg-6 col-12">
 								<div class="info-body">
 									<h4>기본 표기정보</h4>
-									<form name="frm4" id="frm4">
+									<form name="frm3" id="frm3">
 									<table class="product-details-table">
 										<tr>
 											<th>품명 및 모델명</th>
@@ -200,16 +180,15 @@
 							<div class="col-lg-6 col-12">
 								<div class="info-body">
 									<h4>배송정보</h4>
-									<form name="frm5" id="frm5">
+									<form name="frm4" id="frm4">
 									<table class="product-details-table">
 										<tr>
 											<th>배송방법</th>
 											<td>
 												<select id="item_input8" name="item_input8"> <!-- @아이템 배송방법 -->
-													<option value="택배">택배</option>
 													<option value="온라인발송">온라인발송</option>
-													<option value="GS택배">GS택배</option>
-													<option value="write">직접입력</option>
+													<option value="택배">택배</option>
+													<option value="직접전달">직접전달</option>
 												</select>
 											</td>
 											<th rowspan="2">배송비</th>
@@ -273,6 +252,7 @@
 											<th>택배회사</th>
 											<td>
 												<select id="item_input2" name="item_input2"> <!-- @아이템 택배회사 -->
+													<option value="온라인발송">온라인발송</option>
 													<option value="CJ대한통운">CJ대한통운</option>
 													<option value="롯데택배">롯데택배</option>
 													<option value="우체국택배">우체국택배</option>
@@ -282,7 +262,7 @@
 													<option value="현대택배">현대택배</option>
 													<option value="CU택배">CU택배</option>
 													<option value="GS택배">GS택배</option>
-													<option value="write">직접입력</option>
+													<option id="item_input2_write" value="">직접입력</option>
 												</select>
 												<input type="text" id="item_input2_text" name="item_input2_text" size="10" maxlength="10">
 											</td>
@@ -291,8 +271,8 @@
 											<th colspan="2">묶음배송 여부</th>
 											<td colspan="2">
 												<select id="item_input11" name="item_input11"> <!-- @아이템 묶음배송 여부 선택 -->
-													<option value="1">가능</option>
-													<option value="2">불가능</option>
+													<option value="O">가능</option>
+													<option value="X">불가능</option>
 												</select>
 											</td>
 										</tr>
@@ -306,34 +286,8 @@
 				</div>
 			</div>
 			<br>
-			<div style="text-align: center;"><button type="button" class="btn btn-primary btn-lg" onClick="fn_itemwrite()">상품 게시(다음)</button></div>
+			<div style="text-align: center;"><button type="button" class="btn btn-primary btn-lg" onClick="fn_itemwrite()">상세정보 등록(다음)</button></div>
 		</section>
-
-		<!-- CKEditor5 -->
-		<script src="${pageContext.request.contextPath}/resources/ckeditor/build/ckeditor.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/ckeditor/UploadAdapter.js"></script>
-		<script>
-			ClassicEditor
-				.create( document.querySelector( '.editor' ), {
-					extraPlugins: [MyCustomUploadAdapterPlugin],	// 이미지 업로드 어댑터
-					licenseKey: '',
-					mediaEmbed: {									// 동영상 업로드
-					    previewsInData:true
-					},
-				} )
-				.then( editor => {
-					window.editor = editor;
-				} )
-				.catch( error => {
-					console.error( 'Oops, something went wrong!' );
-					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-					console.warn( 'Build id: epob765mepsi-71uxdxxu3a3m' );
-					console.error( error );
-				} );
-		</script>
-		<script src="${pageContext.request.contextPath}/resources/js/form-validation.js"></script>
-		<!-- /CKEditor5 -->
-		
 		<%@ include file="../footer.jsp"%>
     </body>
 </html>

@@ -13,12 +13,25 @@
 			VALUES(#{company_idx},#{item_code},#{item_name},#{item_originImg},#{item_img},#{item_price},#{item_postPrice},#{item_input1},#{item_input2},#{item_input3},#{item_input4},#{item_input5},#{item_input6},#{item_input7},#{item_input8},#{item_input9},#{item_input10},#{item_input11},#{item_content},"T")
 	</insert>
 	
+	<update id="addItemContent"> <!-- 판매상품 등록(상세설명) -->
+		UPDATE weart_item SET item_content = #{item_content} WHERE company_idx = #{company_idx} AND item_delyn = "T"
+	</update>
+	
 	<select id="getAddedItem" resultType="itemVo"> <!-- 최근 작성 상품 호출 -->
 		SELECT * FROM weart_item WHERE company_idx = #{company_idx} AND item_delyn = "T" ORDER BY item_idx DESC LIMIT 0,1
 	</select>
 	
 	<update id="addItemImg"> <!-- 상품 이미지 업로드 -->
 		UPDATE weart_item SET item_originImg = #{item_originImg}, item_img = #{item_img} WHERE company_idx = #{company_idx} AND item_delyn = "T"
+	</update>
+	
+	<insert id="addItemOption" parameterType="map"> <!-- 옵션 등록 -->
+		INSERT INTO weart_option(item_idx,company_idx,option_number,option_name,option_price,option_postPrice,option_stock) 
+			VALUES(#{item_idx}, #{company_idx}, #{option_number}, #{option_name}, #{option_price}, #{option_postPrice}, #{option_stock})
+	</insert>
+	
+	<update id="updateItemOption"> <!-- 아이템 상태 변경 "T" to "N" -->
+		UPDATE weart_item SET item_delyn = "N" WHERE item_idx = #{item_idx}
 	</update>
 	
 	<select id="item_total_culture" resultType="int"> <!-- 상품 cnt 계산(문화) -->

@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import we.are.travelers.service.ItemService;
 import we.are.travelers.vo.CompanyVo;
@@ -474,7 +477,6 @@ public class ItemController {
 			
 			OrderLastVo orderLastVo = itemService.getOrderLast(map); //주문서 호출
 			int amountDb = orderLastVo.getOrderLast_totalPrice();			
-			System.out.println("amountDb 출력: "+ amountDb);
 			
 			String imp_key = "";
 			String imp_secret = "";
@@ -529,23 +531,51 @@ public class ItemController {
 
 		} else {
 			itemService.deleteAllItem(company_idx); //찌꺼기 제거
-			
+
 			itemVo.setCompany_idx(company_idx); //기업번호 입력
+			itemVo.setItem_content("TEMP"); //임시
 			int result = itemService.addItem(itemVo); //게시글 작성
-			if(result == 1) {
-				ItemVo itemVo2 = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
-				int item_idx = itemVo2.getItem_idx();
-				String item_idx_ = String.valueOf(item_idx);
-				
-				return item_idx_;
-			} else {
-				return "home";
-			}
+
+			String result_ = String.valueOf(result);
+			return result_;
 		}
 	}
 
-	@GetMapping("/itemwrite2.do") //판매상품 입력 페이지
-	public String itemwrite2(HttpServletRequest request, Model model) {
+	
+	@PostMapping("/itemcontentupload.do") //텍스트 입력
+	@ResponseBody
+	public String itemtextupload(ItemVo itemVo, HttpServletRequest request, Model model) throws IOException {
+		System.out.println("오긴오냐");
+		itemVo.getItem_content();
+
+		
+		HttpSession session = request.getSession();
+		String company_idx = (String)session.getAttribute("company_idx");
+
+		if (company_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+			int result = 0; //0:입력 실패
+			String temp = itemVo.getItem_content();
+			
+			System.out.println(temp);
+			
+			result = itemService.addItemContent(itemVo);
+			
+			String result_ = String.valueOf(result);
+			return result_;
+		}
+	}
+	
+	
+	
+	////////////////itemwrite2////////////
+	////////////////itemwrite2action//////
+	
+	
+	@GetMapping("/itemwrite3.do") //판매상품 입력 페이지
+	public String itemwrite3(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
 
@@ -559,16 +589,15 @@ public class ItemController {
 			CompanyVo companyVo = itemService.getItemCompany(company_idx); //상품 상세 호출(판매자명)
 			model.addAttribute("companyVo", companyVo);
 			
-			return "item/itemwrite2";
+			return "item/itemwrite3";
 		}
 	}
 	
-	@PostMapping("/itemimgupload.do") //판매상품 입력 진행
+	@PostMapping("/itemimgupload.do") //상품 이미지 업로드
 	@ResponseBody
-	public String itemimgupload(@RequestParam("item_originImg") MultipartFile item_originImg, HttpServletRequest request, Model model) throws IllegalStateException, IOException{
+	public String itemimgupload(@RequestParam("item_originImg") MultipartFile item_originImg, HttpServletRequest request, Model model) throws IllegalStateException, IOException {
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
-		System.out.println("들어옴");
 
 		if (company_idx == null) {
 			return "login"; //로그인 필요
@@ -609,9 +638,56 @@ public class ItemController {
 			result = itemService.addItemImg(itemVo);
 			
 			String result_ = String.valueOf(result);
-			System.out.println(result_);
 			
 			return result_;
+		}
+	}
+
+	@PostMapping("/itemwrite3action.do") //주문서 생성
+	public String itemwrite3action(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String company_idx = (String)session.getAttribute("company_idx");
+	    	
+		if (company_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+			ItemVo itemVo = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
+			model.addAttribute("itemVo", itemVo);
+			int item_idx = itemVo.getItem_idx();
+			String item_idx_ = String.valueOf(item_idx);
+			
+
+			String[] option_number_list = request.getParameterValues("option_number");
+			String[] option_name_list = request.getParameterValues("option_name");
+			String[] option_price_list = request.getParameterValues("option_price");
+			String[] option_postPrice_list = request.getParameterValues("option_postPrice");
+			String[] option_stock_list = request.getParameterValues("option_stock");
+			
+			int length = option_number_list.length;
+			
+			for(int i = 0; i < length; i++) {
+				String option_number = option_number_list[i];
+				String option_name = option_name_list[i];
+				String option_price = option_price_list[i];
+				String option_postPrice = option_postPrice_list[i];
+				String option_stock = option_stock_list[i];
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("company_idx", company_idx);
+				map.put("item_idx", item_idx_);
+				map.put("option_number", option_number);
+				map.put("option_name", option_name);
+				map.put("option_price", option_price);
+				map.put("option_postPrice", option_postPrice);
+				map.put("option_stock", option_stock);
+				
+				itemService.addItemOption(map); //옵션 등록
+			}
+
+			itemService.updateItemOption(item_idx_); //아이템 상태 변경 "T" to "N"
+			
+			return "item/itemwrite3";
 		}
 	}
 	
