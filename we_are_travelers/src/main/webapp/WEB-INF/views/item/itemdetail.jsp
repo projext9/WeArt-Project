@@ -75,7 +75,7 @@
 											<select class="form-control" id="optionValue" onchange="optionSelect(this)">
 												<c:forEach var="optionVo" items="${optionList}">
 													<c:if test="${optionVo.option_delyn == 'N'}">
-														<option value="${optionVo.option_idx}">${optionVo.option_name}</option>
+														<option value="${optionVo.option_idx}">${optionVo.option_name}(${optionVo.option_price}&#8361;)</option>
 													</c:if>
 												</c:forEach>
 											</select>

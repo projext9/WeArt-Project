@@ -24,7 +24,6 @@
 			});
 	 		
 	 		function fn_itemwrite() {
-	 			alert("게시글 작성 실행");
 	 			document.getElementById("item_input2_write").value = document.getElementById("item_input2_text").value
 	 			var frmData = $("#frm1, #frm2, #frm3, #frm4").serialize();
 		 		$.ajax({
@@ -35,10 +34,9 @@
 	 			    cache: false,
 					success: function(data) {
 						if(data == "1") {
-							alert("게시글 작성 성공!");
 							location.href = "${pageContext.request.contextPath}/itemwrite2.do";
 						} else {
-							alert("게시글 작성 실패!");
+							alert("상품 작성 실패!");
 						}
 					},
 					error: function(error){ alert("에러!"); }
@@ -286,7 +284,7 @@
 				</div>
 			</div>
 			<br>
-			<div style="text-align: center;"><button type="button" class="btn btn-primary btn-lg" onClick="fn_itemwrite()">상세정보 등록(다음)</button></div>
+			<div style="text-align: center;"><button type="button" class="btn btn-primary btn-lg" onClick="fn_itemwrite()">상품 작성(다음)</button></div>
 		</section>
 		<%@ include file="../footer.jsp"%>
     </body>

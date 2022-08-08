@@ -54,7 +54,6 @@
 					</div>
 				</div>
 			</div>
-
 			<br>
 			<div style="text-align: center;"><button type="button" class="btn btn-primary btn-lg"  onClick="location.href='${pageContext.request.contextPath}/itemdetail.do?iidx=${itemVo.item_idx}&itemCode=${itemVo.item_code}'">등록상품 보러가기</button></div>
 		</section>

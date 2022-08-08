@@ -2,6 +2,7 @@ package we.are.travelers.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -506,7 +507,7 @@ public class ItemController {
 		}
 	}
 	
-	@GetMapping("/itemwrite.do") //판매상품 입력 페이지
+	@GetMapping("/itemwrite.do") //판매상품 입력(상품작성)
 	public String itemwrite(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
@@ -520,7 +521,7 @@ public class ItemController {
 		}
 	}
 
-	@PostMapping("/itemwriteaction.do") //판매상품 입력 진행
+	@PostMapping("/itemwriteaction.do") //판매상품 입력 실행(상품작성)
 	@ResponseBody
 	public String itemwriteaction(ItemVo itemVo, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -534,48 +535,15 @@ public class ItemController {
 
 			itemVo.setCompany_idx(company_idx); //기업번호 입력
 			itemVo.setItem_content("TEMP"); //임시
-			int result = itemService.addItem(itemVo); //게시글 작성
+			int result = itemService.addItem(itemVo); //판매상품 입력 실행(상품작성)
 
 			String result_ = String.valueOf(result);
 			return result_;
 		}
 	}
 
-	
-	@PostMapping("/itemcontentupload.do") //텍스트 입력
-	@ResponseBody
-	public String itemtextupload(ItemVo itemVo, HttpServletRequest request, Model model) throws IOException {
-		System.out.println("오긴오냐");
-		itemVo.getItem_content();
-
-		
-		HttpSession session = request.getSession();
-		String company_idx = (String)session.getAttribute("company_idx");
-
-		if (company_idx == null) {
-			return "login"; //로그인 필요
-
-		} else {
-			int result = 0; //0:입력 실패
-			String temp = itemVo.getItem_content();
-			
-			System.out.println(temp);
-			
-			result = itemService.addItemContent(itemVo);
-			
-			String result_ = String.valueOf(result);
-			return result_;
-		}
-	}
-	
-	
-	
-	////////////////itemwrite2////////////
-	////////////////itemwrite2action//////
-	
-	
-	@GetMapping("/itemwrite3.do") //판매상품 입력 페이지
-	public String itemwrite3(HttpServletRequest request, Model model) {
+	@GetMapping("/itemwrite2.do") //판매상품 입력(상세정보 등록)
+	public String itemwrite2(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
 
@@ -589,10 +557,33 @@ public class ItemController {
 			CompanyVo companyVo = itemService.getItemCompany(company_idx); //상품 상세 호출(판매자명)
 			model.addAttribute("companyVo", companyVo);
 			
+			return "item/itemwrite2";
+		}
+	}
+
+	@PostMapping("/itemwrite2action.do") //판매상품 입력 실행(상세정보 등록)
+	public String itemwrite2action(ItemVo itemVo, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String company_idx = (String)session.getAttribute("company_idx");
+
+		if (company_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+			itemVo.setCompany_idx(company_idx); //기업번호 입력
+			
+			int result = itemService.addItemContent(itemVo); //판매상품 입력 실행(상세정보 등록)
+			
+			itemVo = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
+			model.addAttribute("itemVo", itemVo);
+			
+			CompanyVo companyVo = itemService.getItemCompany(company_idx); //상품 상세 호출(판매자명)
+			model.addAttribute("companyVo", companyVo);
+
 			return "item/itemwrite3";
 		}
 	}
-	
+
 	@PostMapping("/itemimgupload.do") //상품 이미지 업로드
 	@ResponseBody
 	public String itemimgupload(@RequestParam("item_originImg") MultipartFile item_originImg, HttpServletRequest request, Model model) throws IllegalStateException, IOException {
@@ -642,8 +633,27 @@ public class ItemController {
 			return result_;
 		}
 	}
+	
+	@PostMapping("/itemwrite3.do") //판매상품 입력(옵션 등록)
+	public String itemwrite3(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String company_idx = (String)session.getAttribute("company_idx");
 
-	@PostMapping("/itemwrite3action.do") //주문서 생성
+		if (company_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+			ItemVo itemVo = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
+			model.addAttribute("itemVo", itemVo);
+			
+			CompanyVo companyVo = itemService.getItemCompany(company_idx); //상품 상세 호출(판매자명)
+			model.addAttribute("companyVo", companyVo);
+			
+			return "item/itemwrite3";
+		}
+	}
+
+	@PostMapping("/itemwrite3action.do") //판매상품 입력 실행(옵션 등록)
 	public String itemwrite3action(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
@@ -682,12 +692,12 @@ public class ItemController {
 				map.put("option_postPrice", option_postPrice);
 				map.put("option_stock", option_stock);
 				
-				itemService.addItemOption(map); //옵션 등록
+				itemService.addItemOption(map); //판매상품 입력 실행(옵션 등록)
 			}
 
 			itemService.updateItemOption(item_idx_); //아이템 상태 변경 "T" to "N"
 			
-			return "item/itemwrite3";
+			return "item/itemwrite4";
 		}
 	}
 	

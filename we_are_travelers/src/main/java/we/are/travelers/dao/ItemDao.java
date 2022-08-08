@@ -34,12 +34,8 @@ public class ItemDao {
 		return sqlSession.delete(MAPPER+".deleteAllItem", company_idx);
 	}
 	
-	public int addItem(ItemVo itemVo) { //판매상품 등록
+	public int addItem(ItemVo itemVo) { //판매상품 입력 실행(상품작성)
 		return sqlSession.insert(MAPPER+".addItem", itemVo);
-	}
-
-	public int addItemContent(ItemVo itemVo) { //판매상품 등록(상세설명)
-		return sqlSession.update(MAPPER+".addItemContent", itemVo);
 	}
 
 	public ItemVo getAddedItem(String company_idx) { //최근 작성 상품 호출
@@ -50,7 +46,11 @@ public class ItemDao {
 		return sqlSession.update(MAPPER+".addItemImg", itemVo);
 	}
 	
-	public int addItemOption(Map<String, Object> map) { //옵션 등록
+	public int addItemContent(ItemVo itemVo) { //판매상품 입력 실행(상세정보 등록)
+		return sqlSession.update(MAPPER+".addItemContent", itemVo);
+	}
+
+	public int addItemOption(Map<String, Object> map) { //판매상품 입력 실행(옵션 등록)
 		return sqlSession.insert(MAPPER+".addItemOption", map);
 	}
 	
