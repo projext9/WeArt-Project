@@ -86,13 +86,13 @@ public class MemberDao {
 		  return sqlSession.selectOne(MAPPER+".findKakao", userInfo);	  
 	}
 	
-	 public String findNaver(HashMap<String, Object> naverInfo){
+	 public MemberVo findNaver(HashMap<String, Object> naverInfo){
 	  	  System.out.println("네이버 아이디:"+naverInfo.get("social_naver"));
 	  	  System.out.println("네이버 닉네임:"+naverInfo.get("member_ncik"));
 		  return sqlSession.selectOne(MAPPER+".findNaver", naverInfo);	  
 	}
 	 
-	 public String insertNaver(HashMap<String, Object> naverInfo) {
+	 public MemberVo insertNaver(HashMap<String, Object> naverInfo) {
 		 int regCode = 2;
 			String idx ="";
 			for (int i = 1; i <= 12; i++) {
@@ -122,6 +122,46 @@ public class MemberDao {
 			naverInfo.put("member_regCode", regCode);
 			
 			return sqlSession.selectOne(MAPPER+".insertNaver", naverInfo);	
+			
+		}
+	 
+	 public String findGoogle(HashMap<String, Object> googleInfo){
+		 System.out.println("회원고유번호:"+googleInfo.get("member_idx"));
+	  	  System.out.println("네이버 아이디:"+googleInfo.get("social_naver"));
+	  	  System.out.println("네이버 닉네임:"+googleInfo.get("member_ncik"));
+		  return sqlSession.selectOne(MAPPER+".findNaver", googleInfo);	  
+	}
+	 
+	 public String insertGoogle(HashMap<String, Object> googleInfo) {
+		 int regCode = 3;
+			String idx ="";
+			for (int i = 1; i <= 12; i++) {
+	            int pick = (int)((Math.random() * (20 - 1)) + 1);
+	                if (pick <= 8) {
+	                    char ch = (char) ((Math.random() * 26) + 65);
+	                    idx= idx + String.valueOf(ch);
+	                } else if (pick <= 14) {
+	                    char ch = (char) ((Math.random() * 26) + 97);
+	                    idx= idx + String.valueOf(ch);
+	                } else if (pick <= 16) {
+	                    char ch = (char) ((Math.random() * 10) + 48);
+	                    idx= idx + String.valueOf(ch);
+	                } else if (pick <= 18) {
+	                    char ch = 33;
+	                    idx= idx + String.valueOf(ch);
+	                } else if (pick <= 20) {
+	                    char ch = 64;
+	                    idx= idx + String.valueOf(ch);
+	                }
+	            }
+			
+			MemberVo memberVo = new MemberVo();
+			memberVo.setMember_idx(idx);
+			
+			googleInfo.put("member_idx", idx);
+			googleInfo.put("member_regCode", regCode);
+			
+			return sqlSession.selectOne(MAPPER+".insertGoogle", googleInfo);	
 			
 		}
 

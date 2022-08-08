@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -81,7 +81,7 @@ public class SnsLoginController {
 		 naverInfo.put("social_naver", social_naver);
 		 naverInfo.put("member_nick", member_nick);
 		 
-		 String result_naver = SnsLoginService.findNaver(naverInfo);
+		 MemberVo result_naver = SnsLoginService.findNaver(naverInfo);
 
  		// 위 코드는 먼저 정보가 저장되있는지 확인하는 코드.
  		System.out.println("S:" + result_naver);

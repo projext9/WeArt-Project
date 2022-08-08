@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "we.are.travelers.map">
+
+	<select id="getMapList" resultType="mapVo">
+		select * from weart_map
+	</select>
+	
+	<select id = "getMapSearch" parameterType="int" resultType= "mapVo" >
+	    select map_addr,company_name from weart_map where map_idx = #{map_idx}
+	</select>
+	
+	<select id = "getMapList2" parameterType="string" resultType= "mapVo" >
+	    select * from weart_map where map_region = #{map_region}
+	</select>
+	
+</mapper>

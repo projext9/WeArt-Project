@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "we.are.travelers.admin">
+
+	<select id="getMemberList" resultType="memberVo">
+		select * from weart_member where member_grade = 0
+			<if test="searchType=='id'">and member_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='nickname'">and member_nick like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getMemberTotal" resultType="int">
+		select count(*) as cnt from weart_member where member_grade = 0
+			<if test="searchType=='id'">and member_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='nickname'">and member_nick like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getSellorList" resultType="companyVo">
+		select * from weart_company where company_auth = 1
+			<if test="searchType=='id'">and company_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='name'">and company_name like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getSellorTotal" resultType="int">
+		select count(*) as cnt from weart_company where company_auth = 1
+			<if test="searchType=='id'">and company_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='name'">and company_name like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getSellorContent" resultType="companyVo">
+		select * from weart_company where company_idx = #{company_idx}
+	</select>
+	
+	<select id="getMemberContent" resultType="memberVo">
+		select * from weart_member where member_idx = #{member_idx}
+	</select>
+	
+	<select id="getBoardList" resultType="boardVo">
+		select * from weart_board where board_idx=board_originidx and board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+		OR board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
+		 	<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getBoardTotal" resultType="int">
+		select count(*) as cnt from weart_board where board_idx=board_originidx and board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+		or board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getBoardContent" resultType="boardVo">
+		select * from weart_board where board_idx = #{board_idx}
+	</select>
+	
+	<select id="getReplyList" resultType="boardVo">
+		select * from weart_board where board_reply = 1
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getReplyTotal" resultType="int">
+		select count(*) as cnt from weart_board where board_reply = 1
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getOrderList" resultType="orderVo">
+		select * from weart_order
+	</select>
+	
+	<select id="getOrderTotal" resultType="int">
+		select count(*) as cnt from weart_order
+	</select>
+	
+	<select id="getNoticeMember" resultType="boardVo">
+		select * from weart_board where board_reply = 'N' and board_code = 'm_notice'
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	<select id="getNoticeMemberTotal" resultType="int">
+		select count(*) as cnt from weart_board where board_reply='N' and board_code = 'm_notice'
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='nickname'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getNoticeSellor" resultType="boardVo">
+		select * from weart_board where board_reply = 'N' and board_code like 's%'
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getNoticeSellorTotal" resultType="int">
+		select count(*) as cnt from weart_board where board_reply = 'N' and board_code like 's%'
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getOutstanding" resultType="companyVo">
+		select * from weart_company where company_auth = 0
+			<if test="searchType=='id'">and company_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='name'">and company_name like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getOutstandingTotal" resultType="int">
+		select count(*) as cnt from weart_company where company_auth = 0
+			<if test="searchType=='id'">and company_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='name'">and company_name like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<update id="updateMemberGrade" parameterType="map">
+		update weart_member set member_grade = #{member_grade}
+			where member_idx = #{member_idx}
+	</update>
+	
+	<!-- <update id="updateMemberDelyn" parameterType="memberVo">
+		update weart_member set member_delyn = #{member_delyn}
+			where member_idx = #{member_idx}
+	</update>-->
+	
+	<delete id="deleteMemberInfo" parameterType="list">
+		delete from weart_member where member_idx in
+		<foreach collection="list" item="member_idx" open="(" separator="," close=")" >
+			#{member_idx}
+		</foreach>
+	</delete>
+	
+	
+
+</mapper>

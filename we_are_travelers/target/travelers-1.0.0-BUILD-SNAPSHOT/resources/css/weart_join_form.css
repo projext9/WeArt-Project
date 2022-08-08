@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+
+body {
+     height: 100vh;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column; /*수직 정렬*/
+      align-items: center;
+      justify-content: center;
+}
+
+
+.join_cont {
+    width: 580px;
+    margin: 40px auto 42px;
+    padding: 0 69px;
+    border: 1px solid rgba(0,0,0,0.12);
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.join_form {
+  width: 100%;
+  max-width: 400px;
+  padding : 55px 0 52px;
+  outline: none;
+  
+}
+
+/*
+.join_container {
+	display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content : center;
+}*/
+
+.join_gude_1 {
+	font-size : 24px;
+}
+
+.mail_input_box {
+	display : flex;
+	flex-wrap : nowrap;
+
+}
+h1{
+	display : inline-block;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+.filebox .upload-name {
+    display: inline-block;
+    height: 20px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 50%;
+    color: #999999;
+}
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 15px;
+    margin-left: 10px;
+}
+

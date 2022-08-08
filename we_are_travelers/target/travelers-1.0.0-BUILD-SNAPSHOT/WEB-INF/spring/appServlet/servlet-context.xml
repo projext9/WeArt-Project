@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/assets/**" location="/resources/assets/" /> 
+    <resources mapping="/ad_assets/**" location="/resources/ad_assets/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 파일 업로드 -->
+	<beans:bean id="multipartResolver" 
+	              class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	</beans:bean>
+	<!-- 네이버 로그인 -->
+	<beans:bean id="SnsLoginService" class="we.are.travelers.service.SnsLoginService" />
+	
+	<context:component-scan base-package="we.are.travelers.controller" />
+	<context:component-scan base-package="we.are.travelers.dao" />
+	<context:component-scan base-package="we.are.travelers.service" />
+	<context:component-scan base-package="we.are.travelers.vo" />
+	
+	<!-- Interceptor 설정: 로그인 여부 체크하는 LoginInterceptor 설정 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/*.do"/>
+			
+			<!-- 예외처리 시작 -->
+			<!-- HomeController -->
+			<exclude-mapping path="/home.do"/>
+			
+			<!-- TestController -->
+			<exclude-mapping path="/testlogin.do"/>
+			<exclude-mapping path="/testloginProcess.do"/>
+			
+			<!-- AllMemberController -->
+			<exclude-mapping path="/login.do"/>
+			<exclude-mapping path="/MemberloginProcess.do"/>
+			<exclude-mapping path="/joinMember.do"/>
+			<exclude-mapping path="/joinCompany.do"/>
+			<exclude-mapping path="/kakaoLogin.do"/>
+			<exclude-mapping path="/WeArtTermsOfService.do"/>
+			<exclude-mapping path="/WeArtPersnolInfo.do"/>
+			<exclude-mapping path="/WeArtMarketing.do"/>
+			<exclude-mapping path="/joinNext.do"/>
+			<exclude-mapping path="/fileUploadProcess.do"/>
+			<exclude-mapping path="/joinNext3.do"/>
+			<exclude-mapping path="/joinfinish.do"/>
+			<exclude-mapping path="/CompanyTermsOfService.do"/>
+			<exclude-mapping path="/CompanyInfo.do"/>
+			<exclude-mapping path="/CompanyInfo_other.do"/>
+			<exclude-mapping path="/CompanyMarketing.do"/>
+			<exclude-mapping path="/join_com_next.do"/>
+			<exclude-mapping path="/join_com_next2.do"/>
+			<exclude-mapping path="/join_com_next3.do"/>
+			<exclude-mapping path="/join_com_next4.do"/>
+			<exclude-mapping path="/join_com_finish.do"/>
+			<exclude-mapping path="/joinMemberProcess.do"/>
+			<exclude-mapping path="/joinCompanyProcess.do"/>
+			<exclude-mapping path="/logout.do"/>
+			
+			<!-- BoardController -->
+			<exclude-mapping path="/board_list.do"/>
+			<exclude-mapping path="/board_content.do"/>
+			<exclude-mapping path="/notice_list.do"/>
+			<exclude-mapping path="/notice_content.do"/>
+			<exclude-mapping path="/like_count.do"/>
+			
+			<!-- ItemController -->
+			<exclude-mapping path="/cultureshop.do"/>
+			<exclude-mapping path="/activityshop.do"/>
+			<exclude-mapping path="/fishingshop.do"/>
+			<exclude-mapping path="/campingshop.do"/>
+			<exclude-mapping path="/stayshop.do"/>
+			<exclude-mapping path="/itemdetail.do"/>
+
+			<!-- 예외처리 종료 -->
+
+			<beans:bean id="loginInterceptor" class="we.are.travelers.interceptor.LoginInterceptor"/>
+		</interceptor>
+
+	</interceptors>
+
+</beans:beans>

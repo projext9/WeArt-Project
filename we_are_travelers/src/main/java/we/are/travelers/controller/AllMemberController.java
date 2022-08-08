@@ -183,20 +183,6 @@ public class AllMemberController {
 
 	  return "member/join_finish";
     }
-		@RequestMapping("/fileUploadProcess.do")
-		public String fileUploadProcess(@RequestParam("company_auth") MultipartFile company_auth,
-				CompanyVo CompanyVo, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
-			//<input type ="file" name="uploadFile" />에서 업로드된 파일객체를 MultipartFile uploadFile에 저장
-			
-			//업로드된 파일을 프로젝트 내의 upload 폴더에 저장하기 전에 DB의 upload_file 테이블에 저장할 
-			//origin_filename과 system_filename 값을 세팅함
-			
-			
-			
-			return "gallery/gallery_home";
-		}
-		
-
 	
 	//////////////////////////////////////기업회원 약관동의 상세보기 로직
 	@RequestMapping(value="/joinCompany.do", method = RequestMethod.GET)

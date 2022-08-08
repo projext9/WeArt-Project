@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "we.are.travelers.company">
+
+	<insert id="joinCompany" parameterType="companyVo">
+		insert into weart_company (company_idx, company_id, company_pwd, company_buis_number, company_name, company_ceo_name,
+		 company_phone, company_buis_address, company_ip, company_auth_origin_file, company_auth_system_file)
+		
+		 values(#{company_idx}, #{company_id}, #{company_pwd}, #{company_buis_number}, #{company_name}, #{company_ceo_name},
+		 #{company_phone}, #{company_buis_address}, #{company_ip}, #{company_auth_file}, #{company_auth_system_file})
+	</insert>
+	
+	<select id="loginCompany" parameterType="companyVo" resultType="companyVo">
+		select * from weart_company where company_id=#{company_id} and company_pwd=#{company_pwd} and company_auth=1 and company_delyn='N'
+	</select>
+	
+	<select id="loginCompany_auth" parameterType="companyVo" resultType="companyVo">
+		select * from weart_company where company_id=#{company_id} and company_pwd=#{company_pwd} and company_auth=0 and company_delyn='N'
+	</select>
+
+	<select id="loginCompany_delynS" parameterType="companyVo" resultType="companyVo">
+		select * from weart_company where company_id=#{company_id} and company_pwd=#{company_pwd} and company_auth=1 and company_delyn='S'
+	</select>
+	
+	
+	<select id="checkComId" parameterType="string" resultType="int">
+		SELECT a.company_id , b.member_id
+		FROM (SELECT COUNT(*) company_id FROM weart_company where company_id=#{company_id}) a ,
+		     (SELECT COUNT(*) member_id FROM weart_member where member_id=#{member_id}) b
+	</select>
+	
+	<select id="checkComName" parameterType="string" resultType="int">
+	   SELECT count(*) FROM weart_company where company_name=#{company_name}
+	</select>
+	   
+	
+	
+
+</mapper>

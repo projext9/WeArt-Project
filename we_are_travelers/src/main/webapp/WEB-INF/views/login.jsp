@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <meta name="google-signin-client_id" content="917082913901-5alh4m7o4lq42fsvo2k4jnfdcrdaqraq.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="630681492572-civqbb1ns8p732fm3357jpcedprr3u47.apps.googleusercontent.com">
     <title>weart_login</title>
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
@@ -37,19 +37,16 @@
     	  
       });
    </script>
-   <script>
-   function onSignIn(googleUser) {
-   	  
 
-   </script>
-   
    <script>
     function onSuccess(googleUser) {
+    	alert("구글 로그인 시도");
     	  var profile = googleUser.getBasicProfile();
      	  var id_token = googleUser.getAuthResponse().id_token;
-     	  $("#googleBtn").click(function(){
+     	  $("#my-signin2").click(function(){
+     		  alert("구글 로그인 시도");
      		  $.ajax({
-     			  url: '승인된 리디렉션 URI',
+     			  url: '/googleLogin.do',
      			  type: 'POST',
      			  data: 'idtoken=' + id_token, 
      			  dataType: 'JSON',
@@ -58,7 +55,7 @@
      			  },
      			  success: function(json) {
      				  if (json.login_result == "success"){
-     					  location.href = "/travelers/home.do";
+     					  location.href = "http://localhost:8090/travelers/home.do";
      				  }//end if
      	          }//success
      		  });//ajax
@@ -126,9 +123,9 @@
     <img src="${pageContext.request.contextPath}/resources/images/naver_login.png" width="200" height="50" alt="네이버 로그인">
     </a>
     </div>
-
-  <div id="my-signin2"></div>
-  
+ <div class="social_logoG">
+   <div id="my-signin2"></div>
+  </div>
     <!--<div class="social_logoG" >
     <img src="${pageContext.request.contextPath}/resources/images/google_login.png" width="200" height="50" alt="네이버 로그인">
    </div>-->

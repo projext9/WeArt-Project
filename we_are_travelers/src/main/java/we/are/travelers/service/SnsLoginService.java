@@ -38,15 +38,26 @@ public class SnsLoginService {
 	}
 	
 	
-	public String findNaver(HashMap<String, Object> naverInfo){
+	public MemberVo findNaver(HashMap<String, Object> naverInfo){
 	  	  System.out.println("네이버 아이디:"+naverInfo.get("social_naver"));
 	  	  System.out.println("네이버 닉네임:"+naverInfo.get("member_nick"));
 		  return memberDao.findNaver(naverInfo);  
 	}
-	public String insertNaver(HashMap<String, Object> naverInfo){
+	public MemberVo insertNaver(HashMap<String, Object> naverInfo){
 	  	  System.out.println("네이버 아이디:"+naverInfo.get("social_naver"));
 	  	  System.out.println("네이버 닉네임:"+naverInfo.get("member_nick"));
 		  return memberDao.insertNaver(naverInfo);  
+	}
+	
+	public String findGoogle(HashMap<String, Object> googleInfo){
+	  	  System.out.println("구글 아이디:"+googleInfo.get("social_google"));
+	  	  System.out.println("구글 닉네임:"+googleInfo.get("member_nick"));
+		  return memberDao.findGoogle(googleInfo);  
+	}
+	public String insertGoogle(HashMap<String, Object> googleInfo){
+	  	  System.out.println("구글 아이디:"+googleInfo.get("social_google"));
+	  	  System.out.println("구글 닉네임:"+googleInfo.get("member_nick"));
+		  return memberDao.insertGoogle(googleInfo);  
 	}
 	
 	/* 인증 요청문을 구성하는 파라미터 */		

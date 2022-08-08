@@ -101,11 +101,11 @@ public class AjaxController {
         System.out.println("인증번호 " + checkNum);
         
         /* 이메일 보내기 */
-        String setFrom = "seokcheol0000@gmail.com";
+        String setFrom = "seokcheol005@gmail.com";
         String toMail = email;
         String title = "WeArt 회원가입 인증 이메일 입니다.";
         String content = 
-                "홈페이지를 방문해주셔서 감사합니다." +
+                "WeAreTravelers 가입을 환영합니다." +
                 "<br><br>" + 
                 "인증 번호는 " + checkNum + "입니다." + 
                 "<br>" + 
