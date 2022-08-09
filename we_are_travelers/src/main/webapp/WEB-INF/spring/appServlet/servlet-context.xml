@@ -91,11 +91,11 @@
 			<exclude-mapping path="/like_count.do"/>
 			
 			<!-- ItemController -->
-			<exclude-mapping path="/cultureshop.do"/>
-			<exclude-mapping path="/activityshop.do"/>
-			<exclude-mapping path="/fishingshop.do"/>
-			<exclude-mapping path="/campingshop.do"/>
-			<exclude-mapping path="/stayshop.do"/>
+			<exclude-mapping path="/shopculture.do"/>
+			<exclude-mapping path="/shopactivity.do"/>
+			<exclude-mapping path="/shopfishings.do"/>
+			<exclude-mapping path="/shopcamping.do"/>
+			<exclude-mapping path="/shopstay.do"/>
 			<exclude-mapping path="/itemdetail.do"/>
 			<exclude-mapping path="/itemcartadd.do"/>
 			
