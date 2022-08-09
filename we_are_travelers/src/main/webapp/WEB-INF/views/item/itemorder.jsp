@@ -7,52 +7,8 @@
         <title>We-Art Project</title>
  		<link href="${pageContext.request.contextPath}/resources/css/weart_itemorder.css" rel="stylesheet" />
  		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
- 		<script>
-	 		function makeSame() {
-	 			document.getElementById("member_name").innerHTML = "${map2.member_name}";
-	 			document.getElementById("member_phone").innerHTML = "${map2.member_phone}";
-	 			document.getElementById("member_addr").innerHTML = "${map2.address_input1}&nbsp;${map2.address_input2}&nbsp;${map2.address_input3}&nbsp;${map2.address_input4}&nbsp;${map2.address_input5}";
-	 			document.getElementById("orderLast_name").value = "${map2.member_name}";
-	 			document.getElementById("orderLast_phone").value = "${map2.member_phone}";
-	 			document.getElementById("orderLast_addr").value = "${map2.address_input1}&nbsp;${map2.address_input2}&nbsp;${map2.address_input3}&nbsp;${map2.address_input4}&nbsp;${map2.address_input5}";
-	 		}
-	 		
-			$(function(){
-				$("#orderLast_msg_text").hide();
-				$("#orderLast_msg").change(function() {
-						if($("#orderLast_msg_write").is(':selected') == true) {
-							$("#orderLast_msg_text").show();
-						}  else {
-							$("#orderLast_msg_text").hide();
-						}
-					})
-				});
- 		
- 		
- 		
- 		
- 		
- 		
-	 		function fn_itemPay() { //체크 된 항목 전송
-	 			alert("결제진행 입력 실행");
-	 			document.getElementById("orderLast_msg_write").value = document.getElementById("orderLast_msg_text").value
-	 			var frmData = $("#frm1, #frm2").serialize();
-				var orderLast_num = "";
-		 		$.ajax({
-					method: 'post',
-	 			    url: 'itemorderadd.do',
-	 			    data: frmData,
-	 			    dataType: 'html',
-	 			    cache: false,
-					success: function(data) {
-						alert(data);
-						orderLast_num = data;
-						location.href = "${pageContext.request.contextPath}/itempay.do?idx="+orderLast_num;
-						},
-					error: function(error){ alert("에러!"); }
-				})
-	 		}
- 		</script>
+ 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/weart_itemorder.js"></script>
     </head>
 	<body>
 		<div class="container">
@@ -158,21 +114,25 @@
 													<table class="product-details-table">
 														<tr>
 															<th>이름</th>
-															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp<span id="member_name"><c:out value="${map2.member_name}" /></span><input type="hidden" name="orderLast_name" id="orderLast_name" value="${map2.member_name}" /></td>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalName">변경</button>&nbsp<span id="member_name"><c:out value="${map2.member_name}" /></span><input type="hidden" name="orderLast_name" id="orderLast_name" value="${map2.member_name}" /></td>
 														</tr>
 														<tr>
 															<th>휴대폰 번호</th>
-															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp<span id="member_phone"><c:out value="${map2.member_phone}" /></span><input type="hidden" name="orderLast_phone" id="orderLast_phone" value="${map2.member_phone}" /></td>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalPhone">변경</button>&nbsp<span id="member_phone"><c:out value="${map2.member_phone}" /></span><input type="hidden" name="orderLast_phone" id="orderLast_phone" value="${map2.member_phone}" /></td>
 														</tr>
 														<tr>
 															<th>배송지</th>
-															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp<span id="member_addr">
-																<c:out value="${map2.address_input1}" />
-																<c:out value="${map2.address_input2}" />
-																<c:out value="${map2.address_input3}" />
-																<c:out value="${map2.address_input4}" />
-																<c:out value="${map2.address_input5}" /></span>
-																<input type="hidden" name="orderLast_address" id="orderLast_address" value="<c:out value="${map2.address_input1}" />&nbsp;<c:out value="${map2.address_input2}" />&nbsp;<c:out value="${map2.address_input3}" />&nbsp;<c:out value="${map2.address_input4}" />&nbsp;<c:out value="${map2.address_input5}" />" />
+															<td><button type="button" class="btn btn-outline-secondary btn-sm" onClick="sample4_execDaumPostcode()">변경</button>&nbsp
+																<input type="text" id="sample4_postcode" value="${map2.address_input1}" size="5" disabled>
+																<br>
+																<input type="text" id="sample4_roadAddress" value="${map2.address_input2}" size="30" disabled>
+																<br><input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
+																<input type="text" id="sample4_extraAddress" value="${map2.address_input3}" size="30" disabled>
+																<br>
+																<input type="text" id="sample4_detailAddress" value="${map2.address_input4}" size="30" placeholder="상세주소">
+																<br>
+																<span id="guide" style="color:#999;display:none"></span>
+																<input type="hidden" name="orderLast_address" id="orderLast_address" value="<c:out value="${map2.address_input1}" />&nbsp;<c:out value="${map2.address_input2}" />&nbsp;<c:out value="${map2.address_input3}" />&nbsp;<c:out value="${map2.address_input4}" />" />
 															</td>
 														</tr>
 														<tr>
@@ -183,12 +143,11 @@
 																	<option value="배송완료 후 연락주세요">배송완료 후 연락주세요</option>
 																	<option id="orderLast_msg_write" value="">직접입력</option>
 																</select>
-																<input type="text" id="orderLast_msg_text" name="orderLast_msg_text" size="15" maxlength="20">
+																<input type="text" id="orderLast_msg_text" name="orderLast_msg_text" size="20" maxlength="20">
 															</td>
 														</tr>
 													</table>
 													</form>
-													
 												</div>
 											</div>
 
@@ -213,15 +172,15 @@
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">카트 담기 완료</h5>
+						<h5 class="modal-title" id="exampleModalLabel">받는이 이름 변경</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						상품이 카트에 담겼습니다. 확인 하시겠습니까?
+						<input type="text" id="modalNameChange" value="" maxlength="10">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/itemcart.do'">카트 이동</button>
+						<button type="button" class="btn btn-primary" onClick="fn_modalNameChange();">변경</button>
 					</div>
 				</div>
 			</div>
@@ -233,42 +192,21 @@
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">카트 담기 완료</h5>
+						<h5 class="modal-title" id="exampleModalLabel">받는이 휴대폰번호 변경</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						상품이 카트에 담겼습니다. 확인 하시겠습니까?
+						<input type="text" id="modalPhoneChange" value="" maxlength="15">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/itemcart.do'">카트 이동</button>
+						<button type="button" class="btn btn-primary" onClick="fn_modalPhoneChange();">변경</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- Modal End -->
 
-		<!-- 주소 변경 Modal Start -->
-		<div class="modal fade" id="modalAddr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">카트 담기 완료</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						상품이 카트에 담겼습니다. 확인 하시겠습니까?
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/itemcart.do'">카트 이동</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Modal End -->
-		
-		
 		<%@ include file="../footer.jsp"%>
     </body>
 </html>

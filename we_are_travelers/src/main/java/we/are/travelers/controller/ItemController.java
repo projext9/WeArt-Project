@@ -438,6 +438,7 @@ public class ItemController {
 
 		} else {
 			String orderLast_num = request.getParameter("orderLast_num");
+			String orderLast_cashReceipt = request.getParameter("orderLast_cashReceipt");
 			
 			MemberVo memberVo = itemService.getMemberDetail2(member_idx); //회원정보 호출
 			model.addAttribute("memberVo", memberVo);
@@ -445,7 +446,10 @@ public class ItemController {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("member_idx", member_idx);
 			map.put("orderLast_num", orderLast_num);
+			map.put("orderLast_cashReceipt", orderLast_cashReceipt);
 			map.put("orderLast_state1", "A");
+			
+			int result = itemService.updateCashReceipt(map); //주문서 업데이트(현금영수증)
 			
 			OrderLastVo orderLastVo = itemService.getOrderLast(map); //주문서 호출
 			model.addAttribute("orderLastVo", orderLastVo);

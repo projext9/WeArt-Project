@@ -8,6 +8,12 @@
  		<link href="${pageContext.request.contextPath}/resources/css/weart_itemorder.css" rel="stylesheet" />
  		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
  		<script>
+	 		function fn_modalCashReceiptChange() {
+	 			document.getElementById("CashReceipt").innerHTML = document.getElementById("modalCashReceiptChange").value;
+	 			document.getElementById("orderLast_cashReceipt").value = document.getElementById("modalCashReceiptChange").value;
+	 			$('#modalCashReceipt').modal('hide');
+	 		}
+	 		
 	 		function fn_callpayapi() { //결제창 호출
 	 			var fm = document.frm;
 	 			alert("결제창 호출");
@@ -91,6 +97,31 @@
 													</table>
 												</div>
 											</div>
+											
+											<br>
+											<div class="col-lg-12 col-12">
+												<div class="info-body" id="info-body2">
+													<h4>받는이 정보</h4>
+													<table class="product-details-table">
+														<tr>
+															<th>이름</th>
+															<td><c:out value="${orderLastVo.orderLast_name}" /></td>
+														</tr>
+														<tr>
+															<th>휴대폰 번호</th>
+															<td><c:out value="${orderLastVo.orderLast_phone}" /></td>
+														</tr>
+														<tr>
+															<th>배송지</th>
+															<td><c:out value="${orderLastVo.orderLast_address}" /></td>
+														</tr>
+														<tr>
+															<th>배송 요청사항</th>
+															<td><c:out value="${orderLastVo.orderLast_msg}" /></td>
+														</tr>
+													</table>
+												</div>
+											</div>
 											<hr>
 
 											<div class="col-lg-12 col-12">
@@ -101,10 +132,10 @@
 															<th style="text-align: left;">&nbsp;&nbsp;&nbsp;결제방법</th>
 														</tr>
 														<tr>
-															<td>상품명 가나다라마바사</td>
+															<td><input type="radio" checked="checked" name="radio" id="payModule" value="payModule">&nbsp;&nbsp;PG결제모듈</td>
 														</tr>
 														<tr>
-															<td>상품명 가나다라마바사</td>
+															<td></td>
 														</tr>
 													</table>
 												</div>
@@ -116,9 +147,9 @@
 												<div class="info-body">
 													<h4>현금영수증(소득공제)</h4>
 													<input type="hidden" name="orderLast_num" id="orderLast_num" value="${orderLastVo.orderLast_num}" />
-													<input type="hidden" name="orderLast_cashReceipt" id="orderLast_cashReceipt" value="01047603511" />
+													<input type="hidden" name="orderLast_cashReceipt" id="orderLast_cashReceipt" value="" />
 		                                            <div style="clear: both; border: 2px solid #c8c8c8; text-align: left; padding: 20px 15px 18px; font-size: 16px; line-height: 4px; color: #555;">
-														<button type="button" class="btn btn-outline-info btn-sm">변경</button>&nbsp;&nbsp;휴대폰 번호 : <span style="color: #000; font-weight: bold;">010-4760-3511</span><br><br>
+														<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalCashReceipt">변경</button>&nbsp;&nbsp;휴대폰 번호 : <span id="CashReceipt" style="color: #000; font-weight: bold;">010-0000-0000</span><br><br>
 													</div>
 												</div>
 												</form>
@@ -132,6 +163,26 @@
 			        </div>
 			    </div>
 			</div>
+		
+			<!-- 현금영수증 변경 Modal Start -->
+			<div class="modal fade" id="modalCashReceipt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">현금영수증 변경</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<input type="text" id="modalCashReceiptChange" value="" maxlength="15">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+							<button type="button" class="btn btn-primary" onClick="fn_modalCashReceiptChange();">변경</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Modal End -->
 
 			<div class="list-group mt-5 p-0 justify-content-center active" id="allList" role="tablist" style="flex-direction: row;">
 				<a href="${pageContext.request.contextPath}/itemcart.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">결제 취소<i class="fal fa-arrow-circle-right"></i></a>
@@ -139,6 +190,7 @@
 				<div class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab" onClick="fn_callpayapi();">결제 진행<i class="fal fa-arrow-circle-right"></i></div>
 			</div>
 		</div>
+		
 		<%@ include file="../footer.jsp"%>
     </body>
 </html>

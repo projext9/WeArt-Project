@@ -7,11 +7,9 @@ var pieceValue = "";
 	
 var optionSelect = (target) => {
 	optionValue = target.options[target.selectedIndex].value;
-	alert("선택된 옵션 value 값=" + optionValue);
 }
 var pieceSelect = (target) => {
 	pieceValue = target.options[target.selectedIndex].value;
-	alert("선택된 수량 value 값=" + pieceValue);
 }
 
 function modal1() { //비로그인
@@ -71,27 +69,22 @@ function fn_search() { //검색
 	var fm = document.frm;
 	var itemCode = document.getElementById("itemCode").value;
 	if (itemCode == 1) {
-		alert(itemCode);
 		fm.action = "1.do";
 		fm.method = "get";
 		fm.submit();
 	} else if (itemCode == 2) {
-		alert(itemCode);
 		fm.action = "2.do";
 		fm.method = "get";
 		fm.submit();
 	} else if (itemCode == 3) {
-		alert(itemCode);
 		fm.action = "fishingshop.do";
 		fm.method = "get";
 		fm.submit();
 	} else if (itemCode == 4) {
-		alert(itemCode);
 		fm.action = "3.do";
 		fm.method = "get";
 		fm.submit();
 	} else if (itemCode == 5) {
-		alert(itemCode);
 			fm.action = "4.do";
 			fm.method = "get";
 			fm.submit();

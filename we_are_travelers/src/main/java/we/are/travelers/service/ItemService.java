@@ -178,6 +178,10 @@ public class ItemService {
 		return itemDao.getMemberDetail2(member_idx);
 	}
 	
+	public int updateCashReceipt(HashMap<String, Object> map) { //주문서 업데이트(현금영수증)
+		return itemDao.updateCashReceipt(map);
+	}
+	
 	public String getToken(HttpServletRequest request, HttpServletResponse response, JSONObject json, String requestURL) throws Exception{
 		String token = "";
 		try{

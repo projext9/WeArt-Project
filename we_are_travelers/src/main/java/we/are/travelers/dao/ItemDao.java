@@ -169,7 +169,11 @@ public class ItemDao {
 	public MemberVo getMemberDetail2(String member_idx) { //회원정보 호출
 		return sqlSession.selectOne(MAPPER+".getMemberDetail2", member_idx);
 	}
-
+	
+	public int updateCashReceipt(HashMap<String, Object> map) { //주문서 업데이트(현금영수증)
+		return sqlSession.update(MAPPER+".updateCashReceipt", map);
+	}
+	
 	public int updateOrderState1B(HashMap<String, Object> map) { //주문서(개별상품) 상태변경(결제완료)
 		return sqlSession.update(MAPPER+".updateOrderState1B", map);
 	}

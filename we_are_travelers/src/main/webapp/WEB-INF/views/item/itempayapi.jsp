@@ -10,12 +10,6 @@
 		<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
  		<script>
 			$(function requestPay() {
-				alert("${orderLastVo.orderLast_num}");
-				alert("${orderLastVo.orderLast_totalPrice}");
-				alert("${memberVo.member_id}");
-				alert("${memberVo.member_name}");
-				alert("${memberVo.member_phone}");
-				
 				var IMP = window.IMP; // 생략가능
 				IMP.init('imp54123202');  // 가맹점 식별 코드
 		        // IMP.request_pay(param, callback) 결제창 호출
@@ -30,7 +24,6 @@
 					buyer_tel: "${memberVo.member_phone}"
 				}, function (rsp) { // callback
 					if (rsp.success) {
-						alert("rsp 석세스!");
 						$.ajax({
 							method: "post",
 							url: "${pageContext.request.contextPath}/itempaycheck.do",
