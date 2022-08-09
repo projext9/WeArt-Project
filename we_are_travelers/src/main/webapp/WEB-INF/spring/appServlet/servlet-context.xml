@@ -93,7 +93,7 @@
 			<!-- ItemController -->
 			<exclude-mapping path="/shopculture.do"/>
 			<exclude-mapping path="/shopactivity.do"/>
-			<exclude-mapping path="/shopfishings.do"/>
+			<exclude-mapping path="/shopfishing.do"/>
 			<exclude-mapping path="/shopcamping.do"/>
 			<exclude-mapping path="/shopstay.do"/>
 			<exclude-mapping path="/itemdetail.do"/>
