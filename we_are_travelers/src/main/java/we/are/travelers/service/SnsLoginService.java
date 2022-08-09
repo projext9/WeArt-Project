@@ -30,6 +30,8 @@ import we.are.travelers.vo.NaverLoginVo;
 @Service
 public class SnsLoginService {
 	
+	int msg=0;
+	
 	private MemberDao memberDao;
 
 	@Autowired
@@ -132,8 +134,8 @@ public class SnsLoginService {
 	
 	//카카오 AccessToken 획득 로직
 	public String getAccessTokenK (String authorize_code) {
-		String access_Token = "";
-		String refresh_Token = "";
+		String access_token = "";
+		String refresh_token = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
 
 		try {
@@ -174,25 +176,26 @@ public class SnsLoginService {
 			JsonParser parser = new JsonParser();
 			JsonElement element = parser.parse(result);
             
-			access_Token = element.getAsJsonObject().get("access_token").getAsString();
-			refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
+			access_token = element.getAsJsonObject().get("access_token").getAsString();
+			refresh_token = element.getAsJsonObject().get("refresh_token").getAsString();
             
-			System.out.println("access_token : " + access_Token);
-			System.out.println("refresh_token : " + refresh_Token);
+			System.out.println("access_token : " + access_token);
+			System.out.println("refresh_token : " + refresh_token);
             
 			br.close();
 			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return access_Token;
+		return access_token;
 	}
-	
-	 public MemberVo getUserInfo (String access_Token) {
+	 
+	 public MemberVo getUserInfo (String access_token) {
 
 	        //요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
 	        HashMap<String, Object> userInfo = new HashMap<>();
 	        String reqURL = "https://kapi.kakao.com/v2/user/me";
+	        
 	        
 	        try {
 	            URL url = new URL(reqURL);
@@ -200,7 +203,7 @@ public class SnsLoginService {
 	            conn.setRequestMethod("POST");
 
 	            //    요청에 필요한 Header에 포함될 내용
-	            conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+	            conn.setRequestProperty("Authorization", "Bearer " + access_token);
 
 	            int responseCode = conn.getResponseCode();
 	            System.out.println("responseCode : " + responseCode);
@@ -220,45 +223,44 @@ public class SnsLoginService {
 
 	            JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 	            JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-
 	            String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 	            String email = kakao_account.getAsJsonObject().get("email").getAsString();
-
+	           
 	            userInfo.put("member_nick", nickname);
-	            userInfo.put("social_kakao", email);
+	            userInfo.put("member_id", email);
 
 	        } catch (IOException e) {
 	         
 	            e.printStackTrace();
+	            
 	        }
 	        
 	        // catch 아래 코드 추가.
-    		MemberVo result_kakao = memberDao.findKakao(userInfo);
+	        MemberVo result_kakao = memberDao.findKakao(userInfo);
     		// 위 코드는 먼저 정보가 저장되있는지 확인하는 코드.
     		System.out.println("S:" + result_kakao);
-    		
-    		if(result_kakao == null) {
+  
+    		if(result_kakao==null) {
     		// result가 null이면 정보가 저장이 안되있는거므로 정보를 저장.
     			memberDao.insertKakao(userInfo);
+    			// 위 코드가 정보를 저장하기 위해 Repository로 보내는 코드임.
+    			return memberDao.findKakao(userInfo);
     			// 위 코드는 정보 저장 후 컨트롤러에 정보를 보내는 코드임.
     			//  result를 리턴으로 보내면 null이 리턴되므로 위 코드를 사용.
-    			return memberDao.findKakao(userInfo);
-    			
-    		}else {
-                   return result_kakao;
-    			
+    		} else {
+    			return result_kakao;
     			// 정보가 이미 있기 때문에 result를 리턴함.
     		}
-    		
-}
-    		
-	  public void kakaoLogout(String access_Token) {
+			
+ }
+
+	  public void kakaoLogout(String access_token) {
 	        String reqURL = "https://kapi.kakao.com/v1/user/logout";
 	        try {
 	            URL url = new URL(reqURL);
 	            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	            conn.setRequestMethod("POST");
-	            conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+	            conn.setRequestProperty("Authorization", "Bearer " + access_token);
 
 	            int responseCode = conn.getResponseCode();
 	            System.out.println("responseCode : " + responseCode);

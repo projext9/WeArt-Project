@@ -2,6 +2,7 @@ package we.are.travelers.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -72,14 +73,14 @@ public class SnsLoginController {
 		 JSONObject response_obj = (JSONObject)jsonObj.get("response");	
 		 
 		 //response의 nickname값 파싱
-		 String social_naver = (String)response_obj.get("email");
-		 String member_nick = (String)response_obj.get("nickname"); 		
-		 System.out.println("네이버 닉네임" + member_nick);
-		 System.out.println("네이버 아이디" + social_naver);
+		 String email = (String)response_obj.get("email");
+		 String nickname = (String)response_obj.get("nickname"); 		
+		 System.out.println("네이버 닉네임" + nickname);
+		 System.out.println("네이버 아이디" + email);
 		 
 		 HashMap<String, Object> naverInfo = new HashMap<>();
-		 naverInfo.put("social_naver", social_naver);
-		 naverInfo.put("member_nick", member_nick);
+		 naverInfo.put("member_id", email);
+		 naverInfo.put("member_nick", nickname);
 		 
 		 MemberVo result_naver = SnsLoginService.findNaver(naverInfo);
 
@@ -92,8 +93,9 @@ public class SnsLoginController {
  		
  		if(result_naver != null) { 
 			  session.setAttribute("member_idx", naverInfo.get("member_idx")); //세션 생성	
-			  session.setAttribute("social_naver",  naverInfo.get("social_naver")); //세션 생성	
-			  session.setAttribute("member_nick", naverInfo.get("member_nick")); //세션 생성				
+			  session.setAttribute("member_id",  naverInfo.get("member_id")); //세션 생성	
+			  session.setAttribute("member_nick", naverInfo.get("member_nick")); //세션 생성
+			  session.setAttribute("member_regCode", naverInfo.get("member_regCode")); //세션 생성
 			  msg=0;
  		}else {
  		// result가 null이면 정보가 저장이 안되있는거므로 정보를 저장.
@@ -109,62 +111,42 @@ public class SnsLoginController {
  		else if(msg==1) {
  			  SnsLoginService.findNaver(naverInfo);
  			  session.setAttribute("member_idx", naverInfo.get("member_idx")); //세션 생성	
-			  session.setAttribute("social_naver",  naverInfo.get("social_naver")); //세션 생성	
-			  session.setAttribute("member_nick", naverInfo.get("member_nick")); //세션 생성				
+			  session.setAttribute("member_id",  naverInfo.get("member_id")); //세션 생성	
+			  session.setAttribute("member_nick", naverInfo.get("member_nick")); //세션 생성
+			  session.setAttribute("member_regCode", naverInfo.get("member_regCode")); //세션 생성	
 			  return "home";
  	    }
  		return null;
 	}
 	
 	//로그아웃	
-	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })	
-	public String logout(HttpSession session)throws IOException {			
+	@RequestMapping(value = "/naverLogout", method = { RequestMethod.GET, RequestMethod.POST })	
+	public String naverLogout(HttpSession session )throws IOException {			
 		System.out.println("여기는 logout");			
-		session.invalidate(); 	        			
+		session.invalidate();			
 		return "redirect:home.do";		
 		}	
 	
 	
     //카카오 로그인
 	@RequestMapping(value="/kakaoLogin.do")
-	public String kakaologin(@RequestParam("code") String code, HttpSession session) {	
+	public String kakaologin(@RequestParam(value = "code", required = false) String code , HttpSession session) throws Exception {	
 	System.out.println("code : " + code);
 	
-	String access_Token = SnsLoginService.getAccessTokenK(code);
-	System.out.println("access_Token : " + access_Token);
-	
-	// userInfo의 타입을 KakaoDTO로 변경 및 import.
-	    MemberVo userInfo = SnsLoginService.getUserInfo(access_Token);
-	    System.out.println("login Controller : " + userInfo);
-	
+	String access_token = SnsLoginService.getAccessTokenK(code);
+	MemberVo userInfo = SnsLoginService.getUserInfo(access_token);
+	System.out.println("access_token : " + access_token);
+	System.out.println("login Controller : " + userInfo);
+
 	//    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    session.setAttribute("member_idx", userInfo.getMember_idx());
-	    session.setAttribute("social_kakao" , userInfo.getSocial_kakao());
+	    session.setAttribute("member_id" , userInfo.getMember_id());
 	    session.setAttribute("member_nick", userInfo.getMember_nick());
-	    session.setAttribute("social_token", access_Token);
+	    session.setAttribute("member_regCode", userInfo.getMember_regCode());   
+	    
+	    return "home";
+	   }
 	
-	return "home";
-	}
-	
-	
-	 @RequestMapping(value="/kakaoLogout.do" , method = { RequestMethod.GET, RequestMethod.POST })
-	    public String kakaoLogout(HttpSession session) {
-	        String access_Token = (String)session.getAttribute("social_token");
-	
-	        if(access_Token != null && !"".equals(access_Token)){
-	        	SnsLoginService.kakaoLogout(access_Token);
-	            session.removeAttribute("social_token");
-	            session.removeAttribute("social_kakao");
-	            session.removeAttribute("member_nick");
-	            session.removeAttribute("member_idx");
-	            
-	        }else{
-	            System.out.println("social_token is null");
-	            //return "redirect:/";
-	        }
-	        //return "index";
-	        return "home";
-    }
 	 
 	 
 

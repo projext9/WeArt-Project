@@ -15,7 +15,12 @@
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  
+  <script type="text/javascript">
+			history.pushState(null, null, "http://현재페이지URL을 입력하세요.");
+           	window.onpopstate = function(event) {
+			history.go(1);
+};
+</script>
    <script>
       $(document).ready(function() {
     	  $("#member_form").keydown(function(){
@@ -92,7 +97,7 @@
    </div>
  </div>
     <p class="mt-5 mb-6 text-muted">&copy; Copyright 2022. Team We-Art. all rights reserved.</p>
- 
+ </div>
 </main>
 
   </body>

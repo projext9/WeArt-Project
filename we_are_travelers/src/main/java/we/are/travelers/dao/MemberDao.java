@@ -1,7 +1,6 @@
 package we.are.travelers.dao;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +46,17 @@ public class MemberDao {
 		return sqlSession.selectOne(MAPPER+".checkNick", nick);
 	}
 	
+	 //카카오 소셜로그인
+	  public MemberVo findKakao(HashMap<String, Object> userInfo){
+	  	  System.out.println("카카오 아이디:"+userInfo.get("member_id"));
+	  	  System.out.println("카카오 닉네임:"+userInfo.get("member_nick"));
+		  return sqlSession.selectOne(MAPPER+".findKakao", userInfo);	  
+	}
+	
     public Object insertKakao(HashMap<String, Object> userInfo) {
+    	
 		int regCode = 1;
+		
 		String idx ="";
 		for (int i = 1; i <= 12; i++) {
             int pick = (int)((Math.random() * (20 - 1)) + 1);
@@ -70,24 +78,16 @@ public class MemberDao {
                 }
             }
 		
-		MemberVo memberVo = new MemberVo();
-		memberVo.setMember_idx(idx);
-		
 		userInfo.put("member_idx", idx);
+		userInfo.put("member_pwd" , idx);
 		userInfo.put("member_regCode" , regCode);
 		
 		return sqlSession.selectOne(MAPPER+".insertKakao", userInfo);	
 		
 	}
-	 //카카오 소셜로그인
-	  public MemberVo findKakao(HashMap<String, Object> userInfo){
-	  	  System.out.println("카카오 아이디:"+userInfo.get("email"));
-	  	  System.out.println("카카오 닉네임:"+userInfo.get("nickname"));
-		  return sqlSession.selectOne(MAPPER+".findKakao", userInfo);	  
-	}
 	
 	 public MemberVo findNaver(HashMap<String, Object> naverInfo){
-	  	  System.out.println("네이버 아이디:"+naverInfo.get("social_naver"));
+	  	  System.out.println("네이버 아이디:"+naverInfo.get("member_id"));
 	  	  System.out.println("네이버 닉네임:"+naverInfo.get("member_ncik"));
 		  return sqlSession.selectOne(MAPPER+".findNaver", naverInfo);	  
 	}
@@ -117,52 +117,17 @@ public class MemberDao {
 			
 			MemberVo memberVo = new MemberVo();
 			memberVo.setMember_idx(idx);
+			memberVo.setMember_pwd(idx);
+			memberVo.setMember_regCode(regCode);
 			
+			naverInfo.put("member_pwd", idx);
 			naverInfo.put("member_idx", idx);
 			naverInfo.put("member_regCode", regCode);
 			
 			return sqlSession.selectOne(MAPPER+".insertNaver", naverInfo);	
 			
 		}
+	
 	 
-	 public String findGoogle(HashMap<String, Object> googleInfo){
-		 System.out.println("회원고유번호:"+googleInfo.get("member_idx"));
-	  	  System.out.println("네이버 아이디:"+googleInfo.get("social_naver"));
-	  	  System.out.println("네이버 닉네임:"+googleInfo.get("member_ncik"));
-		  return sqlSession.selectOne(MAPPER+".findNaver", googleInfo);	  
-	}
-	 
-	 public String insertGoogle(HashMap<String, Object> googleInfo) {
-		 int regCode = 3;
-			String idx ="";
-			for (int i = 1; i <= 12; i++) {
-	            int pick = (int)((Math.random() * (20 - 1)) + 1);
-	                if (pick <= 8) {
-	                    char ch = (char) ((Math.random() * 26) + 65);
-	                    idx= idx + String.valueOf(ch);
-	                } else if (pick <= 14) {
-	                    char ch = (char) ((Math.random() * 26) + 97);
-	                    idx= idx + String.valueOf(ch);
-	                } else if (pick <= 16) {
-	                    char ch = (char) ((Math.random() * 10) + 48);
-	                    idx= idx + String.valueOf(ch);
-	                } else if (pick <= 18) {
-	                    char ch = 33;
-	                    idx= idx + String.valueOf(ch);
-	                } else if (pick <= 20) {
-	                    char ch = 64;
-	                    idx= idx + String.valueOf(ch);
-	                }
-	            }
-			
-			MemberVo memberVo = new MemberVo();
-			memberVo.setMember_idx(idx);
-			
-			googleInfo.put("member_idx", idx);
-			googleInfo.put("member_regCode", regCode);
-			
-			return sqlSession.selectOne(MAPPER+".insertGoogle", googleInfo);	
-			
-		}
 
 }

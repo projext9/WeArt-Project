@@ -31,7 +31,7 @@
 				location.href="logout.do";
 	 		}
 			function fn_logout_kakao() { //로그아웃
-				location.href="${pageContext.request.contextPath}/kakaoLogout.do";
+				location.href="https://kauth.kakao.com/oauth/logout?client_id=bd0af17c48ca11ec547a39e63e172346&logout_redirect_uri=http://localhost:8090/travelers/login.do";
 	 		}
 			
 		</script>
@@ -104,10 +104,10 @@
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/inquiry_list.do">1:1문의</a></li>
                             </ul>
 						</li>
-					</ul>				
-					
+					</ul>
+					${sessionScope.access_Token }				
 		<c:choose>
-				    <c:when test="${sessionScope.member_id != null }">
+				    <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 0 }">
 					<span>${sessionScope.member_nick }님</span>&nbsp;
 					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
 					</c:when>
@@ -117,12 +117,12 @@
 					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
 					 </c:when>
 					 
-					 <c:when test="${sessionScope.social_kakao != null }">
+					 <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode ==1}">
 					<span>${sessionScope.member_nick }님</span>&nbsp;
-					<button class="btn btn-outline-success" type="button"onClick="fn_logout_kakao()">로그아웃</button>
+					<button class="btn btn-outline-success" type="button" onClick="fn_logout_kakao()">카카오 로그아웃</button>
 					</c:when>
 					
-					<c:when test="${sessionScope.social_naver != null }">
+					<c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 2 }">
 					<span>${sessionScope.member_nick }님</span>&nbsp;
 					<button class="btn btn-outline-success" type="button"onClick="fn_logout_naver()">로그아웃</button>
 					</c:when>
