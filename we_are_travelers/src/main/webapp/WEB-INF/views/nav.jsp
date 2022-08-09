@@ -52,7 +52,7 @@
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_culture">공지사항</a></li>
                                 <li><a class="dropdown-item" href="#!">소개</a></li>
                                 <li><a class="dropdown-item" href="#!">지도</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/cultureshop.do">쇼핑/예약</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopculture.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_culture">후기게시판</a></li>
                             </ul>
 						</li>
@@ -62,7 +62,7 @@
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_activity">공지사항</a></li>
                                 <li><a class="dropdown-item" href="#!">소개</a></li>
                                 <li><a class="dropdown-item" href="#!">지도</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/activityshop.do">쇼핑/예약</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopactivity.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_activity">후기게시판</a></li>
                             </ul>
 						</li>
@@ -72,7 +72,7 @@
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_fishing">공지사항</a></li>
                                 <li><a class="dropdown-item" href="#!">소개</a></li>
                                 <li><a class="dropdown-item" href="#!">지도</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/fishingshop.do">쇼핑/예약</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopfishing.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_fishing">후기게시판</a></li>
                             </ul>
 						</li>
@@ -82,7 +82,7 @@
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_camping">공지사항</a></li>
                                 <li><a class="dropdown-item" href="#!">소개</a></li>
                                 <li><a class="dropdown-item" href="#!">지도</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/campingshop.do">쇼핑/예약</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopcamping.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_camping">후기게시판</a></li>
                             </ul>
 						</li>
@@ -92,7 +92,7 @@
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_lodgment">공지사항</a></li>
                                 <li><a class="dropdown-item" href="#!">소개</a></li>
                                 <li><a class="dropdown-item" href="#!">지도</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/stayshop.do">쇼핑/예약</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopstay.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_lodgment">후기게시판</a></li>
                             </ul>
 						</li>
