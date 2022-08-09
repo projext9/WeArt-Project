@@ -16,30 +16,25 @@
 	 			var fm = document.frm;
 	 			var itemCode = document.getElementById("itemCode").value;
 				if (itemCode == 1) {
-					alert(itemCode);
 		 			fm.action = "cultureshop.do";
 		 			fm.method = "get";
 		 			fm.submit();
 				} else if (itemCode == 2) {
-					alert(itemCode);
 		 			fm.action = "activityshop.do";
 		 			fm.method = "get";
 		 			fm.submit();
 				} else if (itemCode == 3) {
-					alert(itemCode);
 		 			fm.action = "fishingshop.do";
 		 			fm.method = "get";
 		 			fm.submit();
 				} else if (itemCode == 4) {
-					alert(itemCode);
 		 			fm.action = "campingshop.do";
 		 			fm.method = "get";
 		 			fm.submit();
 				} else if (itemCode == 5) {
-					alert(itemCode);
-						fm.action = "stayshop.do";
-						fm.method = "get";
-						fm.submit();
+					fm.action = "stayshop.do";
+					fm.method = "get";
+					fm.submit();
 				} else {
 					alert("에러가 발생했습니다.");
 				}

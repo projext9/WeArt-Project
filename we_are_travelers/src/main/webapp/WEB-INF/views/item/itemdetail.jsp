@@ -9,14 +9,6 @@
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/weart_itemdetail.js"></script>
-		<script>
-		function modal1() { //비로그인
-			$('#modal1').modal('show');
-		};
-		function modal2() { //장바구니 담기 성공
-			$('#modal2').modal('show');
-		};
-		</script>
     </head>
 	<body>
 		<header class="header navbar-area">

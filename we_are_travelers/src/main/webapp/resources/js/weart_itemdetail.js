@@ -14,6 +14,13 @@ var pieceSelect = (target) => {
 	alert("선택된 수량 value 값=" + pieceValue);
 }
 
+function modal1() { //비로그인
+	$('#modal1').modal('show');
+};
+function modal2() { //장바구니 담기 성공
+	$('#modal2').modal('show');
+};
+		
 $(function(){ //장바구니 담기
 	$("#additemcart").click(function(){
 		$.ajax({

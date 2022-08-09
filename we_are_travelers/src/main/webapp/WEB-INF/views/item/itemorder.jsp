@@ -8,8 +8,34 @@
  		<link href="${pageContext.request.contextPath}/resources/css/weart_itemorder.css" rel="stylesheet" />
  		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
  		<script>
+	 		function makeSame() {
+	 			document.getElementById("member_name").innerHTML = "${map2.member_name}";
+	 			document.getElementById("member_phone").innerHTML = "${map2.member_phone}";
+	 			document.getElementById("member_addr").innerHTML = "${map2.address_input1}&nbsp;${map2.address_input2}&nbsp;${map2.address_input3}&nbsp;${map2.address_input4}&nbsp;${map2.address_input5}";
+	 			document.getElementById("orderLast_name").value = "${map2.member_name}";
+	 			document.getElementById("orderLast_phone").value = "${map2.member_phone}";
+	 			document.getElementById("orderLast_addr").value = "${map2.address_input1}&nbsp;${map2.address_input2}&nbsp;${map2.address_input3}&nbsp;${map2.address_input4}&nbsp;${map2.address_input5}";
+	 		}
+	 		
+			$(function(){
+				$("#orderLast_msg_text").hide();
+				$("#orderLast_msg").change(function() {
+						if($("#orderLast_msg_write").is(':selected') == true) {
+							$("#orderLast_msg_text").show();
+						}  else {
+							$("#orderLast_msg_text").hide();
+						}
+					})
+				});
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
 	 		function fn_itemPay() { //체크 된 항목 전송
 	 			alert("결제진행 입력 실행");
+	 			document.getElementById("orderLast_msg_write").value = document.getElementById("orderLast_msg_text").value
 	 			var frmData = $("#frm1, #frm2").serialize();
 				var orderLast_num = "";
 		 		$.ajax({
@@ -126,32 +152,39 @@
 
 											<br>
 											<div class="col-lg-12 col-12">
-												<div class="info-body">
-													<h4>받는이 정보&nbsp&nbsp<button type="button" class="btn btn-outline-secondary btn-sm">구매자와 동일</button></h4>
+												<div class="info-body" id="info-body2">
+													<h4>받는이 정보&nbsp&nbsp<button type="button" class="btn btn-outline-secondary btn-sm" onClick="makeSame()">구매자와 동일</button></h4>
 													<form name="frm2" id="frm2">
 													<table class="product-details-table">
 														<tr>
 															<th>이름</th>
-															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp<c:out value="${map2.member_name}" /><input type="hidden" name="orderLast_name" value="${map2.member_name}" /></td>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp<span id="member_name"><c:out value="${map2.member_name}" /></span><input type="hidden" name="orderLast_name" id="orderLast_name" value="${map2.member_name}" /></td>
 														</tr>
 														<tr>
 															<th>휴대폰 번호</th>
-															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp<c:out value="${map2.member_phone}" /><input type="hidden" name="orderLast_phone" value="${map2.member_phone}" /></td>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp<span id="member_phone"><c:out value="${map2.member_phone}" /></span><input type="hidden" name="orderLast_phone" id="orderLast_phone" value="${map2.member_phone}" /></td>
 														</tr>
 														<tr>
 															<th>배송지</th>
-															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp
+															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp<span id="member_addr">
 																<c:out value="${map2.address_input1}" />
 																<c:out value="${map2.address_input2}" />
 																<c:out value="${map2.address_input3}" />
 																<c:out value="${map2.address_input4}" />
-																<c:out value="${map2.address_input5}" />
-																<input type="hidden" name="orderLast_address" value="<c:out value="${map2.address_input1}" />&nbsp<c:out value="${map2.address_input2}" />&nbsp<c:out value="${map2.address_input3}" />&nbsp<c:out value="${map2.address_input4}" />&nbsp<c:out value="${map2.address_input5}" />" />
+																<c:out value="${map2.address_input5}" /></span>
+																<input type="hidden" name="orderLast_address" id="orderLast_address" value="<c:out value="${map2.address_input1}" />&nbsp;<c:out value="${map2.address_input2}" />&nbsp;<c:out value="${map2.address_input3}" />&nbsp;<c:out value="${map2.address_input4}" />&nbsp;<c:out value="${map2.address_input5}" />" />
 															</td>
 														</tr>
 														<tr>
 															<th>배송 요청사항</th>
-															<td><button type="button" class="btn btn-outline-secondary btn-sm">변경</button>&nbsp부재시 경비실에 맡겨주세요<input type="hidden" name="orderLast_msg" value="부재시 경비실에 맡겨주세요" /></td>
+															<td><select id="orderLast_msg" name="orderLast_msg">
+																	<option value="비대면 문앞에 놓아주세요">비대면 문앞에 놓아주세요</option>
+																	<option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
+																	<option value="배송완료 후 연락주세요">배송완료 후 연락주세요</option>
+																	<option id="orderLast_msg_write" value="">직접입력</option>
+																</select>
+																<input type="text" id="orderLast_msg_text" name="orderLast_msg_text" size="15" maxlength="20">
+															</td>
 														</tr>
 													</table>
 													</form>
@@ -174,6 +207,68 @@
 				<div class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab" onClick="fn_itemPay()">결제 방법 선택<i class="fal fa-arrow-circle-right"></i></div>
 			</div>
 		</div>
+		
+		<!-- 이름 변경 Modal Start -->
+		<div class="modal fade" id="modalName" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">카트 담기 완료</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						상품이 카트에 담겼습니다. 확인 하시겠습니까?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/itemcart.do'">카트 이동</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal End -->
+
+		<!-- 휴대폰번호 변경 Modal Start -->
+		<div class="modal fade" id="modalPhone" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">카트 담기 완료</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						상품이 카트에 담겼습니다. 확인 하시겠습니까?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/itemcart.do'">카트 이동</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal End -->
+
+		<!-- 주소 변경 Modal Start -->
+		<div class="modal fade" id="modalAddr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">카트 담기 완료</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						상품이 카트에 담겼습니다. 확인 하시겠습니까?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/itemcart.do'">카트 이동</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal End -->
+		
+		
 		<%@ include file="../footer.jsp"%>
     </body>
 </html>
