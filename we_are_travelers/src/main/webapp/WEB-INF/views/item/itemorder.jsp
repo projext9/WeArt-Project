@@ -9,6 +9,19 @@
  		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
  		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/weart_itemorder.js"></script>
+		<script>
+			function makeSame() {
+				document.getElementById("member_name").innerHTML = "${map2.member_name}";
+				document.getElementById("member_phone").innerHTML = "${map2.member_phone}";
+				document.getElementById("sample4_postcode").value = "${map2.address_input1}";
+				document.getElementById("sample4_roadAddress").value = "${map2.address_input2}";
+				document.getElementById("sample4_extraAddress").value = "${map2.address_input3}";
+				document.getElementById("sample4_detailAddress").value = "${map2.address_input4}";
+				document.getElementById("orderLast_name").value = "${map2.member_name}";
+				document.getElementById("orderLast_phone").value = "${map2.member_phone}";
+				document.getElementById("orderLast_addr").value = "${map2.address_input1}&nbsp;${map2.address_input2}&nbsp;${map2.address_input3}&nbsp;${map2.address_input4}";
+			}
+		</script>
     </head>
 	<body>
 		<div class="container">
@@ -138,7 +151,7 @@
 														<tr>
 															<th>배송 요청사항</th>
 															<td><select id="orderLast_msg" name="orderLast_msg">
-																	<option value="비대면 문앞에 놓아주세요">비대면 문앞에 놓아주세요</option>
+																	<option value="비대면 문앞에 놓아주세요">비대면| 문앞에 놓아주세요</option>
 																	<option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
 																	<option value="배송완료 후 연락주세요">배송완료 후 연락주세요</option>
 																	<option id="orderLast_msg_write" value="">직접입력</option>
@@ -161,7 +174,7 @@
 			</div>
 
 			<div class="list-group mt-5 p-0 justify-content-center active" id="allList" role="tablist" style="flex-direction: row;">
-				<a href="javascript:window.history.back();" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">돌아가기<i class="fal fa-arrow-circle-right"></i></a>
+				<a href="${pageContext.request.contextPath}/itemcart.do" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">돌아가기<i class="fal fa-arrow-circle-right"></i></a>
 	           	&nbsp;&nbsp;&nbsp;&nbsp;
 				<div class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab" onClick="fn_itemPay()">결제 방법 선택<i class="fal fa-arrow-circle-right"></i></div>
 			</div>

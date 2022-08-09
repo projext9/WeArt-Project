@@ -2,18 +2,6 @@
 * Copyright 2022 Team We-Art
 * Licensed under MIT (https://github.com/projext9/WeArt-Project)
 */
-function makeSame() {
-	document.getElementById("member_name").innerHTML = "${map2.member_name}";
-	document.getElementById("member_phone").innerHTML = "${map2.member_phone}";
-	document.getElementById("sample4_postcode").value = "${map2.address_input1}";
-	document.getElementById("sample4_roadAddress").value = "${map2.address_input2}";
-	document.getElementById("sample4_extraAddress").value = "${map2.address_input3}";
-	document.getElementById("sample4_detailAddress").value = "${map2.address_input4}";
-	document.getElementById("orderLast_name").value = "${map2.member_name}";
-	document.getElementById("orderLast_phone").value = "${map2.member_phone}";
-	document.getElementById("orderLast_addr").value = "${map2.address_input1}&nbsp;${map2.address_input2}&nbsp;${map2.address_input3}&nbsp;${map2.address_input4}";
-}
-
 $(function(){
 	$("#orderLast_msg_text").hide();
 	$("#orderLast_msg").change(function() {

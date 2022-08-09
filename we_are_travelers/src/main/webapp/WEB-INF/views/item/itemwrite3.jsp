@@ -12,6 +12,11 @@
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 		<script>
+			$(function() {
+			    $(".image").css("text-align", "center");
+			    $(".image-style-side").css("text-align", "end");
+			});
+			
 		 	const optionAdd = ()=> {
 			 	var optionCnt = document.getElementsByName('optionCnt').length + 1;
 			 	var inner = "";

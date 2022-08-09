@@ -9,6 +9,12 @@
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/weart_itemdetail.js"></script>
+		<script>
+			$(function() {
+			    $(".image").css("text-align", "center");
+			    $(".image-style-side").css("text-align", "end");
+			});
+		</script>
     </head>
 	<body>
 		<header class="header navbar-area">
