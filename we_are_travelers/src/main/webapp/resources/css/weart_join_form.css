@@ -10,8 +10,33 @@ body {
       justify-content: center;
       font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, '돋움', sans-serif;
   -webkit-font-smoothing: antialiased;
+  
 }
 
+p {white-space: nowrap;
+
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #CCC;
+  color: #555;
+  box-sizing: border-box;
+  font-family: 'Arvo';
+  font-size: 18px;
+  height: 50px;
+  left: 5%;
+  padding: 10px 0px;
+  position: relative;
+  top: 50%;
+  width: 250px;
+  
+}
+ input:focus {
+    outline: none;
+    border-bottom: 2px solid #0DCAF0;    
+  }
 
 .join_cont {
     width: 580px;
@@ -29,15 +54,6 @@ body {
   outline: none;
   
 }
-
-/*
-.join_container {
-	display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content : center;
-}*/
-
 .join_gude_1 {
 	font-size : 24px;
 }
@@ -79,59 +95,23 @@ h1{
     margin-left: 10px;
 }
 
-input {
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid #CCC;
-  color: #555;
-  box-sizing: border-box;
-  font-family: 'Arvo';
-  font-size: 18px;
-  height: 50px;
-  left: 5%;
-  padding: 10px 0px;
-  position: relative;
-  top: 50%;
-  width: 250px;
-  z-index:1;
-}
- input:focus {
-    outline: none;    
-  }
-input::-webkit-input-placeholder {
-  color: #AAA;
-}
 
-input:focus::-webkit-input-placeholder {
-  color: dodgerblue;
-}
-
-input:focus+.underline {
-  transform: scale(1);
-}
-
-.underline {
-  background-color: dodgerblue;
-    top: 615px;
-    left: 535px;
-    height: 2px;
-    margin-top: -4px;
-    position: absolute;
-  -webkit-transform: scale(0, 1);
-  transform: scale(0, 1);
-  -webkit-transition: all 0.5s linear;
-  transition: all 0.2s linear;
-  width: 250px;
-  z-index: -1;
-}
 .mail_check_button {
-	position : relative;
-	left : 30px;
+	border: solid 1px #ddd;
+    border-radius: 5px;
+    position: relative;
+    left: 30px;
+    height: 25px;
 }
+.mail_check_button:hover {
+
+	background : white;
+
+	}
 .mail_input_check{
 	position: relative;
-    left: -200px;
-    top: 50px;
+    left: 70px;
+    top: -10px;
 }
 .clearfix:before, .clearfix:after {
     display: block;
@@ -149,4 +129,14 @@ input:focus+.underline {
 	width : 100%;
 	height : 50px;
 	
+}
+.mail_input_check_wrap {
+position: relative;
+    left: -5px;
+    height: 70px;
+}
+.mail_check_number_wrap {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
 }

@@ -15,7 +15,7 @@
 	var isRunning = false;
 	
 	$(function(){
-		
+		 $("#mail_check_number_id").hide();
 		/*인증번호 버튼 클릭시 유효성 및 중복 검사 후 통과 시 인증번호 발송*/
 		$('.mail_check_button').on('click' , function(){
 			
@@ -59,6 +59,7 @@
 						    		startTimer(leftSec, display);
 						    		
 					            }else{	
+					            $("#mail_check_number_id").show();
 					            startTimer(leftSec, display);	          
 					            alert("인증번호가 전송되었습니다.")
 					            code = data;
@@ -81,17 +82,20 @@
 			
 			
 			    
-	
+			 
 		/* 인증번호 비교 */
 		$(".mail_check_input").on('blur' , function(){
 		    
 		    var inputCode = $(".mail_check_input").val();         // 입력코드값  
 		    var checkResult = $(".mail_check_input_box_warn");    // 비교 결과     
+		   
 		    
 		    if(inputCode == code){                                // 일치할 경우
 		        checkResult.html("인증번호가 일치합니다.");
 		        checkResult.css("color", "green");
-		        $(".next").attr('disabled' , false);	       
+		        $(".next").attr('disabled' , false);
+		        
+		        $("#mail_check_input_id").attr('disabled' , true)
 		        $('.mail_check_button').attr('disabled' , true);
 		        $(".mail_input").attr('readonly' , true);
 		        $(".mail_check_input").attr('readonly' , true);
@@ -99,7 +103,7 @@
 		    } else {                                              // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
 		        checkResult.css("color", "red");
-		        $(".next").attr('disabled' , true);       
+		        $(".next").attr('disabled' , true);
 		        $('.mail_check_button').attr('disabled' , false);
 		        $(".mail_input").attr('readonly' , false);
 		        $(".mail_check_input").attr('readonly' , false);
@@ -138,9 +142,10 @@
 </head>
 
 <body class="join_member">
-<div class="join_container">
+
 <main class="join_cont">
 <form class="join_form" name="joinForm" action="/travelers/joinNext2.do" method="post">
+  <div class="join_container">
     <h1>We Are Travelers!</h1>
     <br>
     <div>
@@ -148,34 +153,32 @@
     </div>
     <br>
       <p class="join_guide_1">위아트 계정으로 사용할 이메일(아이디)를 입력해주세요 <p/>
-    <div class="clearfix">
+     <!-- 메일 입력 및 인증번호 발송 -->
     <div class="mail_input_box">
-    <label for="mail_input_id">이메일</label>
+    <label>이메일
         <input class="mail_input" id="mail_input_id" name="email">
-        <div class="underline"></div>
+    </label>
         <div class="mail_check_button_wrap">   
-      <button type="button" class="mail_check_button">인증번호11</button> 
-       <span class="mail_input_check"></span>  
+      <button type="button" class="mail_check_button">인증번호</button> 
+   </div>
    </div>  
+   <p class="mail_input_check"></p>  
+   
+   <!-- 인증번호 입력 및 체크 -->
+    <div class="mail_check_number_wrap">
+    <label id="mail_check_number_id">인증번호
+        <input type="hidden" class="mail_check_input" id="mail_check_input_id">
+    </label>
+    <div class="time">
     </div>
-    </div>
-    
-    <div class="mail_check_wrap">
-    <div class="mail_check_input_box">
-        <input type="hidden" class="mail_check_input">
-      </div>
-       <span class="mail_check_input_box_warn"></span>
-   <div class="time"></div>
-   <div class="clearfix">
-    </div>
+       <p class="mail_check_input_box_warn"></p>
     </div>
     <br>
     <div class="next_wrap">
 	<button type="submit" class="next" value="다음" disabled="disabled">다음</button>
 	</div>
+  </div>
 </form> 
-   
 </main>
-</div>
 </body>
 </html>        
