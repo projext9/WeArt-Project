@@ -148,16 +148,18 @@
     </div>
     <br>
       <p class="join_guide_1">위아트 계정으로 사용할 이메일(아이디)를 입력해주세요 <p/>
-    <div class="mail_wrap">
-    <div class="mail_name">이메일</div>
+    <div class="clearfix">
     <div class="mail_input_box">
-        <input class="mail_input" id="mail_input_id" name="email">     
-        <div class="mail_check_button_wrap">
-       <input type="button" class="mail_check_button" value="인증번호">
-   </div> 
+    <label for="mail_input_id">이메일</label>
+        <input class="mail_input" id="mail_input_id" name="email">
+        <div class="underline"></div>
+        <div class="mail_check_button_wrap">   
+      <button type="button" class="mail_check_button">인증번호11</button> 
+       <span class="mail_input_check"></span>  
+   </div>  
     </div>
     </div>
-    <font class="mail_input_check"></font>
+    
     <div class="mail_check_wrap">
     <div class="mail_check_input_box">
         <input type="hidden" class="mail_check_input">
@@ -168,10 +170,11 @@
     </div>
     </div>
     <br>
-    <div>
-	<input type="submit" class="next" value="다음" disabled="disabled" >
+    <div class="next_wrap">
+	<button type="submit" class="next" value="다음" disabled="disabled">다음</button>
 	</div>
 </form> 
+   
 </main>
 </div>
 </body>
