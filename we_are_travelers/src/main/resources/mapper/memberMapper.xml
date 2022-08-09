@@ -48,15 +48,6 @@
 		 values(#{member_idx}, #{social_naver}, #{member_nick}, #{member_regCode})
 	</insert>
 	
-	<select id="findGoogle" parameterType="java.util.HashMap" resultType="String">
-		select social_google, member_nick from weart_member where social_naver=#{social_naver} and member_nick=#{member_nick}
-	</select>
-	
-	<insert id="insertGoogle" parameterType="java.util.HashMap">
-		insert into weart_member(member_idx, social_google, member_name, member_nick, member_birth, member_regCode)
-		
-		 values(#{member_idx}, #{social_naver}, #{member_nick}, #{member_regCode})
-	</insert>
 
 	
 

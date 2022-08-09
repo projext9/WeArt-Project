@@ -49,17 +49,6 @@ public class SnsLoginService {
 		  return memberDao.insertNaver(naverInfo);  
 	}
 	
-	public String findGoogle(HashMap<String, Object> googleInfo){
-	  	  System.out.println("구글 아이디:"+googleInfo.get("social_google"));
-	  	  System.out.println("구글 닉네임:"+googleInfo.get("member_nick"));
-		  return memberDao.findGoogle(googleInfo);  
-	}
-	public String insertGoogle(HashMap<String, Object> googleInfo){
-	  	  System.out.println("구글 아이디:"+googleInfo.get("social_google"));
-	  	  System.out.println("구글 닉네임:"+googleInfo.get("member_nick"));
-		  return memberDao.insertGoogle(googleInfo);  
-	}
-	
 	/* 인증 요청문을 구성하는 파라미터 */		
 	//client_id: 애플리케이션 등록 후 발급받은 클라이언트 아이디		
 	//response_type: 인증 과정에 대한 구분값. code로 값이 고정돼 있습니다.		

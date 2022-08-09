@@ -124,7 +124,6 @@ public class AllMemberController {
 	public String terms3() {
 		return "member/agr_marketing";
 	}
-    
 	///////////////////////////////////회원가입 로직
 	@RequestMapping(value="/joinMember.do", method = RequestMethod.GET)
 	public String join() {
@@ -284,8 +283,6 @@ public class AllMemberController {
 		long size = company_auth_file.getSize(); //파일 사이즈
 		
 		model.addAttribute("company_auth_file" , fileRealName );
-		
-		
 		
 		System.out.println("파일명 : "  + fileRealName);
 		System.out.println("용량크기(byte) : " + size);
