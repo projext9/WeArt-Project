@@ -38,10 +38,10 @@
 	        	
 			$.ajax({
 				type:'post',
-				url:"/travelers/checkId.do",
+				url:"${pageContext.request.contextPath}/checkId.do",
 				data: {"member_id":member_id},
 				success: function(data){
-					if(data == "N"){
+					if(data == 'N'){
 						result = "사용 가능한 아이디입니다.";
 						$(".mail_input_check").html(result).css("color", "green");
 						
@@ -68,7 +68,6 @@
 					        }
 					        
 					});
-						
 					}else{
 						result = "이미 사용중인 아이디입니다.";
 						$(".mail_input_check").html(result).css("color", "red");
@@ -79,6 +78,8 @@
 				},
 				error: function(error){alert(error);}
 			});
+			
+			
 			    
 	
 		/* 인증번호 비교 */
