@@ -88,6 +88,8 @@
 			<exclude-mapping path="/campingshop.do"/>
 			<exclude-mapping path="/stayshop.do"/>
 			<exclude-mapping path="/itemdetail.do"/>
+			<exclude-mapping path="/itemcartadd.do"/>
+			
 
 			<!-- 예외처리 종료 -->
 

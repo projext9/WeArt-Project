@@ -40,7 +40,7 @@
 			}
 	 		
 	 		function fn_itemwrite2back() {
-	 			location.href = '${pageContext.request.contextPath}/itemwrite2.do'
+	 			location.href = "${pageContext.request.contextPath}/itemwrite2.do";
 	 		}
 		</script>
     </head>

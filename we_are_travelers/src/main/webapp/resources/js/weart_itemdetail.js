@@ -25,14 +25,37 @@ $(function(){ //장바구니 담기
 			},
 			success: function(data){
 				if(data == "L") {
-					alert("로그인 후 이용해주세요!");
+					modal1();
 				} else if (data == "Y") {
-					alert("장바구니 담기 성공!");
-				} else if (data == "N") {
-					alert("장바구니 담기 실패!");
+					modal2();
+				} else {
+					alert("서버 에러!");
 				}
 			},
-			error: function(error){ alert("장바구니 에러발생!"); }
+			error: function(error){ alert("서버 에러!"); }
+		});
+	});
+});
+
+$(function(){ //바로구매
+	$("#additemcart2").click(function(){
+		$.ajax({
+			type: "post",
+			url: "itemcartadd.do",
+			data: {
+				"optionValue": $("#optionValue option:selected").val(),
+				"pieceValue": $("#pieceValue option:selected").val()
+			},
+			success: function(data){
+				if(data == "L") {
+					modal1();
+				} else if (data == "Y") {
+					location.href = "itemcart.do";
+				} else {
+					alert("서버 에러!");
+				}
+			},
+			error: function(error){ alert("서버 에러!"); }
 		});
 	});
 });
