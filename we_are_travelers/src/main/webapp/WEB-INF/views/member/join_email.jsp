@@ -154,12 +154,12 @@
         <input class="mail_input" id="mail_input_id" name="email">
         <div class="underline"></div>
         <div class="mail_check_button_wrap">   
-      <button type="button" class="mail_check_button">인증번호</button> 
+      <button type="button" class="mail_check_button">인증번호11</button> 
        <span class="mail_input_check"></span>  
    </div>  
     </div>
     </div>
-     
+    
     <div class="mail_check_wrap">
     <div class="mail_check_input_box">
         <input type="hidden" class="mail_check_input">
