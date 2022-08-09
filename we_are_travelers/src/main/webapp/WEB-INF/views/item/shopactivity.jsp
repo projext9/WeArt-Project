@@ -16,23 +16,23 @@
 	 			var fm = document.frm;
 	 			var itemCode = document.getElementById("itemCode").value;
 				if (itemCode == 1) {
-		 			fm.action = "cultureshop.do";
+		 			fm.action = "shopculture.do";
 		 			fm.method = "get";
 		 			fm.submit();
 				} else if (itemCode == 2) {
-		 			fm.action = "activityshop.do";
+		 			fm.action = "shopactivity.do";
 		 			fm.method = "get";
 		 			fm.submit();
 				} else if (itemCode == 3) {
-		 			fm.action = "fishingshop.do";
+		 			fm.action = "shopfishing.do";
 		 			fm.method = "get";
 		 			fm.submit();
 				} else if (itemCode == 4) {
-		 			fm.action = "campingshop.do";
+		 			fm.action = "shopcamping.do";
 		 			fm.method = "get";
 		 			fm.submit();
 				} else if (itemCode == 5) {
-					fm.action = "stayshop.do";
+					fm.action = "shopstay.do";
 					fm.method = "get";
 					fm.submit();
 				} else {
@@ -55,7 +55,7 @@
 				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing2.png" aria-hidden="true"></img>
 					        <div class="container">
 								<div class="carousel-caption text-start">
-									<h1 style="text-shadow:5px 5px 5px #000;">이것은 낚시상품</h1>
+									<h1 style="text-shadow:5px 5px 5px #000;">이것은 액티비티상품</h1>
 						            <p>우수한 품질의 중국산 낚시대</p>
 						            <p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
 								</div>
@@ -152,7 +152,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/itemdetail.do?iidx=${itemVo.item_idx}&itemCode=3">상세보기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/itemdetail.do?iidx=${itemVo.item_idx}&itemCode=2">상세보기</a></div>
                             </div>
                         </div>
                     </div>
@@ -168,12 +168,12 @@
 						<c:choose>
 							<c:when test="${i==scri.page}">
 								<li class="page-item active">
-									<a class="page-link" href="${pageContext.request.contextPath}/fishingshop.do?page=${i}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}">${i}</a>
+									<a class="page-link" href="${pageContext.request.contextPath}/shopactivity.do?page=${i}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}">${i}</a>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item">
-									<a class="page-link" href="${pageContext.request.contextPath}/fishingshop.do?page=${i}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}">${i}</a>
+									<a class="page-link" href="${pageContext.request.contextPath}/shopactivity.do?page=${i}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}">${i}</a>
 								</li>
 							</c:otherwise>
 						</c:choose>

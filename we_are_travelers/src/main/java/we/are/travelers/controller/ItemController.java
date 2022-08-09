@@ -48,7 +48,7 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 	
-	@GetMapping("/cultureshop.do") //문화 상품페이지 호출
+	@GetMapping("/shopculture.do") //문화 상품페이지 호출
 	public String cultureshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
@@ -72,10 +72,10 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/cultureshop";
+		return "item/shopculture";
 	}
 	
-	@GetMapping("/activityshop.do") //액티비티 상품페이지 호출
+	@GetMapping("/shopactivity.do") //액티비티 상품페이지 호출
 	public String activityshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
@@ -99,10 +99,10 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/activityshop";
+		return "item/shopactivity";
 	}
 	
-	@GetMapping("/fishingshop.do") //낚시 상품페이지 호출
+	@GetMapping("/shopfishing.do") //낚시 상품페이지 호출
 	public String fishingshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
@@ -126,10 +126,10 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/fishingshop";
+		return "item/shopfishing";
 	}
 	
-	@GetMapping("/campingshop.do") //캠핑 상품페이지 호출
+	@GetMapping("/shopcamping.do") //캠핑 상품페이지 호출
 	public String campingshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
@@ -153,9 +153,9 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/campingshop";
+		return "item/shopcamping";
 	}
-	@GetMapping("/stayshop.do") //숙박 상품페이지 호출
+	@GetMapping("/shopstay.do") //숙박 상품페이지 호출
 	public String stayshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
@@ -179,7 +179,7 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/stayshop";
+		return "item/shopstay";
 	}
 	
 	@GetMapping("/itemdetail.do") //상품 상세페이지 호출
