@@ -8,6 +8,8 @@ body {
       flex-direction: column; /*수직 정렬*/
       align-items: center;
       justify-content: center;
+      font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, '돋움', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 
@@ -16,7 +18,7 @@ body {
     margin: 40px auto 42px;
     padding: 0 69px;
     border: 1px solid rgba(0,0,0,0.12);
-    font-size: 12px;
+    font-size: 15px;
     box-sizing: border-box;
 }
 
@@ -41,8 +43,9 @@ body {
 }
 
 .mail_input_box {
-	display : flex;
-	flex-wrap : nowrap;
+	display: flex;
+    flex-direction: row;
+    align-items: center;
 
 }
 h1{
@@ -76,3 +79,74 @@ h1{
     margin-left: 10px;
 }
 
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #CCC;
+  color: #555;
+  box-sizing: border-box;
+  font-family: 'Arvo';
+  font-size: 18px;
+  height: 50px;
+  left: 5%;
+  padding: 10px 0px;
+  position: relative;
+  top: 50%;
+  width: 250px;
+  z-index:1;
+}
+ input:focus {
+    outline: none;    
+  }
+input::-webkit-input-placeholder {
+  color: #AAA;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: dodgerblue;
+}
+
+input:focus+.underline {
+  transform: scale(1);
+}
+
+.underline {
+  background-color: dodgerblue;
+    top: 615px;
+    left: 535px;
+    height: 2px;
+    margin-top: -4px;
+    position: absolute;
+  -webkit-transform: scale(0, 1);
+  transform: scale(0, 1);
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.2s linear;
+  width: 250px;
+  z-index: -1;
+}
+.mail_check_button {
+	position : relative;
+	left : 30px;
+}
+.mail_input_check{
+	position: relative;
+    left: -200px;
+    top: 50px;
+}
+.clearfix:before, .clearfix:after {
+    display: block;
+    content: '';
+    line-height: 0;
+}
+
+.clearfix:after {
+    clear:both;
+}
+
+.next, .next_wrap {
+	position : relative;
+	top : 15px;
+	width : 100%;
+	height : 50px;
+	
+}

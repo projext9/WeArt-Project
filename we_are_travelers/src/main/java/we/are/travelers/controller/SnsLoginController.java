@@ -115,6 +115,7 @@ public class SnsLoginController {
  	    }
  		return null;
 	}
+	
 	//로그아웃	
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })	
 	public String logout(HttpSession session)throws IOException {			
@@ -122,6 +123,7 @@ public class SnsLoginController {
 		session.invalidate(); 	        			
 		return "redirect:home.do";		
 		}	
+	
 	
     //카카오 로그인
 	@RequestMapping(value="/kakaoLogin.do")
@@ -137,7 +139,7 @@ public class SnsLoginController {
 	
 	//    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 	    session.setAttribute("member_idx", userInfo.getMember_idx());
-	    session.setAttribute("member_id" , userInfo.getSocial_kakao());
+	    session.setAttribute("social_kakao" , userInfo.getSocial_kakao());
 	    session.setAttribute("member_nick", userInfo.getMember_nick());
 	    session.setAttribute("social_token", access_Token);
 	
@@ -145,20 +147,23 @@ public class SnsLoginController {
 	}
 	
 	
-	 @RequestMapping(value="/kakaoLogout.do")
+	 @RequestMapping(value="/kakaoLogout.do" , method = { RequestMethod.GET, RequestMethod.POST })
 	    public String kakaoLogout(HttpSession session) {
-	        String access_Token = (String)session.getAttribute("access_Token");
+	        String access_Token = (String)session.getAttribute("social_token");
 	
 	        if(access_Token != null && !"".equals(access_Token)){
 	        	SnsLoginService.kakaoLogout(access_Token);
 	            session.removeAttribute("social_token");
 	            session.removeAttribute("social_kakao");
+	            session.removeAttribute("member_nick");
+	            session.removeAttribute("member_idx");
+	            
 	        }else{
 	            System.out.println("social_token is null");
 	            //return "redirect:/";
 	        }
 	        //return "index";
-	        return "redirect:/home.do";
+	        return "home";
     }
 	 
 	 

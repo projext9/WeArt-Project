@@ -30,6 +30,10 @@
 			function fn_logout() { //로그아웃
 				location.href="logout.do";
 	 		}
+			function fn_logout_kakao() { //로그아웃
+				location.href="${pageContext.request.contextPath}/kakaoLogout.do";
+	 		}
+			
 		</script>
     </head>
 	<body>
@@ -100,22 +104,33 @@
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/inquiry_list.do">1:1문의</a></li>
                             </ul>
 						</li>
-					</ul>
+					</ul>				
+					
 		<c:choose>
-				    <c:when test="${sessionScope.member_idx != null }">
+				    <c:when test="${sessionScope.member_id != null }">
 					<span>${sessionScope.member_nick }님</span>&nbsp;
 					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
 					</c:when>
-					
-                    <c:when test="${sessionScope.member_grade == 1 }">
-                    <a href="/travelers/memberList.do">관리자페이지</a>
-                    </c:when>
-                    
-                     <c:when test="${sessionScope.company_idx != null }">
+					 
+                     <c:when test="${sessionScope.company_id != null }">
 					<span>${sessionScope.company_name }님</span>&nbsp;
 					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
 					 </c:when>
+					 
+					 <c:when test="${sessionScope.social_kakao != null }">
+					<span>${sessionScope.member_nick }님</span>&nbsp;
+					<button class="btn btn-outline-success" type="button"onClick="fn_logout_kakao()">로그아웃</button>
+					</c:when>
 					
+					<c:when test="${sessionScope.social_naver != null }">
+					<span>${sessionScope.member_nick }님</span>&nbsp;
+					<button class="btn btn-outline-success" type="button"onClick="fn_logout_naver()">로그아웃</button>
+					</c:when>
+				
+                    <c:when test="${sessionScope.member_grade == 1 }">
+                    <a href="/travelers/memberList.do">관리자페이지</a>
+                    </c:when>
+                  
 					<c:otherwise>
 					<button class="btn btn-outline-success" type="button" onClick="fn_login()">로그인</button>&nbsp;
 					<button class="btn btn-outline-success" type="button"onClick="fn_join()">회원가입</button>

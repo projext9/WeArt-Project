@@ -24,6 +24,22 @@ $(".checkbox_group").on("click", ".normal", function() {
 
     $("#check_all").prop("checked", is_checked);
 });
+$(document).ready(function() {
+	
+	$('.join_agree').prop('disabled', true);
+	
+	$('input[type=checkbox]').on("input", function() {
+		var is_checked = true;
+		var agree_1 =$("#check_1").prop("checked");
+		var agree_2 =$("#check_2").prop("checked");
+		
+	if(agree_1 && agree_2 == is_checked) {
+		$('.join_agree').prop('disabled', false);
+	}else{
+		$('.join_agree').prop('disabled', true);
+	}  
+	});
+});
 });
 </script>
 </head>
