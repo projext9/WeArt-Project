@@ -259,9 +259,6 @@ public class ItemController {
 	public String itemcart(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String member_idx = (String)session.getAttribute("member_idx");
-		
-		String uri = request.getHeader("Referer"); //이전 페이지 세션 저장
-		session.setAttribute("historyBack", uri);
 
 		if (member_idx == null) {
 			return "login"; //로그인 필요

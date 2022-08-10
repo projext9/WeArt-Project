@@ -234,7 +234,7 @@ public class SnsLoginService {
 	            e.printStackTrace();
 	            
 	        }
-	        
+
 	        // catch 아래 코드 추가.
 	        MemberVo result_kakao = memberDao.findKakao(userInfo);
     		// 위 코드는 먼저 정보가 저장되있는지 확인하는 코드.

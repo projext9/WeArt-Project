@@ -12,6 +12,9 @@
 		<link href="${pageContext.request.contextPath}/resources/css/weart_home.css" rel="stylesheet" />
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"rel="stylesheet" />
 		<script type="text/javascript">
+		if(window.history.replaceState){
+			window.history.replaceState(null, null, window.location.href);
+		}
 			history.pushState(null, null, "http://현재페이지URL을 입력하세요.");
            	window.onpopstate = function(event) {
 			history.go(1);

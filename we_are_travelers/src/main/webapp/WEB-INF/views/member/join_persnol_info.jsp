@@ -112,26 +112,28 @@
     <progress value="80" max="100"></progress>
     </div>
     <br>
-      <p class="join_guide_1">위아트 계정의 프로필 내용을 입력해주세요 <p/>
-    <div class="mail_wrap">
-    <div class="nick_name">닉네임</div>
+      <p class="join_guide_1">위아트 계정의 프로필 내용을 입력해주세요 .<p/>
+    <div class="info_wrap">
+    
+    
     <div class="info_input_box">
+    <label>닉네임
         <input class="nick_input" id="nick_input_id" name="nick">
-        <p class="nick_input_check"></p>
+    </label>    
+        <span class="nick_input_check"></span>
     <div class="name">이름</div>
+    <label>이름
         <input class="name_input" id="name_input_id" name="name">
-        <p class="name_input_check"></p>  
+    </label>
+        <span class="name_input_check"></span>  
     <div class="birth_name">생년월일</div>
         <input class="birth_input" id="birth_input_id" name="birth">
-        <p class="birth_input_check"></p>
+        <span class="birth_input_check"></span>
     </div>
     </div>
-   <div class="clearfix">
-   <br>
-   </div>
-    <br>
+   <br><br>
     <div>
-	<input type="submit" class="next" value="다음" disabled="disabled">
+	<button type="submit" class="next" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
 	</div>
 </form> 
 </main>
