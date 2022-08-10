@@ -40,16 +40,28 @@ public class ItemService {
 		return itemDao.deleteAllItem(company_idx);
 	}
 	
-	public int addItem(ItemVo itemVo) { //판매상품 등록
+	public int addItem(ItemVo itemVo) { //판매상품 입력 실행(상품작성)
 		return itemDao.addItem(itemVo);
 	}
-
+	
 	public ItemVo getAddedItem(String company_idx) { //최근 작성 상품 호출
 		return itemDao.getAddedItem(company_idx);
 	}
 	
 	public int addItemImg(ItemVo itemVo) { //상품 이미지 업로드
 		return itemDao.addItemImg(itemVo);
+	}
+	
+	public int addItemContent(ItemVo itemVo) { //판매상품 입력 실행(상세정보 등록)
+		return itemDao.addItemContent(itemVo);
+	}
+	
+	public int addItemOption(Map<String, Object> map) { //판매상품 입력 실행(옵션 등록)
+		return itemDao.addItemOption(map);
+	}
+	
+	public int updateItemOption(String item_idx) { //아이템 상태 변경 "T" to "N"
+		return itemDao.updateItemOption(item_idx);
 	}
 	
 	public int item_total_culture(SearchCriteria scri) { //상품 리스트 갯수(문화)
@@ -164,6 +176,10 @@ public class ItemService {
 	
 	public MemberVo getMemberDetail2(String member_idx) { //회원정보 호출
 		return itemDao.getMemberDetail2(member_idx);
+	}
+	
+	public int updateCashReceipt(HashMap<String, Object> map) { //주문서 업데이트(현금영수증)
+		return itemDao.updateCashReceipt(map);
 	}
 	
 	public String getToken(HttpServletRequest request, HttpServletResponse response, JSONObject json, String requestURL) throws Exception{

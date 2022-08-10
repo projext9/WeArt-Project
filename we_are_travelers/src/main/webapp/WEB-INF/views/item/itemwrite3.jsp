@@ -11,45 +11,41 @@
 		</style>
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-		<!-- CKEditor5 코드 -->
 		<script>
-			function MyCustomUploadAdapterPlugin(editor) {
-			    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-			        return new UploadAdapter(loader);
-			    }
-			}
-
-	 		function fn_imgUpload() { //이미지 업로드
-	 			alert("이미지 업로드");
-	 			var fm1 = $("#frm1")[0];
-	 		    var data = new FormData(fm1);
-		 		$.ajax({
-					method: 'post',
-			        enctype: 'multipart/form-data',
-	 			    url: '${pageContext.request.contextPath}/itemimgupload.do',
-	 			    data: data,
-	 			    dataType: 'html',
-		 	        processData: false,
-		 	        contentType: false,
-	 			    cache: false,
-					success: function(data) {
-							if(data == "1") {
-							alert("사진 업로드 성공!");
-							reloadDivArea();
-						} else {
-							alert("실패!");
-						}
-					},
-					error: function(error){ alert("에러!"); }
-				})
-	 		}
-	 		
-	 		function reloadDivArea() {
-	 			$('#product-images').load(location.href+' #product-images');
-	 		}
+			$(function() {
+			    $(".image").css("text-align", "center");
+			    $(".image-style-side").css("text-align", "end");
+			});
 			
-	 		function fn_itemwriteback() {
-	 			location.href = '${pageContext.request.contextPath}/itemwrite.do'
+		 	const optionAdd = ()=> {
+			 	var optionCnt = document.getElementsByName('optionCnt').length + 1;
+			 	var inner = "";
+
+		 	    inner += '<tr id = "num'+optionCnt+'" name = "optionCnt">';
+		 	    inner += '    <th scope="row"><input type="hidden" name="option_number" value="'+ optionCnt +'"><button type="button" class="btn btn-outline-primary btn-sm" onClick="onClickRemove('+optionCnt+')">삭제</button></th>';
+		 	    inner += '    <td><input type="text" name="option_name" value="상품이름(가격)" maxlength="20"></td>';
+		 	    inner += '    <td><input type="number" name="option_price" value="0" min="1000"></td>';
+		 	    inner += '    <td><input type="number" name="option_postPrice" value="0"></td>';
+		 	    inner += '    <td><input type="number" name="option_stock" value="0" min="1"></td>';
+		 	    inner += '</tr>';
+				
+			 	$('#optionHead').after(inner);
+			 }
+
+		 	function onClickRemove(optionCnt){
+				$("#num"+optionCnt).remove();
+		 	}
+		 	
+	 		function fn_itemwrite3() {
+				var fm2 = document.frm2;
+				alert("게시글 작성 실행");
+				fm2.action = "itemwrite3action.do";
+				fm2.method = "post";
+				fm2.submit();
+			}
+	 		
+	 		function fn_itemwrite2back() {
+	 			location.href = "${pageContext.request.contextPath}/itemwrite2.do";
 	 		}
 		</script>
     </head>
@@ -62,12 +58,12 @@
 					</div>
 				</div>
 				<div class="col-sm col-12">
-					<div class="alert alert-primary bg-alert-bg" role="alert">
+					<div class="alert alert-secondary" role="alert">
 						2 . 상세정보 등록
 					</div>
 				</div>
 				<div class="col-sm col-12">
-					<div class="alert alert-secondary" role="alert">
+					<div class="alert alert-primary bg-alert-bg" role="alert">
 						3 . 옵션 등록
 					</div>
 				</div>
@@ -85,16 +81,7 @@
 					<div class="row align-items-center">
 						<div class="col-lg-6 col-md-12 col-12">
 							<div class="main-img">
-								<div class="product-images" id="product-images" style="background-image: url('${pageContext.request.contextPath}/resources/itemimg/${itemVo.item_img}'); background-repeat: no-repeat; background-size: 100%; width: 500px; height: 500px; text-align: center; border: 1px solid black;">
-									<div style="margin-top: 30%;"><p style="font-size: 40px; color: blue;">대표사진<br><br>(500px/500px)</p>
-									</div>
-									<div style="text-align: center; margin-top: 20%;">
-										<form name="frm1" id="frm1" enctype="multipart/form-data">
-											<input type="file" name="item_originImg" multiple> <!-- @아이템 대표사진 -->
-										</form>
-										<br>
-										<button type="button" class="btn btn-primary btn-sm" onClick="fn_imgUpload()">대표사진 업로드</button>
-									</div>
+								<div class="product-images" style="background-image: url('${pageContext.request.contextPath}/resources/itemimg/${itemVo.item_img}'); background-repeat: no-repeat; background-size: 100%; width: 500px; height: 500px; text-align: center; border: 1px solid black;">
 								</div>
 							</div>	
 						</div>
@@ -146,17 +133,33 @@
 					</div>
 				</div>
 			</div>
-
+			
 			<div class="container">
 				<div class="product-details-info">
 					<div class="single-block">
 						<div class="row">
-							<form class="row g-1 needs-validation" method="post" action="${pageContext.request.contextPath}/itemwrite2action.do" enctype="multipart/form-data" novalidate>
+						
 							<div class="col-lg-12 col-12">
 								<div class="info-body">
-									<h4>상품상세 정보</h4>
-									<p><textarea class="editor" name="item_content" id="validationCustom05" required placeholder="내용을 입력하세요"></textarea>
-									</p>
+									<h4 style="color: blue;">옵션 추가 필드 &nbsp; <button type="button" class="btn btn-outline-primary btn-sm" onClick="optionAdd()">추가</button></h4>
+									<form name="frm2" id="frm2">
+									<table class="table">
+										<tr id="optionHead">
+											<th scope="col">순번</th>
+											<th scope="col">옵션이름</th>
+											<th scope="col">가격</th>
+											<th scope="col">배송비</th>
+											<th scope="col">재고</th>
+										</tr>
+										<tr id="num0" name="optionCnt">
+											<th scope="row"><input type="hidden" name="option_number" value="1"><button type="button" class="btn btn-outline-info btn-sm">기본</button></th>
+											<td><input type="text" name="option_name" value="상품(옵션)이름" maxlength="20"></td>
+											<td><input type="number" name="option_price" value="0" min="1000"></td>
+											<td><input type="number" name="option_postPrice" value="0"></td>
+											<td><input type="number" name="option_stock" value="0" min="1"></td>
+										</tr>
+									</table>
+									</form>
 								</div>
 							</div>
 							
@@ -165,8 +168,25 @@
 				</div>
 			</div>
 			<br>
-			<div style="text-align: center;"><button class="btn btn-secondary btn-lg" onClick="fn_itemwriteback();">이전</button>&nbsp;&nbsp;<button class="btn btn-primary btn-lg" type="submit">상세정보 등록(다음)</button></div>
-			</form>
+			<div style="text-align: center;"><button class="btn btn-secondary btn-lg" onClick="fn_itemwrite2back();">이전</button>&nbsp;&nbsp;<button type="button" class="btn btn-primary btn-lg" onClick="fn_itemwrite3()">옵션 등록(완료)</button></div>
+
+			<div class="container">
+				<div class="product-details-info">
+					<div class="single-block">
+						<div class="row">
+						
+							<div class="col-lg-12 col-12">
+								<div class="info-body">
+									<h4>상품상세 정보</h4>
+									<p>${itemVo.item_content}
+									</p>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="container">
 				<div class="product-details-info">
@@ -281,32 +301,6 @@
 				</div>
 			</div>
 		</section>
-
-		<!-- CKEditor5 -->
-		<script src="${pageContext.request.contextPath}/resources/ckeditor/build/ckeditor.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/ckeditor/UploadAdapter.js"></script>
-		<script>
-			ClassicEditor
-				.create( document.querySelector( '.editor' ), {
-					extraPlugins: [MyCustomUploadAdapterPlugin],	// 이미지 업로드 어댑터
-					licenseKey: '',
-					mediaEmbed: {									// 동영상 업로드
-					    previewsInData:true
-					},
-				})
-				.then( editor => {
-					window.editor = editor;
-				})
-				.catch( error => {
-					console.error( 'Oops, something went wrong!' );
-					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-					console.warn( 'Build id: epob765mepsi-71uxdxxu3a3m' );
-					console.error( error );
-				});
-		</script>
-		<!-- /CKEditor5 -->
-		<script src="${pageContext.request.contextPath}/resources/js/form-validation.js"></script>
-
 		<%@ include file="../footer.jsp"%>
     </body>
 </html>

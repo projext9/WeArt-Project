@@ -309,8 +309,6 @@ public class BoardController {
 		boardService.delete_reply(board_idx);
 		boardService.update_reply(boardVo);
 		
-		System.out.println("code : "+code);
-		
 		String viewPage = "";
 		
 		if(code==null) {
