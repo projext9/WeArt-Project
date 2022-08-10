@@ -34,16 +34,28 @@ public class ItemDao {
 		return sqlSession.delete(MAPPER+".deleteAllItem", company_idx);
 	}
 	
-	public int addItem(ItemVo itemVo) { //판매상품 등록
+	public int addItem(ItemVo itemVo) { //판매상품 입력 실행(상품작성)
 		return sqlSession.insert(MAPPER+".addItem", itemVo);
 	}
-	
+
 	public ItemVo getAddedItem(String company_idx) { //최근 작성 상품 호출
 		return sqlSession.selectOne(MAPPER+".getAddedItem", company_idx);
 	}
 	
 	public int addItemImg(ItemVo itemVo) { //상품 이미지 업로드
 		return sqlSession.update(MAPPER+".addItemImg", itemVo);
+	}
+	
+	public int addItemContent(ItemVo itemVo) { //판매상품 입력 실행(상세정보 등록)
+		return sqlSession.update(MAPPER+".addItemContent", itemVo);
+	}
+
+	public int addItemOption(Map<String, Object> map) { //판매상품 입력 실행(옵션 등록)
+		return sqlSession.insert(MAPPER+".addItemOption", map);
+	}
+	
+	public int updateItemOption(String item_idx) { //아이템 상태 변경 "T" to "N"
+		return sqlSession.insert(MAPPER+".updateItemOption", item_idx);
 	}
 	
 	public int item_total_culture(SearchCriteria scri) { //상품 리스트 갯수(문화)
@@ -157,7 +169,11 @@ public class ItemDao {
 	public MemberVo getMemberDetail2(String member_idx) { //회원정보 호출
 		return sqlSession.selectOne(MAPPER+".getMemberDetail2", member_idx);
 	}
-
+	
+	public int updateCashReceipt(HashMap<String, Object> map) { //주문서 업데이트(현금영수증)
+		return sqlSession.update(MAPPER+".updateCashReceipt", map);
+	}
+	
 	public int updateOrderState1B(HashMap<String, Object> map) { //주문서(개별상품) 상태변경(결제완료)
 		return sqlSession.update(MAPPER+".updateOrderState1B", map);
 	}

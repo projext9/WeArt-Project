@@ -9,6 +9,12 @@
 		<link href="${pageContext.request.contextPath}/resources/css/weart_itemdetail.css" rel="stylesheet" />
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/weart_itemdetail.js"></script>
+		<script>
+			$(function() {
+			    $(".image").css("text-align", "center");
+			    $(".image-style-side").css("text-align", "end");
+			});
+		</script>
     </head>
 	<body>
 		<header class="header navbar-area">
@@ -75,7 +81,7 @@
 											<select class="form-control" id="optionValue" onchange="optionSelect(this)">
 												<c:forEach var="optionVo" items="${optionList}">
 													<c:if test="${optionVo.option_delyn == 'N'}">
-														<option value="${optionVo.option_idx}">${optionVo.option_name}</option>
+														<option value="${optionVo.option_idx}">${optionVo.option_name}(${optionVo.option_price}&#8361;)</option>
 													</c:if>
 												</c:forEach>
 											</select>
@@ -106,7 +112,7 @@
 
 										<div class="col-lg-6 col-md-6 col-12" style="margin-top: 20px;">
 											<div class="wish-button">
-												<button class="btn" onClick="location.href='${pageContext.request.contextPath}/itemcart.do'">바로구매</button>
+												<button class="btn" id="additemcart2" style="width: 100%;">바로구매</button>
 											</div>
 										</div>
 									</div>
@@ -242,7 +248,7 @@
 									</ul>
 									<h4>상품별 취소/반품 제한 세부사항&nbsp;&nbsp;
 									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+									<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1">
 									  팝업으로 확인
 									</button>
 									</h4>
@@ -255,8 +261,8 @@
 			</div>
 		</section>
 		
-		<!-- Modal Start -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!-- 상품별 취소/반품 제한 세부사항 Modal Start -->
+		<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -314,7 +320,47 @@
 		</div>
 		<!-- Modal End -->
 
-		<a href="javascript:window.history.back();" class="scroll-back" style="display: flex;"><i class="bi bi-arrow-return-left"></i></a>
+		<!-- 비로그인 Modal Start -->
+		<div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">로그인 필요</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						로그인 후 사용해 주세요.
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/login.do'">로그인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal End -->
+		
+		<!-- 장바구니 담기 성공 Modal Start -->
+		<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">카트 담기 완료</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						상품이 카트에 담겼습니다. 확인 하시겠습니까?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/itemcart.do'">카트 이동</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal End -->
+
+		<a href="${sessionScope.historyBack1}" class="scroll-back" style="display: flex;"><i class="bi bi-arrow-return-left"></i></a>
 		<a href="#" class="scroll-top" style="display: flex;"><i class="bi bi-arrow-up"></i></a>
 		<%@ include file="../footer.jsp"%>
     </body>

@@ -72,9 +72,10 @@ body {
 	position : relative;
 	left : -50px;
 	top : -100px;
+	justify-content: space-evenly;
 }
 
-.social_logoK, .social_logoN, .social_logoG, .social_logoF{
+.social_logoK, .social_logoN{
 	margin : 5px;
 }
 
@@ -99,11 +100,15 @@ body {
 }
 .login_wrap {
 	display : inline-flex;
-	justify-content : center;
+	justify-content : space-evenly;
 	position: relative;
     width: 407px;
     right: 43px;
 }
+.join_wrap {
+	display : contents;
+}
+
 .all_member_login_btn {
 	border-radius : 5px;
 	background :  #0d6efd;

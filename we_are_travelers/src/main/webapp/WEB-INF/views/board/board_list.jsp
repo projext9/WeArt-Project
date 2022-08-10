@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://kit.fontawesome.com/51dc5b459d.js" crossorigin="anonymous"></script>
 <style>
 	* > h3 {display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:500px;}
 </style>

@@ -15,7 +15,7 @@
 	    <form class="login_form" action="/travelers/info_checkPwd.do" method="POST">
 			<div>
 				<input type="password" class="form-control" id="member_pwd" name="member_pwd">
-				<button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+				<button class="w-100 btn btn-lg btn-primary" type="submit">비밀번호 확인</button>
 			</div>
 		</form>
 		

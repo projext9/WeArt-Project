@@ -51,16 +51,18 @@
 			<!-- AllMemberController -->
 			<exclude-mapping path="/login.do"/>
 			<exclude-mapping path="/MemberloginProcess.do"/>
-			<exclude-mapping path="/joinMember.do"/>
-			<exclude-mapping path="/joinCompany.do"/>
 			<exclude-mapping path="/kakaoLogin.do"/>
+			<exclude-mapping path="/callBack.do"/>
+			<exclude-mapping path="/joinMember.do"/>
 			<exclude-mapping path="/WeArtTermsOfService.do"/>
 			<exclude-mapping path="/WeArtPersnolInfo.do"/>
 			<exclude-mapping path="/WeArtMarketing.do"/>
 			<exclude-mapping path="/joinNext.do"/>
-			<exclude-mapping path="/fileUploadProcess.do"/>
+			<exclude-mapping path="/joinNext2.do"/>
 			<exclude-mapping path="/joinNext3.do"/>
 			<exclude-mapping path="/joinfinish.do"/>
+			<exclude-mapping path="/joinMemberProcess.do"/>
+			<exclude-mapping path="/joinCompany.do"/>
 			<exclude-mapping path="/CompanyTermsOfService.do"/>
 			<exclude-mapping path="/CompanyInfo.do"/>
 			<exclude-mapping path="/CompanyInfo_other.do"/>
@@ -70,9 +72,16 @@
 			<exclude-mapping path="/join_com_next3.do"/>
 			<exclude-mapping path="/join_com_next4.do"/>
 			<exclude-mapping path="/join_com_finish.do"/>
-			<exclude-mapping path="/joinMemberProcess.do"/>
 			<exclude-mapping path="/joinCompanyProcess.do"/>
 			<exclude-mapping path="/logout.do"/>
+			
+			<!-- AjaxController -->
+			<exclude-mapping path="/checkId.do"/>
+			<exclude-mapping path="/checkComId.do"/>
+			<exclude-mapping path="/checkComName.do"/>
+			<exclude-mapping path="/checkNick.do"/>
+			<exclude-mapping path="/mailCheck"/>
+			
 			
 			<!-- BoardController -->
 			<exclude-mapping path="/board_list.do"/>
@@ -82,12 +91,14 @@
 			<exclude-mapping path="/like_count.do"/>
 			
 			<!-- ItemController -->
-			<exclude-mapping path="/cultureshop.do"/>
-			<exclude-mapping path="/activityshop.do"/>
-			<exclude-mapping path="/fishingshop.do"/>
-			<exclude-mapping path="/campingshop.do"/>
-			<exclude-mapping path="/stayshop.do"/>
+			<exclude-mapping path="/shopculture.do"/>
+			<exclude-mapping path="/shopactivity.do"/>
+			<exclude-mapping path="/shopfishing.do"/>
+			<exclude-mapping path="/shopcamping.do"/>
+			<exclude-mapping path="/shopstay.do"/>
 			<exclude-mapping path="/itemdetail.do"/>
+			<exclude-mapping path="/itemcartadd.do"/>
+			
 
 			<!-- 예외처리 종료 -->
 

@@ -1,7 +1,6 @@
 package we.are.travelers.dao;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +46,17 @@ public class MemberDao {
 		return sqlSession.selectOne(MAPPER+".checkNick", nick);
 	}
 	
+	 //카카오 소셜로그인
+	  public MemberVo findKakao(HashMap<String, Object> userInfo){
+	  	  System.out.println("카카오 아이디:"+userInfo.get("member_id"));
+	  	  System.out.println("카카오 닉네임:"+userInfo.get("member_nick"));
+		  return sqlSession.selectOne(MAPPER+".findKakao", userInfo);	  
+	}
+	
     public Object insertKakao(HashMap<String, Object> userInfo) {
+    	
 		int regCode = 1;
+		
 		String idx ="";
 		for (int i = 1; i <= 12; i++) {
             int pick = (int)((Math.random() * (20 - 1)) + 1);
@@ -70,29 +78,21 @@ public class MemberDao {
                 }
             }
 		
-		MemberVo memberVo = new MemberVo();
-		memberVo.setMember_idx(idx);
-		
 		userInfo.put("member_idx", idx);
+		userInfo.put("member_pwd" , idx);
 		userInfo.put("member_regCode" , regCode);
 		
 		return sqlSession.selectOne(MAPPER+".insertKakao", userInfo);	
 		
 	}
-	 //카카오 소셜로그인
-	  public MemberVo findKakao(HashMap<String, Object> userInfo){
-	  	  System.out.println("카카오 아이디:"+userInfo.get("email"));
-	  	  System.out.println("카카오 닉네임:"+userInfo.get("nickname"));
-		  return sqlSession.selectOne(MAPPER+".findKakao", userInfo);	  
-	}
 	
-	 public String findNaver(HashMap<String, Object> naverInfo){
-	  	  System.out.println("네이버 아이디:"+naverInfo.get("social_naver"));
+	 public MemberVo findNaver(HashMap<String, Object> naverInfo){
+	  	  System.out.println("네이버 아이디:"+naverInfo.get("member_id"));
 	  	  System.out.println("네이버 닉네임:"+naverInfo.get("member_ncik"));
 		  return sqlSession.selectOne(MAPPER+".findNaver", naverInfo);	  
 	}
 	 
-	 public String insertNaver(HashMap<String, Object> naverInfo) {
+	 public MemberVo insertNaver(HashMap<String, Object> naverInfo) {
 		 int regCode = 2;
 			String idx ="";
 			for (int i = 1; i <= 12; i++) {
@@ -117,12 +117,17 @@ public class MemberDao {
 			
 			MemberVo memberVo = new MemberVo();
 			memberVo.setMember_idx(idx);
+			memberVo.setMember_pwd(idx);
+			memberVo.setMember_regCode(regCode);
 			
+			naverInfo.put("member_pwd", idx);
 			naverInfo.put("member_idx", idx);
 			naverInfo.put("member_regCode", regCode);
 			
 			return sqlSession.selectOne(MAPPER+".insertNaver", naverInfo);	
 			
 		}
+	
+	 
 
 }

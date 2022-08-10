@@ -2,6 +2,7 @@ package we.are.travelers.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +10,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import we.are.travelers.service.ItemService;
 import we.are.travelers.vo.CompanyVo;
@@ -44,12 +48,16 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 	
-	@GetMapping("/cultureshop.do") //문화 상품페이지 호출
+	@GetMapping("/shopculture.do") //문화 상품페이지 호출
 	public String cultureshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="1") String itemCode, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
@@ -68,15 +76,19 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/cultureshop";
+		return "item/shopculture";
 	}
 	
-	@GetMapping("/activityshop.do") //액티비티 상품페이지 호출
+	@GetMapping("/shopactivity.do") //액티비티 상품페이지 호출
 	public String activityshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="2") String itemCode, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
@@ -95,15 +107,19 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/activityshop";
+		return "item/shopactivity";
 	}
 	
-	@GetMapping("/fishingshop.do") //낚시 상품페이지 호출
+	@GetMapping("/shopfishing.do") //낚시 상품페이지 호출
 	public String fishingshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="3") String itemCode, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
@@ -122,15 +138,19 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/fishingshop";
+		return "item/shopfishing";
 	}
 	
-	@GetMapping("/campingshop.do") //캠핑 상품페이지 호출
+	@GetMapping("/shopcamping.do") //캠핑 상품페이지 호출
 	public String campingshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="4") String itemCode, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
@@ -149,14 +169,18 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/campingshop";
+		return "item/shopcamping";
 	}
-	@GetMapping("/stayshop.do") //숙박 상품페이지 호출
+	@GetMapping("/shopstay.do") //숙박 상품페이지 호출
 	public String stayshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="5") String itemCode, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
@@ -175,16 +199,22 @@ public class ItemController {
 		model.addAttribute("scri", scri);
 		
 		request.setAttribute("itemCode", itemCode);
-		return "item/stayshop";
+		return "item/shopstay";
 	}
 	
 	@GetMapping("/itemdetail.do") //상품 상세페이지 호출
 	public String itemdetail(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
 		String item_idx = request.getParameter("iidx");
 		int item_idx_ = Integer.parseInt(item_idx);
 		
 		String itemCode = request.getParameter("itemCode");
 		int itemCode_ = Integer.parseInt(itemCode);
+		
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		String uri2 = uri+"?iidx="+item_idx+"&itemCode="+itemCode;
+		session.setAttribute("historyBack2", uri2);
 		
 		ItemVo itemVo = itemService.getItemDetail(item_idx_); //상품 상세 호출
 		model.addAttribute("itemVo", itemVo);
@@ -434,6 +464,7 @@ public class ItemController {
 
 		} else {
 			String orderLast_num = request.getParameter("orderLast_num");
+			String orderLast_cashReceipt = request.getParameter("orderLast_cashReceipt");
 			
 			MemberVo memberVo = itemService.getMemberDetail2(member_idx); //회원정보 호출
 			model.addAttribute("memberVo", memberVo);
@@ -441,7 +472,10 @@ public class ItemController {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("member_idx", member_idx);
 			map.put("orderLast_num", orderLast_num);
+			map.put("orderLast_cashReceipt", orderLast_cashReceipt);
 			map.put("orderLast_state1", "A");
+			
+			int result = itemService.updateCashReceipt(map); //주문서 업데이트(현금영수증)
 			
 			OrderLastVo orderLastVo = itemService.getOrderLast(map); //주문서 호출
 			model.addAttribute("orderLastVo", orderLastVo);
@@ -474,7 +508,6 @@ public class ItemController {
 			
 			OrderLastVo orderLastVo = itemService.getOrderLast(map); //주문서 호출
 			int amountDb = orderLastVo.getOrderLast_totalPrice();			
-			System.out.println("amountDb 출력: "+ amountDb);
 			
 			String imp_key = "";
 			String imp_secret = "";
@@ -504,7 +537,7 @@ public class ItemController {
 		}
 	}
 	
-	@GetMapping("/itemwrite.do") //판매상품 입력 페이지
+	@GetMapping("/itemwrite.do") //판매상품 입력(상품작성)
 	public String itemwrite(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
@@ -518,7 +551,7 @@ public class ItemController {
 		}
 	}
 
-	@PostMapping("/itemwriteaction.do") //판매상품 입력 진행
+	@PostMapping("/itemwriteaction.do") //판매상품 입력 실행(상품작성)
 	@ResponseBody
 	public String itemwriteaction(ItemVo itemVo, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -529,22 +562,17 @@ public class ItemController {
 
 		} else {
 			itemService.deleteAllItem(company_idx); //찌꺼기 제거
-			
+
 			itemVo.setCompany_idx(company_idx); //기업번호 입력
-			int result = itemService.addItem(itemVo); //게시글 작성
-			if(result == 1) {
-				ItemVo itemVo2 = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
-				int item_idx = itemVo2.getItem_idx();
-				String item_idx_ = String.valueOf(item_idx);
-				
-				return item_idx_;
-			} else {
-				return "home";
-			}
+			itemVo.setItem_content("TEMP"); //임시
+			int result = itemService.addItem(itemVo); //판매상품 입력 실행(상품작성)
+
+			String result_ = String.valueOf(result);
+			return result_;
 		}
 	}
 
-	@GetMapping("/itemwrite2.do") //판매상품 입력 페이지
+	@GetMapping("/itemwrite2.do") //판매상품 입력(상세정보 등록)
 	public String itemwrite2(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
@@ -562,13 +590,35 @@ public class ItemController {
 			return "item/itemwrite2";
 		}
 	}
-	
-	@PostMapping("/itemimgupload.do") //판매상품 입력 진행
-	@ResponseBody
-	public String itemimgupload(@RequestParam("item_originImg") MultipartFile item_originImg, HttpServletRequest request, Model model) throws IllegalStateException, IOException{
+
+	@PostMapping("/itemwrite2action.do") //판매상품 입력 실행(상세정보 등록)
+	public String itemwrite2action(ItemVo itemVo, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String company_idx = (String)session.getAttribute("company_idx");
-		System.out.println("들어옴");
+
+		if (company_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+			itemVo.setCompany_idx(company_idx); //기업번호 입력
+			
+			int result = itemService.addItemContent(itemVo); //판매상품 입력 실행(상세정보 등록)
+			
+			itemVo = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
+			model.addAttribute("itemVo", itemVo);
+			
+			CompanyVo companyVo = itemService.getItemCompany(company_idx); //상품 상세 호출(판매자명)
+			model.addAttribute("companyVo", companyVo);
+
+			return "item/itemwrite3";
+		}
+	}
+
+	@PostMapping("/itemimgupload.do") //상품 이미지 업로드
+	@ResponseBody
+	public String itemimgupload(@RequestParam("item_originImg") MultipartFile item_originImg, HttpServletRequest request, Model model) throws IllegalStateException, IOException {
+		HttpSession session = request.getSession();
+		String company_idx = (String)session.getAttribute("company_idx");
 
 		if (company_idx == null) {
 			return "login"; //로그인 필요
@@ -609,9 +659,75 @@ public class ItemController {
 			result = itemService.addItemImg(itemVo);
 			
 			String result_ = String.valueOf(result);
-			System.out.println(result_);
 			
 			return result_;
+		}
+	}
+	
+	@PostMapping("/itemwrite3.do") //판매상품 입력(옵션 등록)
+	public String itemwrite3(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String company_idx = (String)session.getAttribute("company_idx");
+
+		if (company_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+			ItemVo itemVo = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
+			model.addAttribute("itemVo", itemVo);
+			
+			CompanyVo companyVo = itemService.getItemCompany(company_idx); //상품 상세 호출(판매자명)
+			model.addAttribute("companyVo", companyVo);
+			
+			return "item/itemwrite3";
+		}
+	}
+
+	@PostMapping("/itemwrite3action.do") //판매상품 입력 실행(옵션 등록)
+	public String itemwrite3action(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String company_idx = (String)session.getAttribute("company_idx");
+	    	
+		if (company_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+			ItemVo itemVo = itemService.getAddedItem(company_idx); //최근 작성 게시글 호출
+			model.addAttribute("itemVo", itemVo);
+			int item_idx = itemVo.getItem_idx();
+			String item_idx_ = String.valueOf(item_idx);
+			
+
+			String[] option_number_list = request.getParameterValues("option_number");
+			String[] option_name_list = request.getParameterValues("option_name");
+			String[] option_price_list = request.getParameterValues("option_price");
+			String[] option_postPrice_list = request.getParameterValues("option_postPrice");
+			String[] option_stock_list = request.getParameterValues("option_stock");
+			
+			int length = option_number_list.length;
+			
+			for(int i = 0; i < length; i++) {
+				String option_number = option_number_list[i];
+				String option_name = option_name_list[i];
+				String option_price = option_price_list[i];
+				String option_postPrice = option_postPrice_list[i];
+				String option_stock = option_stock_list[i];
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("company_idx", company_idx);
+				map.put("item_idx", item_idx_);
+				map.put("option_number", option_number);
+				map.put("option_name", option_name);
+				map.put("option_price", option_price);
+				map.put("option_postPrice", option_postPrice);
+				map.put("option_stock", option_stock);
+				
+				itemService.addItemOption(map); //판매상품 입력 실행(옵션 등록)
+			}
+
+			itemService.updateItemOption(item_idx_); //아이템 상태 변경 "T" to "N"
+			
+			return "item/itemwrite4";
 		}
 	}
 	

@@ -185,8 +185,8 @@
 		<h3>${mapVo.map_addr}</h3>
 		<h3>${mapVo.company_name}</h3>
         <h3>※등록된 업체가 아닐경우 표시되지 않을 수 있습니다.※</h3>
-		<div class = "col-md-8" id="map" style="width: 100%; height: 800px;">
-		<div class="map_wrap col-md-8">
+		<div id="map" style="width: 100%; height: 350px;"></div>
+		<div class="map_wrap">
 			<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 			<ul id="category">
 				<li id="BK9" data-order="0"><span class="category_bg bank"></span> 은행</li>
@@ -197,9 +197,6 @@
 				<li id="CS2" data-order="5"><span class="category_bg store"></span> 편의점</li>
 			</ul>
 		</div>
-		
-		</div>
-		
 		
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bc83f37c00e33dee1d1814e4c4c987aa&libraries=services"></script>
 		<script>
@@ -245,7 +242,7 @@
 									// 인포윈도우로 장소에 대한 설명을 표시합니다
 									var infowindow = new kakao.maps.InfoWindow(
 											{
-												content : '<div style="width:150px;text-align:center;padding:6px 0; font-size: 12px;">'
+												content : '<div style="width:150px;text-align:center;padding:6px 0;">'
 														+ company_name
 														+ '</div>'
 											});

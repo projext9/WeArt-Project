@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import we.are.travelers.dao.MyDao;
-import we.are.travelers.vo.BoardVo;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OrderLastVo;
-import we.are.travelers.vo.OrderVo;
+import we.are.travelers.vo.SearchCriteria;
 
 @Service
 public class MyService {
@@ -25,20 +24,12 @@ public class MyService {
 		return myDao.getInfo(member_idx);
 	}
 
-	public List<OrderLastVo> getPayment(String member_idx) {
-		return myDao.getPayment(member_idx);
+	public List<OrderLastVo> getPayment(SearchCriteria scri) {
+		return myDao.getPayment(scri);
 	}
 
-	public List<BoardVo> getMyNotice(String member_idx) {
-		return myDao.getMyNotice(member_idx);
-	}
-
-	public List<OrderVo> getPaymentContent(String orderLast_num) {
+	public List<OrderLastVo> getPaymentContent(String orderLast_num) {
 		return myDao.getPaymentContent(orderLast_num);
-	}
-
-	public List<BoardVo> getMyNoticeContent(String board_subject) {
-		return myDao.getMyNoticeContent(board_subject);
 	}
 
 	public int modify_info(MemberVo memberVo) {
@@ -47,6 +38,10 @@ public class MyService {
 
 	public int info_checkPwd(MemberVo mv) {
 		return myDao.info_checkPwd(mv);
+	}
+
+	public int payment_total(SearchCriteria scri) {
+		return myDao.payment_total(scri);
 	}
 
 }

@@ -11,11 +11,6 @@ public class MemberVo {
 	private String member_nick; // 닉네임
 	private String member_birth; // 생년월일
 	private String member_phone; // 휴대폰
-	private String social_token; //소셜 토큰 정보
-	private String social_naver; // 네이버(아이디)
-	private String social_facebook;// 페이스북
-	private String social_google; // 구글
-	private String social_kakao; // 카카오
 	private int member_grade; // 회원등급(일반/관리자)
 	private int member_regCode; // 가입구분(일반/소셜)
 	private int member_phone_auth; //휴대폰 인증상태
@@ -60,36 +55,6 @@ public class MemberVo {
 	public void setMember_phone(String member_phone) {
 		this.member_phone = member_phone;
 	}
-	public String getSocial_token() {
-		return social_token;
-	}
-	public void setSocial_token(String social_token) {
-		this.social_token = social_token;
-	}
-	public String getSocial_naver() {
-		return social_naver;
-	}
-	public void setSocial_naver(String social_naver) {
-		this.social_naver = social_naver;
-	}
-	public String getSocial_facebook() {
-		return social_facebook;
-	}
-	public void setSocial_facebook(String social_facebook) {
-		this.social_facebook = social_facebook;
-	}
-	public String getSocial_google() {
-		return social_google;
-	}
-	public void setSocial_google(String social_google) {
-		this.social_google = social_google;
-	}
-	public String getSocial_kakao() {
-		return social_kakao;
-	}
-	public void setSocial_kakao(String social_kakao) {
-		this.social_kakao = social_kakao;
-	}
 	public int getMember_grade() {
 		return member_grade;
 	}
@@ -133,5 +98,14 @@ public class MemberVo {
 		this.member_birth = member_birth;
 	}
 	
-
+	@Override
+	public String toString() {
+		return "MemberVo [member_idx=" + member_idx + ", member_id=" + member_id + ", member_pwd=" + member_pwd
+				+ ", member_name=" + member_name + ", member_nick=" + member_nick + ", member_birth=" + member_birth
+				+ ", member_phone=" + member_phone + ", member_grade=" + member_grade + ", member_regCode="
+				+ member_regCode + ", member_phone_auth=" + member_phone_auth + ", member_delyn=" + member_delyn
+				+ ", member_regdate=" + member_regdate + ", member_ip=" + member_ip + "]";
+	}
+	
+      
 }

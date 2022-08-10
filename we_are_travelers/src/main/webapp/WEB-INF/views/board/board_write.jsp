@@ -3,7 +3,6 @@
 <%@ include file="../nav.jsp"%>
 <html>
 <head>
-	<title>write</title>
 	<!-- CKEditor5 코드 -->
 	<script>
 		function MyCustomUploadAdapterPlugin(editor) {

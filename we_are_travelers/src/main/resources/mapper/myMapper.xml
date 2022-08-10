@@ -10,10 +10,14 @@
 	
 	<select id="getPayment" resultType="orderLastVo">
 		select * from weart_order_last where member_idx = #{member_idx}
+			<if test="searchType=='id'">and orderLast_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
 	</select>
 	
-	<select id="getMyNotice" resultType="boardVo">
-		select * from weart_board where member_idx = #{member_idx}
+	<select id="payment_total" resultType="int">
+		select count(*) as cnt from weart_order_last where member_idx = #{member_idx}
+			<if test="searchType=='id'">and orderLast_id like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
 	</select>
 	
 	<select id="getInfoModify" resultType="memberVo">
@@ -25,12 +29,9 @@
 			orderLast_num = #{orderLast_num}
 	</select>
 	
-	<select id="getMyNoticeContent" resultType="boardVo">
-		select * from weart_board where board_idx = #{board_idx}
-	</select>
-	
 	<update id="modify_info">
-		update weart_member set member_name=#{member_name}, member_pwd=#{member_pwd}, member_nick=#{member_nick}, member_phone=#{member_phone} where member_idx=#{member_idx}
+		update weart_member set member_name=#{member_name}, member_pwd=#{member_pwd}, member_nick=#{member_nick},
+		 member_phone=#{member_phone}, member_delyn=#{member_delyn} where member_idx=#{member_idx}
 	</update>
 	
 	<select id="info_checkPwd" resultType="int">

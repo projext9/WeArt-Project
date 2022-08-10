@@ -1,8 +1,11 @@
 package we.are.travelers.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import we.are.travelers.service.MyService;
-import we.are.travelers.vo.BoardVo;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OrderLastVo;
-import we.are.travelers.vo.OrderVo;
+import we.are.travelers.vo.PageMaker;
+import we.are.travelers.vo.SearchCriteria;
 
 @Controller
 public class MyController {
@@ -48,7 +50,7 @@ public class MyController {
 	}
 	
 	@PostMapping("/info_checkPwd.do")
-	public String info_checkPwd(MemberVo mv, HttpServletRequest request,
+	public String info_checkPwd(MemberVo mv, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value="member_pwd") String member_pwd) {
 		
 		HttpSession session = request.getSession();
@@ -62,12 +64,20 @@ public class MyController {
 		if(result==1) {
 			viewPage = "redirect:/info.do";
 		}else {
-			viewPage = "info_check.do";
+			viewPage = "myPage/info_check";
+			try {
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('다시입력')</script>");
+				out.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}return viewPage;
 	}
 	
 	@ResponseBody	//
-	@GetMapping("/modify_info.do")
+	@PostMapping("/modify_info.do")
 	public int modify_info(MemberVo memberVo,
 			@RequestParam(value="member_idx") String member_idx,
 			@RequestParam(value="member_name") String member_name,
@@ -82,23 +92,35 @@ public class MyController {
 		memberVo.setMember_nick(member_nick);
 		memberVo.setMember_phone(member_phone);
 		memberVo.setMember_delyn(member_delyn);
-		
-		System.out.println("member_pwd : "+member_pwd);
-		
+				
 		int result = myService.modify_info(memberVo);
 		
 		return result;
 	}
 	
 	@GetMapping("/payment.do")
-	public String payment(Model model, HttpServletRequest request) {
+	public String payment(Model model, HttpServletRequest request, 
+			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="orderLast_num") String searchType,
+			@RequestParam(value="keyword", defaultValue="") String keyword) {
+		
+		SearchCriteria scri = new SearchCriteria();
+		scri.setPage(page);
+		scri.setKeyword(keyword);
+		scri.setSearchType(searchType);
+		
+		int cnt = myService.payment_total(scri);
+		
+		PageMaker pm = new PageMaker();
+		pm.setScri(scri);
+		pm.setTotalCount(cnt);
 		
 		HttpSession session = request.getSession();
+		scri.setMember_idx((String) session.getAttribute("member_idx"));
 		
-		String member_idx = (String) session.getAttribute("member_idx");
-		
-		List<OrderLastVo> payment = myService.getPayment(member_idx);
+		List<OrderLastVo> payment = myService.getPayment(scri);
 		model.addAttribute("payment", payment);
+		model.addAttribute("pm", pm);
+		model.addAttribute("scri", scri);
 		return "myPage/payment";
 	}
 	
@@ -107,40 +129,15 @@ public class MyController {
 		
 		HttpSession session = request.getSession();
 		
+		String member_idx = (String) session.getAttribute("member_idx");
 		String orderLast_num = (String) session.getAttribute("orderLast_num");
 		
-		List<OrderVo> paymentContent = myService.getPaymentContent(orderLast_num);
+		List<OrderLastVo> paymentContent = myService.getPaymentContent(orderLast_num);
 		model.addAttribute("paymentContent", paymentContent);
 		System.out.println(orderLast_num);
 		System.out.println(model);
 		return "myPage/paymentContent";
 	}
-	
-	@GetMapping("/myNotice.do")
-	public String myNotice(Model model, HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		
-		String member_idx = (String) session.getAttribute("member_idx");
-		
-		List<BoardVo> myNotice = myService.getMyNotice(member_idx);
-		model.addAttribute("myNotice", myNotice);
-		return "myPage/myNotice";
-	}
-	
-	@GetMapping("/myNoticeContent.do")
-	public String myNoticeContent(Model model, HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		String board_subject = (String) session.getAttribute("board_subject");
-		
-		List<BoardVo> myNoticeContent = myService.getMyNoticeContent(board_subject);
-		model.addAttribute("myNoticeContent", myNoticeContent);
-		return "myPage/myNoticeContent";
-	}
-	
-	
-	
 	
 	
 	

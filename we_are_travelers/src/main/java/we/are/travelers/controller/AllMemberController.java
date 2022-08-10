@@ -53,6 +53,7 @@ public class AllMemberController {
     	 if(memberVo != null) {	
 			HttpSession session = request.getSession();
 			session.setAttribute("member_idx", memberVo.getMember_idx());//회원등급 추가
+			session.setAttribute("member_id",memberVo.getMember_id());//회원아이디 추가
 			session.setAttribute("member_grade",memberVo.getMember_grade());//회원등급 추가
 			session.setAttribute("member_nick", memberVo.getMember_nick());//회원닉네임
 			msg = 0;
@@ -64,6 +65,7 @@ public class AllMemberController {
     	 }else {
 		    	 HttpSession session1 = request.getSession();
 		    	 session1.setAttribute("company_idx", companyVo.getCompany_idx());//회원등급 추가
+		    	 session1.setAttribute("company_id", companyVo.getCompany_id());//회원등급 추가
 		    	 session1.setAttribute("company_name", companyVo.getCompany_name());//회사이름
 		    	 session1.setAttribute("company_auth", companyVo.getCompany_auth());//회사인증
 		    	 session1.setAttribute("company_delyn", companyVo.getCompany_delyn());//회사인증
@@ -124,7 +126,6 @@ public class AllMemberController {
 	public String terms3() {
 		return "member/agr_marketing";
 	}
-    
 	///////////////////////////////////회원가입 로직
 	@RequestMapping(value="/joinMember.do", method = RequestMethod.GET)
 	public String join() {
@@ -183,20 +184,6 @@ public class AllMemberController {
 
 	  return "member/join_finish";
     }
-		@RequestMapping("/fileUploadProcess.do")
-		public String fileUploadProcess(@RequestParam("company_auth") MultipartFile company_auth,
-				CompanyVo CompanyVo, Model model, HttpServletRequest request) throws IllegalStateException, IOException{
-			//<input type ="file" name="uploadFile" />에서 업로드된 파일객체를 MultipartFile uploadFile에 저장
-			
-			//업로드된 파일을 프로젝트 내의 upload 폴더에 저장하기 전에 DB의 upload_file 테이블에 저장할 
-			//origin_filename과 system_filename 값을 세팅함
-			
-			
-			
-			return "gallery/gallery_home";
-		}
-		
-
 	
 	//////////////////////////////////////기업회원 약관동의 상세보기 로직
 	@RequestMapping(value="/joinCompany.do", method = RequestMethod.GET)
@@ -298,8 +285,6 @@ public class AllMemberController {
 		long size = company_auth_file.getSize(); //파일 사이즈
 		
 		model.addAttribute("company_auth_file" , fileRealName );
-		
-		
 		
 		System.out.println("파일명 : "  + fileRealName);
 		System.out.println("용량크기(byte) : " + size);

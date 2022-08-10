@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://kit.fontawesome.com/51dc5b459d.js" crossorigin="anonymous"></script>
 	<style>
 		* > h3 {display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:500px;}
 	</style>
@@ -25,7 +24,7 @@
 </head>
 <main style="padding-top:60px;">
 	<!-- 게시판 버튼 -->
-	<div class="container g-3 row row-cols-2 mb-3" style="padding-right:0.7em; padding-left:0.7em; margin:auto;">
+	<div class="container g-3 row row-cols-2 mb-3" style="padding-top:1em; padding-right:0.7em; padding-left:0.7em; margin:auto;">
 		<form class="col-12" style="padding:0; margin:auto;">
 			<!-- 검색 -->
 			<div class="btn-group col-12 g-1">
@@ -45,7 +44,7 @@
 				<button class="btn btn-outline-primary" type="submit" onclick="location.href='${pageContext.request.contextPath}/inquiry_list.do'"><i class="bi bi-search"></i></button>
 			</div>
 			<!-- 글 작성 -->
-			<div class="btn-group col-2 col-md-2 col-lg-1 col-xl-1 g-1" style="float:right; margin-top:0.5em;">
+			<div class="btn-group col-2 col-md-2 col-lg-1 col-xl-1 g-1" style="float:right; width:83px; margin-top:0.5em;">
 				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/inquiry_write.do?code=${scri.board_code}'" style="float:right;">글 작성</button>
 			</div>
 		</form>

@@ -74,7 +74,6 @@ function fn_itemOrder() { //체크 된 항목 전송
 	document.getElementById("hidden_postPrice").value = hidden_postPrice;
 	document.getElementById("hidden_price").value = hidden_price;
 	var fm = document.frm;
-	alert("배송지 입력 실행");
 	fm.action = "itemorder.do";
 	fm.method = "post";
 	fm.submit();
@@ -82,7 +81,6 @@ function fn_itemOrder() { //체크 된 항목 전송
 
 function fn_itemDel() { //체크 된 항목 삭제
 	var fm2 = document.frm;
-	alert("삭제 실행");
 	fm2.action = "itemcartdelete.do";
 	fm2.method = "post";
 	fm2.submit();
