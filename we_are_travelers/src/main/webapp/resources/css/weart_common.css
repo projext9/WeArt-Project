@@ -9,7 +9,26 @@
 	    margin-top: 0;
 	}
 }
-
+.kakao_btn{
+    background: yellow;
+    font-family: 'Malgun Gothic';
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 7px;
+    border: 1px solid yellow;
+    height: 40px;
+    color: #505050;
+}
+.naver_btn{
+    background:#5EC75E;
+    font-family: 'Malgun Gothic';
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 7px;
+    border: 1px solid #5EC75E;
+    height: 40px;
+    color: white;
+}
 .navbar-dark .navbar-nav .nav-link { /* 메뉴 텍스트 색상 */
 	color:#FFFFFF;
 }

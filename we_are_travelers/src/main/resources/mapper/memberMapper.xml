@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="findKakao" parameterType="java.util.HashMap" resultType="memberVo">
-		select * from weart_member where  member_id=#{member_id} and member_nick=#{member_nick}  
+		select * from weart_member where member_id=#{member_id} and member_nick=#{member_nick}  
 	</select>
 	
 	<insert id="insertKakao" parameterType="java.util.HashMap">
