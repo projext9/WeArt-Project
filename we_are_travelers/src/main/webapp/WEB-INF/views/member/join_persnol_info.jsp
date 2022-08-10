@@ -98,7 +98,7 @@
 	</script>
 </head>
 
-<body class="join_member">
+<body>
 <div class="join_container">
 <main class="join_cont">
 <form class="join_form" name="joinForm" action="/travelers/joinfinish.do" method="post">
@@ -117,22 +117,28 @@
     
     
     <div class="info_input_box">
+    <div>
     <label>닉네임
         <input class="nick_input" id="nick_input_id" name="nick">
     </label>    
         <span class="nick_input_check"></span>
-    <div class="name">이름</div>
+     </div>
+   <div>
     <label>이름
         <input class="name_input" id="name_input_id" name="name">
     </label>
         <span class="name_input_check"></span>  
-    <div class="birth_name">생년월일</div>
+     </div>   
+    <div>
+    <label>생년월일
         <input class="birth_input" id="birth_input_id" name="birth">
+     </label>  
         <span class="birth_input_check"></span>
+     </div>  
     </div>
     </div>
    <br><br>
-    <div>
+    <div class="next_wrap_info">
 	<button type="submit" class="next" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
 	</div>
 </form> 

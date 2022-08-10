@@ -58,9 +58,9 @@
 
 	</script>
 </head>
-<body class="join_pwd">
+<body>
 <div class="join_container">
-<main class="join_cont">
+<main class="join_cont_pwd">
 <form class="join_form" name="joinForm" action="/travelers/joinNext3.do" method="post">
     <input type="hidden" name="email" value="${email }">
     <h1>We Are Travelers!</h1>
@@ -69,16 +69,16 @@
     <progress value="60" max="100"></progress>
     </div>
     <br>
-      <p class="join_guide_1">위아트 계정의 비밀번호를 입력해주세요  <p/>
-    <br><br> 
+      <p>위아트 계정의 비밀번호를 입력해주세요  <p/>
+      
     <!-- 비밀번호 입력-->
+    <div class="pwd_input_area">
     <div class="pwd_input_box">
     <label>비밀번호
         <input type="password" class="pwd_1_input" id="pwd_1" name="pwd">
     </label>
    </div>  
    <span class="pwd_input_check1"></span>  
-   <br><br>
    <!-- 비밀번호 확인-->
     <div class="password_check_wrap">
     <label id="password_check_id">비밀번호 확인
@@ -86,7 +86,8 @@
     </label>   
     </div>
     <span class="pwd_input_check2"></span>
-    <div class="next_wrap">
+    </div>
+    <div class="next_wrap_pwd">
 	<button type="submit" class="next" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
 	</div>
 	

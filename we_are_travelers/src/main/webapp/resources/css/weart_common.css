@@ -75,3 +75,24 @@ footer li { /* footer */
 .copyright { /* footer */
 	border-top: 1px solid #ffffff;
 }
+
+
+
+#navbar_field{
+	background: linear-gradient(to right top, #3C8CE7, #00EAFF);
+}
+#btn_nav {
+	font-size:1.1em;
+	border: 3px solid white;
+    color: white;
+	}
+#btn_nav:hover {
+	background: linear-gradient(to right top, #81FFEF, #72EDF2);
+	border-image: linear-gradient(to right, #81FFEF 0%, #72EDF2 100%);
+    border-image-slice: 1;
+	color: transparent;
+    -webkit-background-clip: text;
+    border-radius: 0.5px;
+}	
+
+
