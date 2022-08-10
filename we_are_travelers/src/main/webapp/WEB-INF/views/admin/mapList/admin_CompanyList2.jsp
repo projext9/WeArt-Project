@@ -22,16 +22,7 @@
 	
 
 	<h3>지역별로 보기</h3>
-	<script>
-  
-     </script>
 
-
-
-	<script>
-     
-     
-     </script>
 	<input type="radio" value="All" name="map_region" checked>전체
 	<input type="radio" value="전북" name="map_region">전북
 	<input type="radio" value="전남" name="map_region">전남
