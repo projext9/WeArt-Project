@@ -131,7 +131,7 @@
 					</c:when>
 					
 					<c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 2 }">
-					<span>${sessionScope.member_nick }님</span>&nbsp;
+					<span>${sessionScope.member_nick }님 환영합니다!</span>&nbsp;
 					<button class="naver_btn" type="button"onClick="fn_naver_logout()">Naver 로그아웃</button>
 					</c:when>
                   
