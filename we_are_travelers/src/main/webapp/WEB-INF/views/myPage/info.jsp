@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../nav.jsp"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,8 @@
 			let member_pwd = $("#pwd_val").val();
 			let member_nick = $("#nick_val").val();
 			let member_phone = $("#phone_val").val();
-			var password = prompt("삭제 입력","")
+			let member_delyn = $("#delyn_val").val();
+			//var password = prompt("삭제 입력","")
 			
 			//pwd
 			$("#modify_member_pwd").click(function() {
@@ -35,7 +37,7 @@
 			$("#modify_pwd_submit").click(function() {
 				
 				let member_pwd = $("#modify_pwd").val();
-				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone);
+				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
 			});
 			
 			//name
@@ -56,7 +58,7 @@
 			$("#modify_name_submit").click(function() {
 				
 				let member_name = $("#modify_name").val();
-				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone);
+				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
 			});
 			
 			//nick
@@ -77,7 +79,7 @@
 			$("#modify_nick_submit").click(function() {
 				
 				let member_nick = $("#modify_nick").val();
-				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone);
+				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
 			});
 			
 			//phone
@@ -98,10 +100,24 @@
 			$("#modify_phone_submit").click(function() {
 				
 				let member_phone = $("#modify_phone").val();
-				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone);
+				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
 			});
-
+			
+			//delyn
 			$("#modify_member_delyn").click(function(){
+				var password = prompt("회원 탈퇴를 원하시면 삭제를 입력하세요","")
+				if(password == "삭제"){
+					alert("회원탈퇴 완료");
+					let member_delyn = 'Y';
+					modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
+					location.href = "${pageContext.request.contextPath}/login.do";
+				}else{
+					alert("회원탈퇴 실패");
+				}
+			});
+			
+
+			/* $("#modify_member_delyn").click(function(){
 				alert("삭제를 입력하고 확인을 눌러주세요");
 				if(password == null){
 					alert("실행취소");
@@ -110,15 +126,15 @@
 				else{
 					
 				}
-			});
+			}); */
 			
 			
-			function modify_info(member_idx, member_name, member_pwd, member_nick, member_phone) {
+			function modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn) {
 				
 				$.ajax({
 					type:'post',
 					url:"${pageContext.request.contextPath}/modify_info.do",
-					data: {"member_idx":member_idx, "member_name":member_name, "member_pwd":member_pwd, "member_nick":member_nick, "member_phone":member_phone},
+					data: {"member_idx":member_idx, "member_name":member_name, "member_pwd":member_pwd, "member_nick":member_nick, "member_phone":member_phone, "member_delyn":member_delyn},
 					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 					dataType: "json",
 					success: function(data) {
@@ -143,6 +159,7 @@
 				<input type="hidden" id="pwd_val" value="${memberVo.member_pwd}" style="display:none;">
 				<input type="hidden" id="nick_val" value="${memberVo.member_nick}" style="display:none;">
 				<input type="hidden" id="phone_val" value="${memberVo.member_phone}" style="display:none;">
+				<input type="hidden" id="delyn_val" value="${memberVo.member_delyn}" style="display:none;">
 					<tr>
 						<th>인덱스</th>
 						<td colspan="2">${memberVo.member_idx}</td>
@@ -215,18 +232,20 @@
 						<th>등급</th>
 						<td colspan = "2">
 							<c:choose>
-								<c:when test = "${memberVo.member_grade eq 0}">일반회원</c:when>
+								<c:when test = "${memberVo.member_grade eq '0'}">일반회원</c:when>
 								<c:otherwise>${memberVo.member_grade}</c:otherwise>
 							</c:choose>
 						</td>
 					</tr>
 					<tr>
 						<th>상태</th>
-						<td colspan ="2">
+						<td>
 							<c:choose>
-								<c:when test = "${memberVo.member_delyn eq 'N'}">활성</c:when>
-								<c:when test = "${memberVo.member_delyn eq 'S'}">정지</c:when>
+								<c:when test="${fn:contains(memberVo.member_delyn, 'N')}">활성</c:when>
+                                <c:when test = "${fn:contains(memberVo.member_delyn, 'S')}">정지</c:when>
 							</c:choose>
+						</td>
+						<td style="text-align:right">
 							<label class ="btn btn-outline-primary" id="modify_member_delyn">회원탈퇴</label>
 						</td>
 					</tr>

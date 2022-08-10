@@ -9,6 +9,7 @@ public class SearchCriteria extends Criteria {
 	private int board_idx;
 	private String my_board;
 	private String board_code;
+	private String member_idx;
 
 	public SearchCriteria() {
 		this.searchType = "";
@@ -60,6 +61,12 @@ public class SearchCriteria extends Criteria {
 	}
 	public void setBoard_code(String board_code) {
 		this.board_code = board_code;
+	}
+	public String getMember_idx() {
+		return member_idx;
+	}
+	public void setMember_idx(String member_idx) {
+		this.member_idx = member_idx;
 	}
 	
 }

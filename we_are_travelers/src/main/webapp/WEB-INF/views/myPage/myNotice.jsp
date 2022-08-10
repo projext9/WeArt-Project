@@ -10,7 +10,7 @@
 <body>
 	<main style = "margin : 10% 10% 10% 10%;">
 		<!-- 수정해야함 -->
-		<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/memberList.do" method = "get">
+		<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/myNotice.do" method = "get">
 	        <table>
 	            <tr>
 	                <td>

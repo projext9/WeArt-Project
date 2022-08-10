@@ -12,13 +12,13 @@
 	<main style = "margin : 10% 10% 10% 10%;">
 		
 		<!-- 수정해야함 -->
-		<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/memberList.do" method = "get">
+		<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/payment.do" method = "get">
 	        <table>
 	            <tr>
 	                <td>
 	                    <select name = "searchType">
 	                   		<option value = "id">아이디</option>
-	                        <option value = "nickname">닉네임</option>
+	                        <option value = "num">번호</option>
 	                    </select>
 	                </td>
 	                <td>
@@ -36,7 +36,6 @@
 				<tr style = "text-align:center;">
 					<th>주문번호</th><th>주문일자</th><th>받는사람</th><th>전화번호</th>
 					<th>주문금액</th><th>배송지</th><th>주문상태</th>
-					
 				</tr>
 			</thead>
 			
