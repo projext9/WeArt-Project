@@ -18,6 +18,7 @@
 		$(function() {
 			$("*").css("text-decoration-line", "none");
 			$("a > *").css("color", "black");
+			$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden"});
 		});
 	</script>
 </head>

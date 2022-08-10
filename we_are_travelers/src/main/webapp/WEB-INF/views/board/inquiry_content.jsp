@@ -11,6 +11,7 @@
 <script>
 	$(function() {
 		$("*>img").css("max-width", "100%");
+		$("pre").css("white-space", "pre-wrap");
 		
 		$("#insert_reply").click(function() {
 			

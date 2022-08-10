@@ -11,7 +11,7 @@
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	window.onload = function(){
+	window.onload = function() {
 		document.getElementById('searchType').value = "${pm.scri.searchType}";
 		$("input[id=${scri.order_by}]").prop("checked", true);
 	}
@@ -21,6 +21,8 @@
 		$("*").css("text-decoration-line", "none");
 		$("a > *").css("color", "black");
 		$("#view_list>*").css("display", "none");
+		$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden"});
+		
 		if($("input[name=view]:checked").val() == "view_frame") {
 			$("#view_frame>*").css("display", "");
 			$("#view_list>*").css("display", "none");

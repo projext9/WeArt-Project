@@ -41,8 +41,8 @@
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='content'">and board_remove_tag like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
-			order by board_date desc
-		)A limit ${(page-1)*12}, ${page*12}
+			order by board_reply asc, board_date desc
+		)A limit ${(page-1)*12}, 12
 	</select>
 	<select id="inquiry_total" resultType="int">
 		select count(*) as cnt from weart_board where board_delyn='N' and board_code like CONCAT('%','inquiry','%')
@@ -75,7 +75,7 @@
 			<if test="order_by=='order_new'">order by board_date desc</if>
 			<if test="order_by=='order_like'">order by board_like desc</if>
 			<if test="order_by=='order_reply'">order by board_reply desc</if>
-		)A limit ${(page-1)*12}, ${page*12}
+		)A limit ${(page-1)*12}, 12
 	</select>
 	<select id="board_reply_total" resultType="int">
 		select count(*) as cnt from weart_board where board_delyn='N' and board_originidx=#{board_idx} and board_idx!=#{board_idx}

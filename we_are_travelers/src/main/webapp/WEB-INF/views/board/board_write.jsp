@@ -15,6 +15,23 @@
 	<style>
 		.ck-editor__editable {min-height:500px;}
 	</style>
+	<script>
+		$(function() {
+			let subject = $("#board_subject").val();
+			alert(subject);
+			
+			var regex = /\s/gi;
+			subject.replace(regex, '');
+			alert(subject);
+			
+			$("button[type=submit]").click(function() {
+				if($("#board_subject").val()==null) {
+					alert("123");
+				}
+			});
+			
+		});
+	</script>
 	<link href="${pageContext.request.contextPath}/resources/css/form-validation.css" rel="stylesheet">
 </head>
 <main style="padding-top:60px;">

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.HtmlUtils;
 
 import we.are.travelers.service.BoardService;
 import we.are.travelers.vo.BoardLikeVo;
@@ -59,6 +60,11 @@ public class BoardController {
 		boardVo.setBoard_writer((String) session.getAttribute("member_nick"));
         boardVo.setBoard_ip(InetAddress.getLocalHost().getHostAddress());
         boardVo.setBoard_code(code);
+        
+        // board_subject 에서 HTML 태그 변환
+        String subject = boardVo.getBoard_subject();
+        String board_subject = HtmlUtils.htmlEscape(subject);
+        boardVo.setBoard_subject("<pre>"+board_subject+"</pre>");
         
         // board_content 에서 HTML 태그 제거
         String board_remove_tag = boardVo.getBoard_content().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
@@ -283,8 +289,11 @@ public class BoardController {
 		
 		HttpSession session = request.getSession();
 		
-		boardVo.setBoard_code(board_code);
-		boardVo.setBoard_content(board_content);
+		// board_content 에서 HTML 태그 변환
+        String content = HtmlUtils.htmlEscape(board_content);
+        boardVo.setBoard_content("<pre>"+content+"</pre>");
+        
+        boardVo.setBoard_code(board_code);
 		boardVo.setBoard_originidx(board_idx);
 		boardVo.setBoard_writer((String) session.getAttribute("member_nick"));
         boardVo.setBoard_ip(InetAddress.getLocalHost().getHostAddress());

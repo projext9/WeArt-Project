@@ -55,6 +55,10 @@ public class ItemController {
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="1") String itemCode, HttpServletRequest request) {
 		
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
+		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
 		scri.setKeyword(keyword);
@@ -81,6 +85,10 @@ public class ItemController {
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="2") String itemCode, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
@@ -109,6 +117,10 @@ public class ItemController {
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="3") String itemCode, HttpServletRequest request) {
 		
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
+		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
 		scri.setKeyword(keyword);
@@ -136,6 +148,10 @@ public class ItemController {
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="4") String itemCode, HttpServletRequest request) {
 		
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
+		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
 		scri.setKeyword(keyword);
@@ -161,6 +177,10 @@ public class ItemController {
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword,
 			@RequestParam(value="itemCode", defaultValue="5") String itemCode, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		session.setAttribute("historyBack1", uri);
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
@@ -184,11 +204,17 @@ public class ItemController {
 	
 	@GetMapping("/itemdetail.do") //상품 상세페이지 호출
 	public String itemdetail(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
 		String item_idx = request.getParameter("iidx");
 		int item_idx_ = Integer.parseInt(item_idx);
 		
 		String itemCode = request.getParameter("itemCode");
 		int itemCode_ = Integer.parseInt(itemCode);
+		
+		String uri = request.getRequestURL().toString(); //현재 페이지 세션 저장
+		String uri2 = uri+"?iidx="+item_idx+"&itemCode="+itemCode;
+		session.setAttribute("historyBack2", uri2);
 		
 		ItemVo itemVo = itemService.getItemDetail(item_idx_); //상품 상세 호출
 		model.addAttribute("itemVo", itemVo);

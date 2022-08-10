@@ -360,7 +360,7 @@
 		</div>
 		<!-- Modal End -->
 
-		<a href="javascript:window.history.back();" class="scroll-back" style="display: flex;"><i class="bi bi-arrow-return-left"></i></a>
+		<a href="${sessionScope.historyBack1}" class="scroll-back" style="display: flex;"><i class="bi bi-arrow-return-left"></i></a>
 		<a href="#" class="scroll-top" style="display: flex;"><i class="bi bi-arrow-up"></i></a>
 		<%@ include file="../footer.jsp"%>
     </body>

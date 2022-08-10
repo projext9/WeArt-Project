@@ -13,7 +13,8 @@
 		$("*>img").css("max-width", "100%");
 		$(".image").css("text-align", "center");
 		$(".image-style-side").css("text-align", "end");
-		
+		$("pre").css("white-space", "pre-wrap");
+
 		$("#insert_reply").click(function() {
 			
 			let board_idx = "${boardVo.board_idx}";
