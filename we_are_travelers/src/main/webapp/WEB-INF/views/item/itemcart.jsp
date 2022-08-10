@@ -93,7 +93,7 @@
 			</div>
 
 			<div class="list-group mt-5 p-0 justify-content-center active" id="allList" role="tablist" style="flex-direction: row;">
-				<a href="${sessionScope.historyBack}" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">돌아가기<i class="fal fa-arrow-circle-right"></i></a>
+				<a href="${sessionScope.historyBack2}" class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab">돌아가기<i class="fal fa-arrow-circle-right"></i></a>
 	           	&nbsp;&nbsp;&nbsp;&nbsp;
 				<div class="list-group-item-dark w-25 py-2 rounded text-center btns" data-toggle="list" role="tab" onclick="fn_itemOrder()">배송지 입력<i class="fal fa-arrow-circle-right"></i></div>
 			</div>
