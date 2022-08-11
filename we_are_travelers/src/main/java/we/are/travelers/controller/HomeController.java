@@ -75,5 +75,12 @@ public class HomeController {
 		}
 		return "test/testlogin";
 	}
+	
+	// 소개페이지
+	@GetMapping("/culture_page.do")
+	public String culture_page() {
+		
+		return "culture_page";
+	}
 
 }

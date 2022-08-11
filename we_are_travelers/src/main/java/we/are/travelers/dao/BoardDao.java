@@ -127,4 +127,13 @@ public class BoardDao {
 		return sqlSession.selectList(MAPPER+".my_board", scri);
 	}
 
+	public int modify_delyn(BoardVo boardVo) {
+		return sqlSession.update(MAPPER+".modify_delyn", boardVo);
+	}
+	
+	// 게시판 내용
+	public BoardVo admin_board_content(int board_idx) {
+		return sqlSession.selectOne(MAPPER+".admin_board_content", board_idx);
+	}
+
 }

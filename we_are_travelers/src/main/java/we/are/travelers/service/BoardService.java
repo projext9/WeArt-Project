@@ -169,4 +169,12 @@ public class BoardService {
 		return boardDao.my_board(scri);
 	}
 
+	public int modify_delyn(BoardVo boardVo) {
+		return boardDao.modify_delyn(boardVo);
+	}
+	// 게시판 내용
+	public BoardVo admin_board_content(int board_idx) {
+		return boardDao.admin_board_content(board_idx);
+	}
+
 }

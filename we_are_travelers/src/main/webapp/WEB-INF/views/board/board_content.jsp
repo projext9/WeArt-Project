@@ -14,6 +14,7 @@
 		$(".image").css("text-align", "center");
 		$(".image-style-side").css("text-align", "end");
 		$("pre").css("white-space", "pre-wrap");
+		$("input[id=${boardVo.board_delyn}]").prop("disabled", true);
 
 		$("#board_content").on("propertychange change paste input", function() {
 			if($("#board_content").val().replace(/\s+/g,"")=="") {
@@ -35,7 +36,6 @@
 					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 					dataType: "json",
 					success: function(data) {
-						/* location.href = "${pageContext.request.contextPath}/board_content.do?board_idx="+board_idx; */
 						location.reload();
 					},
 					error: function(error) {
@@ -111,6 +111,27 @@
 			$("#reply_content").css("display", "none");
 			$("#reply_write").css("display", "");
 		});
+		
+		$("#modify_board_delyn").click(function() {
+			alert("test");
+			let board_idx = ${boardVo.board_idx};
+			let board_delyn = $("input:radio[name=board_delyn]:checked").val();
+			alert(board_idx);
+			alert(board_delyn);
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/modify_delyn.do",
+				method:"post",
+				data: {"board_idx":board_idx, "board_delyn":board_delyn},
+				success: function(data) {
+					location.href = "${pageContext.request.contextPath}/admin_board_content.do?board_idx="+board_idx;
+				},
+				error: function(error) {
+					alert("실패");
+				}
+			});
+			
+		});
 	});
 </script>
 </head>
@@ -169,6 +190,37 @@
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 											<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/delete_board.do?board_idx=${boardVo.board_idx}'">확인</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+					<c:if test="${member_grade==1}">
+						<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
+								<!-- 순서 정렬 -->
+								<div class="btn-group g-1" role="group">
+									<input type="radio" class="btn-check" name="board_delyn" id="N" value="N">
+									<label class="btn btn-outline-primary btn-sm" for="N" data-bs-toggle="modal" data-bs-target="#modify_delyn">활성</label>
+									<input type="radio" class="btn-check" name="board_delyn" id="S" value="S">
+									<label class="btn btn-outline-secondary btn-sm" for="S" data-bs-toggle="modal" data-bs-target="#modify_delyn">정지</label>
+									<input type="radio" class="btn-check" name="board_delyn" id="Y" value="Y">
+									<label class="btn btn-outline-danger btn-sm" for="Y" data-bs-toggle="modal" data-bs-target="#modify_delyn">삭제</label>
+								</div>
+							<!-- Modal -->
+							<div class="modal fade" id="modify_delyn" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">게시글 상태 변경</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<div class="modal-body">
+											게시글 상태를 변경하시겠습니까?
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+											<button type="button" class="btn btn-outline-primary" id="modify_board_delyn">게시글 상태 변경</button>
 										</div>
 									</div>
 								</div>
