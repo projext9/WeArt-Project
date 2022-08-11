@@ -16,6 +16,14 @@
         <table style = "text-align:right">
             <tr>
                 <td>
+            		<select id="code" name="code">
+						<option value="" selected disabled hidden>문의 유형</option>
+						<option value="mp_inquiry">결제</option>
+						<option value="ml_inquiry">로그인</option>
+						<option value="md_inquiry">배송</option>
+						<option value="mc_inquiry">환불</option>
+						<option value="me_inquiry">기타</option>
+					</select>
                     <select name = "searchType">
                    		<option value = "subject">제목</option>
                         <option value = "writer">작성자</option>
@@ -32,25 +40,31 @@
     </form>
 	<table class = "table">
 		<thead>
-			<tr>
-				<th>번호</th><th>제목</th><th>내용</th><th>작성자</th><th>작성일</th>
+			<tr style="text-align:center;">
+				<th>번호</th><th>제목</th><th>내용</th><th>작성자</th><th>작성일</th><th>상태</th>
 			</tr>
 		</thead>
 		
 		<tbody class = "table-group-divider">
 			<c:forEach var = "boardVo" items = "${noticeMember}">
-				<tr>
+				<tr style="text-align:center;">
 					<td>${boardVo.board_idx}</td>
-					<td><a href = "${pageContext.request.contextPath}/boardContent.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
+					<td><a href = "${pageContext.request.contextPath}/inquiry_content.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
 					<td>${boardVo.board_content}</td>
 					<td>${boardVo.board_writer}</td>
 					<td>${boardVo.board_date}</td>
+					<td>
+						<c:choose>
+							<c:when test="${boardVo.board_reply == 1}">처리완료</c:when>
+							<c:otherwise>처리중</c:otherwise>
+						</c:choose>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
-	<table>
+	<table style="margin-left:auto; margin-right:auto;">
         <tr>
             <td style="width:200px; text-align:right;">
             	<c:if test = "${pm.prev == true}">

@@ -34,27 +34,25 @@
 	<table class = "table">
 		<thead>
 			<tr style = "text-align:center;">
-				<th>회원번호</th><th>sns</th><th>닉네임</th><th>아이디</th><th>ip</th>
-				<th>전화번호</th><th>가입일시</th><th>삭제여부</th><th>삭제일</th><th>db삭제여부</th>
+				<th>회원번호</th><th>sns</th><th>닉네임</th><th>id</th>
+				<th>전화번호</th><th>삭제여부</th>
 			</tr>
 		</thead>
 		
 		<tbody class = "table-group-divider">
 			<c:forEach var="memberVo" items="${memberList}">
-				<tr>
+				<tr style="text-align:center;">
 					<td>${memberVo.member_idx}</td>
 					<td>
 						<c:choose>
-							<c:when test = "${memberVo.social_token eq null}">일반</c:when>
-							<c:otherwise>${memberVo.social_token}</c:otherwise>
+							<c:when test="${memberVo.member_regCode == 0}">일반</c:when>
+							<c:otherwise>소셜</c:otherwise>
 						</c:choose>
 					</td>
 					<td>${memberVo.member_nick}</td>
 					<td><a href = "${pageContext.request.contextPath}/memberContent.do?member_idx=${memberVo.member_idx}">${memberVo.member_id}</a></td>
-					<td>${memberVo.member_ip}</td>
-					<td>${memberVo.member_phone}</td><td>${memberVo.member_regdate}</td>
+					<td>${memberVo.member_phone}</td>
 					<td>${memberVo.member_delyn}</td>
-					<td>삭제<input type="checkbox" value="${memberVo.member_idx}" /></td>
 				</tr>
 			</c:forEach>
 			<!-- <tr>
@@ -64,7 +62,7 @@
 		</tbody>
 	</table>
 	
-	<table>
+	<table style="margin-left:auto; margin-right:auto;">
         <tr>
             <td style="width:200px; text-align:right;">
                 <% 

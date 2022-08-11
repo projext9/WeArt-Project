@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OrderLastVo;
+import we.are.travelers.vo.OrderVo;
 import we.are.travelers.vo.SearchCriteria;
 
 @Repository
@@ -30,8 +31,8 @@ public class MyDao {
 		return sqlSession.selectList(MAPPER+".getPayment", scri);
 	}
 
-	public List<OrderLastVo> getPaymentContent(String orderLast_num) {
-		return sqlSession.selectList(MAPPER+".getPaymentContent", orderLast_num);
+	public List<OrderVo> getPaymentContent(OrderVo orderVo) {
+		return sqlSession.selectList(MAPPER+".getPaymentContent", orderVo);
 	}
 	
 	public int modify_info(MemberVo memberVo) {

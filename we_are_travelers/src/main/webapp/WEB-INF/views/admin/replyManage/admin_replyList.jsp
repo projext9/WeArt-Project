@@ -31,18 +31,19 @@
     </form>
 	<table class = "table">
 		<thead>
-			<tr>
-				<th>번호</th><th>제목</th><th>내용</th><th>ip</th>
+			<tr style="text-align:center;">
+				<th>번호</th><th>제목</th><th>내용</th>
 				<th>작성일</th><th>작성자</th><th>삭제여부</th>
 			</tr>
 		</thead>
 		
 		<tbody class = "table-group-divider">
 			<c:forEach var="boardVo" items="${replyList}">
-				<tr>
+				<tr style="text-align:center;">
 					<td>${boardVo.board_idx}</td>
 					<td><a href = "${pageContext.request.contextPath}/boardContent.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
-					<td>${boardVo.board_content}</td><td>${boardVo.board_ip}</td>
+					<td>${boardVo.board_content}</td>
+					
 					<td>${boardVo.board_date}</td><td>${boardVo.board_writer}</td>
 					<td>${boardVo.board_delyn}</td>
 				</tr>
@@ -50,7 +51,7 @@
 		</tbody>
 	</table>
 	
-	<table>
+	<table style="margin-left:auto; margin-right:auto;">
         <tr>
             <td style="width:200px; text-align:right;">
             	<c:if test = "${pm.prev == true}">

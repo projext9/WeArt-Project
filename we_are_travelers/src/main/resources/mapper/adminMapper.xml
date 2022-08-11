@@ -40,18 +40,18 @@
 		select * from weart_board where board_idx=board_originidx and board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
-		OR board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
+		<!-- OR board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
 		 	<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
-			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if> -->
 	</select>
 	
 	<select id="getBoardTotal" resultType="int">
-		select count(*) as cnt from weart_board where board_idx=board_originidx and board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
+		select count(*) as cnt from weart_board where board_idx=board_originidx and board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
-		or board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
+		<!-- or board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
-			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if> -->
 	</select>
 	
 	<select id="getBoardContent" resultType="boardVo">
@@ -70,23 +70,47 @@
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
 	</select>
 	
-	<select id="getOrderList" resultType="orderVo">
-		select * from weart_order
+	<select id="getOrderList" resultType="orderLastVo">
+		select * from weart_order_last
+			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='date'">and orderLast_payDate like CONCAT('%',#{keyword},'%')</if>
 	</select>
 	
 	<select id="getOrderTotal" resultType="int">
-		select count(*) as cnt from weart_order
+		select count(*) as cnt from weart_order_last
+			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='date'">and orderLast_payDate like CONCAT('%',#{keyword},'%')</if>
+	</select>
+	
+	<select id="getOrderListContent" resultType="orderVo">
+		select * from weart_order where orderLast_num = #{orderLast_num}
 	</select>
 	
 	<select id="getNoticeMember" resultType="boardVo">
-		select * from weart_board where board_reply = 'N' and board_code = 'm_notice'
+		select A.* from(
+			select * from weart_board where board_delyn='N' and board_idx=board_originidx
+			<if test="board_code==''">and board_code like CONCAT('%','inquiry','%')</if>
+			<if test="board_code!=''">and board_code like CONCAT('%',#{board_code})</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			order by board_date desc
+		)A limit ${(page-1)*12}, ${page*12}
+		<!-- select * from weart_board where board_reply = 'N' and board_code = 'm_notice'
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if> -->
 	</select>
 	<select id="getNoticeMemberTotal" resultType="int">
-		select count(*) as cnt from weart_board where board_reply='N' and board_code = 'm_notice'
+		select count(*) as cnt from(
+			select * from weart_board where board_delyn='N' and board_idx=board_originidx
+			<if test="board_code==''">and board_code like CONCAT('%','inquiry','%')</if>
+			<if test="board_code!=''">and board_code like CONCAT('%',#{board_code})</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
-			<if test="searchType=='nickname'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			order by board_date desc
+		)A limit ${(page-1)*12}, ${page*12}
+		<!-- select count(*) as cnt from weart_board where board_reply='N' and board_code = 'm_notice'
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if> -->
 	</select>
 	
 	<select id="getNoticeSellor" resultType="boardVo">
@@ -118,10 +142,15 @@
 			where member_idx = #{member_idx}
 	</update>
 	
-	<!-- <update id="updateMemberDelyn" parameterType="memberVo">
+	<update id="updateMemberDelyn" parameterType="memberVo">
 		update weart_member set member_delyn = #{member_delyn}
 			where member_idx = #{member_idx}
-	</update>-->
+	</update>
+	
+	<update id="updateCompanyDelyn" parameterType="companyVo">
+		update weart_company set company_delyn = #{company_delyn}
+			where company_idx = #{company_idx}
+	</update>
 	
 	<delete id="deleteMemberInfo" parameterType="list">
 		delete from weart_member where member_idx in

@@ -112,7 +112,7 @@
 					modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
 					location.href = "${pageContext.request.contextPath}/login.do";
 				}else{
-					alert("회원탈퇴 실패");
+					alert("취소");
 				}
 			});
 			
@@ -180,10 +180,8 @@
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td id="pwd">
-							<c:if test ="${memberVo.member_pwd!=null}">${memberVo.member_pwd}</c:if>
-						</td>
-						<td id="mod_pwd" style="display:none;"><input type="text" id="modify_pwd" value="${memberVo.member_pwd}"></td>
+						<td id="pwd"></td>
+						<td id="mod_pwd" style="display:none;"><input type="password" id="modify_pwd" value="${memberVo.member_pwd}"></td>
 						<td style="text-align:right">
 							<label class ="btn btn-outline-primary" id="modify_member_pwd">수정하기</label>
 							<label class ="btn btn-outline-primary" id="modify_pwd_submit" style="display:none;">확인</label>

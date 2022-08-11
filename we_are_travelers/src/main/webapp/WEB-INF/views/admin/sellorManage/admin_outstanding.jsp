@@ -32,29 +32,32 @@
     </form>
 	<table class = "table">
 		<thead>
-			<tr>
-				<th>회원번호</th><th>이름</th><th>아이디</th><th>비밀번호</th><th>회원등급</th><th>등급수정</th>
-				<th>전화번호</th><th>가입일시</th><th>삭제여부</th><th>삭제일</th><th>db삭제여부</th>
+			<tr style="text-align:center;">
+				<th>기업번호</th><th>기업명</th><th>id</th><th>기업인증</th>
+				<th>전화번호</th><th>대표명</th>
 			</tr>
 		</thead>
 		
 		<tbody class = "table-group-divider">
 			<c:forEach var="companyVo" items="${outstanding}">
-				<tr>
-					<td>${companyVo.company_id}</td>
-					<td>${companyVo.company_buis_number}</td>
-					<td><a href = "${pageContext.request.contextPath}/sellorContent.do?company_idx=${companyVo.company_idx}">${companyVo.company_name}</a></td>
-					<td>${companyVo.company_ceoName}</td><td>${companyVo.company_phone}</td>
-					<td>${companyVo.company_buisAddress}</td><td>${companyVo.company_phone_auth}</td>
-					<td>${companyVo.company_auth}</td><td>${companyVo.company_regdate}</td>
-					<td>${companyVo.company_ip}</td>
-					<td>삭제<input type="checkbox" value="${memberVo.member_idx}" /></td>
+				<tr style="text-align:center;">
+					<td>${companyVo.company_idx}</td>
+					<td>${companyVo.company_name}</td>
+					<td><a href = "${pageContext.request.contextPath}/sellorContent.do?company_idx=${companyVo.company_idx}">${companyVo.company_id}</a></td>
+					<td>
+						<c:choose>
+							<c:when test="${companyVo.company_auth == 1}">O</c:when>
+							<c:otherwise>X</c:otherwise>
+						</c:choose>
+					</td>
+					<td>${companyVo.company_phone}</td>
+					<td>${companyVo.company_ceo_name}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
-	<table>
+	<table style="margin-left:auto; margin-right:auto;">
         <tr>
             <td style="width:200px; text-align:right;">
                 <c:if test = "${pm.prev == true}">

@@ -26,16 +26,44 @@
 					<td>${boardVo.board_subject}</td>
 				</tr>
 				<tr>
+					<th>종류</th>
+					<td>
+						<c:choose>
+							<c:when test="${boardVo.board_code eq 'b_activity'}">액티비티</c:when>
+							<c:when test="${boardVo.board_code eq 'b_fishing'}">낚시</c:when>
+							<c:when test="${boardVo.board_code eq 'b_camping'}">캠핑</c:when>
+							<c:when test="${boardVo.board_code eq 'b_lodgment'}">숙박</c:when>
+							<c:when test="${boardVo.board_code eq 'b_culture'}">문화</c:when>
+						</c:choose>
+					</td>
+				</tr>
+				<tr>
 					<th>내용</th>
 					<td>${boardVo.board_content}</td>
 				</tr>
 				<tr>
-					<th>작성일</th>
-					<td>${boardVo.board_date}</td>
+					<th>작성자</th>
+					<td>${boardVo.board_writer}</td>
 				</tr>
 				<tr>
-					<th>작성자</th>
-					<td>${boardVo.member_idx}</td>
+					<th>이미지</th>
+					<td>${boardVo.board_image}</td>
+				</tr>
+				<tr>
+					<th>조회수</th>
+					<td>${boardVo.board_hits}</td>
+				</tr>
+				<tr>
+					<th>좋아요수</th>
+					<td>${boardVo.board_like}</td>
+				</tr>
+				<%-- <tr>
+					<th>댓글수</th>
+					<td>${boardVo.board_reply}</td>
+				</tr> --%>
+				<tr>
+					<th>작성일</th>
+					<td>${boardVo.board_date}</td>
 				</tr>
 				<tr>
 					<th>ip</th>

@@ -32,26 +32,32 @@
     </form>
 	<table class = "table">
 		<thead>
-			<tr>
+			<tr style="text-align:center;">
 				<th>번호</th><th>제목</th><th>내용</th><th>ip</th>
-				<th>작성일</th><th>작성자</th><th>삭제여부</th>
+				<th>작성일</th><th>작성자</th><th>삭제여부</th><th>상태</th>
 			</tr>
 		</thead>
 		
 		<tbody class = "table-group-divider">
 			<c:forEach var="boardVo" items="${noticeSellor}">
-				<tr>
+				<tr style="text-align:center;">
 					<td>${boardVo.board_idx}</td>
-					<td><a href = "${pageContext.request.contextPath}/boardContent.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
+					<td><a href = "${pageContext.request.contextPath}/inquiry_content.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
 					<td>${boardVo.board_content}</td><td>${boardVo.board_ip}</td>
 					<td>${boardVo.board_date}</td><td></td>
 					<td>${boardVo.board_delyn}</td>
+					<td>
+						<c:choose>
+							<c:when test="${boardVo.board_reply == 1}">처리완료</c:when>
+							<c:otherwise>처리중</c:otherwise>
+						</c:choose>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
-	<table>
+	<table style="margin-left:auto; margin-right:auto;">
         <tr>
             <td style="width:200px; text-align:right;">
                 <c:if test = "${pm.prev == true}">

@@ -46,6 +46,10 @@ public class AdminDao {
 	public List<OrderVo> getOrderList(SearchCriteria scri) {
 		return sqlSession.selectList(MAPPER+".getOrderList", scri);
 	}
+
+	public List<OrderVo> getOrderListContent(String orderLast_num) {
+		return sqlSession.selectList(MAPPER+".getOrderListContent", orderLast_num);
+	}
 	
 	public List<BoardVo> getNoticeMember(SearchCriteria scri){
 		return sqlSession.selectList(MAPPER+".getNoticeMember", scri);
@@ -111,9 +115,13 @@ public class AdminDao {
 		return sqlSession.selectList(MAPPER+".getSellorContent", company_idx);
 	}
 	
-	/*public int updateMemberDelyn(MemberVo memberVo) {
+	public int updateMemberDelyn(MemberVo memberVo) {
 		return sqlSession.update(MAPPER+".updateMemberDelyn", memberVo);
-	}*/
+	}
+
+	public int updateCompanyDelyn(CompanyVo companyVo) {
+		return sqlSession.update(MAPPER+".updateCompanyDelyn", companyVo);
+	}
 
 	/*
 	public List<ItemtVo> getItemList() {

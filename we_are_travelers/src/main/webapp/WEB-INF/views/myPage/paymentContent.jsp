@@ -19,12 +19,12 @@
 			
 			<tbody class = "table-group-divider">
 				<c:forEach var="orderVo" items="${paymentContent}">
-					<tr>
+					<tr style="text-align:center;">
 						<td>${orderVo.order_idx}</td>
 						<td>${orderVo.order_itemName}</td>
 						<td>${orderVo.order_price}</td>
-						<td>${orderVo.order_state}</td>
 						<td>${orderVo.order_totalPrice}</td>
+						<td>${orderVo.order_state1}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

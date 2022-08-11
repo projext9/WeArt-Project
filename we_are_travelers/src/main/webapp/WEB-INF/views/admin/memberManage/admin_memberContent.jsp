@@ -64,8 +64,27 @@
 					<td>${memberVo.member_nick}</td>
 				</tr>
 				<tr>
+					<th>생년월일</th>
+					<td>${memberVo.member_birth}</td>
+				</tr>
+				<!-- 수정 -->
+				<tr>
+					<th>수정사항</th>
+					<td>${memberVo.member_regCode}</td>
+				</tr>
+				<!--  -->
+				<tr>
 					<th>전화번호</th>
 					<td>${memberVo.member_phone}</td>
+				</tr>
+				<tr>
+					<th>휴대폰 인증</th>
+					<td>
+						<c:choose>
+							<c:when test="${memberVo.member_phone_auth == 1}">O</c:when>
+							<c:otherwise>X</c:otherwise>
+						</c:choose>
+					</td>
 				</tr>
 				<tr>
 					<th>ip</th>
@@ -81,15 +100,6 @@
 						<c:choose>
 							<c:when test = "${memberVo.member_grade eq 0}">일반회원</c:when>
 							<c:otherwise>${memberVo.member_grade}</c:otherwise>
-						</c:choose>
-					</td>
-				</tr>
-				<tr>
-					<th>소셜로그인</th>
-					<td>
-						<c:choose>
-							<c:when test = "${memberVo.social_token eq null}">x</c:when>
-							<c:otherwise>${memberVo.social_token}</c:otherwise>
 						</c:choose>
 					</td>
 				</tr>

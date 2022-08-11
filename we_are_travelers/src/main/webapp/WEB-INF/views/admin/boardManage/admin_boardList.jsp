@@ -19,6 +19,9 @@
                     <select name = "board_code">
                    		<option value = "activity">액티비티</option>
                         <option value = "fishing">낚시</option>
+                        <option value = "culture">문화</option>
+                        <option value = "lodgment">숙박</option>
+                        <option value = "camping">캠핑</option>
                     </select>
                 </td>
                 <td>
@@ -38,18 +41,27 @@
     </form>
 	<table class = "table">
 		<thead>
-			<tr>
-				<th>번호</th><th>제목</th><th>내용</th><th>ip</th>
+			<tr style="text-align:center;">
+				<th>번호</th><th>제목</th><th>내용</th><th>종류</th>
 				<th>작성일</th><th>작성자</th><th>삭제여부</th>
 			</tr>
 		</thead>
 		
 		<tbody class = "table-group-divider">
 			<c:forEach var="boardVo" items="${boardList}">
-				<tr>
+				<tr style="text-align:center;">
 					<td>${boardVo.board_idx}</td>
 					<td><a href = "${pageContext.request.contextPath}/boardContent.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
-					<td>${boardVo.board_content}</td><td>${boardVo.board_ip}</td>
+					<td>${boardVo.board_content}</td>
+					<td>
+						<c:choose>
+							<c:when test="${boardVo.board_code == 'b_activity'}">액티비티</c:when>
+							<c:when test="${boardVo.board_code == 'b_culture'}">문화</c:when>
+							<c:when test="${boardVo.board_code == 'b_lodgment'}">숙박</c:when>
+							<c:when test="${boardVo.board_code == 'b_fishing'}">낚시</c:when>
+							<c:when test="${boardVo.board_code == 'b_camping'}">캠핑</c:when>
+						</c:choose>
+					</td>
 					<td>${boardVo.board_date}</td><td>${boardVo.board_writer}</td>
 					<td>${boardVo.board_delyn}</td>
 				</tr>
@@ -57,7 +69,7 @@
 		</tbody>
 	</table>
 	
-	<table>
+	<table style="margin-left:auto; margin-right:auto;">
         <tr>
             <td style="width:200px; text-align:right;">
                 <c:if test = "${pm.prev == true}">

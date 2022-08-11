@@ -59,12 +59,13 @@ public class AdminController {
 	@GetMapping("/noticeMember.do")
 	public String getNoticeMember(Model model,
 			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="subject") String searchType,
-			@RequestParam(value="keyword", defaultValue="") String keyword) {
+			@RequestParam(value="keyword", defaultValue="") String keyword,@RequestParam(value="code", defaultValue="") String code) {
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
 		scri.setKeyword(keyword);
 		scri.setSearchType(searchType);
+		scri.setBoard_code(code);
 		
 		int cnt = adminService.noticeMemberTotal(scri);
 		
@@ -88,13 +89,13 @@ public class AdminController {
 		return "admin/memberManage/admin_memberContent";
 	}
 	
-	/*@GetMapping("/updateMemberDelyn.do")
-	public String getUpdateMemberDelyn(Model model, String member_idx) {
+	@GetMapping("/updateMemberDelyn.do")
+	public String updateMemberDelyn(Model model, MemberVo memberVo) {
 		
-		List<MemberVo> updateMemberDelyn = adminService.getUpdateMemberDelyn(member_idx);
+		int updateMemberDelyn = adminService.updateMemberDelyn(memberVo);
 		model.addAttribute("updateMemberDelyn", updateMemberDelyn);
 		return "admin/memberManage/admin_memberContent";
-	}*/
+	}
 	
 	@GetMapping("/sellorList.do")
 	public String getSellorList(Model model,
@@ -124,6 +125,14 @@ public class AdminController {
 		
 		List<CompanyVo> sellorContent = adminService.getSellorContent(company_idx);
 		model.addAttribute("sellorContent", sellorContent);
+		return "admin/sellorManage/admin_sellorContent";
+	}
+	
+	@GetMapping("/updateCompanyDelyn.do")
+	public String updateCompanyDelyn(Model model, CompanyVo companyVo) {
+		
+		int updateCompanyDelyn = adminService.updateCompanyDelyn(companyVo);
+		model.addAttribute("updateCompanyDelyn", updateCompanyDelyn);
 		return "admin/sellorManage/admin_sellorContent";
 	}
 	
@@ -225,6 +234,14 @@ public class AdminController {
 		model.addAttribute("pm", pm);
 		model.addAttribute("scri", scri);
 		return "admin/memberManage/admin_orderList";
+	}
+	
+	@GetMapping("/orderListContent.do")
+	public String orderListContent(Model model, String orderLast_num) {
+		
+		List<OrderVo> orderListContent = adminService.getOrderListContent(orderLast_num);
+		model.addAttribute("orderListContent", orderListContent);
+		return "admin/memberManage/admin_orderListContent";
 	}
 	
 	@GetMapping("/noticeSellor.do")

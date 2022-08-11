@@ -32,9 +32,9 @@ public class AdminService {
 	public List<MemberVo> getMemberContent(String member_idx) {
 		return adminDao.getMemberContent(member_idx);
 	}
-	/*public List<MemberVo> getUpdateMemberDelyn(String member_idx) {
-		return adminDao.getUpdateMemberDelyn(member_idx);
-	}*/
+	public int updateMemberDelyn(MemberVo memberVo) {
+		return adminDao.updateMemberDelyn(memberVo);
+	}
 	
 	//1:1문의(일반)
 	public List<BoardVo> getNoticeMember(SearchCriteria scri) {
@@ -43,12 +43,16 @@ public class AdminService {
 	public int noticeMemberTotal(SearchCriteria scri) {
 		return adminDao.getNoticeMemberTotal(scri);
 	}
+	
 	//구매내역
 	public List<OrderVo> getOrderList(SearchCriteria scri) {
 		return adminDao.getOrderList(scri);
 	}
 	public int orderTotal(SearchCriteria scri) {
 		return adminDao.getOrderTotal(scri);
+	}
+	public List<OrderVo> getOrderListContent(String orderLast_num) {
+		return adminDao.getOrderListContent(orderLast_num);
 	}
 	
 	//게시글관리
@@ -79,7 +83,10 @@ public class AdminService {
 	}
 	public List<CompanyVo> getSellorContent(String company_idx) {
 		return adminDao.getSellorContent(company_idx);
-	}	
+	}
+	public int updateCompanyDelyn(CompanyVo companyVo) {
+		return adminDao.updateCompanyDelyn(companyVo);
+	}
 	
 	//1:1문의(판매자)
 	public List<BoardVo> getNoticeSellor(SearchCriteria scri) {

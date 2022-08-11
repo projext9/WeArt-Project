@@ -17,8 +17,8 @@
 	            <tr>
 	                <td>
 	                    <select name = "searchType">
-	                   		<option value = "id">아이디</option>
-	                        <option value = "num">번호</option>
+	                     	<option value = "num">주문번호</option>
+	                   		<option value = "date">주문일자</option>
 	                    </select>
 	                </td>
 	                <td>
@@ -34,14 +34,15 @@
 		<table class = "table">
 			<thead>
 				<tr style = "text-align:center;">
-					<th>주문번호</th><th>주문일자</th><th>받는사람</th><th>전화번호</th>
-					<th>주문금액</th><th>배송지</th><th>주문상태</th>
+					<th>번호</th><th>주문번호</th><th>주문일자</th><th>받는사람</th>
+					<th>전화번호</th><th>주문금액</th><th>배송지</th><th>주문상태</th>
 				</tr>
 			</thead>
 			
 			<tbody class = "table-group-divider">
 				<c:forEach var="orderLastVo" items="${payment}">
 					<tr>
+						<td>${orderLastVo.orderLast_idx}</td>
 						<td><a href = "${pageContext.request.contextPath}/paymentContent.do?orderLast_num=${orderLastVo.orderLast_num}">${orderLastVo.orderLast_num}</a></td>
 						<td>${orderLastVo.orderLast_payDate}</td>
 						<td>${orderLastVo.orderLast_name}</td>
@@ -53,6 +54,32 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<ul class="pagination justify-content-center">
+			<c:if test="${pm.prev==true}">
+				<li class="page-item">
+					<a class="page-link" href="${pageContext.request.contextPath}/payment.do?code=${pm.scri.board_code}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.startPage-1}">Previous</a>
+				</li>
+			</c:if>
+			<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1">
+				<c:choose>
+					<c:when test="${i==scri.page}">
+						<li class="page-item active">
+							<a class="page-link" href="${pageContext.request.contextPath}/payment.do?code=${pm.scri.board_code}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item">
+							<a class="page-link" href="${pageContext.request.contextPath}/payment.do?code=${pm.scri.board_code}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		    <c:if test="${pm.next&&pm.endPage>0}">
+				<li class="page-item">
+					<a class="page-link" href="${pageContext.request.contextPath}/payment.do?code=${pm.scri.board_code}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.endPage+1}">Next</a>
+			    </li>
+			</c:if>
+		</ul>
 		<table>
 	        <tr>
 	            <td style="width:200px; text-align:right;">

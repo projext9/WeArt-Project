@@ -10,14 +10,14 @@
 	
 	<select id="getPayment" resultType="orderLastVo">
 		select * from weart_order_last where member_idx = #{member_idx}
-			<if test="searchType=='id'">and orderLast_id like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='date'">and orderLast_payDate like CONCAT('%',#{keyword},'%')</if>
 	</select>
 	
 	<select id="payment_total" resultType="int">
 		select count(*) as cnt from weart_order_last where member_idx = #{member_idx}
-			<if test="searchType=='id'">and orderLast_id like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='date'">and orderLast_payDate like CONCAT('%',#{keyword},'%')</if>
 	</select>
 	
 	<select id="getInfoModify" resultType="memberVo">
@@ -25,8 +25,7 @@
 	</select>
 	
 	<select id="getPaymentContent" resultType="orderVo">
-		select * from weart_order where member_idx = #{member_idx} and
-			orderLast_num = #{orderLast_num}
+		select * from weart_order where orderLast_num = #{orderLast_num}
 	</select>
 	
 	<update id="modify_info">

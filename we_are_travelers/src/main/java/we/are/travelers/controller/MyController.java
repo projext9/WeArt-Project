@@ -1,7 +1,5 @@
 package we.are.travelers.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import we.are.travelers.service.MyService;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OrderLastVo;
+import we.are.travelers.vo.OrderVo;
 import we.are.travelers.vo.PageMaker;
 import we.are.travelers.vo.SearchCriteria;
 
@@ -65,14 +64,6 @@ public class MyController {
 			viewPage = "redirect:/info.do";
 		}else {
 			viewPage = "myPage/info_check";
-			try {
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('다시입력')</script>");
-				out.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}return viewPage;
 	}
 	
@@ -125,17 +116,19 @@ public class MyController {
 	}
 	
 	@GetMapping("/paymentContent.do")
-	public String paymentContent(Model model, HttpServletRequest request) {
+	public String paymentContent(Model model, OrderVo orderVo, HttpServletRequest request,
+			@RequestParam(value="orderLast_num") String orderLast_num) {
 		
 		HttpSession session = request.getSession();
 		
 		String member_idx = (String) session.getAttribute("member_idx");
-		String orderLast_num = (String) session.getAttribute("orderLast_num");
 		
-		List<OrderLastVo> paymentContent = myService.getPaymentContent(orderLast_num);
+		orderVo.setMember_idx(member_idx);
+		orderVo.setOrderLast_num(orderLast_num);
+		List<OrderVo> paymentContent = myService.getPaymentContent(orderVo);
 		model.addAttribute("paymentContent", paymentContent);
+		System.out.println(member_idx);
 		System.out.println(orderLast_num);
-		System.out.println(model);
 		return "myPage/paymentContent";
 	}
 	

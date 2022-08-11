@@ -20,15 +20,15 @@
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 		<script>
 			function fn_login() { //로그인 페이지 이동
-				location.href="login.do";
+				location.href="${pageContext.request.contextPath}/login.do";
 	 		}
 	 		
 			function fn_join() { //회원가입 페이지 이동
-				location.href="joinMember.do";
+				location.href="${pageContext.request.contextPath}/joinMember.do";
 	 		}
 			 
 			function fn_logout() { //로그아웃
-				location.href="logout.do";
+				location.href="${pageContext.request.contextPath}/logout.do";
 	 		}
 			function fn_logout_kakao() { //로그아웃
 				location.href="https://kauth.kakao.com/oauth/logout?client_id=bd0af17c48ca11ec547a39e63e172346&logout_redirect_uri=http://localhost:8090/travelers/login.do";
@@ -102,8 +102,8 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&nbsp 마이페이지 &nbsp</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">정보변경</a></li>
-                                <li><a class="dropdown-item" href="#!">결제내역</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/info_check.do">정보변경</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/payment.do">결제내역</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/inquiry_list.do">1:1문의</a></li>
                             </ul>
 						</li>
@@ -121,7 +121,7 @@
 					 </c:when>
 					 
 					 <c:when test="${sessionScope.member_grade == 1 }">
-                    <a href="/travelers/memberList.do">관리자페이지</a>&nbsp;
+                    <a href="${pageContext.request.contextPath}/memberList.do">관리자페이지</a>&nbsp;
                     <button class="btn btn-outline-success"  id="btn_nav" type="button" onClick="fn_logout()">로그아웃</button>
                     </c:when>
 					 

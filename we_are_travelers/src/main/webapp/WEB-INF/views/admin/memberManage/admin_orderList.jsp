@@ -14,12 +14,11 @@
 	<hr/>
 	<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/orderList.do" method = "get">
         <table style = "text-align:right">
-            <tr>
+            <tr style="text-align:center;">
                 <td>
                     <select name = "searchType">
-                   		<option value = "member_id">아이디</option>
-                        <option value = "member_nickname">닉네임</option>
-                        <option value = "member_name">이름</option>
+                   		<option value = "num">주문번호</option>
+                        <option value = "date">주문일</option>
                     </select>
                 </td>
                 <td>
@@ -33,22 +32,25 @@
     </form>
 	<table class = "table">
 		<thead>
-			<tr>
-				<th>회원번호</th><th>이름</th><th>아이디</th><th>비밀번호</th><th>회원등급</th><th>등급수정</th>
-				<th>전화번호</th><th>가입일시</th><th>삭제여부</th><th>삭제일</th><th>db삭제여부</th>
+			<tr style="text-align:center;">
+				<th>번호</th><th>	주문번호</th><th>주문일자</th><th>주문금액</th><th>주문상태</th>
 			</tr>
 		</thead>
 		
 		<tbody class = "table-group-divider">
-			<c:forEach var="orderVo" items="${orderList}">
-				<tr>
-					<td></td>
+			<c:forEach var="orderLastVo" items="${orderList}">
+				<tr style="text-align:center;">
+					<td>${orderLastVo.orderLast_idx}</td>
+					<td><a href = "${pageContext.request.contextPath}/orderListContent.do?orderLast_num=${orderLastVo.orderLast_num}">${orderLastVo.orderLast_num}</a></td>
+					<td>${orderLastVo.orderLast_payDate}</td>
+					<td>${orderLastVo.orderLast_totalPrice}</td>
+					<td>${orderLastVo.orderLast_state2}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
-	<table>
+	<table style="margin-left:auto; margin-right:auto;">
         <tr>
             <td style="width:200px; text-align:right;">
             	<c:if test = "${pm.prev == true}">

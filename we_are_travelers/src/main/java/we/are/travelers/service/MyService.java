@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import we.are.travelers.dao.MyDao;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OrderLastVo;
+import we.are.travelers.vo.OrderVo;
 import we.are.travelers.vo.SearchCriteria;
 
 @Service
@@ -28,8 +29,8 @@ public class MyService {
 		return myDao.getPayment(scri);
 	}
 
-	public List<OrderLastVo> getPaymentContent(String orderLast_num) {
-		return myDao.getPaymentContent(orderLast_num);
+	public List<OrderVo> getPaymentContent(OrderVo orderVo) {
+		return myDao.getPaymentContent(orderVo);
 	}
 
 	public int modify_info(MemberVo memberVo) {
