@@ -22,9 +22,9 @@
 				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="https://images.squarespace-cdn.com/content/v1/586ebc34d482e9c69268b69a/1624386831778-1123SHN1YH42IRMPMLQI/20201230172547741_X4PVBAOC.png?format=750w" aria-hidden="true"></img>
 					        <div class="container">
 								<div class="carousel-caption text-start">
-									<h1 style="text-shadow:5px 5px 5px #000;">이것은 낚시상품</h1>
-						            <p>우수한 품질의 중국산 낚시대</p>
-						            <p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
+									<h1 style="text-shadow:5px 5px 5px #000;">한옥마을</h1>
+						            <p>전통 체험을 할 수도 있어 많은 사랑을 받는 곳!</p>
+						            <p><a class="btn btn-lg btn-primary" href="#">구경하기</a></p>
 								</div>
 					        </div>
 					</div>
@@ -32,9 +32,9 @@
 						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="https://images.squarespace-cdn.com/content/v1/586ebc34d482e9c69268b69a/1624386887478-9Z3XA27D8WFVDWKW00QS/20201230173806551_JRT8E1VC.png?format=750w" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption">
-								<h1 style="text-shadow:5px 5px 5px #000;">극강의 퀄리티</h1>
-								<p style="text-shadow:5px 5px 5px #000;">믿을 수 있는 중국산 제품</p>
-								<p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
+								<h1 style="text-shadow:5px 5px 5px #000;">고궁 야간 투어</h1>
+								<p style="text-shadow:5px 5px 5px #000;">어둠이 찾아오면 고궁은 새롭게 단장을 시작한다!</p>
+								<p><a class="btn btn-lg btn-primary" href="#">구경하기</a></p>
 							</div>
 						</div>
 					</div>
@@ -42,9 +42,9 @@
 						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="https://images.squarespace-cdn.com/content/v1/586ebc34d482e9c69268b69a/1624386953314-CWUR9AR80VUENTD1A0EN/image-asset.png?format=750w" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption text-end">
-								<h1 style="text-shadow:5px 5px 5px #000;">환상적인 중국산 제품</h1>
-									<p style="text-shadow: -1px 0 #000, 0 1px 5px #000, 1px 0 5px #000, 0 -1px #000;">저렴하고 우수한 중국산</p>
-									<p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
+								<h1 style="text-shadow:5px 5px 5px #000;">숭례문 & 남대문시장</h1>
+									<p style="text-shadow: -1px 0 #000, 0 1px 5px #000, 1px 0 5px #000, 0 -1px #000;">국보 제1호 숭례문! 동쪽에는 남대문 시장!</p>
+									<p><a class="btn btn-lg btn-primary" href="#">구경하기</a></p>
 							</div>
 						</div>
 					</div>

@@ -53,7 +53,7 @@
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&nbsp 문화 &nbsp</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_culture">공지사항</a></li>
-                                <li><a class="dropdown-item" href="#!">소개</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/culture_page.do">소개</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/attractionList.do">지도</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopculture.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_culture">후기게시판</a></li>

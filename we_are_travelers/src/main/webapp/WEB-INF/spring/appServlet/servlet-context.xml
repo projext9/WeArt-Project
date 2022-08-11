@@ -43,6 +43,7 @@
 			<!-- 예외처리 시작 -->
 			<!-- HomeController -->
 			<exclude-mapping path="/home.do"/>
+			<exclude-mapping path="/culture_page.do"/>
 			
 			<!-- TestController -->
 			<exclude-mapping path="/testlogin.do"/>
@@ -82,13 +83,25 @@
 			<exclude-mapping path="/checkNick.do"/>
 			<exclude-mapping path="/mailCheck"/>
 			
-			
 			<!-- BoardController -->
 			<exclude-mapping path="/board_list.do"/>
 			<exclude-mapping path="/board_content.do"/>
 			<exclude-mapping path="/notice_list.do"/>
 			<exclude-mapping path="/notice_content.do"/>
 			<exclude-mapping path="/like_count.do"/>
+			
+			<!-- MapController -->
+			<exclude-mapping path="/activityList.do"/>
+			<exclude-mapping path="/attractionList.do"/>
+			<exclude-mapping path="/fishingList.do"/>
+			<exclude-mapping path="/campingList.do"/>
+			<exclude-mapping path="/lodgingList.do"/>
+			<exclude-mapping path="/activityMap.do"/>
+			<exclude-mapping path="/attractionMap.do"/>
+			<exclude-mapping path="/fishingMap.do"/>
+			<exclude-mapping path="/campingMap.do"/>
+			<exclude-mapping path="/lodgingMap.do"/>
+			<exclude-mapping path="/mapRegion.do"/>
 			
 			<!-- ItemController -->
 			<exclude-mapping path="/shopculture.do"/>
@@ -98,7 +111,6 @@
 			<exclude-mapping path="/shopstay.do"/>
 			<exclude-mapping path="/itemdetail.do"/>
 			<exclude-mapping path="/itemcartadd.do"/>
-			
 
 			<!-- 예외처리 종료 -->
 

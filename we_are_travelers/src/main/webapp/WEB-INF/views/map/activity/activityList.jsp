@@ -153,8 +153,9 @@ $(function()
 
 	<c:forEach var="mapVo" items="${mapList}">
 		<c:if test="${mapVo.map_code == 4}">
-
+   
 			<div class="card mb-3" style="max-width: 87%; margin-left: 100px;">
+			
 				<div class="row g-0">
 					<div class="col-md-4">
 						<img src="${pageContext.request.contextPath}/resources/img/Map_image/activity/${mapVo.map_image}.jpg" class="img-fluid" alt="이미지가없습니다." style="width: 450px; height: 270px;">

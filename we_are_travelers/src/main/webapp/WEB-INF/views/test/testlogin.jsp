@@ -16,7 +16,7 @@
 	<input type="text" name="member_pw"  value="" maxlength="20" placeholder="비밀번호"><br/>            
 	<input type="submit" value="로그인">
 	<input type="reset"  value="취소">
-</form> 
+</form>
 
 </body>
 </html>        
