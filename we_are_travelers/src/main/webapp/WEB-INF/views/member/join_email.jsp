@@ -93,7 +93,7 @@
 		    if(inputCode == code){                                // 일치할 경우
 		        checkResult.html("인증번호가 일치합니다.");
 		        checkResult.css("color", "green");
-		        $(".next").attr('disabled' , false);
+		        $(".next").attr('disabled' , false).css('background' , '#0DCAF0').css('color' , 'white').css('border', '1px solid white');
 		        
 		        $("#mail_check_input_id").attr('disabled' , true)
 		        $('.mail_check_button').attr('disabled' , true);
@@ -103,8 +103,8 @@
 		    } else {                                              // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
 		        checkResult.css("color", "red");
-		        $(".next").attr('disabled' , true);
-		        $('.mail_check_button').attr('disabled' , false);
+		        $(".next").attr('disabled' , true)
+		        $('.mail_check_button').attr('disabled' , false)
 		        $(".mail_input").attr('readonly' , false);
 		        $(".mail_check_input").attr('readonly' , false);
 		    }    
@@ -127,7 +127,6 @@
 		            if (--count < 0) {
 		    	     clearInterval(timer);
 		    	     alert("유효시간초과");
-		    	     display.html("유효시간초과");
 		    	     location.reload();
 		    	     isRunning = false;
 		            }
@@ -140,44 +139,46 @@
 		
 	</script>
 </head>
-
-<body class="join_member">
-
-<main class="join_cont">
+<body>
+<h1 style="text-align:center;">We Are Travelers!</h1>
+<main class="join_cont_email">
 <form class="join_form" name="joinForm" action="/travelers/joinNext2.do" method="post">
-  <div class="join_container">
-    <h1>We Are Travelers!</h1>
+  <div class="join_container_email">
+    
     <br>
     <div>
     <progress value="20" max="100"></progress>
+    
     </div>
     <br>
       <p class="join_guide_1">위아트 계정으로 사용할 이메일(아이디)를 입력해주세요 <p/>
+    <br>  
      <!-- 메일 입력 및 인증번호 발송 -->
+     <div id="mail_input-area">
     <div class="mail_input_box">
     <label>이메일
         <input class="mail_input" id="mail_input_id" name="email">
     </label>
-        <div class="mail_check_button_wrap">   
+   <div class="mail_check_button_wrap">   
       <button type="button" class="mail_check_button">인증번호</button> 
    </div>
    </div>  
-   <p class="mail_input_check"></p>  
-   
+   <span class="mail_input_check"></span>  
+   <br><br>
    <!-- 인증번호 입력 및 체크 -->
     <div class="mail_check_number_wrap">
     <label id="mail_check_number_id">인증번호
         <input type="hidden" class="mail_check_input" id="mail_check_input_id">
-    </label>
-    <div class="time">
+    </label>   
+    <div class="time"></div>
+    </div>  
+    <span class="mail_check_input_box_warn"></span>
     </div>
-       <p class="mail_check_input_box_warn"></p>
+    
     </div>
-    <br>
-    <div class="next_wrap">
-	<button type="submit" class="next" value="다음" disabled="disabled">다음</button>
+    <div class="next_wrap_email">
+	<button type="submit" class="next_email" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
 	</div>
-  </div>
 </form> 
 </main>
 </body>

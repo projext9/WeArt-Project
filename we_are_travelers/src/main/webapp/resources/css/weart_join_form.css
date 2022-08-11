@@ -1,22 +1,47 @@
 @charset "UTF-8";
 
-
-body {
-     height: 100vh;
+body{
+      height: 100vh;
       display: flex;
       flex-wrap: wrap;
       flex-direction: column; /*수직 정렬*/
       align-items: center;
       justify-content: center;
       font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, '돋움', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  
+      -webkit-font-smoothing: antialiased;
+      margin :0;
+      padding :0;  
+ }
+.join_form {
+  width: 100%;
+  max-width: 400px;
+  outline: none;
+}
+progress {
+   -webkit-appearance: none;
+   appearance: none;
+}
+progress::-webkit-progress-bar {
+   with: 200px;
+   height: 10px;
+   border: none;  
 }
 
-p {white-space: nowrap;
-
+progress {
+   color: blue;
 }
-
+progress::-webkit-progress-value {
+   background: linear-gradient(to right top, #5151E5, #72EDF2);
+}
+p {
+	white-space: wrap;
+}
+h1{
+	font-size: 30px;
+    background: linear-gradient(to right top, #5151E5, #72EDF2);
+    color: transparent;
+    -webkit-background-clip: text;
+}
 input {
   background-color: transparent;
   border: none;
@@ -26,47 +51,133 @@ input {
   font-family: 'Arvo';
   font-size: 18px;
   height: 50px;
-  left: 5%;
+  left:5px;
   padding: 10px 0px;
   position: relative;
   top: 50%;
-  width: 250px;
-  
+  width: 275px;
 }
  input:focus {
     outline: none;
     border-bottom: 2px solid #0DCAF0;    
-  }
+}
+ h1{
+	display : inline-block;
+}
 
-.join_cont {
-    width: 580px;
-    margin: 40px auto 42px;
-    padding: 0 69px;
-    border: 1px solid rgba(0,0,0,0.12);
+
+.join_cont_email {
+    width: 500px;
+    height : 420px;
+    padding: 35px 45px;
+    background-color: #fff;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-image: linear-gradient(to right, #72EDF2 0%, #5151E5 100%);
+    border-image-slice: 1;
     font-size: 15px;
     box-sizing: border-box;
 }
 
-.join_form {
-  width: 100%;
-  max-width: 400px;
-  padding : 55px 0 52px;
-  outline: none;
-  
-}
-.join_gude_1 {
-	font-size : 24px;
-}
-
+.join_container_email {
+	position: relative;
+    top: 40px;
+	
+	}
+.mail_check_button:hover {
+	background : white;
+	}
 .mail_input_box {
 	display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+}
+.mail_input_check{
+	position: relative;
+    left: 70px;
+    top: 5px;
+}
+.mail_check_button {
+	border: solid 1px #ddd;
+    border-radius: 5px;
+    position: relative;
+    left: 10px;
+    height: 40px;
+}
+.mail_input_check_wrap {
+    position: relative;
+    left: -5px;
+    height: 70px;
+}
+.mail_check_number_wrap {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.time{
+	position: relative;
+    left: 30px;
+    height: 25px;
+    color:red;
+}
+.mail_check_input_box_warn{
+	position: relative;
+    left: 60px;
+    bottom: -5px;
+}
+.next_wrap_email {
+	position: absolute;
+    bottom: 20px;
+    width:400px;
+} 
+.next_email {
+	width : 100%;
+	height : 60px;	
+}
 
+
+
+.join_cont_pwd {
+    width: 580px;
+    height : 420px;
+    padding: 55px 87px;
+    border: 2px solid rgba(0,0,0,0.12);
+    font-size: 15px;
+    box-sizing: border-box;
 }
-h1{
-	display : inline-block;
+.pwd_input_check1{
+position: relative;
+    left: 100px;
+    top: 5px;
 }
+.pwd_input_check2{
+	position: relative;
+    left: 100px;
+    top: 5px;
+}
+.pwd_input_box{
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.next_wrap_pwd {
+	position : relative;
+	top : 95px;
+	left: 10px;
+}
+
+
+
+
+.join_cont_info {
+    width: 580px;
+    height : 420px;
+    padding: 55px 87px;
+    border: 2px solid rgba(0,0,0,0.12);
+    font-size: 15px;
+    box-sizing: border-box;
+} 
 .filebox input[type="file"] {
     position: absolute;
     width: 0;
@@ -94,49 +205,8 @@ h1{
     height: 15px;
     margin-left: 10px;
 }
-
-
-.mail_check_button {
-	border: solid 1px #ddd;
-    border-radius: 5px;
-    position: relative;
-    left: 30px;
-    height: 25px;
-}
-.mail_check_button:hover {
-
-	background : white;
-
-	}
-.mail_input_check{
-	position: relative;
-    left: 70px;
-    top: -10px;
-}
-.clearfix:before, .clearfix:after {
-    display: block;
-    content: '';
-    line-height: 0;
-}
-
-.clearfix:after {
-    clear:both;
-}
-
-.next, .next_wrap {
+.next_wrap_info {
 	position : relative;
-	top : 15px;
-	width : 100%;
-	height : 50px;
-	
-}
-.mail_input_check_wrap {
-position: relative;
-    left: -5px;
-    height: 70px;
-}
-.mail_check_number_wrap {
-	display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+	top : 95px;
+	left: 10px;
+} 

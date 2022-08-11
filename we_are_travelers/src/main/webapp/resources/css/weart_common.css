@@ -9,7 +9,26 @@
 	    margin-top: 0;
 	}
 }
-
+.kakao_btn{
+    background: yellow;
+    font-family: 'Malgun Gothic';
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 7px;
+    border: 1px solid yellow;
+    height: 40px;
+    color: #505050;
+}
+.naver_btn{
+    background:#5EC75E;
+    font-family: 'Malgun Gothic';
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 7px;
+    border: 1px solid #5EC75E;
+    height: 40px;
+    color: white;
+}
 .navbar-dark .navbar-nav .nav-link { /* 메뉴 텍스트 색상 */
 	color:#FFFFFF;
 }
@@ -56,3 +75,24 @@ footer li { /* footer */
 .copyright { /* footer */
 	border-top: 1px solid #ffffff;
 }
+
+
+
+#navbar_field{
+	background: linear-gradient(to right top, #3C8CE7, #00EAFF);
+}
+#btn_nav {
+	font-size:1.1em;
+	border: 3px solid white;
+    color: white;
+	}
+#btn_nav:hover {
+	background: linear-gradient(to right top, #81FFEF, #72EDF2);
+	border-image: linear-gradient(to right, #81FFEF 0%, #72EDF2 100%);
+    border-image-slice: 1;
+	color: transparent;
+    -webkit-background-clip: text;
+    border-radius: 0.5px;
+}	
+
+

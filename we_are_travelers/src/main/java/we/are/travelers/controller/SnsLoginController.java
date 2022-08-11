@@ -114,23 +114,23 @@ public class SnsLoginController {
 			  session.setAttribute("member_id",  naverInfo.get("member_id")); //세션 생성	
 			  session.setAttribute("member_nick", naverInfo.get("member_nick")); //세션 생성
 			  session.setAttribute("member_regCode", naverInfo.get("member_regCode")); //세션 생성	
-			  return "home";
+			  return "redirect:/home.do";
  	    }
  		return null;
 	}
 	
 	//로그아웃	
-	@RequestMapping(value = "/naverLogout", method = { RequestMethod.GET, RequestMethod.POST })	
+	@RequestMapping(value = "/naverLogout.do", method = { RequestMethod.GET, RequestMethod.POST })	
 	public String naverLogout(HttpSession session )throws IOException {			
 		System.out.println("여기는 logout");			
 		session.invalidate();			
-		return "redirect:home.do";		
+		return "redirect:/login.do";		
 		}	
 	
 	
     //카카오 로그인
 	@RequestMapping(value="/kakaoLogin.do")
-	public String kakaologin(@RequestParam(value = "code", required = false) String code , HttpSession session) throws Exception {	
+	public String kakaologin(@RequestParam("code") String code , HttpSession session) throws Exception {	
 	System.out.println("code : " + code);
 	
 	String access_token = SnsLoginService.getAccessTokenK(code);
@@ -139,12 +139,13 @@ public class SnsLoginController {
 	System.out.println("login Controller : " + userInfo);
 
 	//    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+	    if(userInfo != null) {
 	    session.setAttribute("member_idx", userInfo.getMember_idx());
 	    session.setAttribute("member_id" , userInfo.getMember_id());
 	    session.setAttribute("member_nick", userInfo.getMember_nick());
 	    session.setAttribute("member_regCode", userInfo.getMember_regCode());   
-	    
-	    return "home";
+	    }
+	    return "redirect:/home.do";
 	   }
 	
 	 
