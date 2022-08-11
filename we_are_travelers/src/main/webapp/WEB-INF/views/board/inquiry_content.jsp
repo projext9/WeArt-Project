@@ -140,7 +140,7 @@
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-											<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/delete_board.do?board_idx=${boardVo.board_idx}'">확인</button>
+											<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/delete_board.do?board_idx=${boardVo.board_idx}'">삭제</button>
 										</div>
 									</div>
 								</div>
@@ -151,7 +151,7 @@
 			</div>
 		</div>
 		<span class="input-group-text" style="margin-top:0.5em;">답변
-			<c:if test="${boardVo.board_reply==0&&member_idx!=null}">
+			<c:if test="${boardVo.board_reply==0&&member_grade==1}">
 				<button class="btn btn-outline-primary btn-sm" id="reply_write" style="margin-left:auto;">답변 쓰기</button>
 			</c:if>
 		</span>

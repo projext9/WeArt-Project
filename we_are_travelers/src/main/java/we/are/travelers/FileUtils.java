@@ -3,6 +3,8 @@ package we.are.travelers;
 import java.io.File;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -55,9 +57,12 @@ public class FileUtils {
 		return fileNm;
 	}
 
-	public static String transferTo(MultipartFile mf, boolean createThumb, String... target) throws Exception {
+	public static String transferTo(MultipartFile mf, boolean createThumb, HttpServletRequest request) throws Exception {
 		String fileNm = null;
-		String basePath = getBasePath(target);
+		
+		String upload_dir = "resources/upload/";
+		
+		String basePath = request.getServletContext().getRealPath(upload_dir);
 		System.out.println("basePath : "+basePath);
 		makeFolders(basePath);
 		File file;

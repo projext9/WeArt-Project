@@ -117,4 +117,11 @@
 	<select id="select_like_count" resultType="int">
 		select count(*) from weart_board_like where board_idx=#{board_idx} and member_idx=#{member_idx}
 	</select>
+	
+	<update id="modify_delyn">
+		update weart_board set board_delyn=#{board_delyn}, board_date=now() where board_idx=#{board_idx}
+	</update>
+	<select id="admin_board_content" resultType="boardVo">
+		select * from weart_board where board_idx=#{board_idx}
+	</select>
 </mapper>

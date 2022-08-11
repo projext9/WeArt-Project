@@ -39,8 +39,8 @@ public class BoardController {
 	// CKEditor 이미지 업로드 부분
 	@ResponseBody
 	@PostMapping("/imageUploadProcess.do")
-	public Map<String, Object> imgUpload(@RequestParam("upload") MultipartFile img, HttpSession session) {
-		return BoardService.uploadImg(img, session);
+	public Map<String, Object> imgUpload(@RequestParam("upload") MultipartFile img, HttpSession session, HttpServletRequest request) {
+		return BoardService.uploadImg(img, session, request);
 	}
 	
 	// board
@@ -445,6 +445,57 @@ public class BoardController {
 		int result = boardService.like_count(board_idx);
 		
 		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("/modify_delyn.do")
+	public int modify_delyn(BoardVo boardVo, @RequestParam(value="board_idx") int board_idx, @RequestParam(value="board_delyn") String board_delyn) {
+		
+		boardVo.setBoard_idx(board_idx);
+		boardVo.setBoard_delyn(board_delyn);
+		
+		int result = boardService.modify_delyn(boardVo);
+		
+		return result;
+	}
+	
+	@GetMapping("/admin_board_content.do")
+	public String admin_board_content(
+			@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam(value="order_by", defaultValue="order_new") String order_by,
+			@RequestParam(value="code", defaultValue="") String code,
+			@RequestParam(value="board_idx", defaultValue="0") int board_idx, BoardLikeVo boardLikeVo, HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		
+		boardLikeVo.setBoard_idx(board_idx);
+		boardLikeVo.setMember_idx((String) session.getAttribute("member_idx"));
+		
+		int likeyn = boardService.select_like_count(boardLikeVo);
+		
+		SearchCriteria scri = new SearchCriteria();
+		scri.setPage(page);
+		scri.setOrder_by(order_by);
+		scri.setBoard_idx(board_idx);
+		scri.setBoard_code(code);
+
+		int cnt = boardService.board_reply_total(board_idx);
+		
+		PageMaker pm = new PageMaker();
+		pm.setScri(scri);
+		pm.setTotalCount(cnt);
+		
+		boardService.update_hits(board_idx);
+		BoardVo boardVo = boardService.admin_board_content(board_idx);
+		List<BoardVo> board_reply = boardService.board_reply(scri);
+		
+		model.addAttribute("boardVo",boardVo);
+		model.addAttribute("likeyn",likeyn);
+		model.addAttribute("board_reply",board_reply);
+		model.addAttribute("pm", pm);
+		model.addAttribute("scri", scri);
+		
+		return "board/board_content";
 	}
 	
 }

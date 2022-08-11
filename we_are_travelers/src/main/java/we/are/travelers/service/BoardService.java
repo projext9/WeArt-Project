@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class BoardService {
 	
 	// ckeditor 이미지 업로드
 	// write 내부 이미지 업로드 기능
-	public static Map<String, Object> uploadImg(MultipartFile img, HttpSession session) {
+	public static Map<String, Object> uploadImg(MultipartFile img, HttpSession session, HttpServletRequest request) {
 		
 		System.out.println("img : " + img.getOriginalFilename());
 		String folder = "/resources/upload";	// 이미지를 저장할 폴더 경로 (경로 뒤에 /는 빼야 됨)
@@ -36,7 +37,7 @@ public class BoardService {
 		
 		// 첨부파일 업로드
 		try {
-			ctntImg = FileUtils.transferTo(img, true, folder);
+			ctntImg = FileUtils.transferTo(img, true, request);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,6 +50,8 @@ public class BoardService {
 		// 톰캣 서버에 저장된 이미지 경로 = D:\WeArt\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\travelers\resources/upload
 		// Servers의 server.xml 파일에 <Context docBase="이미지 실제 경로" path="호출할 때 쓸 경로" reloadable="true"/> 추가
 		// ex) <Context docBase="D:\WeArt\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\travelers\resources/upload" path="/resources/upload" reloadable="true"/>
+		// 위아트용 업로드 경로 <Context docBase="D:\OpenApi(B)\WeArt\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\we_are_travelers\resources/upload" path="/resources/upload" reloadable="true"/>
+		
 		Map<String, Object> json = new HashMap<String, Object> ();
 		json.put("uploaded", 1);
 		json.put("fileName", ctntImg);
@@ -164,6 +167,14 @@ public class BoardService {
 	// 내 글 보기
 	public List<BoardVo> my_board(SearchCriteria scri) {
 		return boardDao.my_board(scri);
+	}
+
+	public int modify_delyn(BoardVo boardVo) {
+		return boardDao.modify_delyn(boardVo);
+	}
+	// 게시판 내용
+	public BoardVo admin_board_content(int board_idx) {
+		return boardDao.admin_board_content(board_idx);
 	}
 
 }
