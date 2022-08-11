@@ -24,7 +24,7 @@
 				if(nn_RegExp.test(member_nick)==false){
 			        result = "닉네임은 2~10자리 까지이며 한글,영문,숫자로 조합가능합니다";
 				    $(".nick_input_check").html(result).css("color", "red");
-				    $(".next").attr('disabled' , true)	
+				    $(".next_info").attr('disabled' , true)	
 				
 			  }else if(data == "N"){
 					result = "사용 가능한 닉네임입니다.";
@@ -98,24 +98,24 @@
 	</script>
 </head>
 
-<body>
-<div class="join_container">
-<main class="join_cont">
-<form class="join_form" name="joinForm" action="/travelers/joinfinish.do" method="post">
+<body id=body>
+<h1>We Are Travelers!</h1>
+<main class="join_cont_info">
+<form class="join_form_info" name="joinForm" action="/travelers/joinfinish.do" method="post">
 
     <input type="hidden" name="email" value="${email }">
     <input type="hidden" name="pwd" value="${pwd }">
     
-    <h1>We Are Travelers!</h1>
-    <br>
-    <div>
+    <div class="multi_box">
     <progress value="80" max="100"></progress>
-    </div>
     <br>
-      <p class="join_guide_1">위아트 계정의 프로필 내용을 입력해주세요 .<p/>
+    <div class="guide_box">
+      <p class="join_guide_2">위아트 계정<p/>
+      <p>프로필 내용을 작성해주세요</p>
+    </div>
+    </div>
+      
     <div class="info_wrap">
-    
-    
     <div class="info_input_box">
     <div>
     <label>닉네임
@@ -139,10 +139,9 @@
     </div>
    <br><br>
     <div class="next_wrap_info">
-	<button type="submit" class="next" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
+	<button type="submit" class="next_info" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
 	</div>
 </form> 
 </main>
-</div>
 </body>
 </html>        

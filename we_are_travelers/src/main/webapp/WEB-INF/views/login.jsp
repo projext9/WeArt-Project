@@ -92,7 +92,7 @@
  </div>
  </form>
     <div class="checkbox mb-3">
-    <label><input type="checkbox" value="remember-me"> 아이디 저장 </label>
+    <label id="save_id"><input type="checkbox" value="remember-me">아이디 저장</label>
  </div>
     
  <div class="social_login">
@@ -116,7 +116,7 @@
      <button class="join_company"onclick="location.href='${pageContext.request.contextPath}/joinCompany.do'" type="button">기업회원가입</button>
    </div>
  </div>
-    <p class="mt-5 mb-6 text-muted">&copy; Copyright 2022. Team We-Art. all rights reserved.</p>
+    <p class="mt-5 mb-6 text-muted" id="footer_font">&copy; Copyright 2022. Team We-Art. all rights reserved.</p>
  </div>
 </main>
 

@@ -93,7 +93,7 @@
 		    if(inputCode == code){                                // 일치할 경우
 		        checkResult.html("인증번호가 일치합니다.");
 		        checkResult.css("color", "green");
-		        $(".next").attr('disabled' , false).css('background' , '#0DCAF0').css('color' , 'white').css('border', '1px solid white');
+		        $(".next_email").attr('disabled' , false).css('background' , '#0DCAF0').css('color' , 'white').css('border', '1px solid white');
 		        
 		        $("#mail_check_input_id").attr('disabled' , true)
 		        $('.mail_check_button').attr('disabled' , true);
@@ -103,7 +103,7 @@
 		    } else {                                              // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
 		        checkResult.css("color", "red");
-		        $(".next").attr('disabled' , true)
+		        $(".next_email").attr('disabled' , true)
 		        $('.mail_check_button').attr('disabled' , false)
 		        $(".mail_input").attr('readonly' , false);
 		        $(".mail_check_input").attr('readonly' , false);
@@ -143,15 +143,15 @@
 <h1 style="text-align:center;">We Are Travelers!</h1>
 <main class="join_cont_email">
 <form class="join_form" name="joinForm" action="/travelers/joinNext2.do" method="post">
-  <div class="join_container_email">
-    
     <br>
-    <div>
-    <progress value="20" max="100"></progress>
-    
+    <div class="multi_box">
+    <progress value="40" max="100"></progress>
+    <br>
+    <div class="guide_box">
+      <p class="join_guide_1">위아트 계정으로<p/>
+      <p>사용할 이메일(아이디)를 입력해주세요 </p>
     </div>
-    <br>
-      <p class="join_guide_1">위아트 계정으로 사용할 이메일(아이디)를 입력해주세요 <p/>
+    </div>
     <br>  
      <!-- 메일 입력 및 인증번호 발송 -->
      <div id="mail_input-area">
@@ -175,7 +175,6 @@
     <span class="mail_check_input_box_warn"></span>
     </div>
     
-    </div>
     <div class="next_wrap_email">
 	<button type="submit" class="next_email" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
 	</div>

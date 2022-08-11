@@ -12,32 +12,33 @@ body{
       margin :0;
       padding :0;  
  }
-.join_form {
-  width: 100%;
-  max-width: 400px;
-  outline: none;
+.join_form {	
+  	width: 100%;
+    height: 100%;
+    max-width: 400px;
+    line-height: 20px;
+    outline: none;
+    position: relative;
+    top: 40px;
 }
 progress {
    -webkit-appearance: none;
    appearance: none;
 }
 progress::-webkit-progress-bar {
-   with: 200px;
+   width: 150px;
    height: 10px;
    border: none;  
-}
-
-progress {
-   color: blue;
 }
 progress::-webkit-progress-value {
    background: linear-gradient(to right top, #5151E5, #72EDF2);
 }
-p {
-	white-space: wrap;
-}
 h1{
-	font-size: 30px;
+    margin: 0;
+    padding: 0;
+    top: -20px;
+	position: relative;
+    font-size: 45px;
     background: linear-gradient(to right top, #5151E5, #72EDF2);
     color: transparent;
     -webkit-background-clip: text;
@@ -45,7 +46,7 @@ h1{
 input {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #CCC;
+  border-bottom: 2px solid #CCC;
   color: #555;
   box-sizing: border-box;
   font-family: 'Arvo';
@@ -58,17 +59,20 @@ input {
   width: 275px;
 }
  input:focus {
-    outline: none;
-    border-bottom: 2px solid #0DCAF0;    
-}
- h1{
-	display : inline-block;
+    outline:none;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(to right top, #5151E5, #72EDF2);
+    border-image-slice: 1;        
 }
 
+
+.font_box{
+	line-height:10px;
+}
 
 .join_cont_email {
     width: 500px;
-    height : 420px;
+    height : 520px;
     padding: 35px 45px;
     background-color: #fff;
     border: 3px solid transparent;
@@ -79,11 +83,6 @@ input {
     box-sizing: border-box;
 }
 
-.join_container_email {
-	position: relative;
-    top: 40px;
-	
-	}
 .mail_check_button:hover {
 	background : white;
 	}
@@ -127,9 +126,9 @@ input {
     bottom: -5px;
 }
 .next_wrap_email {
-	position: absolute;
-    bottom: 20px;
-    width:400px;
+	position: relative;
+    bottom: -50px;
+    width: 400px;
 } 
 .next_email {
 	width : 100%;
@@ -138,11 +137,25 @@ input {
 
 
 
+
+.join_form_pwd {	
+  	width: 100%;
+    height: 100%;
+    max-width: 400px;
+    line-height: 24px;
+    outline: none;
+    position: relative;
+    top: 40px;
+}
 .join_cont_pwd {
-    width: 580px;
-    height : 420px;
-    padding: 55px 87px;
-    border: 2px solid rgba(0,0,0,0.12);
+    width: 500px;
+    height : 480px;
+    padding: 35px 45px;
+    background-color: #fff;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-image: linear-gradient(to right, #72EDF2 0%, #5151E5 100%);
+    border-image-slice: 1;
     font-size: 15px;
     box-sizing: border-box;
 }
@@ -162,19 +175,48 @@ position: relative;
     flex-direction: column;
 }
 .next_wrap_pwd {
-	position : relative;
-	top : 95px;
-	left: 10px;
+	position: relative;
+    bottom: -50px;
+    width: 400px;
+} 
+.pwd_check_wrap{
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    left: -20px;
+}
+.next_pwd {
+	border-radius:10px;
+	border:none;
+	width : 100%;
+	height : 60px;	
 }
 
 
 
 
+
+
+
+.join_form_info {	
+  	width: 100%;
+    height: 100%;
+    max-width: 400px;
+    line-height: 24px;
+    outline: none;
+    position: relative;
+    top: 40px;
+}
 .join_cont_info {
-    width: 580px;
-    height : 420px;
-    padding: 55px 87px;
-    border: 2px solid rgba(0,0,0,0.12);
+    width: 500px;
+    height : 480px;
+    padding: 35px 45px;
+    background-color: #fff;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-image: linear-gradient(to right, #72EDF2 0%, #5151E5 100%);
+    border-image-slice: 1;
     font-size: 15px;
     box-sizing: border-box;
 } 
@@ -209,4 +251,16 @@ position: relative;
 	position : relative;
 	top : 95px;
 	left: 10px;
-} 
+}
+
+.next_info {
+	border-radius:10px;
+	border:none;
+	width : 100%;
+	height : 60px;	
+}
+.multi_box{
+	position: relative;
+    top: -50px;
+}
+

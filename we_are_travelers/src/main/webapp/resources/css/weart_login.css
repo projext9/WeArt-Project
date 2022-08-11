@@ -155,6 +155,9 @@ button:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
+#footer_font, #save_id{
+	color:white!important;
+}
  
 
 
