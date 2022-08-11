@@ -17,19 +17,11 @@
 	</style>
 	<script>
 		$(function() {
-			let subject = $("#board_subject").val();
-			alert(subject);
-			
-			var regex = /\s/gi;
-			subject.replace(regex, '');
-			alert(subject);
-			
-			$("button[type=submit]").click(function() {
-				if($("#board_subject").val()==null) {
-					alert("123");
+			$("#board_subject").on("propertychange change paste input", function() {
+				if($("#board_subject").val().replace(/\s+/g,"")=="") {
+					$("#board_subject").val(null);
 				}
 			});
-			
 		});
 	</script>
 	<link href="${pageContext.request.contextPath}/resources/css/form-validation.css" rel="stylesheet">
@@ -37,13 +29,13 @@
 <main style="padding-top:60px;">
 	<form class="row g-1 needs-validation" method="post" action="${pageContext.request.contextPath}/insert_board.do" enctype="multipart/form-data" style="margin:5% 20% 5% 20%;" novalidate>
 		<div class="col-md-12">
-			<input type="text" name="board_subject" class="form-control" id="validationCustom05" placeholder="제목을 입력하세요" required>
+			<input type="text" name="board_subject" class="form-control" id="board_subject" required placeholder="제목을 입력하세요" required>
 			<div class="invalid-feedback">
 				제목을 입력하세요
 			</div>
 		</div>
 		<div class="col-md-12">
-			<textarea class="editor" name="board_content" id="validationCustom05" required placeholder="내용을 입력하세요"></textarea>
+			<textarea class="editor" name="board_content" id="board_content" required placeholder="내용을 입력하세요"></textarea>
 			<div class="invalid-feedback">
 				내용을 입력하세요
 			</div>

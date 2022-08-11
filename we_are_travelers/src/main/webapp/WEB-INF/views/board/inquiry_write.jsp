@@ -15,6 +15,17 @@
 <style>
 	.ck-editor__editable {min-height:400px;}
 </style>
+<script>
+	$(function() {
+		
+		$("#validationCustom02").on("propertychange change paste input", function() {
+			if($("#validationCustom02").val().replace(/\s+/g,"")=="") {
+				$("#validationCustom02").val(null);
+			}
+		});
+		
+	});
+</script>
 <link href="${pageContext.request.contextPath}/resources/css/form-validation.css" rel="stylesheet">
 </head>
 <main style="padding-top:60px;">

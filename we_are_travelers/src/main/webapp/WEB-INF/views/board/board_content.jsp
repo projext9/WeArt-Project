@@ -15,6 +15,12 @@
 		$(".image-style-side").css("text-align", "end");
 		$("pre").css("white-space", "pre-wrap");
 
+		$("#board_content").on("propertychange change paste input", function() {
+			if($("#board_content").val().replace(/\s+/g,"")=="") {
+				$("#board_content").val(null);
+			}
+		});
+		
 		$("#insert_reply").click(function() {
 			
 			let board_idx = "${boardVo.board_idx}";
