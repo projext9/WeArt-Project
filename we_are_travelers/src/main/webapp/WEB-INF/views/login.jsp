@@ -15,12 +15,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script type="text/javascript">
-			history.pushState(null, null, "http://현재페이지URL을 입력하세요.");
-           	window.onpopstate = function(event) {
-			history.go(1);
-};
-</script>
+    
    <script>
       $(document).ready(function() {
     	  $("#member_form").keydown(function(){
@@ -41,9 +36,34 @@
     	  
       });
    </script>
+   <style type="text/css">  /* CSS 첫 이미지 고정 */ 
+
+	#body{
+	background-size:100% 100%; 
+	background-image:url("/travelers/resources/images/weart_login.jpg");
+	}
+
+</style>
+
+<script type="text/javascript"> /* 사용자가 새로고침, F5 눌럿을 때만, 배경화면이 자동 변경 자바스크립트 함수*/
+
+	window.onload = function(){
+
+		var background_img = "/travelers/resources/images/weart_login"; 
+
+		var number = Math.floor(Math.random() * 16) + 1;
+
+		var container = document.getElementById("login_body");
+
+
+		background_img += number + ".jpg";
+
+		container.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('" + background_img + "')";
+	}
+</script> 
  </head>
   
- <body class="text-center"> 
+ <body class="text-center"  id="login_body">
 <main class="form-signin">
   <form class="login_form" action="/travelers/MemberloginProcess.do" method="POST">
   <div class="logo_login_box">
@@ -52,7 +72,7 @@
     </a>
    <div class="login_wrap">
    <div class="login_member_box">
-    <button class="all_member_login_btn" onclick="location.href='${pageContext.request.contextPath}/login.do'" type="button">통합로그인</button>
+    <button class="all_member_login_btn" onclick="location.href='${pageContext.request.contextPath}/login.do'" type="button">We-Art 로그인</button>
    </div>
    </div>
    </div>
@@ -67,7 +87,7 @@
        <input type="hidden" class="form-control"  id="company_form_pwd" name="company_pwd">
       <label for="floatingPassword">비밀번호</label> 
     <div class="form-floating-btn">
-    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+    <button class="w-100 btn btn-lg btn-primary" id="login_btn"type="submit">로그인</button>
  </div>
  </div>
  </form>
