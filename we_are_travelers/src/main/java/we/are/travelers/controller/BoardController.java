@@ -39,8 +39,8 @@ public class BoardController {
 	// CKEditor 이미지 업로드 부분
 	@ResponseBody
 	@PostMapping("/imageUploadProcess.do")
-	public Map<String, Object> imgUpload(@RequestParam("upload") MultipartFile img, HttpSession session) {
-		return BoardService.uploadImg(img, session);
+	public Map<String, Object> imgUpload(@RequestParam("upload") MultipartFile img, HttpSession session, HttpServletRequest request) {
+		return BoardService.uploadImg(img, session, request);
 	}
 	
 	// board
