@@ -41,7 +41,7 @@
     </head>
 	<body>
         <!-- Navigation-->
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info" id="navbar_field">
 			<div class="container-fluid">
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -112,17 +112,17 @@
 		<c:choose>
 				    <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 0 }">
 					<span>${sessionScope.member_nick }님</span>&nbsp;
-					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
+					<button class="btn btn-outline-success" id="btn_nav"  type="button"onClick="fn_logout()">로그아웃</button>
 					</c:when>
 					 
                      <c:when test="${sessionScope.company_id != null }">
 					<span>${sessionScope.company_name }님</span>&nbsp;
-					<button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
+					<button class="btn btn-outline-success" id="btn_nav"  type="button"onClick="fn_logout()">로그아웃</button>
 					 </c:when>
 					 
 					 <c:when test="${sessionScope.member_grade == 1 }">
                     <a href="/travelers/memberList.do">관리자페이지</a>&nbsp;
-                    <button class="btn btn-outline-success" type="button"onClick="fn_logout()">로그아웃</button>
+                    <button class="btn btn-outline-success"  id="btn_nav" type="button" onClick="fn_logout()">로그아웃</button>
                     </c:when>
 					 
 					 <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 1}">
@@ -132,12 +132,12 @@
 					
 					<c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 2 }">
 					<span>${sessionScope.member_nick }님 환영합니다!</span>&nbsp;
-					<button class="naver_btn" type="button"onClick="fn_naver_logout()">Naver 로그아웃</button>
+					<button class="naver_btn" type="button" onClick="fn_naver_logout()">Naver 로그아웃</button>
 					</c:when>
                   
 					<c:otherwise>
-					<button class="btn btn-outline-success" type="button" onClick="fn_login()">로그인</button>&nbsp;
-					<button class="btn btn-outline-success" type="button"onClick="fn_join()">회원가입</button>
+					<button class="btn btn-outline-success" id="btn_nav"  type="button" onClick="fn_login()">로그인</button>&nbsp;
+					<button class="btn btn-outline-success" id="btn_nav"  type="button"onClick="fn_join()">회원가입</button>
 				     </c:otherwise>					
 		</c:choose>
 				</div>

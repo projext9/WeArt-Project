@@ -139,21 +139,22 @@
 		
 	</script>
 </head>
-
-<body class="join_member">
-
-<main class="join_cont">
+<body>
+<h1 style="text-align:center;">We Are Travelers!</h1>
+<main class="join_cont_email">
 <form class="join_form" name="joinForm" action="/travelers/joinNext2.do" method="post">
-  <div class="join_container">
-    <h1>We Are Travelers!</h1>
+  <div class="join_container_email">
+    
     <br>
     <div>
     <progress value="20" max="100"></progress>
+    
     </div>
     <br>
       <p class="join_guide_1">위아트 계정으로 사용할 이메일(아이디)를 입력해주세요 <p/>
     <br>  
      <!-- 메일 입력 및 인증번호 발송 -->
+     <div id="mail_input-area">
     <div class="mail_input_box">
     <label>이메일
         <input class="mail_input" id="mail_input_id" name="email">
@@ -170,10 +171,13 @@
         <input type="hidden" class="mail_check_input" id="mail_check_input_id">
     </label>   
     <div class="time"></div>
-    </div>
+    </div>  
     <span class="mail_check_input_box_warn"></span>
-    <div class="next_wrap">
-	<button type="submit" class="next" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
+    </div>
+    
+    </div>
+    <div class="next_wrap_email">
+	<button type="submit" class="next_email" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
 	</div>
 </form> 
 </main>
