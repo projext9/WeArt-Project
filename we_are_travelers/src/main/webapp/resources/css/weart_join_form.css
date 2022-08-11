@@ -12,15 +12,6 @@ body{
       margin :0;
       padding :0;  
  }
-.join_form {	
-  	width: 100%;
-    height: 100%;
-    max-width: 400px;
-    line-height: 20px;
-    outline: none;
-    position: relative;
-    top: 40px;
-}
 progress {
    -webkit-appearance: none;
    appearance: none;
@@ -64,15 +55,20 @@ input {
     border-image: linear-gradient(to right top, #5151E5, #72EDF2);
     border-image-slice: 1;        
 }
-
-
-.font_box{
-	line-height:10px;
+.multi_box1{
+	position: relative;
+    top: -10px;
 }
-
+.join_guide1, .join_guide2{
+ display: block;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: #191919;
+    }
 .join_cont_email {
     width: 500px;
-    height : 520px;
+    height : 480px;
     padding: 35px 45px;
     background-color: #fff;
     border: 3px solid transparent;
@@ -82,7 +78,6 @@ input {
     font-size: 15px;
     box-sizing: border-box;
 }
-
 .mail_check_button:hover {
 	background : white;
 	}
@@ -131,6 +126,7 @@ input {
     width: 400px;
 } 
 .next_email {
+	border-radius:10px;
 	width : 100%;
 	height : 60px;	
 }
@@ -158,6 +154,10 @@ input {
     border-image-slice: 1;
     font-size: 15px;
     box-sizing: border-box;
+}
+.multi_box2{
+	position: relative;
+    top: -30px;
 }
 .pwd_input_check1{
 position: relative;
@@ -196,9 +196,6 @@ position: relative;
 
 
 
-
-
-
 .join_form_info {	
   	width: 100%;
     height: 100%;
@@ -210,7 +207,7 @@ position: relative;
 }
 .join_cont_info {
     width: 500px;
-    height : 480px;
+    height : 500px;
     padding: 35px 45px;
     background-color: #fff;
     border: 3px solid transparent;
@@ -220,6 +217,47 @@ position: relative;
     font-size: 15px;
     box-sizing: border-box;
 } 
+.info_input_box{
+	position: relative;
+    top: -42px;
+}
+.name_wrap{
+position: relative;
+    left: 13px;
+ }
+.birth_wrap{
+	position: relative;
+    left: -17px;
+}
+.name_input_check{
+	text-indent: 40px;
+}
+.nick_input_check  {
+	text-indent: 53px;
+}
+.birth_input_check{
+	text-indent: 69px;
+}
+.next_wrap_info {
+	width: 100%;
+    position: absolute;
+    bottom: 30px;
+    left: 3px;
+}
+
+.next_info {
+	border-radius: 10px;
+    border: 1px solid gray;
+    width: 100%;
+    height: 60px;
+}
+.multi_box{
+	position: relative;
+    top: -50px;
+}
+
+
+
 .filebox input[type="file"] {
     position: absolute;
     width: 0;
@@ -247,20 +285,3 @@ position: relative;
     height: 15px;
     margin-left: 10px;
 }
-.next_wrap_info {
-	position : relative;
-	top : 95px;
-	left: 10px;
-}
-
-.next_info {
-	border-radius:10px;
-	border:none;
-	width : 100%;
-	height : 60px;	
-}
-.multi_box{
-	position: relative;
-    top: -50px;
-}
-

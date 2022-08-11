@@ -44,7 +44,11 @@
 					if(data == 'N'){
 						result = "사용 가능한 아이디입니다.";
 						$(".mail_input_check").html(result).css("color", "green");
-						
+						  $('.mail_input').css({
+								"outline":"none",
+							    "border-bottom":"2px solid transparent",
+							    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+							    "border-image-slice": "1"})
 						$.ajax({
 							
 					        type:"GET",
@@ -72,6 +76,11 @@
 					}else{
 						result = "이미 사용중인 아이디입니다.";
 						$(".mail_input_check").html(result).css("color", "red");
+						 $('.mail_input').css({
+								"outline":"none",
+							    "border-bottom":"",
+							    "border-image":"",
+							    "border-image-slice": ""})
 						$(".mail_input").val("").trigger("focus");
 						
 						return false;
@@ -79,22 +88,23 @@
 				},
 				error: function(error){alert(error);}
 			});
-			
-			
-			    
-			 
+				 
 		/* 인증번호 비교 */
 		$(".mail_check_input").on('blur' , function(){
 		    
 		    var inputCode = $(".mail_check_input").val();         // 입력코드값  
-		    var checkResult = $(".mail_check_input_box_warn");    // 비교 결과     
+		    var checkResult = $(".mail_check_input_box_warn");    // 비교 결과값     
 		   
 		    
 		    if(inputCode == code){                                // 일치할 경우
 		        checkResult.html("인증번호가 일치합니다.");
 		        checkResult.css("color", "green");
-		        $(".next_email").attr('disabled' , false).css('background' , '#0DCAF0').css('color' , 'white').css('border', '1px solid white');
-		        
+		        $('.mail_check_input').css({
+					"outline":"none",
+				    "border-bottom":"2px solid transparent",
+				    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+				    "border-image-slice": "1"})
+		        $(".next_email").attr('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white').css('border-radius', '10px');
 		        $("#mail_check_input_id").attr('disabled' , true)
 		        $('.mail_check_button').attr('disabled' , true);
 		        $(".mail_input").attr('readonly' , true);
@@ -144,12 +154,13 @@
 <main class="join_cont_email">
 <form class="join_form" name="joinForm" action="/travelers/joinNext2.do" method="post">
     <br>
-    <div class="multi_box">
+    <div class="multi_box1">
     <progress value="40" max="100"></progress>
     <br>
     <div class="guide_box">
-      <p class="join_guide_1">위아트 계정으로<p/>
-      <p>사용할 이메일(아이디)를 입력해주세요 </p>
+      <h2 class="join_guide1">위아트 계정으로
+      <br>      
+      사용할 이메일(아이디)를 입력해주세요</h2>
     </div>
     </div>
     <br>  

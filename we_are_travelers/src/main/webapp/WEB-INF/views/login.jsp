@@ -38,9 +38,10 @@
    </script>
    <style type="text/css">  /* CSS 첫 이미지 고정 */ 
 
-	#body{
+	#login_body{
 	background-size:100% 100%; 
 	background-image:url("/travelers/resources/images/weart_login.jpg");
+	backdrop-filter: blur(3px);
 	}
 
 </style>
@@ -58,7 +59,7 @@
 
 		background_img += number + ".jpg";
 
-		container.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('" + background_img + "')";
+		container.style.backgroundImage = "url('" + background_img + "')";
 	}
 </script> 
  </head>

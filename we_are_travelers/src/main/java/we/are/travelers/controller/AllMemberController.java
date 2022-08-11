@@ -184,7 +184,25 @@ public class AllMemberController {
 
 	  return "member/join_finish";
     }
-	
+	//회원가입 완료 로직
+		@RequestMapping(value="/joinMemberProcess.do" , method = RequestMethod.POST)
+		public String joinMemberProcess(MemberVo memberVo , HttpServletRequest request) {
+			//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌
+			//이러한 객체를 커맨드 객체라고 함.
+			int result=AllmemberService.joinMember(memberVo);
+			
+			String viewPage = null;
+			if(result==1) {
+				viewPage = "redirect:login.do";
+			}else{
+				 request.setAttribute("msg", "회원가입에 실패하였습니다. 다시 시도해주세요");
+		    	 request.setAttribute("url", "/travelers/joinMember.do");
+				viewPage = "redirect:joinMember.do";
+			}
+			
+			return viewPage;
+		
+	}	
 	//////////////////////////////////////기업회원 약관동의 상세보기 로직
 	@RequestMapping(value="/joinCompany.do", method = RequestMethod.GET)
 	public String joinCompany() {
@@ -332,24 +350,7 @@ public class AllMemberController {
 		
 		return "company/join_buis_finish";
 	}
-	//회원가입 완료 로직
-	@RequestMapping(value="/joinMemberProcess.do" , method = RequestMethod.POST)
-	public String joinMemberProcess(MemberVo memberVo) {
-		//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌
-		//이러한 객체를 커맨드 객체라고 함.
-		int result=AllmemberService.joinMember(memberVo);
-		
-		String viewPage = null;
-		if(result==1) {
-			viewPage = "redirect:login.do";
-		}else{
-			
-			viewPage = "redirect:joinMember.do";
-		}
-		
-		return viewPage;
 	
-}	
 	@RequestMapping(value="/joinCompanyProcess.do" , method = RequestMethod.POST)
 	public String joinCompanyProcess(CompanyVo companyVo) {
 		//요청매핑이 있는 메소드의 매개변수에 Vo나 자바클래스가 있는 경우 전달된 값을 그 객체에 매핑시켜줌
