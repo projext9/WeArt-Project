@@ -18,6 +18,7 @@
 	
 	$(function() {
 		$("div > img").addClass("img-fluid rounded mx-auto d-block");
+		$("div > img").css("width", "100%");
 		$("*").css("text-decoration-line", "none");
 		$("a > *").css("color", "black");
 		$("#view_list>*").css("display", "none");
