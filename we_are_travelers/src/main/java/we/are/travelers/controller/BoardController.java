@@ -237,7 +237,7 @@ public class BoardController {
 		scri.setKeyword(keyword);
 		scri.setSearchType(searchType);
 		scri.setBoard_code(code);
-		scri.setMy_board((String) session.getAttribute("member_nick"));
+		scri.setMy_board((String) session.getAttribute("member_idx"));
 	
 		int cnt = boardService.inquiry_total(scri);
 		

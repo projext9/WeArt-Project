@@ -206,10 +206,10 @@
 			</div>
 		</form>
 		<div class="col-12" style="margin-top:0.5em;">
-			<c:if test="${member_nick!=null}">
+			<c:if test="${member_idx!=null}">
 				<!-- 내 글 보기 -->
 				<div class="btn-group g-1" style="width:105px;">
-					<button type="button" name="my_board" id="my_board" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board_list.do?code=${pm.scri.board_code}&my_board=${member_nick}'" value="">내 글 보기</button>
+					<button type="button" name="my_board" id="my_board" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board_list.do?code=${pm.scri.board_code}&my_board=${member_idx}'" value="">내 글 보기</button>
 				</div>
 				<!-- 글 작성 -->
 				<div class="btn-group g-1" style="float:right; width:83px;">
