@@ -22,6 +22,50 @@
 			}
 		});
 		
+		if("${member_idx}"!="") {
+
+			$("#before_like").click(function() {
+				
+				let board_idx = "${boardVo.board_idx}";
+				let board_like = "1";
+				
+				$.ajax({
+					url:"${pageContext.request.contextPath}/update_like.do",
+					method:"POST",
+					data: {"board_idx":board_idx, "board_like":board_like},
+					success: function(data) {
+						$("*>#before_like").css("display", "none");
+						$("*>#after_like").css("display", "");
+						like_count();
+					},
+					error: function(error) {
+						alert("실패");
+					}
+				});
+			});
+			
+			$("#after_like").click(function() {
+				
+				let board_idx = "${boardVo.board_idx}";
+				let board_like = "0";
+				
+				$.ajax({
+					url:"${pageContext.request.contextPath}/update_like.do",
+					method:"POST",
+					data: {"board_idx":board_idx, "board_like":board_like},
+					success: function(data) {
+						$("*>#after_like").css("display", "none");
+						$("*>#before_like").css("display", "");
+						like_count();
+					},
+					error: function(error) {
+						alert("실패");
+					}
+				});
+			});
+			
+		}
+		
 		$("#insert_reply").click(function() {
 			
 			let board_idx = "${boardVo.board_idx}";
@@ -43,45 +87,6 @@
 					}
 				});
 			}
-		});
-		
-		$("#before_like").click(function() {
-			
-			let board_idx = "${boardVo.board_idx}";
-			let board_like = "1";
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/update_like.do",
-				method:"POST",
-				data: {"board_idx":board_idx, "board_like":board_like},
-				success: function(data) {
-					$("*>#before_like").css("display", "none");
-					$("*>#after_like").css("display", "");
-					like_count();
-				},
-				error: function(error) {
-					alert("실패");
-				}
-			});
-		});
-		$("#after_like").click(function() {
-			
-			let board_idx = "${boardVo.board_idx}";
-			let board_like = "0";
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/update_like.do",
-				method:"POST",
-				data: {"board_idx":board_idx, "board_like":board_like},
-				success: function(data) {
-					$("*>#after_like").css("display", "none");
-					$("*>#before_like").css("display", "");
-					like_count();
-				},
-				error: function(error) {
-					alert("실패");
-				}
-			});
 		});
 		
 		function like_count() {
