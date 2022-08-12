@@ -30,7 +30,7 @@
 							data: {	"imp_uid": rsp.imp_uid, "merchant_uid": rsp.merchant_uid},
 							success: function(data) {
 								if(data == "Y") {
-									location.href="${pageContext.request.contextPath}/home.do";
+									location.href="${pageContext.request.contextPath}/itembuy.do";
 								} else if (data == "N") {
 									alert("결제 내역 검증 실패. 관리자에게 문의하세요.");
 								}

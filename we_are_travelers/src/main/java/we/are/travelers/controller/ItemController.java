@@ -540,6 +540,20 @@ public class ItemController {
 		}
 	}
 	
+	@GetMapping("/itembuy.do") //구매완료 페이지
+	public String itembuy(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String member_idx = (String)session.getAttribute("member_idx");
+		
+		if (member_idx == null) {
+			return "login"; //로그인 필요
+
+		} else {
+
+			return "item/itembuy";
+		}
+	}
+	
 	@GetMapping("/itemwrite.do") //판매상품 입력(상품작성)
 	public String itemwrite(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
