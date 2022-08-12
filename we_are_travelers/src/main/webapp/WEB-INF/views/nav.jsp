@@ -110,7 +110,7 @@
 					</ul>
 					${sessionScope.access_Token }				
 		<c:choose>
-				    <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 0 }">
+				    <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 0 && sessionScope.member_grade == 0}">
 					<span>${sessionScope.member_nick }님 환영합니다!</span>&nbsp;
 					<button class="btn btn-outline-success" id="btn_nav"  type="button"onClick="fn_logout()">로그아웃</button>
 					</c:when>
@@ -120,9 +120,10 @@
 					<button class="btn btn-outline-success" id="btn_nav"  type="button"onClick="fn_logout()">로그아웃</button>
 					 </c:when>
 					 
-					 <c:when test="${sessionScope.member_grade == 1 }">
-                    <a href="${pageContext.request.contextPath}/memberList.do">관리자페이지</a>&nbsp;
-                    <button class="btn btn-outline-success"  id="btn_nav" type="button" onClick="fn_logout()">로그아웃</button>
+					 <c:when test="${sessionScope.member_id != null && sessionScope.member_grade == 1 }">
+					<span>${sessionScope.member_nick }님 환영합니다!</span>
+                    <button class="btn btn-outline-success" id="btn_nav" type="button" onClick="location.href='${pageContext.request.contextPath}/memberList.do'">관리자페이지</button>&nbsp;
+                    <button class="btn btn-outline-success" id="btn_nav" type="button" onClick="fn_logout()">로그아웃</button>
                     </c:when>
 					 
 					 <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 1}">
