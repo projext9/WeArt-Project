@@ -12,7 +12,7 @@
 	<select id="board_list" resultType="boardVo">
 		select A.* from(
 			select * from weart_board where board_delyn='N' and board_idx=board_originidx
-			<if test="my_board!=''">and board_writer=#{my_board}</if>
+			<if test="my_board!=''">and member_idx=#{my_board}</if>
 			<if test="board_code!=''">and board_code=#{board_code}</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='content'">and board_remove_tag like CONCAT('%',#{keyword},'%')</if>
@@ -24,7 +24,7 @@
 	</select>
 	<select id="board_total" resultType="int">
 		select count(*) as cnt from weart_board where board_delyn='N' and board_idx=board_originidx
-			<if test="my_board!=''">and board_writer=#{my_board}</if>
+			<if test="my_board!=''">and member_idx=#{my_board}</if>
 			<if test="board_code!=''">and board_code=#{board_code}</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='content'">and board_content like CONCAT('%',#{keyword},'%')</if>
@@ -35,7 +35,7 @@
 	<select id="inquiry_list" resultType="boardVo">
 		select A.* from(
 			select * from weart_board where board_delyn='N' and board_idx=board_originidx
-			<if test="my_board!=''">and board_writer=#{my_board}</if>
+			<if test="my_board!=''">and member_idx=#{my_board}</if>
 			<if test="board_code==''">and board_code like CONCAT('%','inquiry','%')</if>
 			<if test="board_code!=''">and board_code like CONCAT('%',#{board_code})</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
@@ -46,7 +46,7 @@
 	</select>
 	<select id="inquiry_total" resultType="int">
 		select count(*) as cnt from weart_board where board_delyn='N' and board_code like CONCAT('%','inquiry','%')
-			<if test="my_board!=''">and board_writer=#{my_board}</if>
+			<if test="my_board!=''">and member_idx=#{my_board}</if>
 			<if test="board_code==''">and board_code like CONCAT('%','inquiry','%')</if>
 			<if test="board_code!=''">and board_code like CONCAT('%',#{board_code})</if>
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>

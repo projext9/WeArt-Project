@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <style>
-	* > h3 {display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:500px;}
+	* > h3 {display:block; overflow:hidden; text-overflow:ellipsis; width:500px;}
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -22,7 +22,7 @@
 		$("*").css("text-decoration-line", "none");
 		$("a > *").css("color", "black");
 		$("#view_list>*").css("display", "none");
-		$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden"});
+		$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
 		
 		if($("input[name=view]:checked").val() == "view_frame") {
 			$("#view_frame>*").css("display", "");
@@ -111,6 +111,7 @@
 </script>
 </head>
 <main style="padding-top:60px;">
+	
         <header>
 			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
 		    	<div class="carousel-indicators">
@@ -120,34 +121,37 @@
 		    	</div>
 		    	<div class="carousel-inner">
 					<div class="carousel-item active">
-				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing2.png" aria-hidden="true"></img>
-					        <div class="container">
-								<div class="carousel-caption text-start">
-									<h1 style="text-shadow:5px 5px 5px #000;">이것은 낚시상품</h1>
-						            <p>우수한 품질의 중국산 낚시대</p>
-						            <p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
-								</div>
-					        </div>
+					<c:if test="${scri.board_code=='b_fishing'}">
+						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing2.png" aria-hidden="true"></img>
+						<div class="container">
+							<div class="carousel-caption text-start">
+								<h1 style="text-shadow:5px 5px 5px #000;">이것은 낚시상품</h1>
+								<p>우수한 품질의 중국산 낚시대</p>
+							</div>
+						</div>
+						</c:if>
 					</div>
 					<div class="carousel-item">
+					<c:if test="${scri.board_code=='b_fishing'}">
 						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing3.png" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption">
 								<h1 style="text-shadow:5px 5px 5px #000;">극강의 퀄리티</h1>
 								<p style="text-shadow:5px 5px 5px #000;">믿을 수 있는 중국산 제품</p>
-								<p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
 							</div>
 						</div>
+						</c:if>
 					</div>
 					<div class="carousel-item">
+					<c:if test="${scri.board_code=='b_fishing'}">
 						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing1.png" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption text-end">
 								<h1 style="text-shadow:5px 5px 5px #000;">환상적인 중국산 제품</h1>
-									<p style="text-shadow: -1px 0 #000, 0 1px 5px #000, 1px 0 5px #000, 0 -1px #000;">저렴하고 우수한 중국산</p>
-									<p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
+								<p style="text-shadow: -1px 0 #000, 0 1px 5px #000, 1px 0 5px #000, 0 -1px #000;">저렴하고 우수한 중국산</p>
 							</div>
 						</div>
+						</c:if>
 					</div>
 				</div>
 				<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
@@ -160,6 +164,7 @@
 				</button>
 			</div>
 		</header>
+	
 	<!-- 게시판 버튼 -->
 	<div class="container g-3 row row-cols-2 mb-3" style="padding-right:0.3em; padding-left:0.3em; margin:auto;">
 		<form class="col-12">
@@ -201,10 +206,10 @@
 			</div>
 		</form>
 		<div class="col-12" style="margin-top:0.5em;">
-			<c:if test="${member_nick!=null}">
+			<c:if test="${member_idx!=null}">
 				<!-- 내 글 보기 -->
 				<div class="btn-group g-1" style="width:105px;">
-					<button type="button" name="my_board" id="my_board" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board_list.do?code=${pm.scri.board_code}&my_board=${member_nick}'" value="">내 글 보기</button>
+					<button type="button" name="my_board" id="my_board" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board_list.do?code=${pm.scri.board_code}&my_board=${member_idx}'" value="">내 글 보기</button>
 				</div>
 				<!-- 글 작성 -->
 				<div class="btn-group g-1" style="float:right; width:83px;">
@@ -235,7 +240,7 @@
 									</div>
 									<div class="card-body">
 										<div class="d-flex">
-											<h3 class="mb-1 col-12">${boardVo.board_subject}</h3>
+											<h3 class="mb-0 col-12">${boardVo.board_subject}</h3>
 										</div>
 										<div>
 											<small class="text-muted">${boardVo.board_writer} / <c:set var="date" value="${boardVo.board_date}"/>${fn:substring(date,2,11)}</small>
@@ -265,7 +270,7 @@
 						<tr>
 							<td>
 								<div class="d-flex">
-									<h3 class="mb-1 col-10">${boardVo.board_subject}</h3>
+									<h3 class="mb-0 col-10">${boardVo.board_subject}</h3>
 									<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 										<small class="text-muted">${boardVo.board_writer} / <c:set var="date" value="${boardVo.board_date}"/>${fn:substring(date,2,11)}</small>
 									</div>
