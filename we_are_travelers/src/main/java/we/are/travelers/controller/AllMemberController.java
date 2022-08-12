@@ -54,8 +54,9 @@ public class AllMemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("member_idx", memberVo.getMember_idx());//회원등급 추가
 			session.setAttribute("member_id",memberVo.getMember_id());//회원아이디 추가
-			session.setAttribute("member_grade",memberVo.getMember_grade());//회원등급 추가
 			session.setAttribute("member_nick", memberVo.getMember_nick());//회원닉네임
+			session.setAttribute("member_grade",memberVo.getMember_grade());//회원등급 추가
+			session.setAttribute("member_regCode",memberVo.getMember_regCode());//회원등급 추가
 			msg = 0;
 			
 		   if(msg==0) {
@@ -372,7 +373,7 @@ public class AllMemberController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		return "redirect:home.do";
+		return "redirect:login.do";
 	}
 
 }

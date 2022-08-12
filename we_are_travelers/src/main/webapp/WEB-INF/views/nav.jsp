@@ -111,12 +111,12 @@
 					${sessionScope.access_Token }				
 		<c:choose>
 				    <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 0 }">
-					<span>${sessionScope.member_nick }님</span>&nbsp;
+					<span>${sessionScope.member_nick }님 환영합니다!</span>&nbsp;
 					<button class="btn btn-outline-success" id="btn_nav"  type="button"onClick="fn_logout()">로그아웃</button>
 					</c:when>
 					 
-                     <c:when test="${sessionScope.company_id != null }">
-					<span>${sessionScope.company_name }님</span>&nbsp;
+                     <c:when test="${sessionScope.company_id != null && sessionScope.comapny_auth == 1}">
+					<span>${sessionScope.company_name }님 환영합니다!</span>&nbsp;
 					<button class="btn btn-outline-success" id="btn_nav"  type="button"onClick="fn_logout()">로그아웃</button>
 					 </c:when>
 					 
