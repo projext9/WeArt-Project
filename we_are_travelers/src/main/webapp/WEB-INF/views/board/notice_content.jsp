@@ -11,7 +11,7 @@
 <script>
 	$(function() {
 		$("*>img").css("max-width", "100%");
-		$("pre").css("white-space", "pre-wrap");
+		$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
 	});
 </script>
 </head>

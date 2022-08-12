@@ -19,7 +19,7 @@
 		$(function() {
 			$("*").css("text-decoration-line", "none");
 			$("a > *").css("color", "black");
-			$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden"});
+			$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
 		});
 	</script>
 </head>
@@ -58,7 +58,7 @@
 					<tr>
 						<td>
 							<div class="d-flex">
-								<h3 class="mb-1 col-10">${boardVo.board_subject}</h3>
+								<h3 class="mb-0 col-10">${boardVo.board_subject}</h3>
 								<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 									<small class="text-muted">${boardVo.board_writer} / <c:set var="date" value="${boardVo.board_date}"/>${fn:substring(date,2,11)}</small>
 								</div>

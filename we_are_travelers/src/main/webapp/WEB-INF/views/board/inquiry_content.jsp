@@ -11,7 +11,7 @@
 <script>
 	$(function() {
 		$("*>img").css("max-width", "100%");
-		$("pre").css("white-space", "pre-wrap");
+		$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
 		
 		$("#board_content").on("propertychange change paste input", function() {
 			if($("#board_content").val().replace(/\s+/g,"")=="") {
@@ -106,7 +106,7 @@
 		<div class="card">
 			<div class="card-header d-flex">
 				<input type="hidden" id="board_idx" value="${boardVo.board_idx}" style="display:none;">
-				<h3 class="mb-1 col-9">${boardVo.board_subject}</h3>
+				<h3 class="mb-0 col-9">${boardVo.board_subject}</h3>
 				<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 					<small class="text-muted">${boardVo.board_writer} / ${boardVo.board_date}</small>
 				</div>

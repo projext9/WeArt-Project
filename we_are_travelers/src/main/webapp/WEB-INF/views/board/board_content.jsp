@@ -13,7 +13,7 @@
 		$("*>img").css("max-width", "100%");
 		$(".image").css("text-align", "center");
 		$(".image-style-side").css("text-align", "end");
-		$("pre").css("white-space", "pre-wrap");
+		$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
 		$("input[id=${boardVo.board_delyn}]").prop("disabled", true);
 
 		$("#board_content").on("propertychange change paste input", function() {
@@ -144,7 +144,7 @@
 	<div class="container" style="padding-top:1em;">
 		<div class="card">
 			<div class="card-header d-flex">
-				<h3 class="mb-1 col-9">${boardVo.board_subject}</h3>
+				<h3 class="mb-0 col-9">${boardVo.board_subject}</h3>
 				<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 					<small class="text-muted">${boardVo.board_writer} / ${boardVo.board_date}</small>
 				</div>
@@ -257,8 +257,8 @@
 				<div class="d-flex align-items-center" style="display: inline-block !important;">
 					<div class="card">
 						<div class="card-body">
-							<h5 class="mb-1 col-6 col-sm-7 col-md-8 col-lg-9">
-								<span>${boardVo.board_content}</span>
+							<h5 class="mb-0 col-6 col-sm-7 col-md-8 col-lg-9">
+								${boardVo.board_content}
 							</h5>
 							<div class="d-flex justify-content-start">
 								<small class="text-muted align-items-center">${boardVo.board_writer} / ${boardVo.board_date}</small>
