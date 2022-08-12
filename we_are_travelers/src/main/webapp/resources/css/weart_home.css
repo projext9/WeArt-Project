@@ -16,7 +16,8 @@ body {
 
 /* Carousel base class */
 .carousel {
-  height:768px;
+  height:550px;
+  width: 1320px;
   margin-bottom: 4rem;
 }
 /* Since positioning the image, we need to help out the caption */
@@ -25,10 +26,15 @@ body {
   bottom: 3rem;
   z-index: 10;
 }
+.carousel-indicators {
+	width: 100%;
+    left: 100px;
 
+	}
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 750px;
+  height: 550px;
+  width: 1320px;
 }
 .carousel-item > img {
   position: absolute;
@@ -38,7 +44,11 @@ body {
   height: 100%;
 }
 
-
+.carousel-inner{
+	top:13px;
+	left:300px;
+	
+}
 /* MARKETING CONTENT
 -------------------------------------------------- */
 
@@ -72,7 +82,12 @@ body {
   /* rtl:remove */
   letter-spacing: -.05rem;
 }
-
+.carousel-control-prev {
+    left: 300px;
+}
+.carousel-control-next {
+    right: -300px;
+}
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
