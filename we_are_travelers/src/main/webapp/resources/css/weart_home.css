@@ -16,24 +16,26 @@ body {
 
 /* Carousel base class */
 .carousel {
+  height:768px;
   margin-bottom: 4rem;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
+  top:100px;
   bottom: 3rem;
   z-index: 10;
 }
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 32rem;
+  height: 750px;
 }
 .carousel-item > img {
   position: absolute;
   top: 0;
   left: 0;
   min-width: 100%;
-  height: 32rem;
+  height: 100%;
 }
 
 
