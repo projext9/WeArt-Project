@@ -111,6 +111,7 @@
 </script>
 </head>
 <main style="padding-top:60px;">
+	
         <header>
 			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
 		    	<div class="carousel-indicators">
@@ -120,14 +121,15 @@
 		    	</div>
 		    	<div class="carousel-inner">
 					<div class="carousel-item active">
-				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing2.png" aria-hidden="true"></img>
-					        <div class="container">
-								<div class="carousel-caption text-start">
-									<h1 style="text-shadow:5px 5px 5px #000;">이것은 낚시상품</h1>
-						            <p>우수한 품질의 중국산 낚시대</p>
-						            <p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
-								</div>
-					        </div>
+					<c:if test="${scri.board_code=='b_fishing'}">
+						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing2.png" aria-hidden="true"></img>
+						<div class="container">
+							<div class="carousel-caption text-start">
+								<h1 style="text-shadow:5px 5px 5px #000;">이것은 낚시상품</h1>
+								<p>우수한 품질의 중국산 낚시대</p>
+							</div>
+						</div>
+						</c:if>
 					</div>
 					<div class="carousel-item">
 						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing3.png" aria-hidden="true"></img>
@@ -135,7 +137,6 @@
 							<div class="carousel-caption">
 								<h1 style="text-shadow:5px 5px 5px #000;">극강의 퀄리티</h1>
 								<p style="text-shadow:5px 5px 5px #000;">믿을 수 있는 중국산 제품</p>
-								<p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
 							</div>
 						</div>
 					</div>
@@ -144,8 +145,7 @@
 						<div class="container">
 							<div class="carousel-caption text-end">
 								<h1 style="text-shadow:5px 5px 5px #000;">환상적인 중국산 제품</h1>
-									<p style="text-shadow: -1px 0 #000, 0 1px 5px #000, 1px 0 5px #000, 0 -1px #000;">저렴하고 우수한 중국산</p>
-									<p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
+								<p style="text-shadow: -1px 0 #000, 0 1px 5px #000, 1px 0 5px #000, 0 -1px #000;">저렴하고 우수한 중국산</p>
 							</div>
 						</div>
 					</div>
@@ -160,6 +160,7 @@
 				</button>
 			</div>
 		</header>
+	
 	<!-- 게시판 버튼 -->
 	<div class="container g-3 row row-cols-2 mb-3" style="padding-right:0.3em; padding-left:0.3em; margin:auto;">
 		<form class="col-12">
