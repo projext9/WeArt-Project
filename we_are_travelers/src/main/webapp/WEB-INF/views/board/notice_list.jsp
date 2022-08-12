@@ -37,9 +37,11 @@
 				<button class="btn btn-outline-primary" type="submit" onclick="location.href='${pageContext.request.contextPath}/notice_list.do'"><i class="bi bi-search"></i></button>
 			</div>
 			<!-- 글 작성 -->
-			<div class="btn-group col-2 col-md-2 col-lg-1 col-xl-1 g-1" style="float:right; width:83px; margin-top:0.5em;">
-				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board_write.do?code=${scri.board_code}'" style="float:right;">글 작성</button>
-			</div>
+			<c:if test="${member_grade==1}">
+				<div class="btn-group col-2 col-md-2 col-lg-1 col-xl-1 g-1" style="float:right; width:83px; margin-top:0.5em;">
+					<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board_write.do?code=${scri.board_code}'" style="float:right;">글 작성</button>
+				</div>
+			</c:if>
 		</form>
 	</div>
 	<!-- 리스트 형식 -->
