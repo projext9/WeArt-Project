@@ -374,6 +374,10 @@ public class BoardController {
 		String ip = InetAddress.getLocalHost().getHostAddress();
         boardVo.setBoard_ip(ip);
         
+        String subject = boardVo.getBoard_subject();
+        String board_subject = HtmlUtils.htmlEscape(subject);
+        boardVo.setBoard_subject("<pre>"+board_subject+"</pre>");
+        
         // board_content 에서 HTML 태그 제거
         String board_remove_tag = boardVo.getBoard_content().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
         boardVo.setBoard_remove_tag(board_remove_tag);
