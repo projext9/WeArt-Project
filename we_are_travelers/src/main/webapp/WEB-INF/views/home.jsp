@@ -127,7 +127,7 @@
       <div class="col-lg">
          <a href="#"><img src="${pageContext.request.contextPath}/resources/images/culture1.png" width="100px" height="100px"></a>
         <h2>문화</h2>
-        <p><a class="btn btn-secondary" href="#">소개 &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/culture_page.do">소개 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
         
         

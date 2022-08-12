@@ -59,7 +59,7 @@ public class SnsLoginService {
 	
 	private final static String CLIENT_ID = "8wiX4XDwuFzLKIWwnbMY";	    
 	private final static String CLIENT_SECRET = "cjLEbW23Nb";	    
-	private final static String REDIRECT_URI = "http://localhost:8080/travelers/callBack";	    
+	private final static String REDIRECT_URI = "http://123.143.87.62:8080/travelers/callBack";	    
 	private final static String SESSION_STATE = "oauth_state";	
 	
 	/* 프로필 조회 API URL */	    
@@ -152,7 +152,7 @@ public class SnsLoginService {
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code"); 
 			sb.append("&client_id=8a2ee7f6ccee51f630888d04e48e6d7b"); //본인이 발급받은 key
-			sb.append("&redirect_uri=http://localhost:8080/travelers/kakaoLogin.do"); // 본인이 설정한 주소
+			sb.append("&redirect_uri=http://123.143.87.62:8080/travelers/kakaoLogin.do"); // 본인이 설정한 주소
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();

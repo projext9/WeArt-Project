@@ -512,8 +512,8 @@ public class ItemController {
 			OrderLastVo orderLastVo = itemService.getOrderLast(map); //주문서 호출
 			int amountDb = orderLastVo.getOrderLast_totalPrice();			
 			
-			String imp_key = "";
-			String imp_secret = "";
+			String imp_key = "6865143342864354";
+			String imp_secret = "7zYXIg2Zf0pQKk3jAKPBIRakr3gFXNDIcQ23qrUX2G3ZykeAy4tP3JfU8QPeHbOjRcY57aFGRhM1LaxL";
 			JSONObject json1 = new JSONObject();
 			json1.put("imp_key", imp_key);
 			json1.put("imp_secret", imp_secret);
