@@ -51,7 +51,7 @@
 			<c:forEach var="boardVo" items="${boardList}">
 				<tr style="text-align:center;">
 					<td>${boardVo.board_idx}</td>
-					<td><a href = "${pageContext.request.contextPath}/boardContent.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
+					<td><a href = "${pageContext.request.contextPath}/board_content.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
 					<td>${boardVo.board_content}</td>
 					<td>
 						<c:choose>
