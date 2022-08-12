@@ -33,7 +33,7 @@
 					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 					dataType: "json",
 					success: function(data) {
-						location.href = "${pageContext.request.contextPath}/inquiry_content.do?board_idx="+board_idx;
+						location.reload();
 					},
 					error: function(error) {
 						alert("실패");
@@ -66,7 +66,6 @@
 		
 		$("#reply_modify_submit").click(function() {
 			
-			let board_originidx = $("#board_idx").val();
 			let board_idx = $("#reply_board_idx").val();
 			let board_content = $("#after_reply_content").val();
 			let board_code = "${boardVo.board_code}";
@@ -79,7 +78,7 @@
 					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 					dataType: "json",
 					success: function(data) {
-						location.href = "${pageContext.request.contextPath}/inquiry_content.do?board_idx="+board_originidx;
+						location.reload();
 					},
 					error: function(error) {
 						alert("실패");
