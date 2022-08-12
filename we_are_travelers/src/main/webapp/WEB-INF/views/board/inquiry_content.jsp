@@ -98,6 +98,11 @@
 			$("#reply_write").css("display", "");
 		});
 		
+		// 제목에서 pre태그 제거
+		let content = "${boardVo.board_content}";
+		let board_content = subject.slice(5, -6);
+		$("#after_reply_content").val(board_content);
+		
 	});
 </script>
 </head>
@@ -175,7 +180,7 @@
 							<h5 class="mb-1 col-6 col-sm-7 col-md-8 col-lg-9">
 								<input type="hidden" id="reply_board_idx" value="${boardVo.board_idx}" style="display:none;">
 								<span id="before_reply_content">${boardVo.board_content}</span>
-								<input type="text" id="after_reply_content" class="form-control" value="${boardVo.board_content}" placeholder="내용을 입력하세요" required style="display:none;">
+								<input type="text" id="after_reply_content" class="form-control" placeholder="내용을 입력하세요" required style="display:none;">
 							</h5>
 							<div class="d-flex justify-content-start">
 								<small class="text-muted align-items-center">${boardVo.board_writer} / ${boardVo.board_date}</small>
