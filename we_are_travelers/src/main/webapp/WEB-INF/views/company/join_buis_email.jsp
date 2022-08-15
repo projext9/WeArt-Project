@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
-    <link href="${pageContext.request.contextPath}/resources/css/weart_join_form.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/weart_company_form.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	
@@ -15,7 +15,7 @@
 	var isRunning = false;
 	
 	$(function(){
-		
+		$("#mail_check_number_id").hide();
 		/*인증번호 버튼 클릭시 유효성 및 중복 검사 후 통과 시 인증번호 발송*/
 		$('.com_mail_check_button').on('click' , function(){
 			
@@ -44,7 +44,12 @@
 					if(data == "N"){
 						result = "사용 가능한 아이디입니다.";
 						$(".com_mail_input_check").html(result).css("color", "green");
-						
+						 $('.com_mail_input').css({
+								"outline":"none",
+							    "border-bottom":"2px solid transparent",
+							    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+							    "border-image-slice": "1"})
+					    
 						$.ajax({
 							
 					        type:"GET",
@@ -59,6 +64,7 @@
 						    		startTimer(leftSec, display);
 						    		
 					            }else{	
+								$("#mail_check_number_id").show();	
 					            startTimer(leftSec, display);	          
 					            alert("인증번호가 전송되었습니다.")
 					            code = data;
@@ -90,7 +96,12 @@
 		    if(inputCode == code){                            // 일치할 경우
 		        checkResult.html("인증번호가 일치합니다.");
 		        checkResult.css("color", "green");
-		        $(".next").attr('disabled' , false);	       
+		        $('.com_mail_check_input').css({
+					"outline":"none",
+				    "border-bottom":"2px solid transparent",
+				    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+				    "border-image-slice": "1"})
+		        $(".next_email").attr('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white').css('border-radius', '10px');	       
 		        $('.com_mail_check_button').attr('disabled' , true);
 		        $(".com_mail_input").attr('readonly' , true);
 		        $(".com_mail_check_input").attr('readonly' , true);
@@ -98,7 +109,7 @@
 		    } else {                                            // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
 		        checkResult.css("color", "red");
-		        $(".next").attr('disabled' , true);       
+		        $(".next_email").attr('disabled' , true);       
 		        $('.com_mail_check_button').attr('disabled' , false);
 		        $(".com_mail_input").attr('readonly' , false);
 		        $(".com_mail_check_input").attr('readonly' , false);
@@ -136,43 +147,55 @@
 	</script>
 </head>
 
-<body class="join_member">
-<div class="join_container">
-<main class="join_cont">
+<body>
+<h1 style="text-align:center;">We Are Travelers!
+<br>for Company
+</h1>
+<main class="join_cont_email">
 <form class="join_form" name="joinForm" action="/travelers/join_com_next3.do" method="post">
-    <h1>We Are Travelers!</h1>
-        <input type="hidden" name="b_no" value="${b_no}">
+
+	<input type="hidden" name="company_buis_number" value="${company_buis_number }">
+
     <br>
-    <div>
-    <progress value="20" max="100"></progress>
+    <div class="multi_box1">
+    <progress value="48" max="100"></progress>
+    <br>
+    <div class="guide_box">
+      <h2 class="join_guide1">위아트 계정으로
+      <br>      
+      사용할 이메일(아이디)를 입력해주세요</h2>
     </div>
-    <br>
-      <p class="join_guide_1">위아트 계정으로 사용할 이메일(아이디)를 입력해주세요 <p/>
-    <div class="mail_wrap">
-    <div class="mail_name">이메일</div>
+    </div>
+     <br>
+       
+      <!-- 메일 입력 및 인증번호 발송 -->
+     <div id="mail_input-area">
     <div class="mail_input_box">
-        <input class="com_mail_input" id="com_mail_input_id" name="email">     
-        <div class="mail_check_button_wrap">
-       <input type="button" class="com_mail_check_button" value="인증번호">
-   </div> 
+    <label>이메일
+        <input class="com_mail_input" id="com_mail_input_id" name="company_id">   
+   </label> 
+   <button type="button" class="com_mail_check_button">인증번호</button> 
     </div>
-    </div>
-    <font class="com_mail_input_check"></font>
-    <div class="mail_check_wrap">
-    <div class="mail_check_input_box">
-        <input type="hidden" class="com_mail_check_input">
+    <span class="com_mail_input_check"></span>
       </div>
-       <span class="com_mail_check_input_box_warn"></span>
-   <div class="time"></div>
-   <div class="clearfix">
-    </div>
-    </div>
-    <br>
-    <div>
-	<input type="submit" class="next" value="다음" disabled="disabled" >
+       <div class="next_wrap_email">
+	<button type="submit" class="next_email" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
 	</div>
-</form> 
+   </form> 
+    
+    <!-- 인증번호 입력 및 체크 -->
+    <div class="mail_check_number_wrap"> 
+    <label id="mail_check_number_id">인증번호
+        <input type="hidden" class="com_mail_check_input">   
+    </label>  
+    
+      <div class="time"></div>
+   </div>
+       <span class="com_mail_check_input_box_warn"></span>
+ 
+    
+   
+
 </main>
-</div>
 </body>
 </html>        

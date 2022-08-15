@@ -9,7 +9,7 @@
 		 company_phone, company_buis_address, company_ip, company_auth_origin_file, company_auth_system_file)
 		
 		 values(#{company_idx}, #{company_id}, #{company_pwd}, #{company_buis_number}, #{company_name}, #{company_ceo_name},
-		 #{company_phone}, #{company_buis_address}, #{company_ip}, #{company_auth_file}, #{company_auth_system_file})
+		 #{company_phone}, #{company_buis_address}, #{company_ip}, #{company_auth_origin_file}, #{company_auth_system_file})
 	</insert>
 	
 	<select id="loginCompany" parameterType="companyVo" resultType="companyVo">

@@ -6,19 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
-    <link href="${pageContext.request.contextPath}/resources/css/weart_join_form.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/weart_company_form.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">	
 	   
 		$(function() {
 			 
-			$(':input[type="submit"]').prop('disabled', true);
+			$('.next_info').prop('disabled', false);
 	
 			$('input[type="text"]').on('blur',function() {
 				
 	            if($('.company_name_input').val() && $('.ceo_input').val() && $('.company_address').val() && $('.company_detail_address').val() && $('.company_auth_name').val() != null){
-				  $(':input[type="submit"]').prop('disabled', false);	
+				  $('.next_info').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white');	
 			    }
 		    });
 		});
@@ -30,9 +30,9 @@
 			  $(".company_auth_name").val(fileName);
 		});
 		
-		$('.next').on('click' , function(){
+		$('.next_info').on('click' , function(){
 			   var company_name = $('.company_name_input').val();
-			   var ceo = $('.ceo_input').val();
+			   var company_ceo_name = $('.ceo_input').val();
 			   var company_address = $('.company_address').val();
 			   var company_deatailaddress = $('.company_detail_address').val();
 			   var company_auth = $('.company_auth_name').val();
@@ -40,7 +40,7 @@
 			if(company_name ==""){	
 				$('.company_name_input_check').html('기업명을 입력해주세요').css('color' , 'red' )
 				return false;
-		    }if(ceo ==""){	
+		    }if(company_ceo_name ==""){	
 		    	$('.ceo_input_check').html('대표자를 입력해주세요').css('color' , 'red' )
 		    	return false;
 		    }if(company_address ==""){	
@@ -108,47 +108,64 @@
 </head>
 
 <body class="join_member">
-<div class="join_container">
-<main class="join_cont">
-<form class="join_form" name="joinForm" action="/travelers/join_com_finish.do" method="post" enctype="multipart/form-data">
-    <input type="text" name="b_no" value="${b_no }">
-    <input type="text" name="email" value="${email }">
-    <input type="text" name="pwd" value="${pwd }">
+<h1>WeAreTravelers!
+<br>&nbsp;&nbsp;for Company
+</h1>
+<main class="join_cont_info">
+<form class="join_form_info" name="joinForm" action="/travelers/join_com_finish.do" method="post" enctype="multipart/form-data">
     
-    <h1>We Are Travelers!</h1>
-    <br>
-    <div>
+    <input type="hidden" name="company_buis_number" value="${company_buis_number }">
+    <input type="hidden" name="company_id" value="${company_id }">
+    <input type="hidden" name="company_pwd" value="${company_pwd }">
+    
+    <div class="multi_box3">
     <progress value="80" max="100"></progress>
-    </div>
     <br>
-      <p class="join_guide_1">위아트 기업 계정의 프로필을 입력해주세요 <p/>
+    <div class="guide_box">
+      <h2 class="join_guide1">위아트 계정의
+      <br>
+      기업정보를 입력해주세요</h2>
+    </div>
+    </div>
       
-    <div class="company_info_wrap">
-    <div class="company_name_wrap">기업명</div>
-    <div class="info_input_box">
+<div class="buis_info_area">
+    <div class="company_name_wrap">
+    기업명
         <input class="company_name_input" id="company_name_input_id" name="company_name" placeholder="사업자등록증명원 기업명">
-        <span class="company_name_input_check"></span>
-        
-    <div class="ceo_wrap">대표자</div>
-        <input class="ceo_input" id="ceo_input_id" name="ceo" placeholder="사업자등록증명원 대표자명">
-        <span class="ceo_input_check"></span>
-        
-        <div class="company_address_wrap">기업 주소</div>
-        <input type="text" class="company_address" id="company_address_id" onclick="sample6_execDaumPostcode()" placeholder="주소찾기" name="address"><br>
+     </div>
+     <span class="company_name_input_check"></span>   
+     
+    <div class="ceo_wrap">
+    <label>대표자
+        <input class="ceo_input" id="ceo_input_id" name="company_ceo_name" placeholder="사업자등록증명원 대표자명">
+     </label>   
+     </div>
+      <span class="ceo_input_check"></span>    
+                
+      <div class="address_box">
+       <label>기업 주소
+        <input type="text" class="company_address" id="company_address_id" onclick="sample6_execDaumPostcode()" placeholder="주소찾기" name="address">       
+       </label>
+       </div>
+       
+       <div class="detail_address_box">
         <input type="text" class="company_detail_address" id="company_detailAddress_id" placeholder="상세주소" name="detail_address">
         <span class="detail_address_check"></span>
-    </div>  
+     </div>
     
-    </div>
-     <div class=>기업인증</div>
-     <div class="filebox">
+      <div class="filebox">
+      <span>기업인증</span>
         <input class="company_auth_name" placeholder="사업자등록증명원을 첨부해주세요" readonly>
-        <label for="file">파일첨부</label> 
-        <input type="file" class="company_auth" id="file" name="company_auth_file" accept=".jpg,.pdf,.png,.jpeg,.svg">
         <span class="company_auth_check"></span> 
+        <label for="file">파일첨부</label>
+        <input type="file" class="company_auth" id="file" name="company_auth_origin_file" accept=".jpg,.pdf,.png,.jpeg">
+        
     </div>
-    	<input type="submit" class="next" value="다음">
-    </div>
+</div>
+     <div class="next_info_wrap">
+	     <button type="submit" class="next_info" disabled="disabled" style="font-size:1.3em">다음</button>
+	 </div>
+	      
 </form> 
 </main>
 </body>

@@ -4,33 +4,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>위아트 회원가입 완료</title>
+    <link href="${pageContext.request.contextPath}/resources/css/weart_join_finish.css" rel="stylesheet" />
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<h1>회원가입 완료!</h1>
-<div>idx:${idx }</div>
-<div>b_no:${b_no }</div>
-<div>email:${email }</div>
-<div>pwd:${company_pwd }</div>
-<div>company name:${company_name }</div>
-<div>address:${address }${detail_address }</div>
-<div>auth_name:${company_auth_file }</div>
-<div>auth_system_name:${company_auth_system_file }</div>
-<div>ip${company_ip }</div>
-<div style="text-align : center;">
-<form name="join_com_info" id="join_com_finish" method="post" action="/travelers/joinCompanyProcess.do">
-<input type="hidden" name="company_idx" value=${idx }>
-<input type="hidden" name="company_buis_number" value=${b_no }>
-<input type="hidden" name="company_id"value=${email }>
-<input type="hidden" name="company_pwd" value=${pwd }>
+<main class="join_cont_finish">
+<div>
+<progress value="100" max="100"></progress>
+</div>
+<h1 id="finish_title">회원가입 완료!</h1>
+<form name="join_form_info" id="join_com_finish" method="post" action="/travelers/joinCompanyProcess.do">
+<input type="hidden" name="company_idx" value=${company_idx }>
+<input type="hidden" name="company_buis_number" value=${company_buis_number }>
+<input type="hidden" name="company_id"value=${company_id }>
+<input type="hidden" name="company_pwd" value=${company_pwd }>
 <input type="hidden" name="company_name" value=${company_name }>
-<input type="hidden" name="company_ceo_name" value=${ceo }>
+<input type="hidden" name="company_ceo_name" value=${company_ceo_name }>
 <input type="hidden" name="company_buis_address" value=${address }${detail_address }>
-<input type="hidden" name="company_auth_file" value=${company_auth_file }>
+<input type="hidden" name="company_auth_origin_file" value=${company_auth_origin_file }>
 <input type="hidden" name="company_auth_system_file" value=${company_auth_system_file }>
 <input type="hidden" name="company_ip" value=${company_ip }>
-<input type="submit" name=""value="회원가입 완료">
-</form>
+<div class="next_finish_wrap">
+<button type="submit" class="next_finish" style="font-size:1.3em">로그인 페이지 이동</button>
 </div>
+</form>
+</main>
 </body>
 </html>

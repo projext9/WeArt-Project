@@ -39,7 +39,7 @@ $(document).ready(function() {
 		$('.next_terms_of').prop('disabled', true);
 	}  
 	});
-});
+  });
 });
 </script>
 </head>
@@ -80,7 +80,7 @@ $(document).ready(function() {
   </ul>
 </div>
 <div class="next_terms_of_wrap">
-<button class="next_terms_of" type="button" style="font-size:1.3em" onclick="location.href='/travelers/joinNext.do'">확인</button>
+<button class="next_terms_of" type="button" style="font-size:1.4em" onclick="location.href='/travelers/joinNext.do'">확인</button>
 </div>
 </main>
 </body>

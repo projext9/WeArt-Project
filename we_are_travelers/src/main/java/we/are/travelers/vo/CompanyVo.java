@@ -5,9 +5,9 @@ import java.util.Date;
 public class CompanyVo {
 	
 	private String company_idx;
+	private String company_buis_number;
 	private String company_id;
 	private String company_pwd;
-	private String company_buis_number;
 	private String company_name;
 	private String company_ceo_name;
 	private String company_phone;

@@ -1,16 +1,18 @@
 @charset "UTF-8";
 
 body{
+	  width:100%;
       height: 100vh;
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       flex-direction: column; /*수직 정렬*/
       align-items: center;
       justify-content: center;
       font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, '돋움', sans-serif;
       -webkit-font-smoothing: antialiased;
       margin :0;
-      padding :0;  
+      padding :0; 
+      overflow:auto; 
  }
 progress {
    -webkit-appearance: none;
@@ -55,17 +57,56 @@ input {
     border-image: linear-gradient(to right top, #5151E5, #72EDF2);
     border-image-slice: 1;        
 }
+input::placeholder{
+font-size:15px;	
+	}
+
+
+
+.join_cont_number {
+    width: 500px;
+    height : 400px;
+    padding: 35px 45px;
+    background-color: #fff;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-image: linear-gradient(to right, #72EDF2 0%, #5151E5 100%);
+    border-image-slice: 1;
+    font-size: 15px;
+    box-sizing: border-box;
+}
 .multi_box1{
 	position: relative;
     top: -10px;
 }
 .join_guide1, .join_guide2{
- display: block;
+    display: block;
     font-weight: normal;
     font-size: 20px;
     line-height: 24px;
     color: #191919;
-    }
+ }
+ #buis_number_input{
+     width:98%;
+ }
+ .next_wrap_number {
+	position: relative;
+    bottom: -50px;
+    width: 400px;
+} 
+.next_number {
+	border-radius:10px;
+	width : 100%;
+	height : 60px;	
+}
+    
+    
+    
+    
+    
+    
+    
+    
 .join_cont_email {
     width: 500px;
     height : 480px;
@@ -78,28 +119,28 @@ input {
     font-size: 15px;
     box-sizing: border-box;
 }
-.mail_check_button:hover {
+.com_mail_check_button:hover {
 	background : white;
 	}
-.mail_input_box {
+.com_mail_input_box {
 	display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
-.mail_input_check{
+.com_mail_input_check{
 	position: relative;
-    left: 70px;
+    left: 55px;
     top: 5px;
 }
-.mail_check_button {
+.com_mail_check_button {
 	border: solid 1px #ddd;
     border-radius: 5px;
     position: relative;
     left: 10px;
     height: 40px;
 }
-.mail_input_check_wrap {
+.com_mail_input_check_wrap {
     position: relative;
     left: -5px;
     height: 70px;
@@ -108,6 +149,8 @@ input {
 	display: flex;
     flex-direction: row;
     align-items: center;
+    position: relative;
+    left: -15px;
 }
 .time{
 	position: relative;
@@ -115,14 +158,14 @@ input {
     height: 25px;
     color:red;
 }
-.mail_check_input_box_warn{
+.com_mail_check_input_box_warn{
 	position: relative;
-    left: 60px;
+    left: 53px;
     bottom: -5px;
 }
 .next_wrap_email {
 	position: relative;
-    bottom: -50px;
+    bottom: -150px;
     width: 400px;
 } 
 .next_email {
@@ -130,7 +173,6 @@ input {
 	width : 100%;
 	height : 60px;	
 }
-
 
 
 
@@ -193,9 +235,6 @@ position: relative;
 	height : 60px;	
 }
 
-
-
-
 .join_form_info {	
   	width: 100%;
     height: 100%;
@@ -207,7 +246,7 @@ position: relative;
 }
 .join_cont_info {
     width: 500px;
-    height : 500px;
+    height : 580px;
     padding: 35px 45px;
     background-color: #fff;
     border: 3px solid transparent;
@@ -217,9 +256,14 @@ position: relative;
     font-size: 15px;
     box-sizing: border-box;
 } 
-.info_input_box{
+.buis_info_area{
+	line-height : 15px;
 	position: relative;
     top: -42px;
+}
+.multi_box3{
+	position: relative;
+    top: -50px;
 }
 .name_wrap{
 position: relative;
@@ -242,25 +286,34 @@ position: relative;
 .birth_input_check{
 	text-indent: 69px;
 }
-.next_wrap_info {
-	width: 100%;
-    position: absolute;
-    bottom: 30px;
-    left: 3px;
+.next_info_wrap {
+    position: relative;
+    bottom: 10px;
+    width: 400px;
 }
-
 .next_info {
-	border-radius: 10px;
-    border: 1px solid gray;
-    width: 100%;
-    height: 60px;
+	border-radius:10px;
+	border:none;
+	width : 100%;
+	height : 60px;	
 }
-.multi_box{
+.company_address, .company_detail_address{
+	font-size:13px;	
+}
+.address_box{
 	position: relative;
-    top: -50px;
+    left: -21px;
+}
+.detail_address_box {
+	position: relative;
+    left: 48px;
 }
 
-
+.filebox{
+	white-space:nowrap;
+    position: relative;
+    left: -18px;
+}
 
 .filebox input[type="file"] {
     position: absolute;

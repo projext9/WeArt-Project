@@ -229,36 +229,40 @@ public class AllMemberController {
     ///////////////////////////////////////기업회원 회원가입 로직
     @RequestMapping(value="/join_com_next.do", method = RequestMethod.GET)
 	public String join_com_next() {
+    	
 		return "company/join_buis_number";
 	}
 	@RequestMapping(value="/join_com_next2.do", method = RequestMethod.POST)
-	public String join_com_next2(@RequestParam("b_no")String b_no , Model model) {
+	public String join_com_next2(Model model , @RequestParam("company_buis_number") String company_buis_number){
 		
-		model.addAttribute("b_no", b_no);
+		model.addAttribute("company_buis_number", company_buis_number);
 		
 		return "company/join_buis_email";
 	}
 	@RequestMapping(value="/join_com_next3.do", method = RequestMethod.POST)
-		public String join_com_next3(@RequestParam("b_no")String b_no , @RequestParam("email")String email , Model model)  {		
+		public String join_com_next3(Model model , @RequestParam("company_buis_number") String company_buis_number
+				, @RequestParam("company_id") String company_id)  {		
 		
-		model.addAttribute("b_no", b_no);
-		model.addAttribute("email", email);
+		model.addAttribute("company_buis_number", company_buis_number);
+		model.addAttribute("company_id", company_id);
 		
 		return "company/join_buis_pwd";
 	}
 	@RequestMapping(value="/join_com_next4.do", method = RequestMethod.POST)
-	public String join_com_next4(@RequestParam("b_no")String b_no , @RequestParam("email")String email , @RequestParam("pwd")String pwd ,Model model)  {		
+	public String join_com_next4(Model model , @RequestParam("company_buis_number")String company_buis_number , 
+			@RequestParam("company_id")String company_id , @RequestParam("company_pwd")String company_pwd)  {		
 	
-	model.addAttribute("b_no", b_no);
-	model.addAttribute("email", email);
-	model.addAttribute("pwd", pwd);
+	model.addAttribute("company_buis_number", company_buis_number);
+	model.addAttribute("company_id", company_id);
+	model.addAttribute("company_pwd", company_pwd);
 	
 	return "company/join_buis_info";
 }
 	@RequestMapping(value="/join_com_finish.do", method = RequestMethod.POST)
-	public String joinCNext4(@RequestParam("b_no")String b_no , @RequestParam("email")String email , @RequestParam("pwd")String pwd, @RequestParam("company_name") String company_name,
-			@RequestParam("ceo") String ceo , @RequestParam("address") String address , @RequestParam("detail_address") String detail_address , 
-			@RequestParam("company_auth_file") MultipartFile company_auth_file , Model model , HttpServletRequest request)  {
+	public String joinCNext4(@RequestParam("company_buis_number")String company_buis_number , @RequestParam("company_id")String company_id , @RequestParam("company_pwd")String company_pwd, 
+			@RequestParam("company_name") String company_name, @RequestParam("company_ceo_name") String company_ceo_name , 
+			@RequestParam("address") String address , @RequestParam("detail_address") String detail_address , 
+			@RequestParam("company_auth_origin_file") MultipartFile company_auth_origin_file , Model model , HttpServletRequest request)  {
 		
 		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		String ip = req.getHeader("X-FORWARDED-FOR");
@@ -288,22 +292,22 @@ public class AllMemberController {
             }
 		}
 		
-		model.addAttribute("idx", idx);
-		model.addAttribute("b_no", b_no);
-		model.addAttribute("email", email);
-		model.addAttribute("pwd", pwd);
+		model.addAttribute("company_idx", idx);
+		model.addAttribute("company_buis_number", company_buis_number);
+		model.addAttribute("company_id", company_id);
+		model.addAttribute("company_pwd", company_pwd);
 		model.addAttribute("company_name", company_name );
-		model.addAttribute("ceo", ceo);
+		model.addAttribute("company_ceo_name", company_ceo_name);
 		model.addAttribute("address" , add );
 		model.addAttribute("company_ip" , ip);
 		
 		
 		//시스템 파일명은 원본 파일명에서 파일명과 확장자를 분리한 다음 파일명에 시스템시간을 추가한 후 다시 확장자를 붙이는 식으로 생성
-		String fileRealName = company_auth_file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+		String fileRealName = company_auth_origin_file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		System.out.println("filenaem"+fileRealName);
-		long size = company_auth_file.getSize(); //파일 사이즈
+		long size = company_auth_origin_file.getSize(); //파일 사이즈
 		
-		model.addAttribute("company_auth_file" , fileRealName );
+		model.addAttribute("company_auth_origin_file" , fileRealName );
 		
 		System.out.println("파일명 : "  + fileRealName);
 		System.out.println("용량크기(byte) : " + size);
@@ -340,16 +344,18 @@ public class AllMemberController {
 		
 		File saveFile = new File(upload_dir+"\\"+uniqueName + fileExtension); 
 		File saveFile1 = new File(uniqueName + fileExtension); 
+		
 		model.addAttribute("company_auth_system_file" , saveFile1 );
+		
 		try {
-			company_auth_file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+			company_auth_origin_file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return "company/join_buis_finish";
+		return "company/join_buis_finish"; 
 	}
 	
 	@RequestMapping(value="/joinCompanyProcess.do" , method = RequestMethod.POST)

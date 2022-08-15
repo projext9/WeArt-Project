@@ -15,7 +15,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- CSS -->
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" />
-		<link href="${pageContext.request.contextPath}/resources/css/weart_common.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath}/resources/css/weart_nav.css" rel="stylesheet" />
 		<!-- JS -->
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 		<script>
@@ -46,11 +46,12 @@
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-			    <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do"><img src="${pageContext.request.contextPath}/resources/assets/weartlogo.png"></a>
-				<div class="collapse navbar-collapse" id="navbarCollapse">
+			    <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do"><h2 class="weart_logo">WeArt</h2></a>
+			    <input type="text" class="total_scri" style="width:400px; height:30px;">
+			    <div class="collapse navbar-collapse" id="navbarCollapse">
 	      			<ul class="navbar-nav me-auto mb-2 mb-md-0">
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&nbsp 문화 &nbsp</a>
+							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&nbsp;문화 &nbsp;</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_culture">공지사항</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/culture_page.do">소개</a></li>
@@ -138,7 +139,6 @@
                   
 					<c:otherwise>
 					<button class="btn btn-outline-success" id="btn_nav"  type="button" onClick="fn_login()">로그인</button>&nbsp;
-					<button class="btn btn-outline-success" id="btn_nav"  type="button"onClick="fn_join()">회원가입</button>
 				     </c:otherwise>					
 		</c:choose>
 				</div>

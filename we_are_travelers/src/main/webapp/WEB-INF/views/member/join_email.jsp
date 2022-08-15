@@ -163,24 +163,28 @@
       사용할 이메일(아이디)를 입력해주세요</h2>
     </div>
     </div>
-    <br>  
+      <br> 
+        
      <!-- 메일 입력 및 인증번호 발송 -->
      <div id="mail_input-area">
     <div class="mail_input_box">
     <label>이메일
         <input class="mail_input" id="mail_input_id" name="email">
     </label>
+    
    <div class="mail_check_button_wrap">   
       <button type="button" class="mail_check_button">인증번호</button> 
    </div>
    </div>  
    <span class="mail_input_check"></span>  
    <br><br>
+   
    <!-- 인증번호 입력 및 체크 -->
     <div class="mail_check_number_wrap">
     <label id="mail_check_number_id">인증번호
         <input type="hidden" class="mail_check_input" id="mail_check_input_id">
     </label>   
+    
     <div class="time"></div>
     </div>  
     <span class="mail_check_input_box_warn"></span>

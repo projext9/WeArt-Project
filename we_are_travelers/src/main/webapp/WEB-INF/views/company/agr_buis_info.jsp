@@ -5,13 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>위아트 개인정보 제3자제공</title>
+<link href="${pageContext.request.contextPath}/resources/css/terms_of_buis.css" rel="stylesheet" />
 </head>
 <body>
-
-<div class="dispose_of_persnolinfo">
+<main class="container">
+<div class="personal_info">
 1. 개인정보의 처리 목적
 
-<(주)위아트>(‘www.wearetravelers.com’이하 ‘위아트’) 은 다음의 목적을 위하여 개인정보를 처리하고 있으며, 다음의 목적 이외의 용도로는 이용하지 않습니다.
+(주)위아트>(‘www.wearetravelers.com’이하 ‘위아트’) 은 다음의 목적을 위하여 개인정보를 처리하고 있으며, 다음의 목적 이외의 용도로는 이용하지 않습니다.
 – 고객 가입의사 확인, 고객에 대한 서비스 제공에 따른 본인 식별.인증, 회원자격 유지.관리, 물품 또는 서비스 공급에 따른 금액 결제, 물품 또는 서비스의 공급.배송 등
 
 2. 개인정보의 처리 및 보유 기간
@@ -136,6 +137,6 @@
 
 ▶ 경찰청 사이버안전국 : 182 (http://cyberbureau.police.go.kr)
 </div>
-
+</main>
 </body>
 </html>

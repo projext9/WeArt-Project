@@ -21,12 +21,12 @@
 		  if(pwd == "" ) {
 			   $('.pwd_input_check1').html('비밀번호를 입력해주세요.');
 			   $('.pwd_input_check1').css('color','red');
-			   $('.pwd_1_input').val("").trigger("focus");
+			   $('.pwd1_input').val("").trigger("focus");
 		  }else if(regPwd.test(pwd)){
 			   $('.pwd_input_check1').html('사용가능한 비밀번호 입니다.');
 			   $('.pwd_input_check1').css('color','green');
 			   $('.pwd_input_check1').attr('readonly' , true);	
-			   $('.pwd_1_input').css({
+			   $('.pwd1_input').css({
 				"outline":"none",
 			    "border-bottom":"2px solid transparent",
 			    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
@@ -35,7 +35,7 @@
 			   $('.pwd_input_check1').html('비밀번호(8-16)자리 각 1개 이상의'+ '<br>'
 					   +'대/소문자, 숫자, 특수 문자(@$!%)를 포함해주세요');
 			   $('.pwd_input_check1').css('color','red');
-			   $('.pwd_1_input').css({
+			   $('.pwd1_input').css({
 					"outline":"none",
 				    "border-bottom":"",
 				    "border-image":"",
@@ -57,7 +57,7 @@
 	 			   $('.pwd_input_check2').html('비밀번호가 일치합니다.');
 	 			   $('.pwd_input_check2').css('color','green');
 	 			   $('.pwd_input_check2').attr('readonly' , true);
-	 			  $('.pwd_2_input').css({
+	 			  $('.pwd2_input').css({
 	 					"outline":"none",
 	 				    "border-bottom":"2px solid transparent",
 	 				    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
@@ -66,7 +66,7 @@
  		       }else{
 	  		       $('.pwd_input_check2').html("비밀번호가 일치하지 않습니다.");
 	  		       $('.pwd_input_check2').attr('color','red');
-	  		       $('.pwd_2_input').css({
+	  		       $('.pwd2_input').css({
 						"outline":"none",
 					    "border-bottom":"",
 					    "border-image":"",
@@ -84,7 +84,12 @@
  			 if(pwd == "" ) {
  				   $('.pwd_input_check1').html('비밀번호를 입력해주세요.');
  				   $('.pwd_input_check1').css('color','red');
- 				   $(".next_pwd").attr('disabled' , true).css('background' , '').css('color' , '').css('border', '');
+ 				   $(".next_pwd").attr('disabled' , true).css('background' ,'').css('color' ,'').css('border','');
+ 				   $('.pwd1_input').css({
+ 						"outline":"none",
+ 					    "border-bottom":"",
+ 					    "border-image":"",
+ 					    "border-image-slice": ""})
  				   $('.pwd1_input').val("").trigger("focus");
  				   
 				 
@@ -93,7 +98,12 @@
  			  if(pwd2 == "" ) {
  				   $('.pwd_input_check2').html('비밀번호 확인을 입력해주세요.');
  				   $('.pwd_input_check2').css('color','red');
- 				  $('.pwd2_input').val("").trigger("focus");
+ 				   $('.pwd2_input').val("").trigger("focus");
+ 				   $('.pwd2_input').css({
+						"outline":"none",
+					    "border-bottom":"",
+					    "border-image":"",
+					    "border-image-slice": ""})
  				 $(".next_pwd").attr('disabled' , true);
 				 return false;
 			}
@@ -119,7 +129,7 @@
       
     <!-- 비밀번호 입력-->
     <div class="pwd_input_area">
-    <div class="pwd_input_box">
+    <div class="pwd_input_wrap">
     <label>비밀번호
         <input type="password" class="pwd1_input" id="pwd_1" name="pwd" value="">
     </label>
