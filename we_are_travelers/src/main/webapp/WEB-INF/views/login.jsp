@@ -66,7 +66,7 @@
     
  <div class="social_login">
      <div class="social_logoK">
-     <a href="https://kauth.kakao.com/oauth/authorize?client_id=8a2ee7f6ccee51f630888d04e48e6d7b&redirect_uri=http://localhost:8080${pageContext.request.contextPath}/kakaoLogin.do&response_type=code">
+     <a href="https://kauth.kakao.com/oauth/authorize?client_id=8a2ee7f6ccee51f630888d04e48e6d7b&redirect_uri=http://localhost:8090${pageContext.request.contextPath}/kakaoLogin.do&response_type=code">
     <img src="${pageContext.request.contextPath}/resources/images/kakao_login.png" width="200" height="50" alt="카카오 로그인">
     </a>
     </div>
@@ -79,10 +79,10 @@
 
  <div class="join_wrap">
    <div class="join_wrap_box">
-    <button class="join_member" onclick="location.href='${pageContext.request.contextPath}/joinMember.do'" type="button">일반회원가입</button>
+    <a class="join_member" href="${pageContext.request.contextPath}/joinMember.do">일반회원가입</a>
    </div>
-     <div class="join_company">
-     <button class="join_company"onclick="location.href='${pageContext.request.contextPath}/joinCompany.do'" type="button">기업회원가입</button>
+     <div class="join_company1">
+     <a class="join_company" href="${pageContext.request.contextPath}/joinCompany.do">기업회원가입</a>
    </div>
  </div>
     <p class="mt-5 mb-6 text-muted" id="footer_font">&copy; Copyright 2022. Team We-Art. all rights reserved.</p>

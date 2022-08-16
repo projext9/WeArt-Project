@@ -3,28 +3,33 @@
 * Copyright 2022 Team We-Art
 * Licensed under MIT (https://github.com/projext9/WeArt-Project)
 */
+a{
+	text-decoration:none;
+	color:black;
+}
 
-.kakao_btn{ /*카카오 로그아웃 버튼*/
-    background: yellow;
-    font-family: 'Malgun Gothic';
-    font-size: 13px;
-    font-weight: bold;
-    border-radius: 7px;
-    border: 1px solid yellow;
-    height: 40px;
-    color: #505050;
+.kakao_btn{
+	font-size:1.08em;
+	border:none;
+	background:white;
+    color: #e2c213;
+}
+#kakao_logout{
+	position: relative;
+    top: -80px;
+    left: 330px;
+    font-size: 0.8rem;	
 }
 .naver_btn{/*네이버 로그아웃버튼 */
-    background:#5EC75E;
-    font-family: 'Malgun Gothic';
-    font-size: 13px;
-    font-weight: bold;
-    border-radius: 7px;
-    border: 1px solid #5EC75E;
-    height: 40px;
-    color: white;
+    font-size:1.08em;
+	border:none;
+	background:white;
+    color: #38B81F;
 }
 .weart_logo{/*로고 설정*/
+    position: relative;
+    top: 30px;
+    left: -100px;
     margin: 0;
     padding: 0;
     font-size: 30px;
@@ -59,7 +64,9 @@
     color: transparent;
     -webkit-background-clip: text;
 }
-
+.dropdown{
+	list-style:none;
+}
 .dropdown-item { /* 드롭다운 아이템 배경색 */
 	background-color: #87CDEE;
 	color:#FFFFFF;
@@ -75,30 +82,85 @@ ul.dropdown-menu a:hover, ul.dropdown-menu a:focus { /* 마우스 및 키보드 
 	 color: transparent;
     -webkit-background-clip: text;
 }
-
+.nav-link{
+	color:black;
+}
 .navbar-dark .navbar-toggler { /* 축소메뉴 배경 테두리색 */
 	border-color: #ffffff;
 }
 .dropdown-toggle::after {
     display:none;
 }
+
+.navbar-expand-md .navbar-collapse {
+    justify-content: space-around;
+    position: relative;
+    
+}
+
 #navbar_field{
 	background: #ffffff;
 }
 
 #btn_nav {
-	font-size:1.1em;
+	background:white;
+	font-size:1em;
 	border: none;
 	color:black;
 	}
-#btn_nav:hover {
-	background: linear-gradient(to right top, #5151E5, #72EDF2);
-	border-image: linear-gradient(to right, #81FFEF 0%, #72EDF2 100%);
-    border-image-slice: 1;
-	color: transparent;
-    -webkit-background-clip: text;
-    border-radius: 0.5px;
+
+#login_btn{
+	position: relative;
+    right: -450px;
+}
+#member_nick, #my_page{
+	font-size: 0.8rem;
+    position: relative;
+    top: -80px;
+    left: 240px;
+}
+#member_nick::after{
+	content:"|";
+	float:right;
+	color:#ccc;
+	padding:0 10px;	
+}
+
+#logout_btn{
+	position: relative;
+    top: -80px;
+    left: 245px;
+    font-size: 0.8rem;
+}
+
+#logout_btn::after{
+	content:"|";
+	float:left;
+	color:#ccc;
+	padding:0 5px;	
+}
+#nav_list{
+	position:absolute;
+}
+#after > li{
+	list-style:none;
+	float:left;
+	}
+#after{
+	position: relative;
+    left: 180px;
 }	
+#login_nav{
+	position: relative;
+    left: 450px;
+    border: none;
+    background: white;
+}
+#login_nav:hover{
+	background: linear-gradient(to right top, #5151E5, #72EDF2);
+    color: transparent;
+    -webkit-background-clip: text;
+}
 @media only screen and (min-width: 768px) {
 	.dropdown:hover .dropdown-menu {
 	    display: block;

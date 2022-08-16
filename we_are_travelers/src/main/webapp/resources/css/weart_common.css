@@ -4,7 +4,7 @@
 * Licensed under MIT (https://github.com/projext9/WeArt-Project)
 */
 body {
-  width:100%;
+  width:1280px;
   height:100%;
   margin :0;
   padding:0;
@@ -34,11 +34,14 @@ footer li { /* footer */
 .copyright { /* footer */
 	border-top: 1px solid #ffffff;
 }
-
+.py-5{
+	position: relative;
+    left: 300px;
+}
 
 .carousel {
   height:550px;
-  width: 1320px;
+  width: 1280px;
   margin-bottom: 4rem;
 }
 /* Since positioning the image, we need to help out the caption */
@@ -48,13 +51,14 @@ footer li { /* footer */
   z-index: 10;
 }
 .carousel-indicators {
-	width: 100%;
+	width: 1280px;
     left: 100px;
 }
 /* Declare heights because of positioning of img element */
 .carousel-item {
+  width: 1280px;
   height: 300px;
-  width: 1200px;
+  
 }
 .carousel-item > img {
   position: absolute;
@@ -127,4 +131,7 @@ footer li { /* footer */
     margin-top: 7rem;
   }
 }
-
+.navbar > .container-fluid{
+	flex-direction: column;
+	line-height:35px;
+}
