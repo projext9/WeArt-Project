@@ -65,6 +65,9 @@ public class AdminService {
 	public int board_total(SearchCriteria scri) {
 		return adminDao.getBoardTotal(scri);
 	}
+	public int updateBoardDelyn(BoardVo boardVo) {
+		return adminDao.updateBoardDelyn(boardVo);
+	}
 	
 	//댓글관리
 	public List<BoardVo> getReplyList(SearchCriteria scri) {

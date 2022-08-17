@@ -7,6 +7,36 @@
 	<meta charset="UTF-8">
 	<title>게시글 리스트</title>
 	<%@include file="../nav/navMain.jsp" %>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$(function(){
+			
+			$("#updateBoardDelyn").on('click',function(){
+				
+				var board_idx = $('#board_idx').val();
+				var board_delyn = $('.updateDelyn').val();
+				
+				 $.ajax({
+					type:"get",
+					url:"${pageContext.request.contextPath}/updateBoardDelyn.do",
+					data: {
+						"board_idx":board_idx,
+						"board_delyn":board_delyn
+					},
+					success:function(data){
+						if(data == "N"){
+							alert("상태 수정 실패");
+						}else{
+							location.href="${pageContext.request.contextPath}/replyList.do";
+							alert("상태 수정 성공");
+							$(in_input).attr("disabled", true);
+						}
+					},
+					error: function(error){alert("에러");}
+				});
+			});
+		});
+	</script>
 </head>
 <body style = "margin : 5% 10% 0 10%;">
 <h3>게시글 리스트</h3>
@@ -72,22 +102,20 @@
 				<tr>
 					<th>게시글 상태</th>
 					<td>
-						<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/admin/admin_memberList.do" method = "post">
-					        <table style = "text-align:right">
-					            <tr>
-					                <td>
-					                    <select name = "searchType">
-					                   		<option value = "member_id">활성</option>
-					                        <option value = "member_nickname">정지</option>
-					                        <option value = "member_name">삭제</option>
-					                    </select>
-					                </td>
-					                <td>
-					                    <input type = "submit" name = "submit" value = "확인" onclick = "">
-					                </td>
-					            </tr>
-					        </table>
-					    </form>
+				        <table style = "text-align:right">
+				            <tr>
+				                <td><input type="hidden" value="${boardVo.board_idx}" name="board_idx" id="board_idx">
+				                    <select name = "updateDelyn" class="updateDelyn">
+				                   		<option value = "N">활성</option>
+				                        <option value = "S">정지</option>
+				                        <option value = "Y">삭제</option>
+				                    </select>
+				                </td>
+				                <td>
+				                    <input type = "submit" name = "submit" value = "확인" id="updateBoardDelyn">
+				                </td>
+				            </tr>
+				        </table>
 					</td>
 				</tr>
 			</c:forEach>

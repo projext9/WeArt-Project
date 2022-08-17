@@ -77,7 +77,9 @@
 				</tr>
 				<tr>
 					<th>사업자</th>
-					<td>${companyVo.company_auth_origin_file}</td>
+					<td>
+						<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1">보기</button>
+					</td>
 				</tr>
 				<tr>
 					<th>휴대폰 인증</th>
@@ -131,5 +133,25 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">사업자인증</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="info-body">
+							<table class="product-details-table">
+								<tr>
+									<td>${companyVo.company_auth_system_file}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+		    	</div>
+		  	</div>
+		</div>
 </body>
 </html>

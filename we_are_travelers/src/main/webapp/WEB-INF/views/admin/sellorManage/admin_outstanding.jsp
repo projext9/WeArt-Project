@@ -34,7 +34,7 @@
 		<thead>
 			<tr style="text-align:center;">
 				<th>기업번호</th><th>기업명</th><th>id</th><th>기업인증</th>
-				<th>전화번호</th><th>대표명</th>
+				<th>전화번호</th><th>대표명</th><th>상태</th>
 			</tr>
 		</thead>
 		
@@ -52,6 +52,7 @@
 					</td>
 					<td>${companyVo.company_phone}</td>
 					<td>${companyVo.company_ceo_name}</td>
+					<td>${companyVo.company_delyn}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

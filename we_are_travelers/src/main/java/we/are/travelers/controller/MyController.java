@@ -127,8 +127,6 @@ public class MyController {
 		orderVo.setOrderLast_num(orderLast_num);
 		List<OrderVo> paymentContent = myService.getPaymentContent(orderVo);
 		model.addAttribute("paymentContent", paymentContent);
-		System.out.println(member_idx);
-		System.out.println(orderLast_num);
 		return "myPage/paymentContent";
 	}
 	

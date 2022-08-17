@@ -123,6 +123,10 @@ public class AdminDao {
 		return sqlSession.update(MAPPER+".updateCompanyDelyn", companyVo);
 	}
 
+	public int updateBoardDelyn(BoardVo boardVo) {
+		return sqlSession.update(MAPPER+".updateBoardDelyn", boardVo);
+	}
+
 	/*
 	public List<ItemtVo> getItemList() {
 		return sqlSession.selectList(MAPPER+".getItemList");

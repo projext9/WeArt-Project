@@ -10,22 +10,20 @@
 </head>
 <body>
 	<main style = "margin : 10% 10% 10% 10%;">
-		
-		<!-- 수정해야함 -->
 		<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/payment.do" method = "get">
 	        <table>
 	            <tr>
 	                <td>
-	                    <select name = "searchType">
+	                    <select class="form-select" name = "searchType">
 	                     	<option value = "num">주문번호</option>
 	                   		<option value = "date">주문일자</option>
 	                    </select>
 	                </td>
 	                <td>
-	                    <input type = "text" name = "keyword" size = "30">
+	                    <input type = "text" class="form-control" name = "keyword" size = "30">
 	                </td>
 	                <td>
-	                    <input type = "submit" name = "submit" value = "검색">
+	                    <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
 	                </td>
 	            </tr>
 	        </table>

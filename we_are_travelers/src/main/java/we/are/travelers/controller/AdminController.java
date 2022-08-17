@@ -97,6 +97,14 @@ public class AdminController {
 		return "admin/memberManage/admin_memberContent";
 	}
 	
+	@GetMapping("/updateBoardDelyn.do")
+	public String updateBoardDelyn(Model model, BoardVo boardVo) {
+		
+		int updateBoardDelyn = adminService.updateBoardDelyn(boardVo);
+		model.addAttribute("updateBoardDelyn", updateBoardDelyn);
+		return "admin/boardManage/admin_boardContent";
+	}
+	
 	@GetMapping("/sellorList.do")
 	public String getSellorList(Model model,
 			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="subject") String searchType,

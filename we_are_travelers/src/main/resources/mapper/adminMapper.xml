@@ -152,6 +152,11 @@
 			where company_idx = #{company_idx}
 	</update>
 	
+	<update id="updateBoardDelyn" parameterType="boardVo">
+		update weart_board set board_delyn = #{board_delyn}
+			where board_idx = #{board_idx}
+	</update>
+	
 	<delete id="deleteMemberInfo" parameterType="list">
 		delete from weart_member where member_idx in
 		<foreach collection="list" item="member_idx" open="(" separator="," close=")" >
