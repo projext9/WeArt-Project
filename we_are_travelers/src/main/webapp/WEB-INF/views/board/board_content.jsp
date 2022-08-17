@@ -24,7 +24,7 @@
 		
 		if("${member_idx}"!="") {
 
-			$("#before_like").click(function() {
+			$("*>#before_like${boardVo.board_idx}").click(function() {
 				
 				let board_idx = "${boardVo.board_idx}";
 				let board_like = "1";
@@ -34,8 +34,8 @@
 					method:"POST",
 					data: {"board_idx":board_idx, "board_like":board_like},
 					success: function(data) {
-						$("*>#before_like").css("display", "none");
-						$("*>#after_like").css("display", "");
+						$("*>#before_like${boardVo.board_idx}").css("display", "none");
+						$("*>#after_like${boardVo.board_idx}").css("display", "");
 						like_count();
 					},
 					error: function(error) {
@@ -44,7 +44,7 @@
 				});
 			});
 			
-			$("#after_like").click(function() {
+			$("*>#after_like${boardVo.board_idx}").click(function() {
 				
 				let board_idx = "${boardVo.board_idx}";
 				let board_like = "0";
@@ -54,8 +54,8 @@
 					method:"POST",
 					data: {"board_idx":board_idx, "board_like":board_like},
 					success: function(data) {
-						$("*>#after_like").css("display", "none");
-						$("*>#before_like").css("display", "");
+						$("*>#after_like${boardVo.board_idx}").css("display", "none");
+						$("*>#before_like${boardVo.board_idx}").css("display", "");
 						like_count();
 					},
 					error: function(error) {
@@ -135,7 +135,6 @@
 					alert("실패");
 				}
 			});
-			
 		});
 	});
 </script>
@@ -156,26 +155,33 @@
 				<hr>
 				<div style="text-align:center; font-size:300%;">
 					<c:if test="${likeyn!=1}">
-						<span id="before_like"><i class="bi bi-heart"></i></span>
-						<span id="after_like" style="display:none;"><i class="bi bi-heart-fill"></i></span>
+						<span id="before_like${boardVo.board_idx}"><i class="bi bi-heart"></i></span>
+						<span id="after_like${boardVo.board_idx}" style="display:none;"><i class="bi bi-heart-fill"></i></span>
 						<span id="like_count${boardVo.board_idx}"></span>
 					</c:if>
 					<c:if test="${likeyn==1}">
-						<span id="before_like" style="display:none;"><i class="bi bi-heart"></i></span>
-						<span id="after_like"><i class="bi bi-heart-fill"></i></span>
+						<span id="before_like${boardVo.board_idx}" style="display:none;"><i class="bi bi-heart"></i></span>
+						<span id="after_like${boardVo.board_idx}"><i class="bi bi-heart-fill"></i></span>
 						<span id="like_count${boardVo.board_idx}"></span>
 					</c:if>
 				</div>
 				<hr>
 				<div class="d-flex justify-content-between align-items-center">
 					<small class="text-muted">
-						<span id="before_like"><i class="bi bi-heart"></i></span>
-						<span id="after_like" style="display:none;"><i class="bi bi-heart-fill"></i></span>
-						<span id="like_count${boardVo.board_idx}"></span>
+						<c:if test="${likeyn!=1}">
+							<span id="before_like${boardVo.board_idx}"><i class="bi bi-heart"></i></span>
+							<span id="after_like${boardVo.board_idx}" style="display:none;"><i class="bi bi-heart-fill"></i></span>
+							<span id="like_count${boardVo.board_idx}"></span>
+						</c:if>
+						<c:if test="${likeyn==1}">
+							<span id="before_like${boardVo.board_idx}" style="display:none;"><i class="bi bi-heart"></i></span>
+							<span id="after_like${boardVo.board_idx}"><i class="bi bi-heart-fill"></i></span>
+							<span id="like_count${boardVo.board_idx}"></span>
+						</c:if>
 						<i class="bi bi-chat-dots" name="board_reply" id="board_reply"></i> ${boardVo.board_reply}
 						<i class="bi bi-eye" name="board_hits" id="board_hits"></i> ${boardVo.board_hits}
 					</small>
-					<c:if test="${boardVo.board_writer==member_nick}">
+					<c:if test="${boardVo.member_idx==member_idx}">
 						<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 							<small class="text-muted">
 								<button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/board_modify.do?board_idx=${boardVo.board_idx}'">수정</button>
@@ -261,8 +267,7 @@
 								${boardVo.board_content}
 							</h5>
 							<div class="d-flex justify-content-start">
-								<small class="text-muted align-items-center">${boardVo.board_writer} / ${boardVo.board_date}</small>
-								<c:if test="${boardVo.board_writer==member_nick}">
+								<c:if test="${boardVo.member_idx==member_idx}">
 									<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 										<button type="button" data-bs-toggle="modal" data-bs-target="#delete_reply${boardVo.board_idx}" class="btn btn-outline-danger btn-sm">삭제</button>
 										<!-- Modal -->

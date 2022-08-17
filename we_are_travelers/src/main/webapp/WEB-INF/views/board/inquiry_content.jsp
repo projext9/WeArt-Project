@@ -183,7 +183,7 @@
 							</h5>
 							<div class="d-flex justify-content-start">
 								<small class="text-muted align-items-center">${boardVo.board_writer} / ${boardVo.board_date}</small>
-								<c:if test="${boardVo.board_writer==member_nick}">
+								<c:if test="${boardVo.member_idx==member_idx}">
 									<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 										<button type="button" class="btn btn-outline-primary btn-sm" id="reply_modify" style="margin-right:0.3em;">수정</button>
 										<button type="button" data-bs-toggle="modal" data-bs-target="#delete_reply${boardVo.board_idx}" class="btn btn-outline-danger btn-sm" id="reply_delete">삭제</button>
