@@ -12,10 +12,10 @@
 	<script type="text/javascript">	
 	   
 		$(function() {
-			 
-			$('.next_info').prop('disabled', false);
-	
+			 					
 			$('input[type="text"]').on('blur',function() {
+				
+				$('.next_info').prop('disabled', false);
 				
 	            if($('.company_name_input').val() && $('.ceo_input').val() && $('.company_address').val() && $('.company_detail_address').val() && $('.company_auth_name').val() != null){
 				  $('.next_info').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white');	
@@ -24,15 +24,17 @@
 		});
 	    
 	    $(function() {
-	    	 
+	    		 
 		$("#file").on('change',function(){
 			  var fileName = $("#file").val();
 			  $(".company_auth_name").val(fileName);
 		});
 		
 		$('.next_info').on('click' , function(){
+				
 			   var company_name = $('.company_name_input').val();
 			   var company_ceo_name = $('.ceo_input').val();
+			   var company_phone=$('.phone_input').val();
 			   var company_address = $('.company_address').val();
 			   var company_deatailaddress = $('.company_detail_address').val();
 			   var company_auth = $('.company_auth_name').val();
@@ -43,8 +45,11 @@
 		    }if(company_ceo_name ==""){	
 		    	$('.ceo_input_check').html('대표자를 입력해주세요').css('color' , 'red' )
 		    	return false;
+		    }if(company_phone ==""){	
+		    	$('.phone_input_check').html('연락처를 입력해주세요').css('color' , 'red' )
+		    	return false;
 		    }if(company_address ==""){	
-				$('.detail_address_check').html('상세주소를 입력해주세요').css('color' , 'red' )
+				$('.address_check').html('주소를 입력해주세요').css('color' , 'red' )
 				return false;	
 			}if(company_deatailaddress ==""){	
 				$('.detail_address_check').html('상세주소를 입력해주세요').css('color' , 'red' )
@@ -129,8 +134,7 @@
     </div>
       
 <div class="buis_info_area">
-    <div class="company_name_wrap">
-    기업명
+    <div class="company_name_wrap">기업명
         <input class="company_name_input" id="company_name_input_id" name="company_name" placeholder="사업자등록증명원 기업명">
      </div>
      <span class="company_name_input_check"></span>   
@@ -140,11 +144,19 @@
         <input class="ceo_input" id="ceo_input_id" name="company_ceo_name" placeholder="사업자등록증명원 대표자명">
      </label>   
      </div>
-      <span class="ceo_input_check"></span>    
+      <span class="ceo_input_check"></span>
+      
+      <div class="phone_wrap">
+    <label>연락처
+        <input class="phone_input" id="phone_input_id" name="company_phone" placeholder="기업 연락처" maxlength="11">
+     </label>   
+     </div>
+      <span class="phone_input_check"></span>     
                 
       <div class="address_box">
        <label>기업 주소
         <input type="text" class="company_address" id="company_address_id" onclick="sample6_execDaumPostcode()" placeholder="주소찾기" name="address">       
+       <span class="address_check"></span>
        </label>
        </div>
        

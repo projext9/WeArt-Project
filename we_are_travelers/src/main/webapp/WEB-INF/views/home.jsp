@@ -9,7 +9,6 @@
         <meta name="description" content="We-Art Project" />
         <meta name="author" content="team We-Art" />
         <title>We-Art Project</title>
-		<link href="${pageContext.request.contextPath}/resources/css/weart_nav.css" rel="stylesheet" />
 		<link href="${pageContext.request.contextPath}/resources/css/weart_common.css" rel="stylesheet" />
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"rel="stylesheet" />
 		<script src="https://kit.fontawesome.com/6c060c00b1.js"crossorigin="anonymous"></script>
@@ -18,7 +17,7 @@
 	<body>
 		<!-- Header-->
         <header id="header" sytle="width:1320px;">
-
+<section>
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -107,7 +106,7 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
+</section>
 		</header>
 
   <!-- Marketing messaging and featurettes

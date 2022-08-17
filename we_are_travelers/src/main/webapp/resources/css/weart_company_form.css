@@ -95,6 +95,7 @@ font-size:15px;
     width: 400px;
 } 
 .next_number {
+	border: 1px solid white;
 	border-radius:10px;
 	width : 100%;
 	height : 60px;	
@@ -165,6 +166,7 @@ font-size:15px;
     width: 400px;
 } 
 .next_email {
+	border: 1px solid white;
 	border-radius:10px;
 	width : 100%;
 	height : 60px;	
@@ -226,10 +228,15 @@ position: relative;
 }
 .next_pwd {
 	border-radius:10px;
-	border:none;
+	border: 1px solid white;
 	width : 100%;
 	height : 60px;	
 }
+
+
+
+
+
 
 .join_form_info {	
   	width: 100%;
@@ -261,27 +268,6 @@ position: relative;
 	position: relative;
     top: -50px;
 }
-.name_wrap{
-position: relative;
-    left: 13px;
- }
-.birth_wrap{
-	position: relative;
-    left: -17px;
-}
-.nick_wrap{
-	position: relative;
-    left: -2px;
-	}
-.name_input_check{
-	text-indent: 40px;
-}
-.nick_input_check  {
-	text-indent: 53px;
-}
-.birth_input_check{
-	text-indent: 69px;
-}
 .next_info_wrap {
     position: relative;
     bottom: 10px;
@@ -289,7 +275,7 @@ position: relative;
 }
 .next_info {
 	border-radius:10px;
-	border:none;
+	border: 1px solid white;
 	width : 100%;
 	height : 60px;	
 }
@@ -337,4 +323,8 @@ position: relative;
     cursor: pointer;
     height: 15px;
     margin-left: 10px;
+}
+.company_name_input_check .ceo_input_check .ceo_phone_check .address_check .detail_address_check .company_auth_check{
+position: relative;
+    right: -53px;
 }

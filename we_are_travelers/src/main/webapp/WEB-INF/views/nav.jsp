@@ -17,6 +17,7 @@
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" />
 		<link href="${pageContext.request.contextPath}/resources/css/weart_nav.css" rel="stylesheet" />
 		<!-- JS -->
+
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
 		<script>
 			function fn_login() { //로그인 페이지 이동

@@ -145,6 +145,7 @@
 						<div class="info-body">
 							<table class="product-details-table">
 								<tr>
+									<td><input type = "hidden" value = "${companyVo.company_idx}" name="company_idx" id="company_idx"></td>
 									<td>${companyVo.company_auth_system_file}</td>
 								</tr>
 							</table>

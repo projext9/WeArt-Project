@@ -23,9 +23,7 @@
 			   $('.pwd_input_check1').css('color','red');
 			   $('.pwd_1_input').val("").trigger("focus");
 		  }else if(regPwd.test(pwd)){
-			   $('.pwd_input_check1').html('사용가능한 비밀번호 입니다.');
-			   $('.pwd_input_check1').css('color','green');
-			   $('.pwd_input_check1').attr('readonly' , true);	
+			   $('.pwd_input_check1').html('사용가능한 비밀번호 입니다.').css('color','green');
 			   $('.pwd1_input').css({
 				"outline":"none",
 			    "border-bottom":"2px solid transparent",
@@ -54,9 +52,7 @@
 			   $('.pwd_input_check2').css('color','red');
 			   
  		  }else if(pwd2 == $('.pwd1_input').val()){
-	 			   $('.pwd_input_check2').html('비밀번호가 일치합니다.');
-	 			   $('.pwd_input_check2').css('color','green');
-	 			   $('.pwd_input_check2').attr('readonly' , true);
+	 			   $('.pwd_input_check2').html('비밀번호가 일치합니다.')css('color' , 'green').attr('readonly' , true);
 	 			   $('.pwd2_input').css({
 	 					"outline":"none",
 	 				    "border-bottom":"2px solid transparent",
@@ -64,8 +60,7 @@
 	 				    "border-image-slice": "1"})
 	 			   $(".next_pwd").attr('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white');
  		       }else{
-	  		       $('.pwd_input_check2').html("비밀번호가 일치하지 않습니다.");
-	  		       $('.pwd_input_check2').attr('color','red');
+	  		       $('.pwd_input_check2').html("비밀번호가 일치하지 않습니다.").css('color' ,'red');
 	  		       $('.pwd2_input').css({
 						"outline":"none",
 					    "border-bottom":"",

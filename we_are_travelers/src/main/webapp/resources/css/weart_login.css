@@ -3,6 +3,7 @@ body {
   height: 100%;
 }
 h1{
+	font-weight:600;
     margin: 0;
     padding: 0;
     top: -20px;
@@ -83,7 +84,7 @@ a{
 	display : flex;
 	text-align : center;
 	flex-wrap : wrap;
-	width : 440px;
+	width : 420px;
 	position : relative;
 	left : -50px;
 	top : -100px;
@@ -107,9 +108,9 @@ a{
 .join_wrap {
 	position:relative;
 	top:30px;
-	border-radius:10px;
+	border-radius:5px;
 	display: flex;
-    width: 420px;
+    width: 410px;
     height:50px;
     justify-content: space-around;
     background: linear-gradient(to right top, #5151E5, #72EDF2);
@@ -151,4 +152,9 @@ a{
         }
       }
 
+.text-muted{
+	position: relative;
+    top: 100px;
+
+	}
 

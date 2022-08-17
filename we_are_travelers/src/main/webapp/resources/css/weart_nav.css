@@ -26,7 +26,7 @@ a{
 	background:white;
     color: #38B81F;
 }
-.weart_logo{/*로고 설정*/
+.weart_logo{/*로고 설정*/   
     position: relative;
     top: 30px;
     left: -100px;
@@ -36,6 +36,7 @@ a{
     background: linear-gradient(to right top, #5151E5, #72EDF2);
     color: transparent;
     -webkit-background-clip: text;
+    font-weight:600;
 }
 .total_scri{
     text-decoration: none;
@@ -79,7 +80,7 @@ a{
 ul.dropdown-menu a:hover, ul.dropdown-menu a:focus { /* 마우스 및 키보드 탐색기의 배경 색상 */
 	background: #0DCAF0;
 	color:linear-gradient(to right top, #5151E5, #72EDF2);
-	 color: transparent;
+	color: transparent;
     -webkit-background-clip: text;
 }
 .nav-link{
