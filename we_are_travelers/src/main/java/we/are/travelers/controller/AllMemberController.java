@@ -325,6 +325,7 @@ public class AllMemberController {
 		System.out.println("생성된 고유문자열" + uniqueName);
 		System.out.println("확장자명" + fileExtension);
 		
+		
 		//지정된 경로에 파일 저장
 		//realPath와 system_fileName을 합쳐서 전체경로를 얻어야 함
 	

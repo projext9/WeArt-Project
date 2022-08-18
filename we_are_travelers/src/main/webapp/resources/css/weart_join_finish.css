@@ -61,9 +61,9 @@ progress::-webkit-progress-value {
 	
 }
 .next_finish_wrap {
-	    width: 100%;
+	width: 100%;
     position: relative;
-    bottom: -70px;
+    bottom: -40px;
     left: 40px;
 }
 .next_finish {

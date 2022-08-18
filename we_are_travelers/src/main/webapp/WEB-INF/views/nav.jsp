@@ -107,10 +107,9 @@
                             </ul>
 						</li>
 						</ul>
-					
+					<div>
 			<c:choose>			
-				   <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 0 && sessionScope.member_grade == 0}">
-				<div>
+				   <c:when test="${sessionScope.member_id != null && sessionScope.member_regCode == 0 && sessionScope.member_grade == 0}">			
 				<ul id="after">
 				    <li id="member_nick">${sessionScope.member_nick }님 환영합니다!</li>
                     <li id="my_page"><a href="${pageContext.request.contextPath}/info_check.do">마이페이지</a></li>             					
@@ -118,9 +117,10 @@
 			   </ul>	
 				   </c:when>
 						 
-                     <c:when test="${sessionScope.company_id != null && sessionScope.comapny_auth == 1}">
+                     <c:when test="${sessionScope.company_id != null && sessionScope.company_auth == 1}">
                     <ul id="after">
 					<li id="member_nick">${sessionScope.company_name }님 환영합니다!</li>
+					<li id="my_page"><a href="${pageContext.request.contextPath}/itemwrite.do">판매등록</a></li>
 					<li id="logout_btn"><button id="btn_nav"type="button"onClick="fn_logout()">로그아웃</button></li>
 					</ul>
 					 </c:when>

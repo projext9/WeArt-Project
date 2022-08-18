@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="We-Art Project" />
         <meta name="author" content="team We-Art" />
+        
         <title>We-Art Project</title>
 		<link href="${pageContext.request.contextPath}/resources/css/weart_common.css" rel="stylesheet" />
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"rel="stylesheet" />
@@ -97,14 +98,16 @@
         </div>
       </div>
     </div>
+    <div class="button_box">
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span style="background:white; border-radius:5px;"><img src="${pageContext.request.contextPath}/resources/images/left-arrow.png" width="50" height="50" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span style="background:white; border-radius:5px;"><img src="${pageContext.request.contextPath}/resources/images/right-arrow.png" width="50" height="50" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+    </div>
   </div>
 </section>
 		</header>

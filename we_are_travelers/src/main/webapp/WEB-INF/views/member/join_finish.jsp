@@ -13,7 +13,7 @@
 <div>
 <progress value="100" max="100"></progress>
 </div>
-<h1 id="finish_title">기업 회원가입 완료!</h1>
+<h1 id="finish_title">회원가입 완료!</h1>
 <form class="join_form_info" name="join_info" id="join_finish" method="post" action="/travelers/joinMemberProcess.do">
 <input type="hidden" name="member_idx"value=${idx }>
 <input type="hidden" name="member_id"value=${email }>

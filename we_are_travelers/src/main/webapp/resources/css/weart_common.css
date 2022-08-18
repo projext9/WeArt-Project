@@ -61,7 +61,7 @@ footer li { /* footer */
 /* Declare heights because of positioning of img element */
 .carousel-item {
   width: 1280px;
-  height: 300px;
+  height: 500px;
   
 }
 .carousel-item > img {
@@ -75,12 +75,9 @@ footer li { /* footer */
 .carousel-inner{
 	top:13px;
 	left:300px;
-	
 }
-/* MARKETING CONTENT
--------------------------------------------------- */
+ 
 
-/* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
   margin-bottom: 1.5rem;
   text-align: center;
@@ -101,12 +98,25 @@ footer li { /* footer */
   /* rtl:remove */
   letter-spacing: -.05rem;
 }
+
+
+.button_box{    /*슬라이드 버튼 위치조정*/
+	display: flex;
+    width: 100%;
+    top: -170px;
+    justify-content: space-between;
+    position: relative;
+}
 .carousel-control-prev {
+	justify-content:normal;
     left: 300px;
 }
 .carousel-control-next {
-    right: -300px;
+	justify-content:normal;
+    right: -442px;
 }
+
+
 
 @media (min-width: 40em) {
   /* Bump up size of carousel content */
@@ -121,8 +131,7 @@ footer li { /* footer */
   }
 }
 @media only screen and (max-width:768px) {
-    .carousel{
-    
+    .carousel{   
     width:780px;
   }
 }

@@ -13,7 +13,7 @@
 	  
 	$(function() {
 		
-	 $('.pwd1_input').on('blur' , function(){
+	 $('.pwd1_input').on('keyup' , function(){
 		 
 		 var pwd = $('.pwd1_input').val();		 
 		 var regPwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
@@ -45,7 +45,7 @@
 		  }
    });
 	 
- 		 $('.pwd2_input').on('blur' , function() {
+ 		 $('.pwd2_input').on('keyup' , function() {
  			 
  			 var pwd2 = $(".pwd2_input").val();
  			 
@@ -64,8 +64,7 @@
 	 				    "border-image-slice": "1"})
 	 			   $(".next_pwd").attr('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white');
  		       }else{
-	  		       $('.pwd_input_check2').html("비밀번호가 일치하지 않습니다.");
-	  		       $('.pwd_input_check2').attr('color','red');
+	  		       $('.pwd_input_check2').html("비밀번호가 일치하지 않습니다.").css('color' , 'red');
 	  		       $('.pwd2_input').css({
 						"outline":"none",
 					    "border-bottom":"",

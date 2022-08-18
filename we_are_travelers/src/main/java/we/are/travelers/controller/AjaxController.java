@@ -103,7 +103,7 @@ public class AjaxController {
 	        System.out.println("인증번호 " + checkNum);
 	        
 	        /* 이메일 보내기 */
-	        String setFrom = ".com";
+	        String setFrom = "seokcheol005@gmail.com";
 	        String toMail = email;
 	        String title = "WeArt 회원가입 인증 이메일 입니다.";
 	        String content = 

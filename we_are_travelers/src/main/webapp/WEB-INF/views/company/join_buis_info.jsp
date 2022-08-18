@@ -13,11 +13,11 @@
 	   
 		$(function() {
 			 					
-			$('input[type="text"]').on('blur',function() {
+			$('input[type="text"]').on('keyup',function() {
 				
 				$('.next_info').prop('disabled', false);
 				
-	            if($('.company_name_input').val() && $('.ceo_input').val() && $('.company_address').val() && $('.company_detail_address').val() && $('.company_auth_name').val() != null){
+	            if($('.company_name_input').val() && $('.ceo_input').val() && $('.company_address').val() && $('.company_detail_address').val() && $('.company_auth').val() != null){
 				  $('.next_info').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white');	
 			    }
 		    });

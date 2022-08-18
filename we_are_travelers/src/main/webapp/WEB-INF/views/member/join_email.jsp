@@ -15,7 +15,10 @@
 	var isRunning = false;
 	
 	$(function(){
+	
+		  /* 인증번호 숨기기 */
 		 $("#mail_check_number_id").hide();
+		 
 		/*인증번호 버튼 클릭시 유효성 및 중복 검사 후 통과 시 인증번호 발송*/
 		$('.mail_check_button').on('click' , function(){
 			
@@ -26,54 +29,51 @@
 			var member_id = $(".mail_input").val(); // 입력한 이메일     
 			
 			if(exptext.test(email)==false){
+				
 				//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우			
-
 				$(".mail_input_check").html("이메일형식이 올바르지 않습니다.").css("color" , "red");
 				
 	            $(".mail_input").focus();
 
 			     return false; // 함수 동작 중단
 			     
-	        }else{
-	        	
-			$.ajax({
-				type:'post',
-				url:"${pageContext.request.contextPath}/checkId.do",
-				data: {"member_id":member_id},
-				success: function(data){
-					if(data == 'N'){
-						result = "사용 가능한 아이디입니다.";
-						$(".mail_input_check").html(result).css("color", "green");
-						  $('.mail_input').css({
-								"outline":"none",
-							    "border-bottom":"2px solid transparent",
-							    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
-							    "border-image-slice": "1"})
-						$.ajax({
-							
-					        type:"GET",
-					        url:"mailCheck?email=" + email,
-					        success:function(data){
-					        	
-					        	
-					            $(".mail_check_input").attr('type' , 'text');
-					            if(isRunning){
-						    		clearInterval(timer);
-						    		display.html("");
-						    		startTimer(leftSec, display);
-						    		
-					            }else{	
-					            $("#mail_check_number_id").show();
-					            startTimer(leftSec, display);	          
-					            alert("인증번호가 전송되었습니다.")
-					            code = data;
-					            }
-					            
-					            console.log("data : " + data);
-					        }
-					        
-					});
-					}else{
+			
+			   }else{
+		        	
+					$.ajax({
+						type:'post',
+						url:"/travelers/checkId.do",
+						data: {"member_id":member_id},
+						success: function(data){
+							if(data == "N"){
+								result = "사용 가능한 아이디입니다.";
+								$(".mail_input_check").html(result).css("color", "green");
+								 $('.mail_input').css({
+										"outline":"none",
+									    "border-bottom":"2px solid transparent",
+									    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+									    "border-image-slice": "1"})
+							            $("#mail_check_number_id").show();
+							            $(".mail_check_input").attr('type' , 'text');
+							            startTimer(leftSec, display);
+							            
+								$.ajax({
+									
+							        type:"GET",
+							        url:"mailCheck?email=" + email,
+							        success:function(data){
+							        	
+							        if(data != null) 			          
+							            alert("인증번호가 전송되었습니다.")
+							            code = data;
+							        
+							            console.log("data : " + data);
+							        }    
+							          
+								});
+		
+				    }else{
+				    	
 						result = "이미 사용중인 아이디입니다.";
 						$(".mail_input_check").html(result).css("color", "red");
 						 $('.mail_input').css({
@@ -87,10 +87,11 @@
 					}
 				},
 				error: function(error){alert(error);}
+						 
 			});
 				 
 		/* 인증번호 비교 */
-		$(".mail_check_input").on('blur' , function(){
+		$(".mail_check_input").on('keyup' , function(){
 		    
 		    var inputCode = $(".mail_check_input").val();         // 입력코드값  
 		    var checkResult = $(".mail_check_input_box_warn");    // 비교 결과값     
@@ -110,7 +111,7 @@
 		        $(".mail_input").attr('readonly' , true);
 		        $(".mail_check_input").attr('readonly' , true);
 		        
-		    } else {                                              // 일치하지 않을 경우
+		     }else{                                              // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
 		        checkResult.css("color", "red");
 		        $(".next_email").attr('disabled' , true)
@@ -144,7 +145,7 @@
 		             isRunning = true;
 		}
 	}
-		});
+        });
 	});
 		
 	</script>
