@@ -6,7 +6,7 @@ var xhtml = $("html");
 var page = 1;
 var pagePos = 0;
 
-window.addEventListener("wheel", function(e){ //휠 리스너
+window.addEventListener("wheel", function(e) {
     e.preventDefault();
 },{passive : false});
 

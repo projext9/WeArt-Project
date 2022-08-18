@@ -64,7 +64,7 @@ li a:hover {
 #anchor_row { height: 16vh; }
 
 #anchor_btn { z-index: 1; position: relative; top: 85%; left: 50%; }
-#anchor_btn2 { z-index: 1; position: relative; top: 90%; left: 49%; }
+#anchor_btn2 { z-index: 1; position: relative; top: 90%; left: 47%; }
 
 .arrow_down span {
     display: block;
