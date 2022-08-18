@@ -49,11 +49,11 @@
 				</button>
 				<div class="logo_search_area">
 			    <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do"><h2 class="weart_logo">WeArt</h2></a>
-			    <input type="text" class="total_scri" style="width:400px; height:30px;">
+			    <input type="text" class="total_scri" >
 			    </div>
 			   
 			    <div class="collapse navbar-collapse" id="navbarCollapse">
-			     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    
 	      			<ul class="navbar-nav me-auto mb-2 mb-md-0" id="nav_list">
 	      			
 						<li class="nav-item dropdown">
@@ -154,5 +154,6 @@
 			    </c:otherwise>					
 		</c:choose>
 		   </div>
-			</div>
+		  </div>
+	    </div>
 		</nav>

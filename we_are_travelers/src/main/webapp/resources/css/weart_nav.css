@@ -1,13 +1,10 @@
 @charset "UTF-8";
-/*
-* Copyright 2022 Team We-Art
-* Licensed under MIT (https://github.com/projext9/WeArt-Project)
-*/
+/*링크전체설정*/
 a{
 	text-decoration:none;
 	color:black;
 }
-
+/*로그아웃 버튼 css*/
 .kakao_btn{
 	font-size:1.08em;
 	border:none;
@@ -26,6 +23,9 @@ a{
 	background:white;
     color: #38B81F;
 }
+.logo_search_area{
+	width:30%;
+}
 .weart_logo{/*로고 설정*/   
     position: relative;
     top: 30px;
@@ -38,12 +38,12 @@ a{
     -webkit-background-clip: text;
     font-weight:600;
 }
-.total_scri{
+.total_scri{	
     text-decoration: none;
     font-size: 1.4rem;
     font-weight: 400;
-    width: 100%;
-    height: 3.6rem;
+    width: 95%;
+    height:5%;
     padding-left: 1.6rem;
     margin-left: auto;
     border-radius: 0.4rem;
@@ -54,9 +54,12 @@ a{
     position: relative;
 }
 .total_scri:focus{
-	outline:none;
-	
+	outline:none;	
 	}
+	.navbar > .container-fluid{
+	flex-direction: column;
+	line-height:35px;
+}
 .navbar-dark .navbar-nav .nav-link { /* 메뉴 텍스트 색상 */
 	color:black;
 }
@@ -168,3 +171,4 @@ ul.dropdown-menu a:hover, ul.dropdown-menu a:focus { /* 마우스 및 키보드 
 	    margin-top: 0;
 	}
 }
+

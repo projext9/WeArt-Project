@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/*
+* Copyright 2022 Team We-Art
+* Licensed under MIT (https://github.com/projext9/WeArt-Project)
+*/
+
+footer { /* footer */
+	width: 100%;
+	height: 15%;
+	color: #ffffff;
+	background-color: #000000;
+	text-align: center;
+	padding-top: 30px;
+	padding-left: 0;
+	padding-right: 0;
+	position: relative;
+    transform: translateY(100%);
+	}
+footer ul { /* footer */
+	margin-bottom: 12px;
+}
+
+footer li { /* footer */
+	display: inline-block;
+}
+
+.copyright { /* footer */
+	border-top: 1px solid #ffffff;
+}
+#footer_link{
+	color:white;
+}
