@@ -1,0 +1,95 @@
+@charset "UTF-8";
+/*
+* Copyright 2022 Team We-Art
+* Licensed under MIT (https://github.com/projext9/WeArt-Project)
+*/
+html { overflow: hidden; }
+
+<!-- body { width : initial; } -->
+
+html, body {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.section {
+    width: 100%;
+    height: 100%;
+	position: relative;
+}
+
+.contentBox {
+	display: none;
+	width: 30%;
+	height: 60%;
+	position: fixed;
+	bottom: 15vh;
+	right: 0%;
+	z-index: 1;
+	margin: 0;
+	max-width: calc(100% - 4em);
+	padding: 1em;
+	background-color: #000;
+	background-color: rgba( 0, 0, 0, 0.7 );
+	box-sizing: inherit;
+	color:#fff;
+}
+
+.sideBar {
+	width: 11%;
+	height: 40%;
+	position: fixed;
+	top: 25vh;
+	left: 3%;
+	z-index: 1;
+	margin: 0;
+	max-width: calc(100% - 4em);
+	padding: 1em;
+	background-color: #00A5FF;
+	box-sizing: inherit;
+	border-radius: 20px;
+	color:#fff;
+}
+
+li a {
+	color: #fff;
+}
+
+li a:hover {
+	color: #000;
+}
+
+#anchor_row { height: 16vh; }
+
+#anchor_btn { z-index: 1; position: relative; top: 85%; left: 50%; }
+#anchor_btn2 { z-index: 1; position: relative; top: 90%; left: 49%; }
+
+.arrow_down span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-bottom: 5px solid #fff;
+    border-right: 5px solid #fff;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+.arrow_down span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+.arrow_down span:nth-child(3) {
+    animation-delay: -0.2s;
+}
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px,-20px);
+    }
+    50% { opacity: 1; }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(20px,20px);
+    }
+}
