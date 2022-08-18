@@ -118,11 +118,9 @@
 		});
 		
 		$("#modify_board_delyn").click(function() {
-			alert("test");
+			
 			let board_idx = ${boardVo.board_idx};
 			let board_delyn = $("input:radio[name=board_delyn]:checked").val();
-			alert(board_idx);
-			alert(board_delyn);
 			
 			$.ajax({
 				url:"${pageContext.request.contextPath}/modify_delyn.do",
@@ -263,9 +261,12 @@
 				<div class="d-flex align-items-center" style="display: inline-block !important;">
 					<div class="card">
 						<div class="card-body">
-							<h5 class="mb-0 col-6 col-sm-7 col-md-8 col-lg-9">
-								${boardVo.board_content}
-							</h5>
+							<div class="d-flex">
+								<h5 class="mb-0 col-6 col-sm-7 col-md-8 col-lg-9">${boardVo.board_content}</h5>
+								<div class="d-flex justify-content-end align-items-start" style="margin-left:auto;">
+									<small class="text-muted">${boardVo.board_writer} / <c:set var="date" value="${boardVo.board_date}"/>${fn:substring(date,2,11)}</small>
+								</div>
+							</div>
 							<div class="d-flex justify-content-start">
 								<c:if test="${boardVo.member_idx==member_idx}">
 									<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">

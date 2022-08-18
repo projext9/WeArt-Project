@@ -45,8 +45,9 @@
 				내용을 입력하세요
 			</div>
 		</div>
-		<div class="col-12">
-			<button class="btn btn-primary" type="submit" style="float:right;">확인</button>
+		<div class="col-12" style="text-align:right;">
+			<button class="btn btn-primary" type="submit">확인</button>
+			<button type="button" class="btn btn-danger" onclick="history.go(-1)">취소</button>
 		</div>
 		<input type="hidden" name="code" value="${boardVo.board_code}">
 	</form>
