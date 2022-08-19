@@ -16,7 +16,7 @@
         <table style = "text-align:right">
             <tr style="text-align:center;">
                 <td>
-                    <select name = "searchType">
+                	<select class="form-select form-select-sm" aria-label=".form-select-sm example" name="searchType">
                    		<option value = "num">주문번호</option>
                         <option value = "date">주문일</option>
                     </select>
@@ -25,7 +25,7 @@
                     <input type = "text" name = "keyword" size = "30">
                 </td>
                 <td>
-                    <input type = "submit" name = "submit" value = "검색">
+                    <button class="btn btn-outline-secondary" type="submit" name="submit">검색</button>
                 </td>
             </tr>
         </table>
@@ -44,30 +44,43 @@
 					<td><a href = "${pageContext.request.contextPath}/orderListContent.do?orderLast_num=${orderLastVo.orderLast_num}">${orderLastVo.orderLast_num}</a></td>
 					<td>${orderLastVo.orderLast_payDate}</td>
 					<td>${orderLastVo.orderLast_totalPrice}</td>
-					<td>${orderLastVo.orderLast_state2}</td>
+					<td>
+						<c:choose>
+							<c:when test="${orderLastVo.orderLast_state2 eq 'A'}">발송대기</c:when>
+							<c:when test="${orderLastVo.orderLast_state2 eq 'B'}">배송중</c:when>
+							<c:when test="${orderLastVo.orderLast_state2 eq 'C'}">배송완료</c:when>
+						</c:choose>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
-	<table style="margin-left:auto; margin-right:auto;">
-        <tr>
-            <td style="width:200px; text-align:right;">
-            	<c:if test = "${pm.prev == true}">
-            		<a href = "${pageContext.request.contextPath}/orderList.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
-            	</c:if>
-            </td>
-            <td>
-            	<c:forEach var = "i" begin = "${pm.startPage}" end = "${pm.endPage}" step = "1">
-            		<a href='${pageContext.request.contextPath}/orderList.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
-            	</c:forEach>
-            </td>
-            <td style="width:200px; text-align:left;">
-            	<c:if test="${pm.next&&pm.endPage > 0}">
-            		<a href = '${pageContext.request.contextPath}/orderList.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
-            	</c:if>
-            </td>
-        </tr>
-    </table>
+	<ul class="pagination justify-content-center">
+		<c:if test="${pm.prev==true}">
+			<li class="page-item">
+				<a class="page-link" href="${pageContext.request.contextPath}/orderList.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.startPage-1}">Previous</a>
+			</li>
+		</c:if>
+		<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1">
+			<c:choose>
+				<c:when test="${i==scri.page}">
+					<li class="page-item active">
+						<a class="page-link" href="${pageContext.request.contextPath}/orderList.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item">
+						<a class="page-link" href="${pageContext.request.contextPath}/orderList.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+					</li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	    <c:if test="${pm.next&&pm.endPage>0}">
+			<li class="page-item">
+				<a class="page-link" href="${pageContext.request.contextPath}/orderList.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.endPage+1}">Next</a>
+		    </li>
+		</c:if>
+	</ul>
 </body>
 </html>

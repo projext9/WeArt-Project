@@ -37,10 +37,16 @@
 	</select>
 	
 	<select id="getBoardList" resultType="boardVo">
-		select * from weart_board where board_idx=board_originidx and board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
+		select A.* from(
+			select * from weart_board where board_idx=board_originidx and board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
-		<!-- OR board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
+			order by board_date desc
+		)A limit ${(page-1)*12}, 12
+		<!-- select * from weart_board where board_idx=board_originidx and board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+		OR board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
 		 	<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if> -->
 	</select>
@@ -49,7 +55,10 @@
 		select count(*) as cnt from weart_board where board_idx=board_originidx and board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
-		<!-- or board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
+		<!-- select count(*) as cnt from weart_board where board_idx=board_originidx and board_code like 'b%' and board_code like CONCAT('%',#{board_code},'%')
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+		or board_code like 'n%' and board_code like CONCAT('%',#{board_code},'%')
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if> -->
 	</select>
@@ -59,25 +68,32 @@
 	</select>
 	
 	<select id="getReplyList" resultType="boardVo">
-		select * from weart_board where board_reply = 1
-			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+		select A.* from(
+			select * from weart_board where board_subject is null and board_code like 'b%'
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			order by board_date desc
+		)A limit ${(page-1)*12}, 12
+		<!-- select * from weart_board where board_subject is null
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if> -->
 	</select>
 	
 	<select id="getReplyTotal" resultType="int">
-		select count(*) as cnt from weart_board where board_reply = 1
-			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+		select count(*) as cnt from weart_board where board_subject is null and board_code like 'b%'
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+		<!-- select count(*) as cnt from weart_board where board_subject is null
+			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if> -->
 	</select>
 	
 	<select id="getOrderList" resultType="orderLastVo">
-		select * from weart_order_last
+		select * from weart_order_last where orderLast_state1 = 'C'
 			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='date'">and orderLast_payDate like CONCAT('%',#{keyword},'%')</if>
 	</select>
 	
 	<select id="getOrderTotal" resultType="int">
-		select count(*) as cnt from weart_order_last
+		select count(*) as cnt from weart_order_last where orderLast_state1 = 'C'
 			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='date'">and orderLast_payDate like CONCAT('%',#{keyword},'%')</if>
 	</select>
@@ -114,13 +130,13 @@
 	</select>
 	
 	<select id="getNoticeSellor" resultType="boardVo">
-		select * from weart_board where board_reply = 'N' and board_code like 's%'
+		select * from weart_board where board_code like 'c%'
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
 	</select>
 	
 	<select id="getNoticeSellorTotal" resultType="int">
-		select count(*) as cnt from weart_board where board_reply = 'N' and board_code like 's%'
+		select count(*) as cnt from weart_board where board_code like 'c%'
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
 	</select>
@@ -155,6 +171,16 @@
 	<update id="updateBoardDelyn" parameterType="boardVo">
 		update weart_board set board_delyn = #{board_delyn}
 			where board_idx = #{board_idx}
+	</update>
+	
+	<update id="updateOrderState2" parameterType="orderVo">
+		update weart_order set order_state2 = #{order_state2}
+			where order_idx = #{order_idx}
+	</update>
+	
+	<update id="updateCompanyAuth" parameterType="companyVo">
+		update weart_company set company_auth = #{company_auth}
+			where company_idx = #{company_idx}
 	</update>
 	
 	<delete id="deleteMemberInfo" parameterType="list">

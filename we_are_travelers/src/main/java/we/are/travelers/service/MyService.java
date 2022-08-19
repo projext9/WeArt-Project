@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import we.are.travelers.dao.MyDao;
+import we.are.travelers.vo.BoardVo;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OrderLastVo;
 import we.are.travelers.vo.OrderVo;
@@ -43,6 +44,19 @@ public class MyService {
 
 	public int payment_total(SearchCriteria scri) {
 		return myDao.payment_total(scri);
+	}
+
+	public List<BoardVo> getMyNotice(String member_idx) {
+		return myDao.getMyNotice(member_idx);
+	}
+	
+	/*
+	 * public List<BoardVo> inquiry_list(String member_idx) { return
+	 * myDao.inquiry_list(member_idx); }
+	 */
+
+	public List<BoardVo> getMyNoticeContent(String board_subject) {
+		return myDao.getMyNoticeContent(board_subject);
 	}
 
 }

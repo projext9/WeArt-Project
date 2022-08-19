@@ -9,13 +9,13 @@
 	</select>
 	
 	<select id="getPayment" resultType="orderLastVo">
-		select * from weart_order_last where member_idx = #{member_idx}
+		select * from weart_order_last where orderLast_state1 = 'C' and member_idx = #{member_idx}
 			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='date'">and orderLast_payDate like CONCAT('%',#{keyword},'%')</if>
 	</select>
 	
 	<select id="payment_total" resultType="int">
-		select count(*) as cnt from weart_order_last where member_idx = #{member_idx}
+		select count(*) as cnt from weart_order_last where orderLast_state1 = 'C' and member_idx = #{member_idx}
 			<if test="searchType=='num'">and orderLast_num like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='date'">and orderLast_payDate like CONCAT('%',#{keyword},'%')</if>
 	</select>
@@ -35,6 +35,18 @@
 	
 	<select id="info_checkPwd" resultType="int">
 		 select count(*) from weart_member where member_idx = #{member_idx} and member_pwd = #{member_pwd}
+	</select>
+	
+	<select id="getMyNotice" resultType="boardVo">
+		select * from weart_board where member_idx = #{member_idx}
+	</select>
+	
+	<!-- <select id="inquiry_list" resultType="boardVo">
+		select * from weart_board where member_idx = #{member_idx}
+	</select> -->
+	
+	<select id="getMyNoticeContent" resultType="boardVo">
+		select * from weart_board where board_idx = #{board_idx}
 	</select>
 	
 </mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
         <table style = "text-align:right">
             <tr>
                 <td>
-                    <select name = "searchType">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="searchType">
                    		<option value = "subject">제목</option>
                         <option value = "writer">작성자</option>
                     </select>
@@ -25,7 +26,7 @@
                     <input type = "text" name = "keyword" size = "30">
                 </td>
                 <td>
-                    <input type = "submit" name = "submit" value = "검색">
+                    <button class="btn btn-outline-secondary" type="submit" name="submit">검색</button>
                 </td>
             </tr>
         </table>
@@ -33,8 +34,7 @@
 	<table class = "table">
 		<thead>
 			<tr style="text-align:center;">
-				<th>번호</th><th>제목</th><th>내용</th><th>ip</th>
-				<th>작성일</th><th>작성자</th><th>삭제여부</th><th>상태</th>
+				<th>번호</th><th>제목</th><th>작성자 / 작성일</th><th>상태</th>
 			</tr>
 		</thead>
 		
@@ -43,9 +43,7 @@
 				<tr style="text-align:center;">
 					<td>${boardVo.board_idx}</td>
 					<td><a href = "${pageContext.request.contextPath}/inquiry_content.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
-					<td>${boardVo.board_content}</td><td>${boardVo.board_ip}</td>
-					<td>${boardVo.board_date}</td><td></td>
-					<td>${boardVo.board_delyn}</td>
+					<td>${boardVo.board_writer} / <c:set var="date" value="${boardVo.board_date}"/>${fn:substring(date,2,11)}</td>
 					<td>
 						<c:choose>
 							<c:when test="${boardVo.board_reply == 1}">처리완료</c:when>
@@ -56,25 +54,32 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	
-	<table style="margin-left:auto; margin-right:auto;">
-        <tr>
-            <td style="width:200px; text-align:right;">
-                <c:if test = "${pm.prev == true}">
-            		<a href = "${pageContext.request.contextPath}/noticeSellor.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
-            	</c:if>
-            </td>
-            <td>
-            	<c:forEach var = "i" begin = "${pm.startPage}" end = "${pm.endPage}" step = "1">
-            		<a href='${pageContext.request.contextPath}/noticeSellor.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
-            	</c:forEach>
-            </td>
-            <td style="width:200px; text-align:left;">
-            	<c:if test="${pm.next&&pm.endPage > 0}">
-            		<a href = '${pageContext.request.contextPath}/noticeSellor.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
-            	</c:if>
-            </td>
-        </tr>
-    </table>
+    
+    <ul class="pagination justify-content-center">
+		<c:if test="${pm.prev==true}">
+			<li class="page-item">
+				<a class="page-link" href="${pageContext.request.contextPath}/noticeSellor.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.startPage-1}">Previous</a>
+			</li>
+		</c:if>
+		<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1">
+			<c:choose>
+				<c:when test="${i==scri.page}">
+					<li class="page-item active">
+						<a class="page-link" href="${pageContext.request.contextPath}/noticeSellor.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item">
+						<a class="page-link" href="${pageContext.request.contextPath}/noticeSellor.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+					</li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	    <c:if test="${pm.next&&pm.endPage>0}">
+			<li class="page-item">
+				<a class="page-link" href="${pageContext.request.contextPath}/noticeSellor.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.endPage+1}">Next</a>
+		    </li>
+		</c:if>
+	</ul>
 </body>
 </html>

@@ -16,7 +16,7 @@
         <table>
             <tr>
                 <td>
-                    <select name = "searchType">
+                	<select class="form-select form-select-sm" aria-label=".form-select-sm example" name="searchType">
                    		<option value = "id">아이디</option>
                         <option value = "nickname">닉네임</option>
                     </select>
@@ -25,7 +25,7 @@
                     <input type = "text" name = "keyword" size = "30">
                 </td>
                 <td>
-                    <input type = "submit" name = "submit" value = "검색">
+                	<button class="btn btn-outline-secondary" type="submit" name="submit">검색</button>
                 </td>
             </tr>
         </table>
@@ -34,7 +34,7 @@
 	<table class = "table">
 		<thead>
 			<tr style = "text-align:center;">
-				<th>회원번호</th><th>sns</th><th>닉네임</th><th>id</th>
+				<th>sns</th><th>닉네임</th><th>id</th>
 				<th>전화번호</th><th>삭제여부</th>
 			</tr>
 		</thead>
@@ -42,7 +42,6 @@
 		<tbody class = "table-group-divider">
 			<c:forEach var="memberVo" items="${memberList}">
 				<tr style="text-align:center;">
-					<td>${memberVo.member_idx}</td>
 					<td>
 						<c:choose>
 							<c:when test="${memberVo.member_regCode == 0}">일반</c:when>
@@ -62,34 +61,31 @@
 		</tbody>
 	</table>
 	
-	<table style="margin-left:auto; margin-right:auto;">
-        <tr>
-            <td style="width:200px; text-align:right;">
-                <% 
-                //String keyword = pm.getScri().getKeyword();
-                //String searchType = pm.getScri().getSearchType();
-                //if(pm.isPrev() == true) out.println("<a href = '"+request.getContextPath()+"/board/boardList.do?page="+(pm.getStartPage()-1)+"&keyword="+keyword+"&searchType="+searchType+"'>◀</a>"); %>
-            	<c:if test = "${pm.prev == true}">
-            		<a href = "${pageContext.request.contextPath}/memberList.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
-            	</c:if>
-            </td>
-            <td>
-            	<c:forEach var = "i" begin = "${pm.startPage}" end = "${pm.endPage}" step = "1">
-            		<a href='${pageContext.request.contextPath}/memberList.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
-            	</c:forEach>
-                <%
-                   //for(int i = pm.getStartPage(); i <= pm.getEndPage(); i++){
-                   //    out.println("<a href='"+request.getContextPath()+"/board/boardList.do?page="+i+"&keyword="+keyword+"&searchType="+searchType+"'>"+i+"</a>");
-                   //}
-                %>
-            </td>
-            <td style="width:200px; text-align:left;">
-            	<c:if test="${pm.next&&pm.endPage > 0}">
-            		<a href = '${pageContext.request.contextPath}/memberList.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
-            	</c:if>
-                <%// if(pm.isNext() && pm.getEndPage() > 0) out.println("<a href = '"+request.getContextPath()+"/board/boardList.do?page="+(pm.getEndPage()+1)+"&keyword="+keyword+"&searchType="+searchType+"'>▶</a>"); %>
-            </td>
-        </tr>
-    </table>
+	<ul class="pagination justify-content-center">
+		<c:if test="${pm.prev==true}">
+			<li class="page-item">
+				<a class="page-link" href="${pageContext.request.contextPath}/memberList.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.startPage-1}">Previous</a>
+			</li>
+		</c:if>
+		<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1">
+			<c:choose>
+				<c:when test="${i==scri.page}">
+					<li class="page-item active">
+						<a class="page-link" href="${pageContext.request.contextPath}/memberList.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item">
+						<a class="page-link" href="${pageContext.request.contextPath}/memberList.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+					</li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	    <c:if test="${pm.next&&pm.endPage>0}">
+			<li class="page-item">
+				<a class="page-link" href="${pageContext.request.contextPath}/memberList.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.endPage+1}">Next</a>
+		    </li>
+		</c:if>
+	</ul>
 </body>
 </html>

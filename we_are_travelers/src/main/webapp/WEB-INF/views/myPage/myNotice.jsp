@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>1:1문의</title>
+	<%@include file = "./navMy3.jsp" %>
 </head>
 <body>
 	<main style = "margin : 10% 10% 10% 10%;">

@@ -149,8 +149,8 @@
 	</script>
 </head>
 <body>
-	<main style = "margin : 10% 10% 10% 10%;">
-		<h3 style = "text-align : center;">회원 정보</h3>
+	<main style = "margin : 0% 20% 10% 20%;">
+		<%@include file = "./navMy.jsp" %><br><br>
 		<table class = "table">
 			<tbody class = "table-group-divider">
 				<c:forEach var="memberVo" items="${info}">

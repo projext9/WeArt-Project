@@ -18,15 +18,15 @@
 	
 		$(function() {
 			$("*").css("text-decoration-line", "none");
-			$("a > *").css("color", "black");
 			$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
 		});
 	</script>
 </head>
-<main style="padding-top:60px;">
+<main style="margin : 0% 20% 10% 20%;">
 	<!-- 게시판 버튼 -->
-	<div class="container g-3 row row-cols-2 mb-3" style="padding-top:1em; padding-right:0.7em; padding-left:0.7em; margin:auto;">
-		<form class="col-12" style="padding:0; margin:auto;">
+	<%@ include file="../myPage/navMy3.jsp"%><br><br>
+	<div class="container g-3 row row-cols-2 mb-3" style="padding-top:1em; padding-right:0.7em; padding-left:0.7em;">
+		<form class="col-12">
 			<!-- 검색 -->
 			<div class="btn-group col-12 g-1">
 				<select class="form-select" id="code" name="code" style="max-width:120px;">
@@ -53,7 +53,7 @@
 	<!-- 리스트 형식 -->
 	<c:forEach var="boardVo" items="${inquiry_list}">
 		<div class="list-group col-12" style="margin:auto; max-width:1320px; padding:0 0.7em 0.7em 0.7em; border-radius:1em;">
-			<a href="${pageContext.request.contextPath}/inquiry_content.do?board_idx=${boardVo.board_idx}" class="list-group-item list-group-item-action">
+			<a href="${pageContext.request.contextPath}/inquiry_content.do?board_idx=${boardVo.board_idx}" class="list-group-item list-group-item-action" style="color:black;">
 				<table class="table table-borderless" style="margin-bottom:0;">
 					<tr>
 						<td>

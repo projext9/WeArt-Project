@@ -9,7 +9,8 @@
 	<title>결제내역</title>
 </head>
 <body>
-	<main style = "margin : 10% 10% 10% 10%;">
+	<main style = "margin : 0% 20% 10% 20%;">
+		<%@include file = "./navMy2.jsp" %><br><br>
 		<table class = "table">
 			<thead>
 				<tr style = "text-align:center;">
@@ -24,7 +25,13 @@
 						<td>${orderVo.order_itemName}</td>
 						<td>${orderVo.order_price}</td>
 						<td>${orderVo.order_totalPrice}</td>
-						<td>${orderVo.order_state1}</td>
+						<td>
+							<c:choose>
+								<c:when test="${orderVo.order_state2 eq 'A'}">발송대기</c:when>
+								<c:when test="${orderVo.order_state2 eq 'B'}">발송중</c:when>
+								<c:when test="${orderVo.order_state2 eq 'C'}">배송완료</c:when>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>

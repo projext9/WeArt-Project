@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import we.are.travelers.service.MyService;
+import we.are.travelers.vo.BoardVo;
 import we.are.travelers.vo.MemberVo;
 import we.are.travelers.vo.OrderLastVo;
 import we.are.travelers.vo.OrderVo;
@@ -130,6 +131,40 @@ public class MyController {
 		return "myPage/paymentContent";
 	}
 	
+	/*
+	 * @GetMapping("/inquiry_list.do") public String inquiry_list(Model model,
+	 * HttpServletRequest request) {
+	 * 
+	 * HttpSession session = request.getSession();
+	 * 
+	 * String member_idx = (String) session.getAttribute("member_idx");
+	 * 
+	 * List<BoardVo> inquiry_list = myService.inquiry_list(member_idx);
+	 * model.addAttribute("inquiry_list", inquiry_list); return
+	 * "board/inquiry_list"; }
+	 */
 	
+	@GetMapping("/myNotice.do")
+	public String myNotice(Model model, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+
+		String member_idx = (String) session.getAttribute("member_idx");
+
+		List<BoardVo> myNotice = myService.getMyNotice(member_idx);
+		model.addAttribute("myNotice", myNotice);
+		return "myPage/myNotice";
+	}
+
+	@GetMapping("/myNoticeContent.do")
+	public String myNoticeContent(Model model, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		String board_subject = (String) session.getAttribute("board_subject");
+
+		List<BoardVo> myNoticeContent = myService.getMyNoticeContent(board_subject);
+		model.addAttribute("myNoticeContent", myNoticeContent);
+		return "myPage/myNoticeContent";
+	}
 	
 }

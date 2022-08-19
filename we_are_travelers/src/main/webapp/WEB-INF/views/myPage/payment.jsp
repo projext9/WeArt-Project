@@ -9,8 +9,25 @@
 	<title>결제내역</title>
 </head>
 <body>
-	<main style = "margin : 10% 10% 10% 10%;">
+	<main style = "margin : 0% 20% 10% 20%;">
+		<%@include file = "./navMy2.jsp" %><br><br>
 		<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/payment.do" method = "get">
+			<div class="btn-group col-12 g-1">
+				<select class="form-select" name = "searchType" style="max-width:150px;">
+                 	<option value = "num">주문번호</option>
+               		<option value = "date">주문일자</option>
+                </select>
+				<input type="text" class="form-control" placeholder="${scri.keyword}" name="keyword">
+				<button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+			</div>
+			<!-- <div>
+				<select class="form-select" name = "searchType" style="max-width:100px;">
+                 	<option value = "num">주문번호</option>
+               		<option value = "date">주문일자</option>
+                </select>
+                <input type = "text" class="form-control" name = "keyword" size = "30">
+				<button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+			</div>
 	        <table>
 	            <tr>
 	                <td>
@@ -26,14 +43,14 @@
 	                    <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
 	                </td>
 	            </tr>
-	        </table>
+	        </table> -->
 	    </form>
 	    
 		<table class = "table">
 			<thead>
 				<tr style = "text-align:center;">
 					<th>번호</th><th>주문번호</th><th>주문일자</th><th>받는사람</th>
-					<th>전화번호</th><th>주문금액</th><th>배송지</th><th>주문상태</th>
+					<th>전화번호</th><th>주문금액</th><th>주문상태</th>
 				</tr>
 			</thead>
 			
@@ -46,8 +63,13 @@
 						<td>${orderLastVo.orderLast_name}</td>
 						<td>${orderLastVo.orderLast_phone}</td>
 						<td>${orderLastVo.orderLast_totalPrice}</td>
-						<td>${orderLastVo.orderLast_address}</td>
-						<td>${orderLastVo.orderLast_state2}</td>
+						<td>
+							<c:choose>
+								<c:when test="${orderLastVo.orderLast_state2 eq 'A'}">발송대기</c:when>
+								<c:when test="${orderLastVo.orderLast_state2 eq 'B'}">배송중</c:when>
+								<c:when test="${orderLastVo.orderLast_state2 eq 'C'}">배송완료</c:when>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -78,25 +100,6 @@
 			    </li>
 			</c:if>
 		</ul>
-		<table>
-	        <tr>
-	            <td style="width:200px; text-align:right;">
-	            	<c:if test = "${pm.prev == true}">
-	            		<a href = "${pageContext.request.contextPath}/payment.do?page=${pm.startPage-1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}">◀</a>
-	            	</c:if>
-	            </td>
-	            <td>
-	            	<c:forEach var = "i" begin = "${pm.startPage}" end = "${pm.endPage}" step = "1">
-	            		<a href='${pageContext.request.contextPath}/payment.do?page=${i}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>${i}</a>
-	            	</c:forEach>
-	            </td>
-	            <td style="width:200px; text-align:left;">
-	            	<c:if test="${pm.next&&pm.endPage > 0}">
-	            		<a href = '${pageContext.request.contextPath}/payment.do?page=${pm.endPage + 1}&keyword=${pm.scri.keyword}&searchType=${pm.scri.searchType}'>▶</a>
-	            	</c:if>
-	            </td>
-	        </tr>
-	    </table>
 	</main>
 	
 	<%@ include file="../footer.jsp"%>

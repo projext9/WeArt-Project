@@ -127,6 +127,14 @@ public class AdminDao {
 		return sqlSession.update(MAPPER+".updateBoardDelyn", boardVo);
 	}
 
+	public int updateOrderState2(OrderVo orderVo) {
+		return sqlSession.update(MAPPER+".updateOrderState2", orderVo);
+	}
+
+	public int updateCompanyAuth(CompanyVo companyVo) {
+		return sqlSession.update(MAPPER+".updateCompanyAuth", companyVo);
+	}
+
 	/*
 	public List<ItemtVo> getItemList() {
 		return sqlSession.selectList(MAPPER+".getItemList");

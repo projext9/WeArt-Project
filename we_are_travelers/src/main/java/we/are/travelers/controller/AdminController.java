@@ -97,6 +97,14 @@ public class AdminController {
 		return "admin/memberManage/admin_memberContent";
 	}
 	
+	@GetMapping("/updateOrderState2.do")
+	public String updateOrderState2(Model model, OrderVo orderVo) {
+		
+		int updateOrderState2 = adminService.updateOrderState2(orderVo);
+		model.addAttribute("updateOrderState2", updateOrderState2);
+		return "admin/memberManage/admin_orderListContent";
+	}
+	
 	@GetMapping("/updateBoardDelyn.do")
 	public String updateBoardDelyn(Model model, BoardVo boardVo) {
 		
@@ -141,6 +149,14 @@ public class AdminController {
 		
 		int updateCompanyDelyn = adminService.updateCompanyDelyn(companyVo);
 		model.addAttribute("updateCompanyDelyn", updateCompanyDelyn);
+		return "admin/sellorManage/admin_sellorContent";
+	}
+	
+	@GetMapping("/updateCompanyAuth.do")
+	public String updateCompanyAuth(Model model, CompanyVo companyVo) {
+		
+		int updateCompanyAuth = adminService.updateCompanyAuth(companyVo);
+		model.addAttribute("updateCompanyAuth", updateCompanyAuth);
 		return "admin/sellorManage/admin_sellorContent";
 	}
 	
@@ -200,7 +216,7 @@ public class AdminController {
 	
 	@GetMapping("/replyList.do")
 	public String getReplyList(Model model, 
-			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="subject") String searchType,
+			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="writer") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword) {
 		
 		SearchCriteria scri = new SearchCriteria();

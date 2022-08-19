@@ -36,6 +36,31 @@
 				});
 			});
 		});
+		
+		$(function(){
+			$("#updateCompanyAuth").on('click',function(){
+				
+				var company_idx = $('#company_idx').val();
+				var company_auth = $('.updateAuth').val();
+				$.ajax({
+					type:"get",
+					url:"${pageContext.request.contextPath}/updateCompanyAuth.do",
+					data:{
+						"company_idx":company_idx,
+						"company_auth":company_auth
+					},
+					success:function(data){
+						if(data == "N"){
+							alert("기업인증 수정취소");
+						}else{
+							location.href="${pageContext.request.contextPath}/sellorList.do";
+							alert("기업인증 수정성공");
+						}
+					},
+					error:function(error){alert("error");}
+				});
+			});
+		});
 	</script>
 </head>
 <body style = "margin : 5% 10% 0 10%;">
@@ -78,8 +103,9 @@
 				<tr>
 					<th>사업자</th>
 					<td>
-						<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1">보기</button>
-					</td>
+						<a href="${companyVo.company_auth_system_file}" download="companyAuth.jpg">보기</a>
+<!-- 					<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1">보기</button>
+ -->					</td>
 				</tr>
 				<tr>
 					<th>휴대폰 인증</th>
@@ -97,7 +123,13 @@
 							<c:when test ="${companyVo.company_auth == 1}">O</c:when>
 							<c:otherwise>X</c:otherwise>
 						</c:choose>
-					</td>
+						<input type = "hidden" value = "${companyVo.company_idx}" name="company_idx" id="company_idx">
+	                    <select name = "updateAuth" class="updateAuth">
+	                   		<option value = "1">O</option>
+	                        <option value = "0">X</option>
+	                    </select>
+	              		<button class="btn btn-outline-primary" type="submit" name="submit" id="updateCompanyAuth">확인</button>
+	                </td>
 				</tr>
 				<tr>
 					<th>상태</th>
@@ -116,15 +148,14 @@
 					<td>
 				        <table style = "text-align:right">
 				            <tr>
-				                <td><input type = "hidden" value = "${companyVo.company_idx}" name="company_idx" id="company_idx">
+				                <td>
+				                	<input type = "hidden" value = "${companyVo.company_idx}" name="company_idx" id="company_idx">
 				                    <select name = "updateDelyn" class="updateDelyn">
 				                   		<option value = "N">활성</option>
 				                        <option value = "S">정지</option>
 				                        <option value = "Y">삭제</option>
 				                    </select>
-				                </td>
-				                <td id ="updateCompanyDelyn">
-				                    <input type = "submit" name = "submit" value = "확인" id ="updateCompanyDelyn">
+				                	<button class="btn btn-outline-primary" type="submit" name="submit" id="updateCompanyDelyn">확인</button>
 				                </td>
 				            </tr>
 				        </table>
@@ -135,24 +166,18 @@
 	</table>
 	
 	<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">사업자인증</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">사업자인증</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="info-body">${companyVo.company_auth_system_file}
 					</div>
-					<div class="modal-body">
-						<div class="info-body">
-							<table class="product-details-table">
-								<tr>
-									<td><input type = "hidden" value = "${companyVo.company_idx}" name="company_idx" id="company_idx"></td>
-									<td>${companyVo.company_auth_system_file}</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-		    	</div>
-		  	</div>
-		</div>
+				</div>
+	    	</div>
+	  	</div>
+	</div>
 </body>
 </html>

@@ -54,6 +54,9 @@ public class AdminService {
 	public List<OrderVo> getOrderListContent(String orderLast_num) {
 		return adminDao.getOrderListContent(orderLast_num);
 	}
+	public int updateOrderState2(OrderVo orderVo) {
+		return adminDao.updateOrderState2(orderVo);
+	}
 	
 	//게시글관리
 	public List<BoardVo> getBoardList(SearchCriteria scri) {
@@ -90,6 +93,9 @@ public class AdminService {
 	public int updateCompanyDelyn(CompanyVo companyVo) {
 		return adminDao.updateCompanyDelyn(companyVo);
 	}
+	public int updateCompanyAuth(CompanyVo companyVo) {
+		return adminDao.updateCompanyAuth(companyVo);
+	}
 	
 	//1:1문의(판매자)
 	public List<BoardVo> getNoticeSellor(SearchCriteria scri) {
@@ -106,5 +112,6 @@ public class AdminService {
 	public int outstandingTotal(SearchCriteria scri) {
 		return adminDao.getOutstandingTotal(scri);
 	}
+
 
 }

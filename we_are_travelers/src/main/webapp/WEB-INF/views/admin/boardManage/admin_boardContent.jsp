@@ -39,7 +39,7 @@
 	</script>
 </head>
 <body style = "margin : 5% 10% 0 10%;">
-<h3>게시글 리스트</h3>
+<h3>댓글 리스트</h3>
 	<table class = "table">
 		<thead>
 			
@@ -112,7 +112,7 @@
 				                    </select>
 				                </td>
 				                <td>
-				                    <input type = "submit" name = "submit" value = "확인" id="updateBoardDelyn">
+				                    <button class="btn btn-outline-primary" type="submit" name="submit" id="updateBoardDelyn">확인</button>
 				                </td>
 				            </tr>
 				        </table>

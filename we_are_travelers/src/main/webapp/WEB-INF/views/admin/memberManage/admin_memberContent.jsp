@@ -109,14 +109,14 @@
 				        <table style = "text-align:right">
 				            <tr>
 				                <td><input type = "hidden" value = "${memberVo.member_idx}" name="member_idx" id="member_idx">
-				                    <select name = "updateDelyn" class="updateDelyn">
+				                    <select name = "updateDelyn" class="updateDelyn" aria-label="Default select example">
 				                   		<option value = "N">활성</option>
 				                        <option value = "S">정지</option>
 				                        <option value = "Y">삭제</option>
 				                    </select>
 				                </td>
 				                <td id ="updateMemberDelyn">
-				                    <input type = "submit" name = "submit" value = "확인" id ="updateMemberDelyn">
+				                    <button class="btn btn-outline-primary" type="submit" name="submit" id="updateMemberDelyn">확인</button>
 				                </td>
 				            </tr>
 				        </table>
