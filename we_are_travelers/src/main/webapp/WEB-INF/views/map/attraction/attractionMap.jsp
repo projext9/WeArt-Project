@@ -306,8 +306,8 @@
 						</div>
 
 					</div>
-					<p class="fw-bolder" style = "color: #A9E2F3;">주소 : ${mapVo.map_addr}</p>
-					<p class="fw-bolder" style = "color: #A9E2F3;">업체명 : ${mapVo.company_name}</p></td>
+					<p class="fw-bolder" style = "color: MediumAquamarine;">주소 : ${mapVo.map_addr}</p>
+					<p class="fw-bolder" style = "color:  MediumAquamarine;">업체명 : ${mapVo.company_name}</p></td>
 				<td style="text-align: center; width: 200px;">&nbsp;</td>
 
 			</tr>
@@ -362,7 +362,7 @@
 											+ '           </div>'
 											+ '            <div class="desc">'
 											+ '                <div class="ellipsis">'+addr+'</div>'
-											+ '                <div><a href="https://jj.ezenac.co.kr/?gclid=EAIaIQobChMImbX00erP-QIVAqyWCh1rVAdtEAAYASAAEgJhoPD_BwE" target="_blank" class="link">홈페이지</a></div>'
+											+ '                <div><a href="https://jj.ezenac.co.kr/?gclid=EAIaIQobChMImbX00erP-QIVAqyWCh1rVAdtEAAYASAAEgJhoPD_BwE" target="_blank" class="link">홈페이지(미구현)</a></div>'
 											+ '            </div>'
 											+ '        </div>' + '    </div>'
 											+ '</div>';
