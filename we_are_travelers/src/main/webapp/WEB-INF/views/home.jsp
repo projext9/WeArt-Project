@@ -97,7 +97,7 @@
         <img src="${pageContext.request.contextPath}/resources/images/culture1.png" width="75" height="75">
 
         <h3>문화</h3>
-        <p><a class="btn btn-secondary" href="#">소개 &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/showculture01.do">소개 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       
       <div class="col-lg-2">
@@ -105,7 +105,7 @@
 
         <h3>액티비티</h3>
         
-        <p><a class="btn btn-secondary" href="#">소개 &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/showactivity01.do">소개 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       
       <div class="col-lg-2">
@@ -113,7 +113,7 @@
 
         <h3>낚시</h3>
         
-        <p><a class="btn btn-secondary" href="#">소개 &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/showfishing01.do">소개 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       
       <div class="col-lg-2">
@@ -121,7 +121,7 @@
 
         <h3>캠핑</h3>
         
-        <p><a class="btn btn-secondary" href="#">소개 &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/showcamping01.do">소개 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       
       <div class="col-lg-2">
@@ -129,7 +129,7 @@
 
         <h3>숙박</h3>
         
-        <p><a class="btn btn-secondary" href="#">소개 &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/showstaying01.do">소개 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       
       

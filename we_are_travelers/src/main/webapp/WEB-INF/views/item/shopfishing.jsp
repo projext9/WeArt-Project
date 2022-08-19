@@ -57,7 +57,7 @@
 								<div class="carousel-caption text-start">
 									<h1 style="text-shadow:5px 5px 5px #000;">이것은 낚시상품</h1>
 						            <p>우수한 품질의 중국산 낚시대</p>
-						            <p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
+						            <p></p>
 								</div>
 					        </div>
 					</div>
@@ -67,7 +67,7 @@
 							<div class="carousel-caption">
 								<h1 style="text-shadow:5px 5px 5px #000;">극강의 퀄리티</h1>
 								<p style="text-shadow:5px 5px 5px #000;">믿을 수 있는 중국산 제품</p>
-								<p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
+								<p></p>
 							</div>
 						</div>
 					</div>
@@ -77,7 +77,7 @@
 							<div class="carousel-caption text-end">
 								<h1 style="text-shadow:5px 5px 5px #000;">환상적인 중국산 제품</h1>
 									<p style="text-shadow: -1px 0 #000, 0 1px 5px #000, 1px 0 5px #000, 0 -1px #000;">저렴하고 우수한 중국산</p>
-									<p><a class="btn btn-lg btn-primary" href="#">구매하기</a></p>
+									<p></p>
 							</div>
 						</div>
 					</div>
