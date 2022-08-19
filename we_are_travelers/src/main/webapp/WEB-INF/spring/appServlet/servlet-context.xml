@@ -103,6 +103,81 @@
 			<exclude-mapping path="/lodgingMap.do"/>
 			<exclude-mapping path="/mapRegion.do"/>
 			
+			<exclude-mapping path="/jeonBuk_Activity.do"/>
+			<exclude-mapping path="/buSan_Activity.do"/>
+			<exclude-mapping path="/chungBuk_Activity.do"/>
+			<exclude-mapping path="/jeonNam_Activity.do"/>
+			<exclude-mapping path="/chungNam_Activity.do"/>
+			<exclude-mapping path="/deajeon_Activity.do"/>
+			<exclude-mapping path="/gwangJu_Activity.do"/>
+			<exclude-mapping path="/gyeongBuk_Activity.do"/>
+			<exclude-mapping path="/gyeonGi_do_Activity.do"/>
+			<exclude-mapping path="/gyeongNam_Activity.do"/>
+			<exclude-mapping path="/seoul_Activity.do"/>
+			<exclude-mapping path="/ulSan_Activity.do"/>
+			<exclude-mapping path="/jeJu_Activity.do"/>
+			<exclude-mapping path="/gangWondo_Activity.do"/>
+			
+			<exclude-mapping path="/jeonBuk_attraction.do"/>
+			<exclude-mapping path="/buSan_attraction.do"/>
+			<exclude-mapping path="/chungBuk_attraction.do"/>
+			<exclude-mapping path="/jeonNam_attraction.do"/>
+			<exclude-mapping path="/chungNam_attraction.do"/>
+			<exclude-mapping path="/deajeon_attraction.do"/>
+			<exclude-mapping path="/gwangJu_attraction.do"/>
+			<exclude-mapping path="/gyeongBuk_attraction.do"/>
+			<exclude-mapping path="/gyeonGi_do_attraction.do"/>
+			<exclude-mapping path="/gyeongNam_attraction.do"/>
+			<exclude-mapping path="/seoul_attraction.do"/>
+			<exclude-mapping path="/ulSan_attraction.do"/>
+			<exclude-mapping path="/jeJu_attraction.do"/>
+			<exclude-mapping path="/gangWondo_attraction.do"/>
+
+			<exclude-mapping path="/jeonBuk_camping.do"/>
+			<exclude-mapping path="/buSan_camping.do"/>
+			<exclude-mapping path="/chungBuk_camping.do"/>
+			<exclude-mapping path="/jeonNam_camping.do"/>
+			<exclude-mapping path="/chungNam_camping.do"/>
+			<exclude-mapping path="/deajeon_camping.do"/>
+			<exclude-mapping path="/gwangJu_camping.do"/>
+			<exclude-mapping path="/gyeongBuk_camping.do"/>
+			<exclude-mapping path="/gyeonGi_do_camping.do"/>
+			<exclude-mapping path="/gyeongNam_camping.do"/>
+			<exclude-mapping path="/seoul_camping.do"/>
+			<exclude-mapping path="/ulSan_camping.do"/>
+			<exclude-mapping path="/jeJu_camping.do"/>
+			<exclude-mapping path="/gangWondo_camping.do"/>
+			
+			<exclude-mapping path="/jeonBuk_lodging.do"/>
+			<exclude-mapping path="/buSan_lodging.do"/>
+			<exclude-mapping path="/chungBuk_lodging.do"/>
+			<exclude-mapping path="/jeonNam_lodging.do"/>
+			<exclude-mapping path="/chungNam_lodging.do"/>
+			<exclude-mapping path="/deajeon_lodging.do"/>
+			<exclude-mapping path="/gwangJu_lodging.do"/>
+			<exclude-mapping path="/gyeongBuk_lodging.do"/>
+			<exclude-mapping path="/gyeonGi_do_lodging.do"/>
+			<exclude-mapping path="/gyeongNam_lodging.do"/>
+			<exclude-mapping path="/seoul_lodging.do"/>
+			<exclude-mapping path="/ulSan_lodging.do"/>
+			<exclude-mapping path="/jeJu_lodging.do"/>
+			<exclude-mapping path="/gangWondo_lodging.do"/>
+			
+			<exclude-mapping path="/jeonBuk_fishing.do"/>
+			<exclude-mapping path="/buSan_fishing.do"/>
+			<exclude-mapping path="/chungBuk_fishing.do"/>
+			<exclude-mapping path="/jeonNam_fishing.do"/>
+			<exclude-mapping path="/chungNam_fishing.do"/>
+			<exclude-mapping path="/deajeon_fishing.do"/>
+			<exclude-mapping path="/gwangJu_fishing.do"/>
+			<exclude-mapping path="/gyeongBuk_fishing.do"/>
+			<exclude-mapping path="/gyeonGi_do_fishing.do"/>
+			<exclude-mapping path="/gyeongNam_fishing.do"/>
+			<exclude-mapping path="/seoul_fishing.do"/>
+			<exclude-mapping path="/ulSan_fishing.do"/>
+			<exclude-mapping path="/jeJu_fishing.do"/>
+			<exclude-mapping path="/gangWondo_fishing.do"/>
+			
 			<!-- ItemController -->
 			<exclude-mapping path="/shopculture.do"/>
 			<exclude-mapping path="/shopactivity.do"/>
@@ -111,6 +186,8 @@
 			<exclude-mapping path="/shopstay.do"/>
 			<exclude-mapping path="/itemdetail.do"/>
 			<exclude-mapping path="/itemcartadd.do"/>
+			
+			
 			
 			<!-- ShowController -->
 			<exclude-mapping path="/showculture01.do"/>
