@@ -60,7 +60,7 @@
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&nbsp;문화 &nbsp;</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_culture">공지사항</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/culture_page.do">소개</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/showculture1.do">소개</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/attractionList.do">지도</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopculture.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_culture">후기게시판</a></li>
@@ -70,7 +70,7 @@
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&nbsp;액티비티 &nbsp;</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_activity">공지사항</a></li>
-                                <li><a class="dropdown-item" href="#!">소개</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/showactivity1.do">소개</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/activityList.do">지도</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopactivity.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_activity">후기게시판</a></li>
@@ -80,7 +80,7 @@
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&nbsp;낚시 &nbsp;</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_fishing">공지사항</a></li>
-                                <li><a class="dropdown-item" href="#!">소개</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/showfishing1.do">소개</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/fishingList.do">지도</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopfishing.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_fishing">후기게시판</a></li>
@@ -90,7 +90,7 @@
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&nbsp;캠핑 &nbsp;</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_camping">공지사항</a></li>
-                                <li><a class="dropdown-item" href="#!">소개</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/showcamping1.do">소개</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/campingList.do">지도</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopcamping.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_camping">후기게시판</a></li>
@@ -100,7 +100,7 @@
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&nbsp;숙박 &nbsp;</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/notice_list.do?code=n_lodgment">공지사항</a></li>
-                                <li><a class="dropdown-item" href="#!">소개</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/showstaying1.do">소개</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/lodgingList.do">지도</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopstay.do">쇼핑/예약</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/board_list.do?code=b_lodgment">후기게시판</a></li>

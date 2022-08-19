@@ -141,37 +141,35 @@
             
 <!-- 3번 게시물 설명 -->
 			<div class="contentBox" id="contentBox3">
-				<h2>북촌 한옥마을</h2>
+				<h2>목동사격장</h2>
 				<br>
-				<p>주소 : 서울특별시 종로구 계동길 37</p>
+				<p>주소 : 서울특별시 양천구 목동 914</p>
 				<br>
-				<p>예로부터 북촌이라 하여 양반 동네로 알려진 이곳 주택은 모두 조선 시대의 기와집으로서 상류층의 구조 형태를 간직하며 지금까지 보존되어 오고 있다. 원래 이 동네에는 솟을대문이 있는 큰 집 몇 채와 30여 호의 한옥밖에 없었으나, 일제 말기와 6.25 수복 직후 지금의 상태로 늘어났다. 북촌한옥마을은 경복궁과 창덕궁, 종묘의 사이에 위치한 지역으로 서울 600년 역사와 함께해온 우리의 전통 거주 지역이다. 거대한 두 궁궐 사이에 밀접하여 전통한옥군이 위치하고 있으며, 수많은 가지 모양의 골목길을 그대로 보존하고 있어 6백 년 역사도시의 풍경을 극적으로 보여주고 있다. 지금은 전통문화체험관이나 한옥음식점 등으로 활용이 되어 간접적으로나마 조선시대의 분위기를 느낄 수 있는 곳이다.
+				<p>총을 자유자재로 만져보고 쏠 수 있는 건 영화에서나 나오는 일인 줄 알았다. 하지만 목동사격장에서는 30여분정도의 간단한 기본 교육을 받으면 소총이나 권총을 쏠 수 있다. 목동 종합사격장은 공식 올림픽 종목인 10M 공기소총 및 공기권총의 일반인 사격체험이 즉석에서 가능한 서울 도심의 유일한 종합사격장이다. 국제규격의 공기총사대 25개를 갖추고 있어 가족단위의 방문객을 비롯해 남녀노소 누구나 사격을 부담 없이 스포츠로 즐길 수 있다.
 				<br><br>
-					북촌은 풍수지리적으로 빼어난 산줄기 남쪽 기슭에 자리 잡고 있으며 북악과 응봉을 잇고 있어요. 북촌의 북쪽은 위치가 높아서 겨울에 따뜻하고 배수가 원활하며 남쪽으로는 남산까지 보일 정도로 풍경이 트여 있죠.
-
-북촌 뒤로는 해발 463ｍ의 북악산과 아름다운 삼청공원이 있어요. 서쪽에는 경복궁, 동쪽에는 세계문화유산 창덕궁이 있어서 어디를 가도 고즈넉한 분위기가 가득하죠. 북촌에서는 사적 5곳, 서울시 민속자료 4곳, 유형문화재 3곳, 문화재자료 1곳 뿐만 아니라 석정 보름 우물, 광혜원터와 구한국미술관 등 소중한 민족의 역사적 자산을 만나 볼 수 있어요.
+					중고등학교의 동아리 활동장소로도 활용된다. 사격은 학생들의 집중력을 기르는데 도움을 주고 기초 트레이닝을 하는 동안 체력을 개선하는 효과가 있다. 선수반과 취미반이 운영 중인데 선수반에서는 진종오 같은 사격꿈나무를 양성한다. 취미반도 운영 중인데 수시로 상담가능하다.
 				</p>
             </div>
 
 			<div class="sideBar" id="sideBar">
 				<h3 style="text-align: center;">서울특별시</h3>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/showculture1.do">서울</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture2.do">인천</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture3.do">대전</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture4.do">울산</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture5.do">대구</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture6.do">부산</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture7.do">광주</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity1.do">서울</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity2.do">인천</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity3.do">대전</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity4.do">울산</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity5.do">대구</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity6.do">부산</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity7.do">광주</a></li>
 				</ul>
 				<hr>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/showculture8.do">경기도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture9.do">강원도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture10.do">충청/세종</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture11.do">경상도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture12.do">전라도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture13.do">제주도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity8.do">경기도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity9.do">강원도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity10.do">충청/세종</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity11.do">경상도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity12.do">전라도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity13.do">제주도</a></li>
 				</ul>
             </div>
 
