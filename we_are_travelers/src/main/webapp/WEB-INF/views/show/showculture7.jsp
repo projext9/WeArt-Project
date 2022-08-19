@@ -154,7 +154,7 @@
             </div>
 
 			<div class="sideBar" id="sideBar">
-				<h3 style="text-align: center;">인천광역시</h3>
+				<h3 style="text-align: center;">광주광역시</h3>
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/showculture1.do">서울</a></li>
 					<li><a href="${pageContext.request.contextPath}/showculture2.do">인천</a></li>

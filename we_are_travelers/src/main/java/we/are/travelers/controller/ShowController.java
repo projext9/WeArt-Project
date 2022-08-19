@@ -72,4 +72,69 @@ public class ShowController {
 	public String showculture13(HttpServletRequest request) {
 		return "show/showculture13";
 	}
+	
+	@GetMapping("/showactivity1.do") //문화 소개 서울
+	public String showactivity1(HttpServletRequest request) {
+		return "show/showactivity1";
+	}
+	
+	@GetMapping("/showactivity2.do") //문화 소개 인천
+	public String showactivity2(HttpServletRequest request) {
+		return "show/showactivity2";
+	}
+
+	@GetMapping("/showactivity3.do") //문화 소개 대전
+	public String showactivity3(HttpServletRequest request) {
+		return "show/showactivity3";
+	}
+	
+	@GetMapping("/showactivity4.do") //문화 소개 울산
+	public String showactivity4(HttpServletRequest request) {
+		return "show/showactivity4";
+	}
+
+	@GetMapping("/showactivity5.do") //문화 소개 대구
+	public String showactivity5(HttpServletRequest request) {
+		return "show/showactivity5";
+	}
+	
+	@GetMapping("/showactivity6.do") //문화 소개 부산
+	public String showactivity6(HttpServletRequest request) {
+		return "show/showactivity6";
+	}
+
+	@GetMapping("/showactivity7.do") //문화 소개 광주
+	public String showactivity7(HttpServletRequest request) {
+		return "show/showactivity7";
+	}
+	
+	@GetMapping("/showactivity8.do") //문화 소개 경기도
+	public String showactivity8(HttpServletRequest request) {
+		return "show/showactivity8";
+	}
+	
+	@GetMapping("/showactivity9.do") //문화 소개 강원도
+	public String showactivity9(HttpServletRequest request) {
+		return "show/showactivity9";
+	}
+
+	@GetMapping("/showactivity10.do") //문화 소개 충청.세종
+	public String showactivity10(HttpServletRequest request) {
+		return "show/showactivity10";
+	}
+
+	@GetMapping("/showactivity11.do") //문화 소개 경상도
+	public String showactivity11(HttpServletRequest request) {
+		return "show/showactivity11";
+	}
+	
+	@GetMapping("/showactivity12.do") //문화 소개 전라도
+	public String showactivity12(HttpServletRequest request) {
+		return "show/showactivity12";
+	}
+	
+	@GetMapping("/showactivity13.do") //문화 소개 제주도
+	public String showactivity13(HttpServletRequest request) {
+		return "show/showactivity13";
+	}
 }
