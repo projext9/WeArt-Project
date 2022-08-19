@@ -154,20 +154,20 @@
             </div>
 
 			<div class="sideBar" id="sideBar">
-				<h3 style="text-align: center;">경기도</h3>
+				<h3 style="text-align: center;">인천광역시</h3>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/showculture1.do">서울</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture2.do">인천</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture3.do">대전</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture4.do">울산</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture5.do">대구</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture6.do">부산</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture7.do">광주</a></li>
+					<li><a href="${pageContext.request.contextPath}/showculture01.do">서울</a></li>
+					<li><a href="${pageContext.request.contextPath}/showculture02.do">인천</a></li>
+					<li><a href="${pageContext.request.contextPath}/showculture03.do">대전</a></li>
+					<li><a href="${pageContext.request.contextPath}/showculture04.do">울산</a></li>
+					<li><a href="${pageContext.request.contextPath}/showculture05.do">대구</a></li>
+					<li><a href="${pageContext.request.contextPath}/showculture06.do">부산</a></li>
+					<li><a href="${pageContext.request.contextPath}/showculture07.do">광주</a></li>
 				</ul>
 				<hr>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/showculture8.do">경기도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture9.do">강원도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showculture08.do">경기도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showculture09.do">강원도</a></li>
 					<li><a href="${pageContext.request.contextPath}/showculture10.do">충청/세종</a></li>
 					<li><a href="${pageContext.request.contextPath}/showculture11.do">경상도</a></li>
 					<li><a href="${pageContext.request.contextPath}/showculture12.do">전라도</a></li>

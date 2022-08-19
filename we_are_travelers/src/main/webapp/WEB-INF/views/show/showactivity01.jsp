@@ -21,7 +21,7 @@
 		<section>
 			<div class="container-xxl">
 <!-- 1번 게시물 -->
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity01.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity0101.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor2()">
 						<span></span>
 		                <span></span>
@@ -31,7 +31,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style="height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity02.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style="height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity0102.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor3()">
 						<span></span>
 		                <span></span>
@@ -41,7 +41,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity03.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity0103.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor4()">
 						<span></span>
 		                <span></span>
@@ -52,7 +52,7 @@
 				<div id="anchor_row"></div>
 				
 <!-- 2번 게시물 -->
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity04.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity0104.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor5()">
 						<span></span>
 		                <span></span>
@@ -62,7 +62,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity05.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity0105.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor6()">
 						<span></span>
 		                <span></span>
@@ -72,7 +72,7 @@
 
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity06.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity0106.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor7()">
 						<span></span>
 		                <span></span>
@@ -83,7 +83,7 @@
 				<div id="anchor_row"></div>
 				
 <!-- 3번 게시물 -->
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity07.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity0107.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor8()">
 						<span></span>
 		                <span></span>
@@ -93,7 +93,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity08.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity0108.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor9()">
 						<span></span>
 		                <span></span>
@@ -103,7 +103,7 @@
 
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity09.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showactivity0109.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div id="anchor_btn2"><button type="button" class="btn btn-secondary" onClick="anchor1()">처음으로</button></div>
 				</div>
 				
@@ -154,18 +154,18 @@
 			<div class="sideBar" id="sideBar">
 				<h3 style="text-align: center;">서울특별시</h3>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/showactivity1.do">서울</a></li>
-					<li><a href="${pageContext.request.contextPath}/showactivity2.do">인천</a></li>
-					<li><a href="${pageContext.request.contextPath}/showactivity3.do">대전</a></li>
-					<li><a href="${pageContext.request.contextPath}/showactivity4.do">울산</a></li>
-					<li><a href="${pageContext.request.contextPath}/showactivity5.do">대구</a></li>
-					<li><a href="${pageContext.request.contextPath}/showactivity6.do">부산</a></li>
-					<li><a href="${pageContext.request.contextPath}/showactivity7.do">광주</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity01.do">서울</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity02.do">인천</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity03.do">대전</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity04.do">울산</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity05.do">대구</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity06.do">부산</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity07.do">광주</a></li>
 				</ul>
 				<hr>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/showactivity8.do">경기도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showactivity9.do">강원도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity08.do">경기도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity09.do">강원도</a></li>
 					<li><a href="${pageContext.request.contextPath}/showactivity10.do">충청/세종</a></li>
 					<li><a href="${pageContext.request.contextPath}/showactivity11.do">경상도</a></li>
 					<li><a href="${pageContext.request.contextPath}/showactivity12.do">전라도</a></li>
