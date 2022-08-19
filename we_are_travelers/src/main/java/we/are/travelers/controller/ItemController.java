@@ -658,7 +658,8 @@ public class ItemController {
 			//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
 			String upload_dir = "resources/itemimg/";
 
-			String realPath = request.getServletContext().getRealPath(upload_dir);
+			//String realPath = request.getServletContext().getRealPath(upload_dir);
+			String realPath = "C:\\tomcat\\webapps\\we_are_travelers\\resources\\itemimg\\";
 			System.out.println("이클립스로 저장된 파일의 실제 경로: " + realPath);
 			
 			//지정된 경로에 파일 저장

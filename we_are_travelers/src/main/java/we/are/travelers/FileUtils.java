@@ -62,7 +62,8 @@ public class FileUtils {
 		
 		String upload_dir = "resources/upload/";
 		
-		String basePath = request.getServletContext().getRealPath(upload_dir);
+		//String basePath = request.getServletContext().getRealPath(upload_dir);
+		String basePath = "C:\\tomcat\\webapps\\we_are_travelers\\resources\\upload\\";
 		System.out.println("basePath : "+basePath);
 		makeFolders(basePath);
 		File file;

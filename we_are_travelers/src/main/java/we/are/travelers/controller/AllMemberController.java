@@ -313,7 +313,8 @@ public class AllMemberController {
 		System.out.println("용량크기(byte) : " + size);
 		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-		String upload_dir = "C:\\Users\\MYCOM\\git\\WeArt-Project\\we_are_travelers\\src\\main\\webapp\\resources\\AuthUpload";
+		//String upload_dir = "C:\\Users\\MYCOM\\git\\WeArt-Project\\we_are_travelers\\src\\main\\webapp\\resources\\AuthUpload";
+		String upload_dir = "C:\\tomcat\\webapps\\we_are_travelers\\resources\\AuthUpload\\";
 
 		//upload 디렉토리에 대한 실제 경로 확인을 위해 ServletContext객체를 이용
 		
