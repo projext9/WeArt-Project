@@ -110,7 +110,7 @@
 	});
 </script>
 </head>
-<main style="padding-top:60px;">
+<main style="padding-top:115px;">
 	
         <header>
 			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">

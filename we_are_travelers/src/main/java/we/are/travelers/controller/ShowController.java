@@ -8,49 +8,49 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ShowController {
 	
-	@GetMapping("/showculture1.do") //문화 소개 서울
-	public String showculture1(HttpServletRequest request) {
-		return "show/showculture1";
+	@GetMapping("/showculture01.do") //문화 소개 서울
+	public String showculture01(HttpServletRequest request) {
+		return "show/showculture01";
 	}
 	
-	@GetMapping("/showculture2.do") //문화 소개 인천
-	public String showculture2(HttpServletRequest request) {
-		return "show/showculture2";
+	@GetMapping("/showculture02.do") //문화 소개 인천
+	public String showculture02(HttpServletRequest request) {
+		return "show/showculture02";
 	}
 
-	@GetMapping("/showculture3.do") //문화 소개 대전
-	public String showculture3(HttpServletRequest request) {
-		return "show/showculture3";
+	@GetMapping("/showculture03.do") //문화 소개 대전
+	public String showculture03(HttpServletRequest request) {
+		return "show/showculture03";
 	}
 	
-	@GetMapping("/showculture4.do") //문화 소개 울산
-	public String showculture4(HttpServletRequest request) {
-		return "show/showculture4";
+	@GetMapping("/showculture04.do") //문화 소개 울산
+	public String showculture04(HttpServletRequest request) {
+		return "show/showculture04";
 	}
 
-	@GetMapping("/showculture5.do") //문화 소개 대구
-	public String showculture5(HttpServletRequest request) {
-		return "show/showculture5";
+	@GetMapping("/showculture05.do") //문화 소개 대구
+	public String showculture05(HttpServletRequest request) {
+		return "show/showculture05";
 	}
 	
-	@GetMapping("/showculture6.do") //문화 소개 부산
-	public String showculture6(HttpServletRequest request) {
-		return "show/showculture6";
+	@GetMapping("/showculture06.do") //문화 소개 부산
+	public String showculture06(HttpServletRequest request) {
+		return "show/showculture06";
 	}
 
-	@GetMapping("/showculture7.do") //문화 소개 광주
-	public String showculture7(HttpServletRequest request) {
-		return "show/showculture7";
+	@GetMapping("/showculture07.do") //문화 소개 광주
+	public String showculture07(HttpServletRequest request) {
+		return "show/showculture07";
 	}
 	
-	@GetMapping("/showculture8.do") //문화 소개 경기도
-	public String showculture8(HttpServletRequest request) {
-		return "show/showculture8";
+	@GetMapping("/showculture08.do") //문화 소개 경기도
+	public String showculture08(HttpServletRequest request) {
+		return "show/showculture08";
 	}
 	
-	@GetMapping("/showculture9.do") //문화 소개 강원도
-	public String showculture9(HttpServletRequest request) {
-		return "show/showculture9";
+	@GetMapping("/showculture09.do") //문화 소개 강원도
+	public String showculture09(HttpServletRequest request) {
+		return "show/showculture09";
 	}
 
 	@GetMapping("/showculture10.do") //문화 소개 충청.세종
@@ -73,49 +73,49 @@ public class ShowController {
 		return "show/showculture13";
 	}
 	
-	@GetMapping("/showactivity1.do") //문화 소개 서울
-	public String showactivity1(HttpServletRequest request) {
-		return "show/showactivity1";
+	@GetMapping("/showactivity01.do") //문화 소개 서울
+	public String showactivity01(HttpServletRequest request) {
+		return "show/showactivity01";
 	}
 	
-	@GetMapping("/showactivity2.do") //문화 소개 인천
-	public String showactivity2(HttpServletRequest request) {
-		return "show/showactivity2";
+	@GetMapping("/showactivity02.do") //문화 소개 인천
+	public String showactivity02(HttpServletRequest request) {
+		return "show/showactivity02";
 	}
 
-	@GetMapping("/showactivity3.do") //문화 소개 대전
-	public String showactivity3(HttpServletRequest request) {
-		return "show/showactivity3";
+	@GetMapping("/showactivity03.do") //문화 소개 대전
+	public String showactivity03(HttpServletRequest request) {
+		return "show/showactivity03";
 	}
 	
-	@GetMapping("/showactivity4.do") //문화 소개 울산
-	public String showactivity4(HttpServletRequest request) {
-		return "show/showactivity4";
+	@GetMapping("/showactivity04.do") //문화 소개 울산
+	public String showactivity04(HttpServletRequest request) {
+		return "show/showactivity04";
 	}
 
-	@GetMapping("/showactivity5.do") //문화 소개 대구
-	public String showactivity5(HttpServletRequest request) {
-		return "show/showactivity5";
+	@GetMapping("/showactivity05.do") //문화 소개 대구
+	public String showactivity05(HttpServletRequest request) {
+		return "show/showactivity05";
 	}
 	
-	@GetMapping("/showactivity6.do") //문화 소개 부산
-	public String showactivity6(HttpServletRequest request) {
-		return "show/showactivity6";
+	@GetMapping("/showactivity06.do") //문화 소개 부산
+	public String showactivity06(HttpServletRequest request) {
+		return "show/showactivity06";
 	}
 
-	@GetMapping("/showactivity7.do") //문화 소개 광주
-	public String showactivity7(HttpServletRequest request) {
-		return "show/showactivity7";
+	@GetMapping("/showactivity07.do") //문화 소개 광주
+	public String showactivity07(HttpServletRequest request) {
+		return "show/showactivity07";
 	}
 	
-	@GetMapping("/showactivity8.do") //문화 소개 경기도
-	public String showactivity8(HttpServletRequest request) {
-		return "show/showactivity8";
+	@GetMapping("/showactivity08.do") //문화 소개 경기도
+	public String showactivity08(HttpServletRequest request) {
+		return "show/showactivity08";
 	}
 	
-	@GetMapping("/showactivity9.do") //문화 소개 강원도
-	public String showactivity9(HttpServletRequest request) {
-		return "show/showactivity9";
+	@GetMapping("/showactivity09.do") //문화 소개 강원도
+	public String showactivity09(HttpServletRequest request) {
+		return "show/showactivity09";
 	}
 
 	@GetMapping("/showactivity10.do") //문화 소개 충청.세종
