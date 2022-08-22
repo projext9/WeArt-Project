@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id = "getMapSearch" parameterType="int" resultType= "mapVo" >
-	    select map_addr,company_name from weart_map where map_idx = #{map_idx}
+	    select map_addr,company_name,map_image from weart_map where map_idx = #{map_idx}
 	</select>
 	
 	<select id = "getMapList2" parameterType="string" resultType= "mapVo" >

@@ -1,11 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../../nav.jsp"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <style>
+.wrap {
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	width: 288px;
+	height: 132px;
+	margin-left: -144px;
+	text-align: left;
+	overflow: hidden;
+	font-size: 12px;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	line-height: 1.5;
+}
+
+.wrap * {
+	padding: 0;
+	margin: 0;
+}
+
+.wrap .info {
+	width: 286px;
+	height: 120px;
+	border-radius: 5px;
+	border-bottom: 2px solid #ccc;
+	border-right: 1px solid #ccc;
+	overflow: hidden;
+	background: #fff;
+}
+
+.wrap .info:nth-child(1) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.info .title {
+	padding: 5px 0 0 10px;
+	height: 30px;
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+
+
+.info .close:hover {
+	cursor: pointer;
+}
+
+.info .body {
+	position: relative;
+	overflow: hidden;
+}
+
+.info .desc {
+	position: relative;
+	margin: 13px 0 0 90px;
+	height: 75px;
+}
+
+.desc .ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.desc .jibun {
+	font-size: 11px;
+	color: #888;
+	margin-top: -2px;
+}
+
+.info .img {
+	position: absolute;
+	top: 6px;
+	left: 5px;
+	width: 73px;
+	height: 71px;
+	border: 1px solid #ddd;
+	color: #888;
+	overflow: hidden;
+}
+
+.info:after {
+	content: '';
+	position: absolute;
+	margin-left: -12px;
+	left: 50%;
+	bottom: 0;
+	width: 22px;
+	height: 12px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+.info .link {
+	color: #5085BB;
+}
+
 .map_wrap, .map_wrap * {
 	margin: 0;
 	padding: 0;
@@ -171,34 +269,51 @@
 	margin-top: 0;
 }
 </style>
+
 <meta charset="UTF-8">
-<title>낚시터 지도보기</title>
+<title>액티비티 지도화면 보여주기</title>
+
+
 </head>
 <body>
-   <br>
-    <br>
-    <br>
-    <br>
-    <br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<c:forEach var="mapVo" items="${mapSearch}">
 
 		<hr>
-		<h3>${mapVo.map_addr}</h3>
-		<h3>${mapVo.company_name}</h3>
- <h3>※등록된 업체가 아닐경우 표시되지 않을 수 있습니다.※</h3>
-		<div id="map" style="width: 100%; height: 350px;"></div>
-		<div class="map_wrap">
-			<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-			<ul id="category">
-				<li id="BK9" data-order="0"><span class="category_bg bank"></span> 은행</li>
-				<li id="MT1" data-order="1"><span class="category_bg mart"></span> 마트</li>
-				<li id="PM9" data-order="2"><span class="category_bg pharmacy"></span> 약국</li>
-				<li id="OL7" data-order="3"><span class="category_bg oil"></span> 주유소</li>
-				<li id="CE7" data-order="4"><span class="category_bg cafe"></span> 카페</li>
-				<li id="CS2" data-order="5"><span class="category_bg store"></span> 편의점</li>
-			</ul>
-		</div>
-		
+
+		<table style="margin-left: auto; margin-right: auto; width: 100%; height: auto; border-collapse: collapse;">
+			<tr>
+				<td style="text-align: center; width: 200px;">&nbsp;</td>
+				<td style="text-align: center; width: 80%; position: center;"><br> <br> <span style="z-index: 100;">카테고리를 클릭하여 주변 건물을 살펴보세요.</span>
+					<div class="col-md-8" id="map" style="width: 100%; height: 500px; border-radius: 60px 60px 60px 60px; text-align: center;">
+						<div class="map_wrap col-md-8" style="text-align: center;">
+							<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+
+							<ul id="category">
+								<li id="BK9" data-order="0"><span class="category_bg bank"></span> 은행</li>
+								<li id="MT1" data-order="1"><span class="category_bg mart"></span> 마트</li>
+								<li id="PM9" data-order="2"><span class="category_bg pharmacy"></span> 약국</li>
+								<li id="OL7" data-order="3"><span class="category_bg oil"></span> 주유소</li>
+								<li id="CE7" data-order="4"><span class="category_bg cafe"></span> 카페</li>
+								<li id="CS2" data-order="5"><span class="category_bg store"></span> 편의점</li>
+
+							</ul>
+
+						</div>
+
+					</div>
+					<p class="fw-bolder" style = "color:  MediumAquamarine;">주소 : ${mapVo.map_addr}</p>
+					<p class="fw-bolder" style = "color:  MediumAquamarine;">업체명 : ${mapVo.company_name}</p></td>
+				<td style="text-align: center; width: 200px;">&nbsp;</td>
+
+			</tr>
+		</table>
+
+
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bc83f37c00e33dee1d1814e4c4c987aa&libraries=services"></script>
 		<script>
 			var placeOverlay = new kakao.maps.CustomOverlay({
@@ -209,10 +324,11 @@
 
 			var addr = '<c:out value="${mapVo.map_addr}"/>';
 			var company_name = '<c:out value="${mapVo.company_name}"/>';
+			var map_image = '<c:out value="${mapVo.map_image}"/>';
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = {
 				center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-				level : 3
+				level : 6
 			// 지도의 확대 레벨
 			};
 
@@ -223,17 +339,11 @@
 			var geocoder = new kakao.maps.services.Geocoder();
 
 			// 주소로 좌표를 검색합니다
-			geocoder
-					.addressSearch(
-							addr,
-							function(result, status) {
-
+			geocoder.addressSearch(addr,function(result, status) {
 								// 정상적으로 검색이 완료됐으면 
 								if (status === kakao.maps.services.Status.OK) {
-
 									var coords = new kakao.maps.LatLng(
 											result[0].y, result[0].x);
-
 									// 결과값으로 받은 위치를 마커로 표시합니다
 									var marker = new kakao.maps.Marker({
 										map : map,
@@ -241,18 +351,41 @@
 									});
 
 									// 인포윈도우로 장소에 대한 설명을 표시합니다
-									var infowindow = new kakao.maps.InfoWindow(
-											{
-												content : '<div style="width:150px;text-align:center;padding:6px 0;">'
-														+ company_name
-														+ '</div>'
+									var content = '<div class="wrap">'
+											+ '    <div class="info">'
+											+ '        <div class="title">'
+											+ '            '+company_name+''
+											+ '        </div>'
+											+ '        <div class="body">'
+											+ '            <div class="img">'
+											+ '                <img src="${pageContext.request.contextPath}/resources/img/Map_image/fishing/'+map_image+'.jpg" width="73" height="70">'
+											+ '           </div>'
+											+ '            <div class="desc">'
+											+ '                <div class="ellipsis">'+addr+'</div>'
+											+ '                <div><a href="https://jj.ezenac.co.kr/?gclid=EAIaIQobChMImbX00erP-QIVAqyWCh1rVAdtEAAYASAAEgJhoPD_BwE" target="_blank" class="link">홈페이지(미구현)</a></div>'
+											+ '            </div>'
+											+ '        </div>' + '    </div>'
+											+ '</div>';
+											
+											// 마커 위에 커스텀오버레이를 표시합니다
+											// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+											var overlay = new kakao.maps.CustomOverlay({
+												content : content,
+												map : map,
+												position : coords
 											});
-									infowindow.open(map, marker);
+											
 
 									// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 									map.setCenter(coords);
+									
 								}
+								
+								
 							});
+			
+			
+		
 			var ps = new kakao.maps.services.Places(map);
 
 			//지도에 idle 이벤트를 등록합니다
