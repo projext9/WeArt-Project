@@ -9,7 +9,7 @@
 	<%@include file="../nav/navMain.jsp" %>
 	<%@include file="../nav/navSellor2.jsp" %>
 </head>
-<body style = "margin : 5% 10% 0 10%;">
+<body style = "margin : 5% 20% 0 20%;">
 	<h3>승인대기목록</h3>
 	<hr/>
 	<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/outstanding.do" method = "get">

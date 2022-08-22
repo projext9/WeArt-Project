@@ -27,9 +27,9 @@
 						<td>${orderVo.order_totalPrice}</td>
 						<td>
 							<c:choose>
-								<c:when test="${orderVo.order_state2 eq 'A'}">발송대기</c:when>
-								<c:when test="${orderVo.order_state2 eq 'B'}">발송중</c:when>
-								<c:when test="${orderVo.order_state2 eq 'C'}">배송완료</c:when>
+								<c:when test="${orderVo.order_state2 eq 'A'}"><span style="color:red;">발송대기</span></c:when>
+								<c:when test="${orderVo.order_state2 eq 'B'}"><span style="color:green;">배송중</span></c:when>
+								<c:when test="${orderVo.order_state2 eq 'C'}"><span style="color:blue;">배송완료</span></c:when>
 							</c:choose>
 						</td>
 					</tr>

@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<title>회원목록</title>
 	<%@include file="../nav/navMain.jsp" %>
+	<%@include file = "../nav/navMember.jsp" %>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 		$(function(){
@@ -38,7 +39,7 @@
 		});
 	</script>
 </head>
-<body style = "margin : 5% 10% 0 10%;">
+<body style = "margin : 5% 20% 0 20%;">
 <h3>회원목록</h3>
 	<table class = "table">
 		<thead>

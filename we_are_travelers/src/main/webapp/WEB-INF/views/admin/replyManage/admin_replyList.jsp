@@ -9,7 +9,7 @@
 	<title>댓글 리스트</title>
 	<%@include file="../nav/navMain.jsp" %>
 </head>
-<body style = "margin : 5% 10% 0 10%;">
+<body style = "margin : 5% 20% 0 20%;">
 <h3>댓글 리스트</h3>
 <hr/>
 	<form name = "frm" action = "${pageContext.request.contextPath}/replyList.do" method = "get">

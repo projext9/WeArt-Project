@@ -10,7 +10,7 @@
 	<%@include file="../nav/navMain.jsp" %>
 	<%@include file="../nav/navMember3.jsp" %>
 </head>
-<body style = "margin : 5% 10% 0 10%;">
+<body style = "margin : 5% 20% 0 20%;">
 <h3>1:1문의(일반)</h3>
 <hr/>
 	<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/noticeMember.do" method = "get">
@@ -64,8 +64,8 @@
 					<td>${boardVo.board_writer} / <c:set var="date" value="${boardVo.board_date}"/>${fn:substring(date,2,11)}</td>
 					<td>
 						<c:choose>
-							<c:when test="${boardVo.board_reply == 1}">처리완료</c:when>
-							<c:otherwise>처리중</c:otherwise>
+							<c:when test="${boardVo.board_reply == 1}"><span style="color:blue;">처리완료</span></c:when>
+							<c:otherwise><span style="color:red;">처리중</span></c:otherwise>
 						</c:choose>
 					</td>
 				</tr>

@@ -10,7 +10,7 @@
 	<%@include file="../nav/navMain.jsp" %>
 	<%@include file ="../nav/navSellor3.jsp" %>
 </head>
-<body style = "margin : 5% 10% 0 10%;">
+<body style = "margin : 5% 20% 0 20%;">
 <h3>1:1문의(판매자)</h3>
 <hr/>
 	<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/noticeSellor.do" method = "get">

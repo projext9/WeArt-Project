@@ -9,7 +9,7 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-	<main style = "margin : 20%">
+	<main style = "margin : 20% 30% 20% 30%">
 		<h3 style = "text-align : center;">비밀번호 입력</h3>
 	    <form class="login_form" action="/travelers/info_checkPwd.do" method="POST">
 			<div>
@@ -18,7 +18,7 @@
 			</div>
 		</form>
 	</main>
-	<main style = "margin : 10% 10% 10% 10%;">
+	<main style = "margin : 10% 20% 10% 20%;">
 		<table class = "table">
 			<tbody class = "table-group-divider">
 				<c:forEach var="memberVo" items="${info}">

@@ -33,7 +33,7 @@ ul.dropdown-menu a:hover, ul.dropdown-menu a:focus { /* 마우스 및 키보드 
 	
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
 	  <div class="container-fluid">
-	    <a class="navbar-brand" href="/travelers/admin.do">관리자페이지</a>
+	    <a class="navbar-brand" href="/travelers/memberList.do">관리자페이지</a>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>

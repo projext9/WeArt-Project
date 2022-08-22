@@ -63,7 +63,7 @@
 		});
 	</script>
 </head>
-<body style = "margin : 5% 10% 0 10%;">
+<body style = "margin : 5% 20% 0 20%;">
 <h3>판매자목록</h3>
 	<table class = "table">
 		<thead>
