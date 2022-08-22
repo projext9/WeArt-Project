@@ -1,6 +1,9 @@
 package we.are.travelers.service;
 
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import we.are.travelers.dao.CompanyDao;
@@ -21,7 +24,7 @@ public class AllMemberService {
 	}
 	
 	//회원가입 처리 메소드:join()
-	public int joinMember(MemberVo mv) {
+	public int joinMember(MemberVo mv) {  
 		
 		int result_member=0;//입력 실패
 		
@@ -39,8 +42,26 @@ public class AllMemberService {
 		return result_company;
 	}
 	
-	public MemberVo loginMember(MemberVo mv) { 
+	public MemberVo loginMember(MemberVo mv) throws NoSuchAlgorithmException { 
 		
+        String member_pwd = mv.getMember_pwd();
+        System.out.println(member_pwd);
+		
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		 
+        md.update(member_pwd.getBytes());
+ 
+        StringBuilder builder = new StringBuilder();
+ 
+        for (byte b: md.digest()) {
+            builder.append(String.format("%02x", b));
+        }
+        
+        String pwd_result = builder.toString();
+        System.out.println(pwd_result); //88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
+        
+        mv.setMember_pwd(pwd_result);
+        
 		 return memberDao.loginMember(mv); 
    }
 	public MemberVo loginMemberDelynS(MemberVo mv) { 

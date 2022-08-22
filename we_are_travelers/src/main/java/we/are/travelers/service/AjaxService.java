@@ -1,5 +1,7 @@
 package we.are.travelers.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,21 +21,40 @@ public class AjaxService {
 	}
 	
 
-	public int checkId(String id) {
+	public int checkId(String member_id) {
+		System.out.println("서비스");
 		int id_check_result=0;
-		id_check_result = memberDao.checkId(id);
+		
+		id_check_result = memberDao.checkId(member_id);
+		
 		return id_check_result;
 	}
 	
-	public int checkComId(String id) {
+public int checkId1(String member_id) {
+		
 		int id_check_result=0;
+		
+		id_check_result = memberDao.checkId1(member_id);
+		
+		return id_check_result;
+	}
+	
+	
+	public int checkComId(String id) {
+		
+		int id_check_result=0;
+		
 		id_check_result = companyDao.checkComId(id);
+		
 		return id_check_result;
 	}
 	
 	public int checkNick(String nick) {
+		
 		int nick_check_result=0;
+		
 		nick_check_result = memberDao.checkNick(nick);
+		
 		return nick_check_result;
 	
 	}

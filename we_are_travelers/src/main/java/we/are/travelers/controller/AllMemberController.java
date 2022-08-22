@@ -3,7 +3,12 @@ package we.are.travelers.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.MessageDigest;
 import java.util.UUID;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +24,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import we.are.travelers.service.AllMemberService;
+import we.are.travelers.service.PwdService;
 import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.MemberVo;
 
@@ -42,6 +48,7 @@ public class AllMemberController {
     	
     	MemberVo memberVo = AllmemberService.loginMember(mv);
     	MemberVo memberVo2 = AllmemberService.loginMemberDelynS(mv);
+    	    	
     	CompanyVo companyVo = AllmemberService.loginCompany(cv);
     	CompanyVo companyVo2 = AllmemberService.loginCompany_auth(cv);
     	CompanyVo companyVo3 = AllmemberService.loginCompany_delynS(cv);
@@ -154,7 +161,7 @@ public class AllMemberController {
 	}
 	@RequestMapping(value="/joinfinish.do", method = RequestMethod.POST)
 	public String joinNext4(@RequestParam("email")String email , @RequestParam("pwd")String pwd , @RequestParam("nick") String nick
-			, @RequestParam("name") String name , @RequestParam("birth") String birth, Model model) {
+			, @RequestParam("name") String name , @RequestParam("birth") String birth, Model model) throws NoSuchAlgorithmException {
 		String idx ="";
 		for (int i = 1; i <= 12; i++) {
             int pick = (int)((Math.random() * (20 - 1)) + 1);
@@ -175,10 +182,25 @@ public class AllMemberController {
                     idx= idx + String.valueOf(ch);
             }
 		}
-
+		
+		String member_pwd = "pwd";
+		
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		 
+        md.update(member_pwd.getBytes());
+ 
+        StringBuilder builder = new StringBuilder();
+ 
+        for (byte b: md.digest()) {
+            builder.append(String.format("%02x", b));
+        }
+        
+        String pwd_result = builder.toString();
+        System.out.println(pwd_result); //88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
+			
 		model.addAttribute("idx", idx);
 		model.addAttribute("email", email);
-		model.addAttribute("pwd", pwd);
+		model.addAttribute("pwd", pwd_result);
 		model.addAttribute("nick", nick);
 		model.addAttribute("name", name);
 		model.addAttribute("birth", birth);
@@ -292,10 +314,12 @@ public class AllMemberController {
             }
 		}
 		
+		Class<PwdService> company_pwd1 = PwdService.class;
+		
 		model.addAttribute("company_idx", idx);
 		model.addAttribute("company_buis_number", company_buis_number);
 		model.addAttribute("company_id", company_id);
-		model.addAttribute("company_pwd", company_pwd);
+		model.addAttribute("company_pwd", company_pwd1);
 		model.addAttribute("company_name", company_name );
 		model.addAttribute("company_ceo_name", company_ceo_name);
 		model.addAttribute("address" , add );

@@ -1,6 +1,7 @@
 package we.are.travelers.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +38,18 @@ public class MemberDao {
 		  return sqlSession.selectOne(MAPPER+".loginMemberDelynS", mv);	  
 	}
 	  
-    //회원가입 아이디 , 닉네임 중복 체크
-	public int checkId(String id) {
-		return sqlSession.selectOne(MAPPER+".checkId", id);
+    //회원가입 아이디
+	public int checkId(String member_id) {
+		System.out.println("dao");
+		return sqlSession.selectOne(MAPPER+".checkId", member_id);
 	}
-
+	
+	public int checkId1(String member_id) {
+		return sqlSession.selectOne(MAPPER+".checkId1", member_id);
+	}
+	
+	
+	//닉네임 중복 체크
 	public int checkNick(String nick) {
 		return sqlSession.selectOne(MAPPER+".checkNick", nick);
 	}

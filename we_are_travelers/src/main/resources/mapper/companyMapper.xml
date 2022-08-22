@@ -28,7 +28,7 @@
 	<select id="checkComId" parameterType="string" resultType="int">
 		SELECT a.company_id , b.member_id
 		FROM (SELECT COUNT(*) company_id FROM weart_company where company_id=#{company_id}) a ,
-		     (SELECT COUNT(*) member_id FROM weart_member where member_id=#{member_id}) b
+		     (SELECT COUNT(*) member_id FROM weart_member where member_id=#{company_id}) b
 	</select>
 	
 	<select id="checkComName" parameterType="string" resultType="int">

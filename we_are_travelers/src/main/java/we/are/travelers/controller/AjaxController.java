@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import we.are.travelers.service.AjaxService;
+import we.are.travelers.vo.MemberVo;
 
 //Ajax통신 지원을 위해 pom.xml에 의존모듈(jackson)을 추가해 줌
 
@@ -33,29 +34,31 @@ public class AjaxController {
 	
 	@RequestMapping("/checkId.do")
 	//@ResponseBody //Ajax통신의 응답내용을 보내는 것을 표시
-	public String checkId(@RequestParam("member_id") String id) {
+	public String checkId(@RequestParam("member_id") String member_id) {
 		
-		System.out.println("id: "+id);
+		System.out.println("member_id: "+ member_id);
 		
 		String id_check_result="N";//중복된 아이디 없음
 		
-		int flag = ajaxService.checkId(id);
+		int flag = ajaxService.checkId(member_id);
 		
-		if(flag == 1) id_check_result = "Y";//중복된 아이디 있음
-		
+		int flag1 = ajaxService.checkId1(member_id);
+		System.out.println("결과값 "+ flag + "dd" + flag1);
+		if(flag == 0 && flag1 == 1) id_check_result = "Y"; //중복된 아이디 있음
+	
 		return id_check_result;
 	}
 	
 	@RequestMapping("/checkComId.do")
 	public String checkComId(@RequestParam("company_id") String id) {
 		
-		System.out.println("id: "+id);
+		System.out.println("id: "+ id);
 		
 		String id_check_result="N";//중복된 아이디 없음
 		
 		int flag = ajaxService.checkComId(id);
 		
-		if(flag == 1) id_check_result = "Y";    //중복된 아이디 있음
+		if(flag == 1 ) id_check_result = "Y";    //중복된 아이디 있음
 		
 		return id_check_result;
 	}

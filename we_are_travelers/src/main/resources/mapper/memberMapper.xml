@@ -4,10 +4,12 @@
 
 <mapper namespace = "we.are.travelers.member">
 
-     <select id="checkId" parameterType="string" resultType="int">  
-		SELECT a.member_id,b.company_id
-		FROM (SELECT COUNT(*) member_id FROM weart_member where member_id=#{member_id}) a ,
-		     (SELECT COUNT(*) company_id FROM weart_company where company_id=#{company_id}) b
+     <select id="checkId" parameterType="String" resultType="int">  
+		SELECT Count(*) FROM weart_member WHERE member_id=#{member_id}
+	</select> 
+	
+	<select id="checkId1" parameterType="String" resultType="int">  
+		SELECT Count(*) FROM weart_company WHERE company_id=#{member_id}
 	</select> 
 	
 	<select id="checkNick" parameterType="string" resultType="int">  

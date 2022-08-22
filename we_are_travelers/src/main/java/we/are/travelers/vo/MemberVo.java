@@ -6,6 +6,7 @@ public class MemberVo {
 	
 	private String member_idx=""; // 회원 고유번호
 	private String member_id; // 아이디(이메일)
+	private String company_id;
 	private String member_pwd; // 비밀번호
 	private String member_name; // 이름
 	private String member_nick; // 닉네임
@@ -105,6 +106,12 @@ public class MemberVo {
 				+ ", member_phone=" + member_phone + ", member_grade=" + member_grade + ", member_regCode="
 				+ member_regCode + ", member_phone_auth=" + member_phone_auth + ", member_delyn=" + member_delyn
 				+ ", member_regdate=" + member_regdate + ", member_ip=" + member_ip + "]";
+	}
+	public String getCompany_id() {
+		return company_id;
+	}
+	public void setCompany_id(String company_id) {
+		this.company_id = company_id;
 	}
 	
       
