@@ -24,15 +24,16 @@
 		select * from weart_company where company_id=#{company_id} and company_pwd=#{company_pwd} and company_auth=1 and company_delyn='S'
 	</select>
 	
-	
 	<select id="checkComId" parameterType="string" resultType="int">
-		SELECT a.company_id , b.member_id
-		FROM (SELECT COUNT(*) company_id FROM weart_company where company_id=#{company_id}) a ,
-		     (SELECT COUNT(*) member_id FROM weart_member where member_id=#{company_id}) b
+		SELECT COUNT(*) FROM weart_company WHERE company_id=#{company_id} 
+	</select>
+	
+	<select id="checkComId1" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM weart_member WHERE member_id=#{company_id}
 	</select>
 	
 	<select id="checkComName" parameterType="string" resultType="int">
-	   SELECT count(*) FROM weart_company where company_name=#{company_name}
+	   SELECT count(*) FROM weart_company WHERE company_name=#{company_name}
 	</select>
 	   
 	

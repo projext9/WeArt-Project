@@ -152,15 +152,15 @@ public class AllMemberController {
 		return "member/join_pwd";
 	}
 	@RequestMapping(value="/joinNext3.do", method = RequestMethod.POST)
-		public String joinNext3(@RequestParam("email")String email , @RequestParam("pwd")String pwd , Model model)  {		
+		public String joinNext3(@RequestParam("email")String email , @RequestParam("member_pwd") String member_pwd , Model model)  {		
 		
 		model.addAttribute("email", email);
-		model.addAttribute("pwd", pwd);
+		model.addAttribute("member_pwd", member_pwd);
 		
 		return "member/join_persnol_info";
 	}
 	@RequestMapping(value="/joinfinish.do", method = RequestMethod.POST)
-	public String joinNext4(@RequestParam("email")String email , @RequestParam("pwd")String pwd , @RequestParam("nick") String nick
+	public String joinNext4(@RequestParam("email")String email , @RequestParam("member_pwd")String member_pwd , @RequestParam("nick") String nick
 			, @RequestParam("name") String name , @RequestParam("birth") String birth, Model model) throws NoSuchAlgorithmException {
 		String idx ="";
 		for (int i = 1; i <= 12; i++) {
@@ -183,24 +183,24 @@ public class AllMemberController {
             }
 		}
 		
-		String member_pwd = "pwd";
+		String SHA_pwd = member_pwd;
 		
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
 		 
-        md.update(member_pwd.getBytes());
+        md.update(SHA_pwd.getBytes());
  
         StringBuilder builder = new StringBuilder();
  
         for (byte b: md.digest()) {
             builder.append(String.format("%02x", b));
         }
-        
         String pwd_result = builder.toString();
+        
         System.out.println(pwd_result); //88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
 			
 		model.addAttribute("idx", idx);
 		model.addAttribute("email", email);
-		model.addAttribute("pwd", pwd_result);
+		model.addAttribute("member_pwd", pwd_result);
 		model.addAttribute("nick", nick);
 		model.addAttribute("name", name);
 		model.addAttribute("birth", birth);
@@ -284,7 +284,7 @@ public class AllMemberController {
 	public String joinCNext4(@RequestParam("company_buis_number")String company_buis_number , @RequestParam("company_id")String company_id , @RequestParam("company_pwd")String company_pwd, 
 			@RequestParam("company_name") String company_name, @RequestParam("company_ceo_name") String company_ceo_name , 
 			@RequestParam("address") String address , @RequestParam("detail_address") String detail_address , 
-			@RequestParam("company_auth_origin_file") MultipartFile company_auth_origin_file , Model model , HttpServletRequest request)  {
+			@RequestParam("company_auth_origin_file") MultipartFile company_auth_origin_file , Model model , HttpServletRequest request) throws NoSuchAlgorithmException  {
 		
 		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		String ip = req.getHeader("X-FORWARDED-FOR");
@@ -314,12 +314,25 @@ public class AllMemberController {
             }
 		}
 		
-		Class<PwdService> company_pwd1 = PwdService.class;
+        String SHA_pwd = company_pwd;
+		
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		 
+        md.update(SHA_pwd.getBytes());
+ 
+        StringBuilder builder = new StringBuilder();
+ 
+        for (byte b: md.digest()) {
+            builder.append(String.format("%02x", b));
+        }
+        String pwd_result = builder.toString();
+        
+        System.out.println(pwd_result); //88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
 		
 		model.addAttribute("company_idx", idx);
 		model.addAttribute("company_buis_number", company_buis_number);
 		model.addAttribute("company_id", company_id);
-		model.addAttribute("company_pwd", company_pwd1);
+		model.addAttribute("company_pwd", pwd_result);
 		model.addAttribute("company_name", company_name );
 		model.addAttribute("company_ceo_name", company_ceo_name);
 		model.addAttribute("address" , add );
@@ -399,7 +412,6 @@ public class AllMemberController {
 		return viewPage;
 	
 }	
-	
 	@RequestMapping("/logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -407,7 +419,31 @@ public class AllMemberController {
 		
 		return "redirect:login.do";
 	}
-
+	@RequestMapping("/find_id_pwd.do")
+	public String find_id_pwd() {
+		
+		return "find_id_pwd";
+	}
+	@RequestMapping("/find_id.do")
+	public String find_id() {
+		
+		return "find_id";
+	}
+	@RequestMapping("/find_pwd.do")
+	public String find_pwd() {
+		
+		return "find_pwd";
+	}
+	@RequestMapping("/result_id.do")
+	public String result_id() {
+		
+		return "find_id";
+	}
+	@RequestMapping("/result_pwd.do")
+	public String result_pwd() {
+		
+		return "find_pwd";
+	}
 }
 
 

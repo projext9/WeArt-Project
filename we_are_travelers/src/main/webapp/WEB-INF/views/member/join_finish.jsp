@@ -17,7 +17,7 @@
 <form class="join_form_info" name="join_info" id="join_finish" method="post" action="/travelers/joinMemberProcess.do">
 <input type="hidden" name="member_idx"value=${idx }>
 <input type="hidden" name="member_id"value=${email }>
-<input type="hidden" name="member_pwd" value=${pwd }>
+<input type="hidden" name="member_pwd" value=${member_pwd }>
 <input type="hidden" name="member_nick" value=${nick }>
 <input type="hidden" name="member_name"value=${name }>
 <input type="hidden" name="member_birth"value=${birth }>

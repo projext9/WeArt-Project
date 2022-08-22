@@ -27,7 +27,7 @@ progress::-webkit-progress-value {
 h1{
     margin: 0;
     padding: 0;
-    top: -120px;
+    top: -10%;
 	position: relative;
     font-size: 45px;
     background: linear-gradient(to right top, #5151E5, #72EDF2);

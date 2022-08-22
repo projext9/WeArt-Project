@@ -62,7 +62,9 @@
  </form>
     <div class="checkbox mb-3">
     <label id="save_id"><input type="checkbox" value="remember-me">아이디 저장</label>
+    <a id="find_id_pwd" href="${pageContext.request.contextPath}/find_id_pwd.do">아이디/비밀번호 찾기</a>
  </div>
+  
     
  <div class="social_login">
      <div class="social_logoK">

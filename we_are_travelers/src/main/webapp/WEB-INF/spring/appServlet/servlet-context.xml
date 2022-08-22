@@ -75,6 +75,11 @@
 			<exclude-mapping path="/join_com_finish.do"/>
 			<exclude-mapping path="/joinCompanyProcess.do"/>
 			<exclude-mapping path="/logout.do"/>
+			<exclude-mapping path="/find_id_pwd.do"/>
+			<exclude-mapping path="/find_id.do"/>
+			<exclude-mapping path="/find_pwd.do"/>
+			<exclude-mapping path="/result_id.do"/>
+			<exclude-mapping path="/result_pwd.do"/>
 			
 			<!-- AjaxController -->
 			<exclude-mapping path="/checkId.do"/>

@@ -130,14 +130,14 @@
     <div class="pwd_input_area">
     <div class="pwd_input_wrap">
     <label>비밀번호
-        <input type="password" class="pwd1_input" id="pwd_1" name="pwd" value="">
+        <input type="password" class="pwd1_input" id="pwd_1" name="member_pwd">
     </label>
    </div>  
    <span class="pwd_input_check1"></span>  
    <!-- 비밀번호 확인-->
     <div class="pwd_check_wrap">
     <label id="pwd_check_id">비밀번호 확인
-      <input type="password" class="pwd2_input" id="pwd_2" name="pwd2" value="">
+      <input type="password" class="pwd2_input" id="pwd_2" name="member_pwd2" value="">
     </label>   
     </div>
     <span class="pwd_input_check2"></span>

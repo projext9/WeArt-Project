@@ -40,11 +40,20 @@ public int checkId1(String member_id) {
 	}
 	
 	
-	public int checkComId(String id) {
+	public int checkComId(String company_id) {
 		
 		int id_check_result=0;
 		
-		id_check_result = companyDao.checkComId(id);
+		id_check_result = companyDao.checkComId(company_id);
+		
+		return id_check_result;
+	}
+	
+public int checkComId1(String company_id) {
+		
+		int id_check_result=0;
+		
+		id_check_result = companyDao.checkComId1(company_id);
 		
 		return id_check_result;
 	}

@@ -44,6 +44,11 @@ public class CompanyDao {
 		  
 			return sqlSession.selectOne(MAPPER+".checkComId", id);
 	}
+	  
+	  public int checkComId1(String id) {
+		  
+			return sqlSession.selectOne(MAPPER+".checkComId1", id);
+	}
 	  public int checkComName(String name) {
 		  
 			return sqlSession.selectOne(MAPPER+".checkComName", name);

@@ -45,6 +45,7 @@ public class AllMemberService {
 	public MemberVo loginMember(MemberVo mv) throws NoSuchAlgorithmException { 
 		
         String member_pwd = mv.getMember_pwd();
+        
         System.out.println(member_pwd);
 		
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -56,11 +57,13 @@ public class AllMemberService {
         for (byte b: md.digest()) {
             builder.append(String.format("%02x", b));
         }
-        
         String pwd_result = builder.toString();
+        
         System.out.println(pwd_result); //88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
         
         mv.setMember_pwd(pwd_result);
+        
+        System.out.println("암호화 : " + pwd_result);
         
 		 return memberDao.loginMember(mv); 
    }
@@ -68,8 +71,6 @@ public class AllMemberService {
 		
 		 return memberDao.loginMemberDelynS(mv); 
   } 
-	
-
 	public CompanyVo loginCompany(CompanyVo cv) { 
 		
 		 return companyDao.loginCompany(cv); 

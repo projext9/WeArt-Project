@@ -43,23 +43,28 @@ public class AjaxController {
 		int flag = ajaxService.checkId(member_id);
 		
 		int flag1 = ajaxService.checkId1(member_id);
+		
 		System.out.println("결과값 "+ flag + "dd" + flag1);
-		if(flag == 0 && flag1 == 1) id_check_result = "Y"; //중복된 아이디 있음
+		
+		if(flag == 1 || flag1 == 1) id_check_result = "Y"; //중복된 아이디 있음
 	
 		return id_check_result;
 	}
 	
 	@RequestMapping("/checkComId.do")
-	public String checkComId(@RequestParam("company_id") String id) {
+	public String checkComId(@RequestParam("company_id") String company_id) {
 		
-		System.out.println("id: "+ id);
+		System.out.println("id: "+ company_id);
 		
 		String id_check_result="N";//중복된 아이디 없음
 		
-		int flag = ajaxService.checkComId(id);
+		int flag = ajaxService.checkComId(company_id);
 		
-		if(flag == 1 ) id_check_result = "Y";    //중복된 아이디 있음
+		int flag1 = ajaxService.checkComId1(company_id);
 		
+		if(flag == 1 || flag1 == 1 ) id_check_result = "Y";    //중복된 아이디 있음
+		
+		 
 		return id_check_result;
 	}
 	

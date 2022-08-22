@@ -143,7 +143,7 @@
 <form class="join_form_info" name="joinForm" action="/travelers/joinfinish.do" method="post">
 
     <input type="hidden" name="email" value="${email }">
-    <input type="hidden" name="pwd" value="${pwd }">
+    <input type="hidden" name="member_pwd" value="${member_pwd }">
     
     <div class="multi_box">
     <progress value="80" max="100"></progress>
