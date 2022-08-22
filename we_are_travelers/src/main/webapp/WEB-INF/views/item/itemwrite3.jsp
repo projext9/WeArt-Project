@@ -38,7 +38,7 @@
 		 	
 	 		function fn_itemwrite3() {
 				var fm2 = document.frm2;
-				alert("게시글 작성 실행");
+				alert("상품등록 진행");
 				fm2.action = "itemwrite3action.do";
 				fm2.method = "post";
 				fm2.submit();
