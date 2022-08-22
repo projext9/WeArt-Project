@@ -18,13 +18,13 @@
 	<div class="container" style="padding-top:1em;">
 		<div class="card">
 			<div class="card-header d-flex">
-				<h3 class="mb-1 col-9">${boardVo.board_subject}</h3>
+				<h4 class="mb-1 col-9">${boardVo.board_subject}</h4>
 				<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 					<small class="text-muted">${boardVo.board_writer} / ${boardVo.board_date}</small>
 				</div>
 			</div>
 			<div class="card-body">
-				<blockquote class="blockquote mb-0">
+				<blockquote class="blockquote mb-0" style="font-size:1em;">
 					<p>${boardVo.board_content}</p>
 				</blockquote>
 				<div class="d-flex justify-content-between align-items-center">
