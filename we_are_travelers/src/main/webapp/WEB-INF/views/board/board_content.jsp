@@ -13,7 +13,6 @@
 		$("*>img").css("max-width", "100%");
 		$(".image").css("text-align", "center");
 		$(".image-style-side").css("text-align", "end");
-		$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
 		$("input[id=${boardVo.board_delyn}]").prop("disabled", true);
 
 		$("#board_content").on("propertychange change paste input", function() {
@@ -137,7 +136,7 @@
 	});
 </script>
 </head>
-<main style="padding-top:60px;">
+<main style="padding-top:115px;">
 	<div class="container" style="padding-top:1em;">
 		<div class="card">
 			<div class="card-header d-flex">

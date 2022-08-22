@@ -21,7 +21,7 @@
 		<section>
 			<div class="container-xxl">
 <!-- 1번 게시물 -->
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture01.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0501.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor2()">
 						<span></span>
 		                <span></span>
@@ -31,7 +31,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style="height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture02.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style="height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0502.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor3()">
 						<span></span>
 		                <span></span>
@@ -41,7 +41,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture03.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0503.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor4()">
 						<span></span>
 		                <span></span>
@@ -52,7 +52,7 @@
 				<div id="anchor_row"></div>
 				
 <!-- 2번 게시물 -->
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture04.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0504.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor5()">
 						<span></span>
 		                <span></span>
@@ -62,7 +62,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture05.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0505.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor6()">
 						<span></span>
 		                <span></span>
@@ -72,7 +72,7 @@
 
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture06.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0506.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor7()">
 						<span></span>
 		                <span></span>
@@ -83,7 +83,7 @@
 				<div id="anchor_row"></div>
 				
 <!-- 3번 게시물 -->
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture07.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0507.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor8()">
 						<span></span>
 		                <span></span>
@@ -93,7 +93,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture08.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0508.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor9()">
 						<span></span>
 		                <span></span>
@@ -103,7 +103,7 @@
 
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture09.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0509.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div id="anchor_btn2"><button type="button" class="btn btn-secondary" onClick="anchor1()">처음으로</button></div>
 				</div>
 				

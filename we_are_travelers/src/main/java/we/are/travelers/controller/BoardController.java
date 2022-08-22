@@ -62,9 +62,8 @@ public class BoardController {
         boardVo.setBoard_code(code);
         
         // board_subject 에서 HTML 태그 변환
-        String subject = boardVo.getBoard_subject();
-        String board_subject = HtmlUtils.htmlEscape(subject);
-        boardVo.setBoard_subject("<pre>"+board_subject+"</pre>");
+        String board_subject = boardVo.getBoard_subject();
+        boardVo.setBoard_subject(HtmlUtils.htmlEscape(board_subject));
         
         // board_content 에서 HTML 태그 제거
         String board_remove_tag = boardVo.getBoard_content().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
@@ -113,7 +112,7 @@ public class BoardController {
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
-		scri.setKeyword(keyword);
+		scri.setKeyword(HtmlUtils.htmlEscape(keyword));
 		scri.setSearchType(searchType);
 		scri.setOrder_by(order_by);
 		scri.setView(view);
@@ -186,7 +185,7 @@ public class BoardController {
 			
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
-		scri.setKeyword(keyword);
+		scri.setKeyword(HtmlUtils.htmlEscape(keyword));
 		scri.setSearchType(searchType);
 		scri.setOrder_by(order_by);
 		scri.setView(view);
@@ -234,11 +233,13 @@ public class BoardController {
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
-		scri.setKeyword(keyword);
+		scri.setKeyword(HtmlUtils.htmlEscape(keyword));
 		scri.setSearchType(searchType);
 		scri.setBoard_code(code);
-		scri.setMy_board((String) session.getAttribute("member_idx"));
-	
+		if((int)session.getAttribute("member_grade")==0) {
+			scri.setMy_board((String) session.getAttribute("member_idx"));
+		}
+		
 		int cnt = boardService.inquiry_total(scri);
 		
 		PageMaker pm = new PageMaker();
@@ -290,8 +291,7 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		
 		// board_content 에서 HTML 태그 변환
-        String content = HtmlUtils.htmlEscape(board_content);
-        boardVo.setBoard_content("<pre>"+content+"</pre>");
+        boardVo.setBoard_content(HtmlUtils.htmlEscape(board_content));
         
         boardVo.setBoard_code(board_code);
 		boardVo.setBoard_originidx(board_idx);
@@ -336,7 +336,7 @@ public class BoardController {
 		
 		HttpSession session = request.getSession();
 		
-		boardVo.setBoard_content(board_content);
+		boardVo.setBoard_content(HtmlUtils.htmlEscape(board_content));
         boardVo.setBoard_ip(InetAddress.getLocalHost().getHostAddress());
         boardVo.setMember_idx((String)session.getAttribute("member_idx"));
         
@@ -374,9 +374,8 @@ public class BoardController {
 		String ip = InetAddress.getLocalHost().getHostAddress();
         boardVo.setBoard_ip(ip);
         
-        String subject = boardVo.getBoard_subject();
-        String board_subject = HtmlUtils.htmlEscape(subject);
-        boardVo.setBoard_subject("<pre>"+board_subject+"</pre>");
+        String board_subject = boardVo.getBoard_subject();
+        boardVo.setBoard_subject(HtmlUtils.htmlEscape(board_subject));
         
         // board_content 에서 HTML 태그 제거
         String board_remove_tag = boardVo.getBoard_content().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");

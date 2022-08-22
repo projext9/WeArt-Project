@@ -18,7 +18,7 @@
 	
 		$(function() {
 			$("*").css("text-decoration-line", "none");
-			$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
+			$("h3").css({"white-space":"nowrap", "text-overflow":"ellipsis", "overflow":"hidden"});
 		});
 	</script>
 </head>

@@ -17,12 +17,11 @@
 	
 		$(function() {
 			$("*").css("text-decoration-line", "none");
-			$("a > *").css("color", "black");
-			$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
+			$("h3").css({"white-space":"nowrap", "text-overflow":"ellipsis", "overflow":"hidden"});
 		});
 	</script>
 </head>
-<main style="padding-top:60px;">
+<main style="padding-top:115px; color:black;">
 	<!-- 게시판 버튼 -->
 	<div class="container g-3 row row-cols-2 mb-3" style="padding-top:1em; padding-right:0.7em; padding-left:0.7em; margin:auto;">
 		<form class="col-12" style="padding:0; margin:auto;">

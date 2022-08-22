@@ -11,7 +11,6 @@
 <script>
 	$(function() {
 		$("*>img").css("max-width", "100%");
-		$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
 		
 		$("#board_content").on("propertychange change paste input", function() {
 			if($("#board_content").val().replace(/\s+/g,"")=="") {
@@ -96,21 +95,15 @@
 			$("#reply_content").css("display", "none");
 			$("#reply_write").css("display", "");
 		});
-		
-		// 제목에서 pre태그 제거
-		let content = "${boardVo.board_content}";
-		let board_content = subject.slice(5, -6);
-		$("#after_reply_content").val(board_content);
-		
 	});
 </script>
 </head>
-<main style="padding-top:60px;">
+<main style="padding-top:115px;">
 	<div class="container" style="padding-top:1em;">
 		<div class="card">
 			<div class="card-header d-flex">
 				<input type="hidden" id="board_idx" value="${boardVo.board_idx}" style="display:none;">
-				<h3 class="mb-0 col-9">${boardVo.board_subject}</h3>
+				<h3 class="mb-0 col-9"><pre>${boardVo.board_subject}</pre></h3>
 				<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 					<small class="text-muted">${boardVo.board_writer} / ${boardVo.board_date}</small>
 				</div>
@@ -179,7 +172,7 @@
 							<h5 class="mb-1 col-6 col-sm-7 col-md-8 col-lg-9">
 								<input type="hidden" id="reply_board_idx" value="${boardVo.board_idx}" style="display:none;">
 								<span id="before_reply_content">${boardVo.board_content}</span>
-								<input type="text" id="after_reply_content" class="form-control" placeholder="내용을 입력하세요" required style="display:none;">
+								<input type="text" id="after_reply_content" class="form-control" placeholder="${boardVo.board_content}" required style="display:none;">
 							</h5>
 							<div class="d-flex justify-content-start">
 								<small class="text-muted align-items-center">${boardVo.board_writer} / ${boardVo.board_date}</small>

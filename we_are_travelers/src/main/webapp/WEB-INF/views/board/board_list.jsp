@@ -20,9 +20,8 @@
 		$("div > img").addClass("img-fluid rounded mx-auto d-block");
 		$("div > img").css("width", "100%");
 		$("*").css("text-decoration-line", "none");
-		$("a > *").css("color", "black");
 		$("#view_list>*").css("display", "none");
-		$("pre").css({"text-overflow":"ellipsis", "overflow":"hidden", "margin":"auto", "font-size":"1em"});
+		$("h3").css({"white-space":"nowrap", "text-overflow":"ellipsis", "overflow":"hidden"});
 		
 		if($("input[name=view]:checked").val() == "view_frame") {
 			$("#view_frame>*").css("display", "");
@@ -110,7 +109,7 @@
 	});
 </script>
 </head>
-<main style="padding-top:115px;">
+<main style="padding-top:115px; color:black;">
 	
         <header>
 			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">

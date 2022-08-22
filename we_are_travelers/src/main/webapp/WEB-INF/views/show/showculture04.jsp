@@ -21,7 +21,7 @@
 		<section>
 			<div class="container-xxl">
 <!-- 1번 게시물 -->
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture01.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0401.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor2()">
 						<span></span>
 		                <span></span>
@@ -31,7 +31,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style="height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture02.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style="height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0402.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor3()">
 						<span></span>
 		                <span></span>
@@ -41,7 +41,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture03.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0403.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor4()">
 						<span></span>
 		                <span></span>
@@ -52,7 +52,7 @@
 				<div id="anchor_row"></div>
 				
 <!-- 2번 게시물 -->
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture04.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0404.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor5()">
 						<span></span>
 		                <span></span>
@@ -62,7 +62,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture05.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0405.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor6()">
 						<span></span>
 		                <span></span>
@@ -72,7 +72,7 @@
 
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture06.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0406.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor7()">
 						<span></span>
 		                <span></span>
@@ -83,7 +83,7 @@
 				<div id="anchor_row"></div>
 				
 <!-- 3번 게시물 -->
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture07.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0407.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor8()">
 						<span></span>
 		                <span></span>
@@ -93,7 +93,7 @@
 				
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture08.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0408.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div class="arrow_down" id="anchor_btn" onClick="anchor9()">
 						<span></span>
 		                <span></span>
@@ -103,7 +103,7 @@
 
 				<div id="anchor_row"></div>
 				
-				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture09.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
+				<div style=" height:85vh; background-image:url(${pageContext.request.contextPath}/resources/showimg/showculture0409.jpg); background-size: 100% 100%; background-repeat:no-repeat;">
 					<div id="anchor_btn2"><button type="button" class="btn btn-secondary" onClick="anchor1()">처음으로</button></div>
 				</div>
 				
@@ -113,43 +113,45 @@
 
 <!-- 1번 게시물 설명 -->
 			<div class="contentBox" id="contentBox1">
-				<h2>N서울타워(남산서울타워)</h2>
+				<h2>간월사지</h2>
 				<br>
-				<p>주소 : 서울특별시 용산구 남산공원길 105</p>
+				<p>주소 : 울산광역시 울주군 상북면 알프스온천4길 15</p>
 				<br>
-				<p>N서울타워(남산타워)는 탁 트인 서울 전경을 감상할 수 있는 서울의 대표적인 랜드마크다. 전망대 겸 전파송출탑 역할을 하며, 지리적으로 서울 한 가운데 위치한 남산에 있는 덕분에 아름다운 서울 풍경을 360도 파노라마뷰로 즐길 수 있다. N서울타워는 내외국인 여행객이 꼭 가봐야 할 인기 명소 중 하나로, 연인 사이에서는 로맨틱 데이트 장소로도 잘 알려져 있다.
+				<p>간월사터는 통일신라시대 절터로 간월산 해발 215m정도에 동쪽방향으로 위치하고 있으며, 폐사된 이후 주위가 대부분 경작지로 이용되었다. 1984년 학술발굴조사가 이루어졌으며, 그 뒤 현재의 모습으로 정비되었다.
 					<br><br>
-					N서울타워는 관광과 문화를 동시에 느낄 수 있는 랜드마크다. 멋진 도시 전망은 물론, 서울의 문화와 역사를 배울 수 있는 좋은 기회. 이 밖에도 다양한 가격대의 식사 옵션을 갖추고 있으며, 타워를 구경한 이후에도 주변에 둘러볼 거리가 많다.
+					발굴조사 결과, 금당 등 건물터와 축대, 주초석(柱礎石), 장대석(長大石), 2기의 삼층석탑이 확인되었다. 금당지는 정면 3칸, 측면 3칸 규모이며, 금당지에서는 청동여래입상 등의 불상과 함께, 각종 기와, 토기 및 자기 조각들이 출토되었다. 금당지 앞쪽으로 남북으로 위치한 삼층석탑이 자리 잡고 있다. 다른 사찰과 비교하여 금당과 탑 사이의 거리가 좁고, 남북으로 위치한 쌍탑의 거리가 멀다. 또한 금당의 지대석 보다 탑의 지대석이 높은 편이며, 이는 지형 때문인 것으로 추정된다.
 					<br><br>
-					전망대는 놓치면 후회하는 명소 중의 명소다. 구름과 어깨를 나란히 할 정도로 높은 전망대에서 도시를 내려다보는 경험은 정말 환상적이다. 메인 전망대가 위치한 3층은 천장부터 바닥까지 모두 투명 유리로 돼있어 더욱 아찔한 파노라마 광경을 선사한다.
-					<br><br>
-					연인의 데이트 명소로 유명한 N서울타워의 또다른 볼거리는 영원한 사랑의 맹세하는 ‘사랑의 자물쇠’ 울타리다. 자물쇠에 이름과 이니셜 혹은 짧은 사랑의 메시지를 적어 전망대 펜스에 걸어둔다.
+					탑은 통일신라시대 정형적인 삼층석탑이다. 1층의 탑신부에는 인왕상과 문 모양이 조각되어 있다. 인왕은 불법을 수호하는 신장 중 하나로 금강역사라고 불리기도 한다. 옥개석 끝에는 풍탁을 달았던 구멍이 남아있다. 남탑은 북탑과 거의 비슷하지만, 1층 탑신 문 모양 안에 자물쇠를 새긴 점과 사리구멍이 북탑보다 2배 큰 것이 특징이다.
 				</p>
             </div>
 
 <!-- 2번 게시물 설명 -->
 			<div class="contentBox" id="contentBox2">
-				<h2>명동 쇼핑거리</h2>
+				<h2>강동화암 주상절리</h2>
 				<br>
-				<p>주소 : 서울특별시 중구 명동길</p>
+				<p>주소 : 울산광역시 북구 산하동 952-1번지</p>
 				<br>
-				<p>명동은 최근 각 브랜드들이 명동 상권에 주요 매장을 공격적으로 오픈하면서 과거의 명성을 되찾고 있다. 특히 4월 말 5월 초 일본의 골든위크가 시작되면 명동은 더 분주해진다. 일본인들에게 익숙한 롯데백화점은 본점과 명품관인 에비뉴엘이 모두 명동 초입에 있다. 뿐만 아니라 신발, 옷에서 액세서리까지 대중적인 가격대의 매장들이 밀집되어 있어 쇼핑을 즐기기에 부담이 없다. 가장 인기 있는 쇼핑 매장은 단연 뷰티 매장. 일본 여심을 사로잡은 더페이스샵, 에뛰드하우스 이외에도 스킨푸드, 미샤, 아리따움, 한스킨, 바닐라코 등의 매장이 화장품 쇼핑 명당으로 손꼽힌다. 자라(ZARA), 포에버 21, 갭(GAP) 등 글로벌 브랜드 최대 매장도 명동에 몰려 있어 외국인 쇼핑객들을 열광시킨다. 길을 따라 들어선 노점들도 명동의 쇼핑을 한층 더 재미나게 만드는 요소다.
+				<p>경주에 있는 주상절리가 여기 울산 강동 해안에도 있다. 맑고 검푸른 바닷물이 커다란 바윗덩어리에 부딪쳐 물보라를 일으키는 싱싱하게 살아있는 바다를 만날 수 있는 곳이다.
 					<br><br>
-					거대한 쇼핑 도시를 떠올리게 하는 명동은 그야말로 ‘쇼핑천국’. 고급 브랜드부터 화장품, 기념품 등 없는 걸 찾기가 더 힘들 정도로 다양한 물건을 판매한다. 덕분에 서울을 찾는 외국 여행객들의 필수 코스로 자리 잡은 지 오래다. 웬만한 매장에서는 외국어가 가능한 직원이나 외국어 방송이 따로 나올 정도. 대형 쇼핑몰과 고층 백화점, 레스토랑 및 카페, 거리 노점상까지 포함해 명동 쇼핑거리를 다 둘러보려면 하루가 부족하다. 많은 쇼핑객들이 여러 번 이곳을 찾는 이유이기도 하다.
+					울산 12경 중 하나인 강동·주전 몽돌해변은 보석처럼 반짝이는 몽돌과 하얗게 부서지는 파도가 어우러져 절경을 이루고 있으며, 산과 바다를 끼고 이어지는 국도는 드라이브 코스로 으뜸이며, 주변 볼거리도 많아 봄, 여름, 가을, 겨울 사계절 관광지로 인기를 모으고 있다.
+					<br><br>
+					울산광역시 기념물 제42호로 지정되었으며, 강동 해안의 화암마을 바닷가에 있는 주상절리고,약 2000만 년 전인 신생대 제3기에 분출한 마그마가 식어 굳어짐에 따라 부피가 줄어들어 생겼다고 한다.
 				</p>
             </div>
             
 <!-- 3번 게시물 설명 -->
 			<div class="contentBox" id="contentBox3">
-				<h2>북촌 한옥마을</h2>
+				<h2>개운포성지</h2>
 				<br>
-				<p>주소 : 서울특별시 종로구 계동길 37</p>
+				<p>주소 : 울산광역시 남구 성암동 81번지 일원</p>
 				<br>
-				<p>예로부터 북촌이라 하여 양반 동네로 알려진 이곳 주택은 모두 조선 시대의 기와집으로서 상류층의 구조 형태를 간직하며 지금까지 보존되어 오고 있다. 원래 이 동네에는 솟을대문이 있는 큰 집 몇 채와 30여 호의 한옥밖에 없었으나, 일제 말기와 6.25 수복 직후 지금의 상태로 늘어났다. 북촌한옥마을은 경복궁과 창덕궁, 종묘의 사이에 위치한 지역으로 서울 600년 역사와 함께해온 우리의 전통 거주 지역이다. 거대한 두 궁궐 사이에 밀접하여 전통한옥군이 위치하고 있으며, 수많은 가지 모양의 골목길을 그대로 보존하고 있어 6백 년 역사도시의 풍경을 극적으로 보여주고 있다. 지금은 전통문화체험관이나 한옥음식점 등으로 활용이 되어 간접적으로나마 조선시대의 분위기를 느낄 수 있는 곳이다.
-				<br><br>
-					북촌은 풍수지리적으로 빼어난 산줄기 남쪽 기슭에 자리 잡고 있으며 북악과 응봉을 잇고 있어요. 북촌의 북쪽은 위치가 높아서 겨울에 따뜻하고 배수가 원활하며 남쪽으로는 남산까지 보일 정도로 풍경이 트여 있죠.
-
-북촌 뒤로는 해발 463ｍ의 북악산과 아름다운 삼청공원이 있어요. 서쪽에는 경복궁, 동쪽에는 세계문화유산 창덕궁이 있어서 어디를 가도 고즈넉한 분위기가 가득하죠. 북촌에서는 사적 5곳, 서울시 민속자료 4곳, 유형문화재 3곳, 문화재자료 1곳 뿐만 아니라 석정 보름 우물, 광혜원터와 구한국미술관 등 소중한 민족의 역사적 자산을 만나 볼 수 있어요.
+				<p>개운포는 조선시대 전기부터 수군의 만호가 주둔하였으며, 세조에서 중종시기까지 경상좌수영(수영)이 있었던 곳이다.
+					<br><br>
+					개운포성은 외황강과 울산만이 만나는 곳에 위치하고 있으며, 둘레는 약 1,264m이며 남북으로 긴 타원형의 성곽이다. 평지와 산지의 특성을 모두 갖춘 평산성으로 성내에 골짜기를 가지고 있는 포곡성(抱谷城)이다. 1459년(세조 5) 동래 부산포의 수영이 개운포로 옮겨와서 1592년(선조 25)까지 개운포는 수군절도사의 군영이었다.
+					<br><br>
+					수영이 동래 해운포로 이전된 이후 개운포에 다시 만호진이 운영되었는지는 알 수 없지만, 임진왜란 시기 개운포에서 3차례 정도의 전투가 있었다는 점에서 개운포가 지속적으로 전략적 군사 거점지역으로 운영되고 있었음을 알 수 있다.
+					<br><br>
+					수영이 옮겨간 이후, 1656년(효종 7)부터는 현재 중구의 학성공원 아래에 있던 전선창이 옮겨왔다. 전선창은 전쟁에 쓰이는 선박을 만드는 곳으로 일명 ‘선소(船所)’라 하였으며, 성안의 마을이 철거되기 이전에 이곳을 ‘선수마을’이라 불리기도 했다. 전선창은 1895년 수군이 해산할 때 폐지되었다.
 				</p>
             </div>
 

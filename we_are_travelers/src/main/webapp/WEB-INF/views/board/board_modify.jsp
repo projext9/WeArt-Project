@@ -22,11 +22,6 @@
 				$("#board_subject").val(null);
 			}
 		});
-		
-		// 제목에서 pre태그 제거
-		let subject = "${boardVo.board_subject}";
-		let board_subject = subject.slice(5, -6);
-		$("#board_subject").val(board_subject);
 	})
 </script>
 <link href="${pageContext.request.contextPath}/resources/css/form-validation.css" rel="stylesheet">
@@ -34,7 +29,7 @@
 <main style="padding-top:60px;">
 	<form class="row g-1 needs-validation" method="post" action="${pageContext.request.contextPath}/modify_board.do?board_idx=${boardVo.board_idx}" enctype="multipart/form-data" style="margin:5% 20% 5% 20%;" novalidate>
 		<div class="col-md-12">
-			<input type="text" name="board_subject" class="form-control" id="board_subject" placeholder="제목을 입력하세요" value="" required>
+			<input type="text" name="board_subject" class="form-control" id="board_subject" placeholder="제목을 입력하세요" value="${boardVo.board_subject}" required>
 			<div class="invalid-feedback">
 				제목을 입력하세요
 			</div>
