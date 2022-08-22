@@ -71,6 +71,7 @@
 		select A.* from(
 			select * from weart_board where board_subject is null and board_code like 'b%'
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='content'">and board_content like CONCAT('%',#{keyword},'%')</if>
 			order by board_date desc
 		)A limit ${(page-1)*12}, 12
 		<!-- select * from weart_board where board_subject is null
@@ -81,6 +82,7 @@
 	<select id="getReplyTotal" resultType="int">
 		select count(*) as cnt from weart_board where board_subject is null and board_code like 'b%'
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType=='content'">and board_content like CONCAT('%',#{keyword},'%')</if>
 		<!-- select count(*) as cnt from weart_board where board_subject is null
 			<if test="searchType=='subject'">and board_subject like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType=='writer'">and board_writer like CONCAT('%',#{keyword},'%')</if> -->
