@@ -44,7 +44,7 @@
 	<body>
         <!-- Header-->
         <header>
-			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-top: 60px;">
+			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-top: 126px;">
 		    	<div class="carousel-indicators">
 		      		<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 		      		<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -52,32 +52,26 @@
 		    	</div>
 		    	<div class="carousel-inner">
 					<div class="carousel-item active">
-				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing2.png" aria-hidden="true"></img>
+				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/shoptitle/activity1.jpg" aria-hidden="true"></img>
 					        <div class="container">
 								<div class="carousel-caption text-start">
-									<h1 style="text-shadow:5px 5px 5px #000;">이것은 액티비티상품</h1>
-						            <p>우수한 품질의 중국산 낚시대</p>
-						            <p></p>
+									<h1 style="text-shadow:5px 5px 5px #000;">즐거운 익스트림 스포츠</h1>
 								</div>
 					        </div>
 					</div>
 					<div class="carousel-item">
-						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing3.png" aria-hidden="true"></img>
+						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/shoptitle/activity1.jpg" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption">
-								<h1 style="text-shadow:5px 5px 5px #000;">극강의 퀄리티</h1>
-								<p style="text-shadow:5px 5px 5px #000;">믿을 수 있는 중국산 제품</p>
-								<p></p>
+								<h1 style="text-shadow:5px 5px 5px #000;">액티비티의 모든 것</h1>
 							</div>
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing1.png" aria-hidden="true"></img>
+						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/shoptitle/activity1.jpg" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption text-end">
-								<h1 style="text-shadow:5px 5px 5px #000;">환상적인 중국산 제품</h1>
-									<p style="text-shadow: -1px 0 #000, 0 1px 5px #000, 1px 0 5px #000, 0 -1px #000;">저렴하고 우수한 중국산</p>
-									<p></p>
+								<h1 style="text-shadow:5px 5px 5px #000;">일상을 벗어난 즐거움</h1>
 							</div>
 						</div>
 					</div>
