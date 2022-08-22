@@ -10,9 +10,9 @@
 	<script type="text/javascript">
 	$(function() {
 		
-	$('.next_number').prop('disabled', false);
+	$('.next_number').prop('disabled', true);
 	
-   $('#buis_number_input').on('focusout' , function(){
+   $('#buis_number_input').on('keyup' , function(){
 	  
 	var company_buis_number = {
 		    "b_no": [$('#buis_number_input').val()] // 사업자번호 "xxxxxxxxx" 로 조회 시,
@@ -36,13 +36,13 @@
 			  
 			  if(obj['data'][0].b_stt_cd == '01') {
 				  $('.no_b').html(check1).css('color','green');
-				  $('.buis_number').prop('disabled', false).css(' ');
+				  $('.next_number').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white').css('border-radius', '10px');
 			  }else if(obj['data'][0].b_stt_cd == ""){
 				  $('.no_b').html(check3).css('color','red');
-				  $('.buis_number').prop('disabled', false);
+				  $('.next_number').prop('disabled', true);
 			  }else if(obj['data'][0].b_stt_cd == '02' || '03'){
 				  $('.no_b').html(check2).css('color','red');
-				  $('.buis_number').prop('disabled', false);
+				  $('.next_number').prop('disabled', true);
 				  
 		  }
 		      console.log(data);

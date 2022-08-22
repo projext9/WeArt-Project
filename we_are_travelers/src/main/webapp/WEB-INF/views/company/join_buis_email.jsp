@@ -60,7 +60,7 @@
 					        url:"mailCheck?email=" + email,
 					        success:function(data){
 					     	
-					            if(data != null){				
+					            if(data != null)		
 					                      
 					            alert("인증번호가 전송되었습니다.")
 					            
