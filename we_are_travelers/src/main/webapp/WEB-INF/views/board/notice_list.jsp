@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 	<style>
-		* > h3 {display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:500px;}
+		* > h4 {display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:500px;}
 	</style>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
@@ -17,7 +17,7 @@
 	
 		$(function() {
 			$("*").css("text-decoration-line", "none");
-			$("h3").css({"white-space":"nowrap", "text-overflow":"ellipsis", "overflow":"hidden"});
+			$("h4").css({"white-space":"nowrap", "text-overflow":"ellipsis", "overflow":"hidden"});
 		});
 	</script>
 </head>
@@ -51,7 +51,7 @@
 					<tr>
 						<td>
 							<div class="d-flex">
-								<h3 class="mb-0 col-10">${boardVo.board_subject}</h3>
+								<h4 class="mb-0 col-10">${boardVo.board_subject}</h4>
 								<div class="d-flex justify-content-end align-items-center" style="margin-left:auto;">
 									<small class="text-muted"><c:set var="date" value="${boardVo.board_date}"/>${fn:substring(date,2,11)}</small>
 								</div>
