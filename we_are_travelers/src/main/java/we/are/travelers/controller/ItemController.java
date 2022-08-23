@@ -48,7 +48,7 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 	
-	@GetMapping("/shopculture.do") //문화 상품페이지 호출
+/*	@GetMapping("/shopculture.do") //문화 상품페이지 호출
 	public String cultureshop(Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchType", defaultValue="subject") String searchType,
@@ -78,6 +78,7 @@ public class ItemController {
 		request.setAttribute("itemCode", itemCode);
 		return "item/shopculture";
 	}
+	*/
 	
 	@GetMapping("/shopactivity.do") //액티비티 상품페이지 호출
 	public String activityshop(Model model,
