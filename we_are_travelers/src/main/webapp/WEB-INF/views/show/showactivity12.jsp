@@ -29,24 +29,24 @@
 			</div>
 
 			<div class="sideBar" id="sideBar">
-				<h3 style="text-align: center;">경상도</h3>
+				<h3 style="text-align: center;">전라도</h3>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/showculture01.do">서울</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture02.do">인천</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture03.do">대전</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture04.do">울산</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture05.do">대구</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture06.do">부산</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture07.do">광주</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity01.do">서울</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity02.do">인천</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity03.do">대전</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity04.do">울산</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity05.do">대구</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity06.do">부산</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity07.do">광주</a></li>
 				</ul>
 				<hr>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/showculture08.do">경기도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture09.do">강원도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture10.do">충청/세종</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture11.do">경상도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture12.do">전라도</a></li>
-					<li><a href="${pageContext.request.contextPath}/showculture13.do">제주도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity08.do">경기도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity09.do">강원도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity10.do">충청/세종</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity11.do">경상도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity12.do">전라도</a></li>
+					<li><a href="${pageContext.request.contextPath}/showactivity13.do">제주도</a></li>
 				</ul>
             </div>
 
