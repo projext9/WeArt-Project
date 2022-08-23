@@ -1,17 +1,34 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../../nav.jsp"%>
+
 
 
 <html>
 <head>
-<style>
-</style>
-<title>관리자 지도 관리 페이지</title>
+
+<title>관리자 지도 리스트 페이지</title>
+<%@ include file="../nav/navMain.jsp"%>
 </head>
 <body>
-	<h2>관리자 맵 리스트</h2>
-	<div id="map" style="width: 100%; height: 350px;"></div>
+
+	<table style="margin-left: auto; margin-right: auto; width: 100%; height: auto; border-collapse: collapse;">
+			<tr>
+				<td style="text-align: center; width: 200px;">&nbsp;</td>
+				<td style="text-align: center; width: 80%; position: center;"><br> <br> <h3>&nbsp;</h3>
+					<div class="col-md-8" id="map" style="width: 100%; height: 500px; border-radius: 60px 60px 60px 60px; text-align: center;">
+						<div class="map_wrap col-md-8" style="text-align: center;">
+							<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+
+							
+
+						</div>
+
+					</div>
+					
+				<td style="text-align: center; width: 200px;">&nbsp;</td>
+
+			</tr>
+		</table>
 	
 	
 	
@@ -22,53 +39,29 @@
 	</script>
 	
 
-	<h3>지역별로 보기</h3>
-	<script>
-  
-     </script>
-
-
-
-	<script>
-     
-     
-     </script>
 
      
-     
-    <form id="mapForm" action="${pageContext.request.contextPath}/admin_CompanyList.do" method="post">
-      <input type="radio" value="List" name="map_region">지역별 보기
+    
+   <form id="mapForm" action="${pageContext.request.contextPath}/admin_CompanyList.do" method="post">
+   
+   <br><br>
+    <div style = "text-align:center;">
+      <input type="radio" value="List" name="map_region" style ="text-align:center;"><Strong>지역별 보기</Strong>
     
      <c:forEach var="region" items="${regionArr}">
     	<c:choose>
 	    	<c:when test="${region eq map_region2}">
-	    		<input type="radio" value="${region}" name="map_region" checked>${region}
+	    		<input type="radio" value="${region}" name="map_region" style ="text-align:center;" checked><Strong>${region}</Strong>
 	    	</c:when>
 	    	<c:otherwise>
-	    		<input type="radio" value="${region}" name="map_region" >${region}
+	    		<input type="radio" value="${region}" name="map_region" style ="text-align:center;"><Strong>${region}</Strong>
 	    	</c:otherwise>
     	</c:choose>	
     </c:forEach>
- 	
-<!-- - 	<input type="radio" value="전북" name="map_region">전북
-	<input type="radio" value="전남" name="map_region">전남
-	<input type="radio" value="충북" name="map_region">충북
-	<input type="radio" value="충남" name="map_region">충남
-	<input type="radio" value="경북" name="map_region">경북
-	<input type="radio" value="경남" name="map_region">경남
-	<input type="radio" value="울산" name="map_region">울산
-	<input type="radio" value="부산" name="map_region">부산
-	<input type="radio" value="광주" name="map_region">광주
-	
-	<input type="radio" value="대전" name="map_region">대전
-	<input type="radio" value="강원도" name="map_region">강원도
-	<input type="radio" value="경기도" name="map_region">경기도
-	<input type="radio" value="서울" name="map_region">서울
-	<input type="radio" value="제주도" name="map_region">제주 -->
-
-	
+    </div>
+	 <br><br>
 		<div id="addrList">
-			<table border="1px">
+			<table style ="margin-left:auto; margin-right:auto; text-align:center;">
 				<tr style="color: green;">
 					<td>번호</td>
 					<td>회사이름</td>
@@ -81,7 +74,7 @@
 				<c:forEach var="mapVo" items="${mapList}">
 					<tr>
 						<td>${mapVo.map_idx}</td>
-						<td class="company_name"><a href="${pageContext.request.contextPath}/admin_mapSearch.do?map_idx=${mapVo.map_idx}">${mapVo.company_name}</a></td>
+						<td class="company_name" style = "text-color:blue"><a href="${pageContext.request.contextPath}/admin_mapSearch.do?map_idx=${mapVo.map_idx}">${mapVo.company_name}</a></td>
 						<td>${mapVo.map_region}</td>
 
 						<td class="map_addr">${mapVo.map_addr}</td>
@@ -172,6 +165,6 @@ $(function() {
 		
 	</script>
 	
-<%@ include file="../../footer.jsp"%>
+
 </body>
 </html>

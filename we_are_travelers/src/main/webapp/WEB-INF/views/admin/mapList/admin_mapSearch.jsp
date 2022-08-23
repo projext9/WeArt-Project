@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../../nav.jsp"%>
+<%@ include file="../nav/navMain.jsp"%>
 
 
 <!DOCTYPE html>
@@ -13,21 +13,42 @@
 	<c:forEach var="mapVo" items="${mapSearch}">
 
 		<hr>
-		<h3>${mapVo.map_addr}</h3>
-		<h3>${mapVo.company_name}</h3>
+	
 
-		<div id="map" style="width: 100%; height: 350px;"></div>
+	<br>
+	<br>
+	<br>
+	<table style="margin-left: auto; margin-right: auto; width: 100%; height: auto; border-collapse: collapse;">
+			<tr>
+				<td style="text-align: center; width: 200px;">&nbsp;</td>
+				<td style="text-align: center; width: 80%; position: center;"><br> <br> <h3>&nbsp;</h3>
+					<div class="col-md-8" id="map" style="width: 100%; height: 500px; border-radius: 60px 60px 60px 60px; text-align: center;">
+						<div class="map_wrap col-md-8" style="text-align: center;">
+							<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+
+							
+
+						</div>
+
+					</div>
+					<p class="fw-bolder" style = "color: MediumAquamarine; font-size : 25px;">주소 : ${mapVo.map_addr}</p>
+					<p class="fw-bolder" style = "color: MediumAquamarine; font-size : 25px;">업체명 : ${mapVo.company_name}</p></td>
+				<td style="text-align: center; width: 200px;">&nbsp;</td>
+
+			</tr>
+		</table>
 
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bc83f37c00e33dee1d1814e4c4c987aa&libraries=services"></script>
 		<script>
 			var addr = '<c:out value="${mapVo.map_addr}"/>';
 			var company_name = '<c:out value="${mapVo.company_name}"/>';
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			mapOption = {
-				center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-				level : 3
-			// 지도의 확대 레벨
-			};
+			var map_image = '<c:out value="${mapVo.map_image}"/>;'
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				mapOption = {
+					center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+					level : 6
+				// 지도의 확대 레벨
+				};
 
 			// 지도를 생성합니다    
 			var map = new kakao.maps.Map(mapContainer, mapOption);
@@ -70,6 +91,6 @@
 		</script>
 
 	</c:forEach>
-	<%@ include file="../../footer.jsp"%>
+
 </body>
 </html>

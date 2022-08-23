@@ -306,8 +306,7 @@
 						</div>
 
 					</div>
-					<p class="fw-bolder" style = "color: MediumAquamarine">주소 : ${mapVo.map_addr}</p>
-					<p class="fw-bolder" style = "color: MediumAquamarine">업체명 : ${mapVo.company_name}</p></td>
+					</td>
 				<td style="text-align: center; width: 200px;">&nbsp;</td>
 
 			</tr>
