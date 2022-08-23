@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../nav.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@
 						<td>${orderVo.order_idx}</td>
 						<td>${orderVo.order_itemName}&nbsp;${orderVo.order_optionName}</td>
 						<td>${orderVo.orderLast_num}</td>
-						<td>${orderVo.order_totalPrice}</td>
+						<td><fmt:formatNumber value="${orderVo.order_totalPrice}" pattern="#,###,###"/>원</td>
 						<td>
 							<c:choose>
 								<c:when test="${orderVo.order_state2 eq 'A'}"><span style="color:red;">발송대기</span></c:when>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,7 @@
 					<td>${orderLastVo.orderLast_idx}</td>
 					<td><a href = "${pageContext.request.contextPath}/orderListContent.do?orderLast_num=${orderLastVo.orderLast_num}">${orderLastVo.orderLast_num}</a></td>
 					<td>${orderLastVo.orderLast_payDate}</td>
-					<td>${orderLastVo.orderLast_totalPrice}</td>
+					<td><fmt:formatNumber value="${orderLastVo.orderLast_totalPrice}" pattern="#,###,###"/>원</td>
 					<td>
 						<c:choose>
 							<c:when test="${orderLastVo.orderLast_state2 eq 'A'}"><span style="color:red;">발송대기</span></c:when>
