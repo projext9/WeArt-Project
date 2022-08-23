@@ -10,7 +10,7 @@ a{
 }
 h1{
 	text-align:center;
-	top:150px;
+	top:200px;
     margin: 0;
     padding: 0;
 	position: relative;
@@ -18,6 +18,27 @@ h1{
     background: linear-gradient(to right top, #5151E5, #72EDF2);
     color: transparent;
     -webkit-background-clip: text;
+}
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #CCC;
+  color: #555;
+  box-sizing: border-box;
+  font-family: 'Arvo';
+  font-size: 18px;
+  height: 50px;
+  left:5px;
+  padding: 10px 0px;
+  position: relative;
+  top: 50%;
+  width: 275px;
+}
+ input:focus {
+    outline:none;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(to right top, #5151E5, #72EDF2);
+    border-image-slice: 1;        
 }
 .find_main{
 	height: 100vh;
@@ -27,10 +48,12 @@ h1{
     align-items: center;
 }
 .find_wrap{
-    width: 40%;
-    height:30%;
+    height: 30%;
     display: flex;
-    justify-content: space-between;	
+    flex-direction: column;
+    justify-content: space-evenly;
+    position:relative;
+    top:-100px;
 }
 .find_id, .find_pwd{
 	color:white;
@@ -41,3 +64,35 @@ h1{
 	height:80px;
 	background: linear-gradient(to right top, #5151E5, #72EDF2);
 }
+.find_id_main{
+	height: 80vh;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.birth_wrap{
+	position: relative;
+    left: -33px;
+}
+.next_wrap_find{
+	position: relative;
+    left: 25%;
+    top: 20%; 
+	}
+.find_form_id{
+	height:30%;
+}
+.next_find{
+	color:white;
+	width:200px;
+	height:50px;
+    border:none;
+	border-radius:5px;
+    background: linear-gradient(to right top, #5151E5, #72EDF2);
+}
+.next_wrap_result{
+	position: relative;
+    left: 25%;
+    top: 100px; 
+	}
