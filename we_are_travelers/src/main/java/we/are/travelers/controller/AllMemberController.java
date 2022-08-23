@@ -4,6 +4,7 @@ package we.are.travelers.controller;
 import java.io.File;
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.util.HashMap;
 import java.util.UUID;
 
 import java.security.MessageDigest;
@@ -24,7 +25,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import we.are.travelers.service.AllMemberService;
-import we.are.travelers.service.PwdService;
 import we.are.travelers.vo.CompanyVo;
 import we.are.travelers.vo.MemberVo;
 
@@ -142,6 +142,7 @@ public class AllMemberController {
 	}
 	@RequestMapping(value="/joinNext.do", method = RequestMethod.GET)
 	public String joinNext() {
+		
 		return "member/join_email";
 	}
 	@RequestMapping(value="/joinNext2.do", method = RequestMethod.POST)
@@ -451,16 +452,47 @@ public class AllMemberController {
 		return "result_id";
 	}
 	
+	
 	@RequestMapping("/find_pwd.do")
 	public String find_pwd() {
 		
 		return "find_pwd";
 	}
+	
 	@RequestMapping("/result_pwd.do")
-	public String result_pwd() {
-		
-		return "result_pwd";
+	public String result_pwd(@RequestParam("member_id") String member_id, HttpServletRequest request , Model model) {
+	
+		int member_id_auth = AllmemberService.findPwd(member_id);
+			
+		if(member_id_auth == 1) {
+			
+			model.addAttribute("member_id", member_id);	
+			
+		   
+		}else{
+			request.setAttribute("msg", "해당하는 아이디(이메일) 정보가 없습니다");
+			request.setAttribute("url", "/travelers/find_pwd.do");
+			
+			return "alert";
+		}
+		return "result_pwd";			
 	}
+	
+	@RequestMapping("/change_pwd.do")
+	public String change_pwd(MemberVo mv, HttpServletRequest request, @RequestParam("member_id") String member_id, @RequestParam("member_pwd")String member_pwd) throws NoSuchAlgorithmException {
+				
+		HashMap<String, Object> target_id = new HashMap<>();
+		
+		target_id.put("member_id", member_id);
+		target_id.put("member_pwd", member_pwd);
+		
+		MemberVo change_pwd = AllmemberService.changePwd(target_id);
+		
+		System.out.println("변경된 비밀번호 :" + change_pwd );
+	
+	  return "login";  
+	}
+
 }
 
 

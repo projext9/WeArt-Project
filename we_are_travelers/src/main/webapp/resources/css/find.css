@@ -80,7 +80,7 @@ input {
     left: 25%;
     top: 20%; 
 	}
-.find_form_id{
+.find_form_id, .find_form_pwd{
 	height:30%;
 }
 .next_find{
@@ -95,4 +95,58 @@ input {
 	position: relative;
     left: 25%;
     top: 100px; 
+	}
+.find_pwd_main{
+	height: 80vh;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.mail_check_button_wrap{
+	display:contents;
+}
+
+.mail_check_button{
+	
+     height:30px;
+	}
+.mail_input_check{
+	left: 56px;
+    position: relative;
+
+	}
+.time{
+	display:contents;
+	color:red;
+}
+.mail_check_input_box_warn{
+	position: relative;
+    left: 53px;
+}
+.mail_check_number_wrap{
+	position: relative;
+    left: -19px;
+}
+.next_find_pwd, .next_change{
+    width:200px;
+	height:50px;
+    border:none;
+	border-radius:5px;
+}
+.pwd_check_wrap {
+	position: relative;
+    left: -38px;
+}
+.pwd_input_check1, .pwd_input_check2{
+	position: relative;
+   left: 19%;
+
+	}
+
+.next_wrap_pwd{
+	position: relative;
+    left: 25%;
+    top: 40%;
+
 	}

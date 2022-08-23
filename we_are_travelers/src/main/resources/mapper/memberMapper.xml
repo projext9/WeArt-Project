@@ -54,5 +54,13 @@
 		select * from weart_member where member_name=#{member_name} and member_birth=#{member_birth}  
 	</select>
 	
+	<select id="findPwd" parameterType="String" resultType="int">
+		select count(*) from weart_member where member_id=#{member_id}
+	</select>
+	
+	<update id="changePwd" parameterType="java.util.HashMap">
+    update weart_member set member_pwd = #{change_pwd} where member_id=#{member_id}
+	</update>
+	
 
 </mapper>

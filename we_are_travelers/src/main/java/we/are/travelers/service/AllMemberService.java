@@ -3,6 +3,7 @@ package we.are.travelers.service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +68,7 @@ public class AllMemberService {
         
 		 return memberDao.loginMember(mv); 
    }
+	
 	public MemberVo loginMemberDelynS(MemberVo mv) { 
 		
 		 return memberDao.loginMemberDelynS(mv); 
@@ -109,6 +111,19 @@ public class AllMemberService {
 		
 		 return memberDao.findId(mv); 
  } 
+	
+	public int findPwd(String member_id) { 
+		
+           int result_pwd=0;//입력 실패
+           
+           result_pwd = memberDao.findPwd(member_id); 
+		
+		 return result_pwd;
+} 
+	public MemberVo changePwd(HashMap<String, Object> target_id) throws NoSuchAlgorithmException { 
+		
+		 return memberDao.changePwd(target_id); 
+} 
 
 }
 

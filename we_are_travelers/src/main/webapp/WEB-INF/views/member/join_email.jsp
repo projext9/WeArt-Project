@@ -9,7 +9,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/weart_join_form.css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
-	
+
 	var code = "";
 	var timer = null;
 	var isRunning = false;

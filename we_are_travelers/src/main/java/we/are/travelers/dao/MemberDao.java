@@ -1,5 +1,7 @@
 package we.are.travelers.dao;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -137,8 +139,34 @@ public class MemberDao {
 		}
 	
 	 public MemberVo findId(MemberVo mv) {
-			System.out.println("dao");
 			return sqlSession.selectOne(MAPPER+".findId", mv);
+		}
+	 
+	 public int findPwd(String member_id) {
+		 
+			return sqlSession.selectOne(MAPPER+".findPwd", member_id);
+		}
+	 
+	 public MemberVo changePwd(HashMap<String, Object> target_id) throws NoSuchAlgorithmException {
+		 
+		    String SHA_pwd = (String) target_id.get("member_pwd");
+			
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			 
+	        md.update(SHA_pwd.getBytes());
+	 
+	        StringBuilder builder = new StringBuilder();
+	 
+	        for (byte b: md.digest()) {
+	            builder.append(String.format("%02x", b));
+	        }
+	        String pwd_result = builder.toString();
+	        
+	        System.out.println(pwd_result); //88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
+	        
+	        target_id.put("change_pwd" , pwd_result );
+	        
+			return sqlSession.selectOne(MAPPER+".changePwd", target_id );
 		}
 
 }
