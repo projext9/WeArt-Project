@@ -50,7 +50,7 @@
 		</script>
     </head>
 	<body>
-		<div class="container" style="padding-top: 80px;">
+		<div class="container" style="padding-top: 80px; margin-top: 126px;">
 			<div class="row text-center">
 				<div class="col-sm col-12">
 					<div class="alert alert-secondary" role="alert">
