@@ -20,8 +20,8 @@
 		 
 		  if(pwd == "" ) {
 			   $('.pwd_input_check1').html('비밀번호를 입력해주세요.');
-			   $('.pwd_input_check1').css('color','red');
-			   $('.pwd_1_input').val("").trigger("focus");
+			   $('.pwd_input_check1').css('color','red')
+			   $(".next_pwd").prop('disabled' , true).css('background' , '').css('color' ,'');;			  
 		  }else if(regPwd.test(pwd)){
 			   $('.pwd_input_check1').html('사용가능한 비밀번호 입니다.').css('color','green');
 			   $('.pwd1_input').css({
@@ -29,6 +29,7 @@
 			    "border-bottom":"2px solid transparent",
 			    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 			    "border-image-slice": "1"})
+			    $(".next_pwd").prop('disabled' , true).css('background' , '').css('color' ,'');
 		  }else{
 			   $('.pwd_input_check1').html('비밀번호(8-16)자리 각 1개 이상의'+ '<br>'
 					   +'대/소문자, 숫자, 특수 문자(@$!%)를 포함해주세요');
@@ -38,7 +39,7 @@
 				    "border-bottom":"",
 				    "border-image":"",
 				    "border-image-slice": ""})
-			   $('.pwd_1_input').val("").trigger("focus");
+			   $(".next_pwd").prop('disabled' , true).css('background' , '').css('color' ,'');
 			   return false;
 		  }
    });
@@ -58,7 +59,7 @@
 	 				    "border-bottom":"2px solid transparent",
 	 				    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 	 				    "border-image-slice": "1"})
-	 			   $(".next_pwd").attr('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white');
+	 			   $(".next_pwd").prop('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white');
  		       }else{
 	  		       $('.pwd_input_check2').html("비밀번호가 일치하지 않습니다.").css('color' ,'red');
 	  		       $('.pwd2_input').css({
@@ -66,8 +67,7 @@
 					    "border-bottom":"",
 					    "border-image":"",
 					    "border-image-slice": ""})
-	  		       $('.pwd_input_check2').val("").trigger("focus");
-	  		       
+				   $(".next_pwd").prop('disabled' , true).css('background' , '').css('color' ,'');  		       
 	  		     return false;
  	    }
    });
@@ -79,7 +79,7 @@
  			 if(pwd == "" ) {
  				   $('.pwd_input_check1').html('비밀번호를 입력해주세요.');
  				   $('.pwd_input_check1').css('color','red');
- 				   $(".next_pwd").attr('disabled' , true).css('background' , '').css('color' ,'').css('border','');
+ 				   $(".next_pwd").prop('disabled' , true).css('background' , '').css('color' ,'');
  				   $('.pwd1_input').css({
  						"outline":"none",
  					    "border-bottom":"",
@@ -92,14 +92,14 @@
 			}
  			  if(pwd2 == "" ) {
  				   $('.pwd_input_check2').html('비밀번호 확인을 입력해주세요.');
- 				   $('.pwd_input_check2').css('color','red');
- 				   $('.pwd2_input').val("").trigger("focus");
+ 				   $('.pwd_input_check2').css('color','red'); 				   
  				   $('.pwd2_input').css({
 						"outline":"none",
 					    "border-bottom":"",
 					    "border-image":"",
 					    "border-image-slice": ""})
- 				 $(".next_pwd").attr('disabled' , true);
+ 				 $(".next_pwd").prop('disabled' , true).css('background' , '').css('color' ,'');
+ 				 $('.pwd2_input').val("").trigger("focus");
 				 return false;
 			}
      }); 

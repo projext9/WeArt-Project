@@ -105,7 +105,7 @@
 				    "border-bottom":"2px solid transparent",
 				    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 				    "border-image-slice": "1"})
-		        $(".next_email").attr('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white').css('border-radius', '10px');
+		        $(".next_email").prop('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border-radius', '10px');
 		        $("#mail_check_input_id").attr('disabled' , true)
 		        $('.mail_check_button').attr('disabled' , true);
 		        $(".mail_input").attr('readonly' , true);
@@ -114,7 +114,12 @@
 		     }else{                                              // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
 		        checkResult.css("color", "red");
-		        $(".next_email").attr('disabled' , true)
+		        $(".next_email").prop('disabled' , true).css('background' , '').css('color' , '').css('border-radius', '');
+		        $('.mail_check_input').css({
+					"outline":"",
+				    "border-bottom":"",
+				    "border-image":"",
+				    "border-image-slice": ""})
 		        $('.mail_check_button').attr('disabled' , false)
 		        $(".mail_input").attr('readonly' , false);
 		        $(".mail_check_input").attr('readonly' , false);

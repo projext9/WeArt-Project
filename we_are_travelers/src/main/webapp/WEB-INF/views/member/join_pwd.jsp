@@ -62,7 +62,7 @@
 	 				    "border-bottom":"2px solid transparent",
 	 				    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 	 				    "border-image-slice": "1"})
-	 			   $(".next_pwd").attr('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white');
+	 			   $(".next_pwd").attr('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white');
  		       }else{
 	  		       $('.pwd_input_check2').html("비밀번호가 일치하지 않습니다.").css('color' , 'red');
 	  		       $('.pwd2_input').css({
@@ -70,6 +70,7 @@
 					    "border-bottom":"",
 					    "border-image":"",
 					    "border-image-slice": ""})
+				   $(".next_pwd").attr('disabled' , true).css('background' , '').css('color' , '');    
 	  		       $('.pwd_input_check2').val("").trigger("focus");
 	  		       
 	  		     return false;

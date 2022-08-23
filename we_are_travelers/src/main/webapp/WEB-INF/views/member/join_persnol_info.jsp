@@ -12,6 +12,7 @@
 	$(function(){
 		
 		$('.nick_input').on('keyup' , function(){
+			
 			var nn_RegExp = /^[가-힣|a-z|A-Z|0-9|]{2,10}$/;
 			var member_nick = $(".nick_input").val();
 		  
@@ -24,7 +25,7 @@
 				if(nn_RegExp.test(member_nick)==false){
 			        result = "닉네임 (2~10)자리 까지 한글,영문,숫자조합 가능";
 				    $(".nick_input_check").html(result).css("color", "red");
-				    $(".next_info").attr('disabled' , true);	
+				    $(".next_info").prop('disabled' , true).css('background' , '').css('color' , '');	
 				
 			  }else if(data == "N"){
 					result = "사용 가능한 닉네임입니다.";
@@ -38,11 +39,12 @@
 			  }else{
 				  result = "이미 사용중인 닉네임입니다.";
 					$(".nick_input_check").html(result).css("color", "red");
-					 $('.nick_input').css({
+					$('.nick_input').css({
 							"outline":"none",
 						    "border-bottom":"",
 						    "border-image":"",
 						    "border-image-slice": ""})
+					$(".next_info").prop('disabled' , true).css('background' , '').css('color' , '');		    
 					$(".nick_input").val("").trigger("focus");
 					
 					return false;
@@ -64,6 +66,7 @@
 					    "border-bottom":"",
 					    "border-image":"",
 					    "border-image-slice": ""})
+				 $(".next_info").prop('disabled' , true).css('background' , '').css('color' , '');		    
 				 $(".name_input").val("").trigger("focus");
 				
 
@@ -91,6 +94,7 @@
 					    "border-bottom":"",
 					    "border-image":"",
 					    "border-image-slice": ""})
+				 $(".next_info").prop('disabled' , true).css('background' , '').css('color' , '');	    
 				     
 			 }else{
 				 $(".birth_input_check").html("")	 
@@ -99,7 +103,7 @@
 					    "border-bottom":"2px solid transparent",
 					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 					    "border-image-slice": "1"})					    
-				 $(".next_info").attr('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white'); 
+				 $(".next_info").prop('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white'); 
 			 }
 		});
 			
@@ -112,7 +116,7 @@
 			if(name == ""){
 				 result = "이름을 입력해주세요";
 				 $(".name_input_check").html(result).css("color", "red");
-				 $(".next_info").attr('disabled' , true);
+				 $(".next_info").prop('disabled' , true);
 				 $(".name_input").trigger("focus");
 				 
 				 return false;
@@ -120,14 +124,14 @@
 			if(member_nick == ""){
 				 result = "닉네임을 입력해주세요";
 				 $(".nick_input_check").html(result).css("color", "red");
-				 $(".next_info").attr('disabled' , true);
+				 $(".next_info").prop('disabled' , true);
 				 $(".nick_input").trigger("focus");	 
 				 return false;
 			}
 			if(birth == ""){
 				 result = "생년월일을 입력해주세요";
 				 $(".birth_input_check").html(result).css("color", "red");
-				 $(".next_info").attr('disabled' , true);
+				 $(".next_info").prop('disabled' , true);
 				 $(".birth_input").trigger("focus");
 				 
 				 return false;

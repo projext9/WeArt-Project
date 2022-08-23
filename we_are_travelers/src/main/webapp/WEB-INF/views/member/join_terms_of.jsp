@@ -34,9 +34,9 @@ $(document).ready(function() {
 		var agree_2 =$("#check_2").prop("checked");
 		
 	if(agree_1 && agree_2 == is_checked) {
-		$('.next_terms_of').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white');
+		$('.next_terms_of').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border-radius', '10px');
 	}else{
-		$('.next_terms_of').prop('disabled', true);
+		$('.next_terms_of').prop('disabled', true).css('background' , '').css('color' ,'');
 	}  
 	});
   });

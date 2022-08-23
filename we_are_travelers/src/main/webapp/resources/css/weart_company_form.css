@@ -95,8 +95,9 @@ font-size:15px;
     width: 400px;
 } 
 .next_number {
-	border: 1px solid white;
-	border-radius:10px;
+	font-size:1.3em;
+	border: none;
+	border-radius:1em;
 	width : 100%;
 	height : 60px;	
 }
@@ -148,6 +149,7 @@ font-size:15px;
     align-items: center;
     position: relative;
     left: -15px;
+    top:-30px;'
 }
 .time{
 	position: relative;
@@ -158,7 +160,7 @@ font-size:15px;
 .com_mail_check_input_box_warn{
 	position: relative;
     left: 53px;
-    bottom: -5px;
+    bottom: 30px;
 }
 .next_wrap_email {
 	position: relative;
@@ -166,10 +168,11 @@ font-size:15px;
     width: 400px;
 } 
 .next_email {
-	border: 1px solid white;
-	border-radius:10px;
+	border: none;
+	border-radius: 1em;
 	width : 100%;
-	height : 60px;	
+	height : 60px;
+	font-size:1.3em;	
 }
 
 
@@ -214,11 +217,6 @@ position: relative;
     align-items: center;
     flex-direction: column;
 }
-.next_wrap_pwd {
-	position: relative;
-    bottom: -50px;
-    width: 400px;
-} 
 .pwd_check_wrap{
 	display: flex;
     align-items: center;
@@ -226,11 +224,17 @@ position: relative;
     position: relative;
     left: -20px;
 }
+.next_wrap_pwd {
+	position: relative;
+    bottom: -50px;
+    width: 400px;
+}
 .next_pwd {
-	border-radius:10px;
-	border: 1px solid white;
+	border-radius:1em;
+	border: none;
 	width : 100%;
-	height : 60px;	
+	height : 60px;
+	font-size:1.3em;	
 }
 
 
@@ -267,17 +271,6 @@ position: relative;
 .multi_box3{
 	position: relative;
     top: -50px;
-}
-.next_info_wrap {
-    position: relative;
-    bottom: 10px;
-    width: 400px;
-}
-.next_info {
-	border-radius:10px;
-	border: 1px solid white;
-	width : 100%;
-	height : 60px;	
 }
 .company_address, .company_detail_address{
 	font-size:13px;	
@@ -327,4 +320,16 @@ position: relative;
 .company_name_input_check .ceo_input_check .ceo_phone_check .address_check .detail_address_check .company_auth_check{
 position: relative;
     right: -53px;
+}
+.next_info_wrap {
+    position: relative;
+    bottom: 10px;
+    width: 400px;
+}
+.next_info {
+	font-size:1.3em;
+	border-radius:1em;
+	border: none;
+	width : 100%;
+	height : 60px;	
 }

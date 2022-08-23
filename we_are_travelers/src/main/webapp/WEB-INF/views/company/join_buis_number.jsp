@@ -36,13 +36,13 @@
 			  
 			  if(obj['data'][0].b_stt_cd == '01') {
 				  $('.no_b').html(check1).css('color','green');
-				  $('.next_number').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white').css('border-radius', '10px');
+				  $('.next_number').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color', 'white');
 			  }else if(obj['data'][0].b_stt_cd == ""){
 				  $('.no_b').html(check3).css('color','red');
-				  $('.next_number').prop('disabled', true);
+				  $('.next_number').prop('disabled', true).css('background' , '').css('border-radius', '');
 			  }else if(obj['data'][0].b_stt_cd == '02' || '03'){
 				  $('.no_b').html(check2).css('color','red');
-				  $('.next_number').prop('disabled', true);
+				  $('.next_number').prop('disabled', true).css('background' , '').css('border-radius', '');;
 				  
 		  }
 		      console.log(data);
@@ -79,7 +79,7 @@ for Company</h1>
     <input type="text" id="buis_number_input" name="company_buis_number" maxlength="10" placeholder="사업자 등록번호를 입력해주세요" />
     <p class="no_b"></p>     
 	 <div class="next_wrap_number">
-	<button type="submit" class="next_number"  style="font-size:1.3em">다음</button>
+	<button type="submit" class="next_number" >다음</button>
 	</div>
 </form> 
 </main>

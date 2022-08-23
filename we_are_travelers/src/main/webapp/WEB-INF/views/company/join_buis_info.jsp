@@ -12,13 +12,56 @@
 	<script type="text/javascript">	
 	   
 		$(function() {
-			 					
+			
+			$('.next_info').prop('disabled', true);		
+			
 			$('input[type="text"]').on('keyup',function() {
-				
-				$('.next_info').prop('disabled', false);
-				
-	            if($('.company_name_input').val() && $('.ceo_input').val() && $('.company_address').val() && $('.company_detail_address').val() && $('.company_auth').val() != null){
-				  $('.next_info').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white');	
+
+			    if($('.company_name_input').val()  != null ){
+	            $('.company_name_input').css("outline","none").css
+				    ("border-bottom","2px solid transparent").css
+				    ("border-image","linear-gradient(to right top, #5151E5, #72EDF2)").css
+				    ("border-image-slice","1");
+	            }
+			    if($('.ceo_input').val() !=null ){
+	            $('.ceo_input').css({
+					"outline":"none",
+				    "border-bottom":"2px solid transparent",
+				    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+				    "border-image-slice": "1"})
+		        }
+			    if($('.phone_input').val() !=null ){
+		            $('.phone_input').css({
+						"outline":"none",
+					    "border-bottom":"2px solid transparent",
+					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+					    "border-image-slice": "1"})
+			    }
+			    if($('.company_address').val() !=null ){
+		            $('.company_address').css({
+						"outline":"none",
+					    "border-bottom":"2px solid transparent",
+					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+					    "border-image-slice": "1"})
+		        }
+			    if($('.company_detail_address').val() !=null ){
+		            $('.company_detail_address').css({
+						"outline":"none",
+					    "border-bottom":"2px solid transparent",
+					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+					    "border-image-slice": "1"})
+		        }
+			    if($('.company_auth_name').val() !=null ){
+		            $('.company_auth_name').css({
+						"outline":"none",
+					    "border-bottom":"2px solid transparent",
+					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+					    "border-image-slice": "1"})
+		        }
+			    if($('.company_name_input').val() && $('.ceo_input').val() && $('.company_address').val() && $('.company_detail_address').val() != null){
+					 $('.next_info').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white');					  
+			    }else{
+			    	 $('.next_info').prop('disabled', true).css('background' , '').css('color' , '');
 			    }
 		    });
 		});
@@ -42,6 +85,8 @@
 			if(company_name ==""){	
 				$('.company_name_input_check').html('기업명을 입력해주세요').css('color' , 'red' )
 				return false;
+			}else{
+				$('.company_name_input_check').css('color' , 'white' )
 		    }if(company_ceo_name ==""){	
 		    	$('.ceo_input_check').html('대표자를 입력해주세요').css('color' , 'red' )
 		    	return false;

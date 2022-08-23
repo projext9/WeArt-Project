@@ -71,9 +71,11 @@ progress::-webkit-progress-value {
     width: 400px;
 } 
 .next_terms_of {
-	border-radius:0.5em;
+	border-radius:1em;
+	font-size:1.3em;
 	width : 100%;
-	height : 60px;	
+	height : 60px;
+	border:none;	
 }
 .agree_list {
 	padding-inline-start: 0px;
