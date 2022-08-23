@@ -346,13 +346,13 @@ public class BoardController {
 	}
 	
 	@GetMapping("/delete_board.do")
-	public String delete_board(int board_idx) {
+	public String delete_board(int board_idx, String code) {
 
 		int result = boardService.delete_board(board_idx);
 		
 		String viewPage = null;
 		if(result==1) {
-			viewPage = "redirect:/board_list.do";
+			viewPage = "redirect:/board_list.do?code="+code;
 		}else {
 			viewPage = "/board_content.do?board_idx="+board_idx;
 		}return viewPage;
