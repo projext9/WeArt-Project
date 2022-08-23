@@ -43,7 +43,7 @@
 	<table class = "table">
 		<thead>
 			<tr style="text-align:center;">
-				<th>번호</th><th>	주문번호</th><th>주문금액</th><th>주문상태</th><th></th>
+				<th>번호</th><th>	상품이름</th><th>주문금액</th><th>주문상태</th>
 			</tr>
 		</thead>
 		
@@ -51,7 +51,7 @@
 			<c:forEach var="orderVo" items="${orderListContent}">
 				<tr style="text-align:center;">
 					<td>${orderVo.order_idx}</td>
-					<td>${orderVo.order_itemName}</td>
+					<td>${orderVo.order_itemName}&nbsp;${orderVo.order_optionName}</td>
 					<td>${orderVo.order_totalPrice}</td>
 					<td>
 						<c:choose>

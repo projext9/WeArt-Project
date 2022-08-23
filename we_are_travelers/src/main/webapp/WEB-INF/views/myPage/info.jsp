@@ -208,7 +208,7 @@
 							<label class ="btn btn-outline-primary" id="modify_phone_cancel" style="display:none;">취소</label>
 						</td>
 					</tr>
-					<tr>
+					<%-- <tr>
 						<th>주소</th>
 						<td></td>
 						<td id="mod_pwd" style="display:none;"><input type="text" id="modify_pwd" value="${memberVo.member_pwd}"></td>
@@ -217,7 +217,7 @@
 							<label class ="btn btn-outline-primary" id="modify_pwd_submit" style="display:none;">확인</label>
 							<label class ="btn btn-outline-primary" id="modify_pwd_cancel" style="display:none;">취소</label>
 						</td>
-					</tr>
+					</tr> --%>
 					<tr>
 						<th>ip</th>
 						<td colspan="2">${memberVo.member_ip}</td>

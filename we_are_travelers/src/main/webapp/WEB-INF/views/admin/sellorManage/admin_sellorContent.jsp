@@ -132,19 +132,11 @@
 	                </td>
 				</tr>
 				<tr>
-					<th>상태</th>
+					<th>삭제여부</th>
 					<td>${companyVo.company_delyn}</td>
 				</tr>
 				<tr>
-					<th>ip</th>
-					<td>${companyVo.company_ip}</td>
-				</tr>
-				<tr>
-					<th>가입일</th>
-					<td>${companyVo.company_regdate}</td>
-				</tr>
-				<tr>
-					<th>회원상태</th>
+					<th>삭제여부 수정</th>
 					<td>
 				        <table style = "text-align:right">
 				            <tr>
@@ -160,6 +152,14 @@
 				            </tr>
 				        </table>
 					</td>
+				</tr>
+				<tr>
+					<th>ip</th>
+					<td>${companyVo.company_ip}</td>
+				</tr>
+				<tr>
+					<th>가입일</th>
+					<td>${companyVo.company_regdate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

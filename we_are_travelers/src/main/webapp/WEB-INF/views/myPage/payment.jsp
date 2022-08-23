@@ -11,9 +11,9 @@
 <body>
 	<main style = "margin : 0% 20% 10% 20%;">
 		<%@include file = "./navMy2.jsp" %><br><br>
-		<form name = "frm" action = "${pageContext.request.contextPath}<%//=request.getContextPath() %>/payment.do" method = "get">
+		<form class = "col-12">
 			<div class="btn-group col-12 g-1">
-				<select class="form-select" name = "searchType" style="max-width:150px;">
+				<select class="form-select" name="searchType" style="max-width:150px;">
                  	<option value = "num">주문번호</option>
                		<option value = "date">주문일자</option>
                 </select>
@@ -77,26 +77,26 @@
 		<ul class="pagination justify-content-center">
 			<c:if test="${pm.prev==true}">
 				<li class="page-item">
-					<a class="page-link" href="${pageContext.request.contextPath}/payment.do?code=${pm.scri.board_code}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.startPage-1}">Previous</a>
+					<a class="page-link" href="${pageContext.request.contextPath}/payment.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.startPage-1}">Previous</a>
 				</li>
 			</c:if>
 			<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1">
 				<c:choose>
 					<c:when test="${i==scri.page}">
 						<li class="page-item active">
-							<a class="page-link" href="${pageContext.request.contextPath}/payment.do?code=${pm.scri.board_code}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+							<a class="page-link" href="${pageContext.request.contextPath}/payment.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item">
-							<a class="page-link" href="${pageContext.request.contextPath}/payment.do?code=${pm.scri.board_code}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
+							<a class="page-link" href="${pageContext.request.contextPath}/payment.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${i}">${i}</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 		    <c:if test="${pm.next&&pm.endPage>0}">
 				<li class="page-item">
-					<a class="page-link" href="${pageContext.request.contextPath}/payment.do?code=${pm.scri.board_code}&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.endPage+1}">Next</a>
+					<a class="page-link" href="${pageContext.request.contextPath}/payment.do?searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}&page=${pm.endPage+1}">Next</a>
 			    </li>
 			</c:if>
 		</ul>

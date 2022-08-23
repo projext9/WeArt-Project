@@ -1,5 +1,7 @@
 package we.are.travelers.controller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,12 +53,27 @@ public class MyController {
 	
 	@PostMapping("/info_checkPwd.do")
 	public String info_checkPwd(MemberVo mv, HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value="member_pwd") String member_pwd) {
+			@RequestParam(value="member_pwd") String member_pwd) throws NoSuchAlgorithmException {
+		
+		String SHA_pwd = member_pwd;
+		
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		 
+        md.update(SHA_pwd.getBytes());
+ 
+        StringBuilder builder = new StringBuilder();
+ 
+        for (byte b: md.digest()) {
+            builder.append(String.format("%02x", b));
+        }
+        String pwd_result = builder.toString();
+        
+        System.out.println(pwd_result); //88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
 		
 		HttpSession session = request.getSession();
 		
 		mv.setMember_idx((String) session.getAttribute("member_idx"));
-		mv.setMember_pwd(member_pwd);
+		mv.setMember_pwd(pwd_result);
 		
 		int result = myService.info_checkPwd(mv);
 		
@@ -92,13 +109,15 @@ public class MyController {
 	
 	@GetMapping("/payment.do")
 	public String payment(Model model, HttpServletRequest request, 
-			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="orderLast_num") String searchType,
+			@RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="searchType", defaultValue="num") String searchType,
 			@RequestParam(value="keyword", defaultValue="") String keyword) {
 		
 		SearchCriteria scri = new SearchCriteria();
 		scri.setPage(page);
 		scri.setKeyword(keyword);
 		scri.setSearchType(searchType);
+		HttpSession session = request.getSession();
+		scri.setMember_idx((String) session.getAttribute("member_idx"));
 		
 		int cnt = myService.payment_total(scri);
 		
@@ -106,13 +125,10 @@ public class MyController {
 		pm.setScri(scri);
 		pm.setTotalCount(cnt);
 		
-		HttpSession session = request.getSession();
-		scri.setMember_idx((String) session.getAttribute("member_idx"));
-		
 		List<OrderLastVo> payment = myService.getPayment(scri);
-		model.addAttribute("payment", payment);
 		model.addAttribute("pm", pm);
 		model.addAttribute("scri", scri);
+		model.addAttribute("payment", payment);
 		return "myPage/payment";
 	}
 	
