@@ -14,6 +14,12 @@
 		$(".image").css("text-align", "center");
 		$(".image-style-side").css("text-align", "end");
 		$("input[id=${boardVo.board_delyn}]").prop("disabled", true);
+		
+		// font-size 입력 값 그대로 적용
+		$(".text-huge").css("font-size", "1.8em");
+		$(".text-big").css("font-size", "1.4em");
+		$(".text-small").css("font-size", "0.85em");
+		$(".text-tiny").css("font-size", "0.7em");
 
 		$("#board_content").on("propertychange change paste input", function() {
 			if($("#board_content").val().replace(/\s+/g,"")=="") {
