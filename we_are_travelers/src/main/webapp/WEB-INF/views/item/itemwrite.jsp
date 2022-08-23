@@ -83,7 +83,7 @@
 									카테고리 선택
 									<br>
 									<select id="item_code" name="item_code"> <!-- @아이템 코드 입력 -->
-										<option value="1">문화</option>
+										<!-- <option value="1">문화</option> -->
 										<option value="2">액티비티</option>
 										<option value="3">낚시</option>
 										<option value="4">캠핑</option>

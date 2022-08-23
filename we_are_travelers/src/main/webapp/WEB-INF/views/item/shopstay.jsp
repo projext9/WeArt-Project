@@ -52,7 +52,7 @@
 		    	</div>
 		    	<div class="carousel-inner">
 					<div class="carousel-item active">
-				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing2.png" aria-hidden="true"></img>
+				      	<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/shoptitle/staying1.jpg" aria-hidden="true"></img>
 					        <div class="container">
 								<div class="carousel-caption text-start">
 									<h1 style="text-shadow:5px 5px 5px #000;">이것은 액티비티상품</h1>
@@ -62,7 +62,7 @@
 					        </div>
 					</div>
 					<div class="carousel-item">
-						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing3.png" aria-hidden="true"></img>
+						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/shoptitle/staying1.jpg" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption">
 								<h1 style="text-shadow:5px 5px 5px #000;">극강의 퀄리티</h1>
@@ -72,7 +72,7 @@
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/fishingshop/fishing1.png" aria-hidden="true"></img>
+						<img class="bd-placeholder-img" style="width:100vw; height:300px;" src="${pageContext.request.contextPath}/resources/img/shoptitle/staying1.jpg" aria-hidden="true"></img>
 						<div class="container">
 							<div class="carousel-caption text-end">
 								<h1 style="text-shadow:5px 5px 5px #000;">환상적인 중국산 제품</h1>

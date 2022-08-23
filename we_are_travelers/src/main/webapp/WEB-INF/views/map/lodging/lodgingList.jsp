@@ -33,7 +33,7 @@
 			<div class="carousel-item">
 				<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
 					<rect width="100%" height="100%" fill="#777"></rect></svg>
-				<img src="${pageContext.request.contextPath}/resources/img/Map_image/cultrue/문화.jpg" class="img-fluid" alt="이미지가없습니다.">
+				<img src="${pageContext.request.contextPath}/resources/img/Map_image/lodging/lodging1.jpg" class="img-fluid" alt="이미지가없습니다.">
 				<div class="container">
 					<div class="carousel-caption text-start"></div>
 				</div>
@@ -41,7 +41,7 @@
 			<div class="carousel-item">
 				<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
 					<rect width="100%" height="100%" fill="#777"></rect></svg>
-				<img src="${pageContext.request.contextPath}/resources/img/Map_image/cultrue/문화2.jpg" class="img-fluid" alt="이미지가없습니다.">
+				<img src="${pageContext.request.contextPath}/resources/img/Map_image/lodging/lodging2.jpg" class="img-fluid" alt="이미지가없습니다.">
 				<div class="container">
 					<div class="carousel-caption"></div>
 				</div>
@@ -49,7 +49,7 @@
 			<div class="carousel-item active">
 				<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
 					<rect width="100%" height="100%" fill="#777"></rect></svg>
-				<img src="${pageContext.request.contextPath}/resources/img/Map_image/cultrue/문화3.jpg" class="img-fluid" alt="이미지가없습니다.">
+				<img src="${pageContext.request.contextPath}/resources/img/Map_image/lodging/lodging3.jpg" class="img-fluid" alt="이미지가없습니다.">
 				<div class="container">
 					<div class="carousel-caption text-end"></div>
 				</div>
