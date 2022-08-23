@@ -231,5 +231,9 @@
 	<update id="updateOrderLastState1C" parameterType="map"> <!-- 주문서 상태변경(검증완료) -->
 		UPDATE weart_order_last SET orderLast_state1 = "C", orderLast_id = #{orderLast_num} WHERE member_idx = #{member_idx} AND orderLast_num = #{orderLast_num} AND orderLast_state1 = "B"
 	</update>
+	
+	<select id="getItemHomeList" resultType="itemVo"> <!-- homecontroller -->
+		SELECT * FROM weart_item WHERE item_delyn='N' ORDER BY item_date DESC
+	</select>
 
 </mapper>

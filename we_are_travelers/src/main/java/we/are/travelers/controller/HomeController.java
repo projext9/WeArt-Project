@@ -1,27 +1,33 @@
 package we.are.travelers.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import we.are.travelers.service.ItemService;
 import we.are.travelers.service.TestService;
+import we.are.travelers.vo.ItemVo;
 
 @Controller
 public class HomeController {
 	
 	private TestService testService;
+	private ItemService itemService;
 	
 	@Autowired //자동 의존 주입: 생성자 방식
-	public HomeController(TestService testService) {
+	public HomeController(TestService testService, ItemService itemService) {
 		this.testService = testService;
+		this.itemService = itemService;
 	}
 	
 	@RequestMapping("/")//get방식 요청 처리
@@ -30,7 +36,13 @@ public class HomeController {
 	}
 	
 	@GetMapping("/home.do")//get방식 요청 처리
-	public String home2() {
+	public String home2(Model model) {
+		
+		List<ItemVo> ItemVoList = itemService.getItemHomeList();
+		model.addAttribute("ItemVoList", ItemVoList);
+		
+
+		
 		return "home";
 	}
 	

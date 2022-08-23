@@ -193,5 +193,9 @@ public class ItemDao {
 	public int updateOrderLastState1C(HashMap<String, Object> map) { //주문서 상태변경(검증완료)
 		return sqlSession.update(MAPPER+".updateOrderLastState1C", map);
 	}
+	
+	public List<ItemVo> getItemHomeList() { //homecontroller
+		return sqlSession.selectList(MAPPER+".getItemHomeList");
+	}
 }
 
