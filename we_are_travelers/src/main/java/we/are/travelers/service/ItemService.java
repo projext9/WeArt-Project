@@ -277,5 +277,8 @@ public class ItemService {
 	public int updateOrderLastState1C(HashMap<String, Object> map) { //주문서 상태변경(검증완료)
 		return itemDao.updateOrderLastState1C(map);
 	}
-	
+
+	public List<ItemVo> getItemHomeList() { //homecontroller
+		return itemDao.getItemHomeList();
+	}
 }
