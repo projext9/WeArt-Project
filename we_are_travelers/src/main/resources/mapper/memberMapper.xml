@@ -50,5 +50,9 @@
 		 values(#{member_idx}, #{member_id}, #{member_pwd}, #{member_nick}, #{member_regCode})
 	</insert>
 	
+	<select id="findId" parameterType="memberVo" resultType="memberVo">
+		select * from weart_member where member_name=#{member_name} and member_birth=#{member_birth}  
+	</select>
+	
 
 </mapper>

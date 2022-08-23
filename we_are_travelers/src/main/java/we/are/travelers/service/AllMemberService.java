@@ -105,7 +105,10 @@ public class AllMemberService {
 		
 		 return companyDao.loginCompany_delynS(cv); 
 }
-	
+	public MemberVo findId(MemberVo mv) { 
+		
+		 return memberDao.findId(mv); 
+ } 
 
 }
 

@@ -136,6 +136,9 @@ public class MemberDao {
 			
 		}
 	
-	 
+	 public MemberVo findId(MemberVo mv) {
+			System.out.println("dao");
+			return sqlSession.selectOne(MAPPER+".findId", mv);
+		}
 
 }

@@ -9,7 +9,7 @@
  		<script src="${pageContext.request.contextPath}/resources/js/weart_itemcart.js"></script>
     </head>
 	<body>
-		<div class="container">
+		<div class="container" style="margin-top: 126px;">
 			<div style="padding-top:100px;"></div>
 	        <div class="tab-content">
 	            <div class="tab-pane active" id="step1">

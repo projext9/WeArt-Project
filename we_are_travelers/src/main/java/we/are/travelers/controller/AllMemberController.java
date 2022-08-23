@@ -426,25 +426,40 @@ public class AllMemberController {
 		
 		return "find_id_pwd";
 	}
+	
 	@RequestMapping("/find_id.do")
 	public String find_id() {
 		
 		return "find_id";
 	}
+	@RequestMapping("/result_id.do")
+	public String result_id(MemberVo mv, HttpServletRequest request, Model model) {
+		
+		MemberVo result_id = AllmemberService.findId(mv);
+		System.out.println("아이디 찾기 결과값 :" + result_id);
+		
+		if(result_id != null) {
+		   model.addAttribute("member_id" , result_id.getMember_id());
+		   model.addAttribute("member_name" , result_id.getMember_name());
+			
+		}else{
+			request.setAttribute("msg", "해당하는 가입 정보가 없습니다");
+			request.setAttribute("url", "/travelers/find_id.do");
+			return "alert";
+		}
+		
+		return "result_id";
+	}
+	
 	@RequestMapping("/find_pwd.do")
 	public String find_pwd() {
 		
 		return "find_pwd";
 	}
-	@RequestMapping("/result_id.do")
-	public String result_id() {
-		
-		return "find_id";
-	}
 	@RequestMapping("/result_pwd.do")
 	public String result_pwd() {
 		
-		return "find_pwd";
+		return "result_pwd";
 	}
 }
 
