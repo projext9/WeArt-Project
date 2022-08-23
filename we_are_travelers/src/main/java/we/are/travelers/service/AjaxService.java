@@ -22,7 +22,7 @@ public class AjaxService {
 	
 
 	public int checkId(String member_id) {
-		System.out.println("서비스");
+		
 		int id_check_result=0;
 		
 		id_check_result = memberDao.checkId(member_id);

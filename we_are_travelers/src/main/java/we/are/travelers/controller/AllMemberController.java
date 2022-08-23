@@ -411,7 +411,7 @@ public class AllMemberController {
 		
 		return viewPage;
 	
-}	
+    }	
 	@RequestMapping("/logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -419,6 +419,8 @@ public class AllMemberController {
 		
 		return "redirect:login.do";
 	}
+	
+	
 	@RequestMapping("/find_id_pwd.do")
 	public String find_id_pwd() {
 		

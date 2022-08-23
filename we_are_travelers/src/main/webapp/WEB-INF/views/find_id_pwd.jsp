@@ -8,7 +8,9 @@
 <link href="${pageContext.request.contextPath}/resources/css/find.css" rel="stylesheet" />
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/login.do"><h1>We Are Travelers!</h1></a>
+<a href="${pageContext.request.contextPath}/login.do"><h1>We Are <br>
+Travelers!
+</h1></a>
 <main class="find_main">
 
 <div class="find_wrap">
