@@ -24,7 +24,7 @@
 				<c:forEach var="memberVo" items="${info}">
 				<input type="hidden" id="idx_val" value="${memberVo.member_idx}" style="display:none;">
 				<input type="hidden" id="name_val" value="${memberVo.member_name}" style="display:none;">
-				<input type="hidden" id="pwd_val" value="${memberVo.member_pwd}" style="display:none;">
+				<input type="hidden" id="pwd_val" value="" style="display:none;">
 				<input type="hidden" id="nick_val" value="${memberVo.member_nick}" style="display:none;">
 				<input type="hidden" id="phone_val" value="${memberVo.member_phone}" style="display:none;">
 				<input type="hidden" id="address_val" value="${memberVo.member_address}" style="display:none;">
@@ -49,7 +49,7 @@
 					<tr>
 						<th>비밀번호</th>
 						<td id="pwd"></td>
-						<td id="mod_pwd" style="display:none;"><input type="password" id="modify_pwd" value="${memberVo.member_pwd}"></td>
+						<td id="mod_pwd" style="display:none;"><input type="password" id="modify_pwd" value=""></td>
 						<td style="text-align:right">
 							<label class ="btn btn-outline-primary" id="modify_member_pwd">수정하기</label>
 							<label class ="btn btn-outline-primary" id="modify_pwd_submit" style="display:none;">확인</label>

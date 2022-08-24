@@ -94,11 +94,25 @@ public class MyController {
 			@RequestParam(value="member_nick") String member_nick,
 			@RequestParam(value="member_phone") String member_phone,
 			@RequestParam(value="member_address") String member_address,
-			@RequestParam(value="member_delyn") char member_delyn) {
+			@RequestParam(value="member_delyn") char member_delyn) throws NoSuchAlgorithmException {
+		
+		String SHA_pwd = member_pwd;
+		
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		 
+        md.update(SHA_pwd.getBytes());
+ 
+        StringBuilder builder = new StringBuilder();
+ 
+        for (byte b: md.digest()) {
+            builder.append(String.format("%02x", b));
+        }
+        String pwd_result = builder.toString();
+        
 		
 		memberVo.setMember_idx(member_idx);
 		memberVo.setMember_name(member_name);
-		memberVo.setMember_pwd(member_pwd);
+		memberVo.setMember_pwd(pwd_result);
 		memberVo.setMember_nick(member_nick);
 		memberVo.setMember_phone(member_phone);
 		memberVo.setMember_address(member_address);
