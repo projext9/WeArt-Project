@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "we.are.travelers.seller">
+
+	<select id="getInfo" resultType="companyVo">
+		select * from weart_company where company_idx = #{company_idx}
+	</select>
+
+	<select id="getItemlist" resultType="itemVo"> <!-- 상품 리스트 호출 -->
+		SELECT * from weart_item WHERE company_idx = #{company_idx} AND item_delyn='N' ORDER BY item_date DESC
+	</select>
+	
+	<select id="getItemOrder" parameterType="list" resultType="map"> <!-- 주문상품 호출 -->
+		SELECT * FROM weart_order a
+			INNER JOIN weart_order_last b ON a.member_idx = b.member_idx WHERE a.company_idx = #{company_idx} AND a.order_state1 = "C"
+	</select>
+	
+</mapper>
