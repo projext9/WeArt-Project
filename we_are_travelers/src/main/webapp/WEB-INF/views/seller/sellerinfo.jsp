@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../nav.jsp"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,39 +10,29 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-	<main style = "margin : 20% 30% 20% 30%">
-		<h3 style = "text-align : center;">비밀번호 입력</h3>
-	    <form class="login_form" action="/travelers/info_checkPwd.do" method="POST">
-			<div>
-				<input type="password" class="form-control" id="member_pwd" name="member_pwd" maxlength="20" placeholder="비밀번호입력">
-				<button class="w-100 btn btn-lg btn-primary" type="submit">비밀번호 확인</button>
-			</div>
-		</form>
-	</main>
-	<main style = "margin : 10% 20% 10% 20%;">
+	<main style = "margin : 0% 20% 10% 20%;">
+		<%@include file = "./navSeller1.jsp" %><br><br>
 		<table class = "table">
 			<tbody class = "table-group-divider">
-				<c:forEach var="memberVo" items="${info}">
-				<input type="hidden" id="idx_val" value="${memberVo.member_idx}" style="display:none;">
-				<input type="hidden" id="name_val" value="${memberVo.member_name}" style="display:none;">
+				<input type="hidden" id="idx_val" value="${companyVo.company_idx}" style="display:none;">
+				<input type="hidden" id="name_val" value="${companyVo.company_name}" style="display:none;">
 				<input type="hidden" id="pwd_val" value="" style="display:none;">
-				<input type="hidden" id="nick_val" value="${memberVo.member_nick}" style="display:none;">
-				<input type="hidden" id="phone_val" value="${memberVo.member_phone}" style="display:none;">
-				<input type="hidden" id="address_val" value="${memberVo.member_address}" style="display:none;">
-					<tr>
+				<input type="hidden" id="phone_val" value="${companyVo.company_phone}" style="display:none;">
+				<input type="hidden" id="address_val" value="${companyVo.company_buis_address}" style="display:none;">
+				<input type="hidden" id="delyn_val" value="${companyVo.company_delyn}" style="display:none;">
+					<%-- <tr>
 						<th>인덱스</th>
 						<td colspan="2">${memberVo.member_idx}</td>
-					</tr>
+					</tr> --%>
 					<tr>
 						<th>아이디</th>
-						<td colspan="2">${memberVo.member_id}</td>
+						<td colspan="2">${companyVo.company_id}</td>
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td id="name">${memberVo.member_name}</td>
-						<td id="mod_name" style="display:none;"><input type="text" id="modify_name" value="${memberVo.member_name}"></td>
+						<td id="name">${companyVo.company_name}</td>
 						<td style="text-align:right">
-							<label class ="btn btn-outline-primary" id="modify_member_name">수정하기</label>
+							<label class ="btn btn-outline-primary" id="modify_company_name">수정하기</label>
 							<label class ="btn btn-outline-primary" id="modify_name_submit" style="display:none;">확인</label>
 							<label class ="btn btn-outline-primary" id="modify_name_cancel" style="display:none;">취소</label>
 						</td>
@@ -49,7 +40,6 @@
 					<tr>
 						<th>비밀번호</th>
 						<td id="pwd"></td>
-						<td id="mod_pwd" style="display:none;"><input type="password" id="modify_pwd" value=""></td>
 						<td style="text-align:right">
 							<label class ="btn btn-outline-primary" id="modify_member_pwd">수정하기</label>
 							<label class ="btn btn-outline-primary" id="modify_pwd_submit" style="display:none;">확인</label>
@@ -57,19 +47,8 @@
 						</td>
 					</tr>
 					<tr>
-						<th>닉네임</th>
-						<td id="nick">${memberVo.member_nick}</td>
-						<td id="mod_nick" style="display:none;"><input type="text" id="modify_nick" value="${memberVo.member_nick}"></td>
-						<td style="text-align:right">
-							<label class ="btn btn-outline-primary" id="modify_member_nick">수정하기</label>
-							<label class ="btn btn-outline-primary" id="modify_nick_submit" style="display:none;">확인</label>
-							<label class ="btn btn-outline-primary" id="modify_nick_cancel" style="display:none;">취소</label>
-						</td>
-					</tr>
-					<tr>
 						<th>전화번호</th>
-						<td id="phone">${memberVo.member_phone}</td>
-						<td id="mod_phone" style="display:none;"><input type="text" id="modify_phone" value="${memberVo.member_phone}"></td>
+						<td id="phone">${companyVo.company_phone}</td>
 						<td style="text-align:right">
 							<label class ="btn btn-outline-primary" id="modify_member_phone">수정하기</label>
 							<label class ="btn btn-outline-primary" id="modify_phone_submit" style="display:none;">확인</label>
@@ -78,39 +57,31 @@
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td id="address">${memberVo.member_address}</td>
-						<td id="mod_address" style="display:none;"><input type="text" id="modify_adrress" value="${memberVo.member_address}"></td>
+						<td id="address">${companyVo.company_buis_address}</td>
 						<td style="text-align:right">
-							<label class ="btn btn-outline-primary" id="modify_member_address">수정하기</label>
+							<label class ="btn btn-outline-primary" id="modify_company_buis_address">수정하기</label>
 							<label class ="btn btn-outline-primary" id="modify_address_submit" style="display:none;">확인</label>
 							<label class ="btn btn-outline-primary" id="modify_address_cancel" style="display:none;">취소</label>
 						</td>
 					</tr>
 					<tr>
 						<th>ip</th>
-						<td colspan="2">${memberVo.member_ip}</td>
+						<td colspan="2">${companyVo.company_ip}</td>
 					</tr>
 					<tr>
 						<th>가입일</th>
-						<td colspan="2">${memberVo.member_regdate}</td>
-					</tr>
-					<tr>
-						<th>등급</th>
-						<td colspan = "2">
-							<c:choose>
-								<c:when test = "${memberVo.member_grade eq 0}">일반회원</c:when>
-								<c:otherwise>${memberVo.member_grade}</c:otherwise>
-							</c:choose>
-						</td>
+						<td colspan="2">${companyVo.company_regdate}</td>
 					</tr>
 					<tr>
 						<th>상태</th>
-						<td colspan ="2">
+						<td>
 							<c:choose>
-								<c:when test = "${memberVo.member_delyn eq 'N'}">활성</c:when>
-								<c:when test = "${memberVo.member_delyn eq 'S'}">정지</c:when>
+								<c:when test="${fn:contains(companyVo.company_delyn, 'N')}">활성</c:when>
+                                <c:when test = "${fn:contains(companyVo.company_delyn, 'S')}">정지</c:when>
 							</c:choose>
-							<label class ="btn btn-outline-primary" id="modify_member_delyn">회원탈퇴</label>
+						</td>
+						<td style="text-align:right">
+							<label class ="btn btn-outline-primary" id="modify_company_delyn">회원탈퇴</label>
 						</td>
 					</tr>
 					<!-- <tr>
@@ -132,7 +103,6 @@
 					        </table>
 						</td>
 					</tr>-->
-				</c:forEach>
 			</tbody>
 		</table>
 	</main>

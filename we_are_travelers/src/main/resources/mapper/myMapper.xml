@@ -30,7 +30,7 @@
 	
 	<update id="modify_info">
 		update weart_member set member_name=#{member_name}, member_pwd=#{member_pwd}, member_nick=#{member_nick},
-		 member_phone=#{member_phone}, member_delyn=#{member_delyn} where member_idx=#{member_idx}
+		 member_phone=#{member_phone}, member_address=#{member_address}, member_delyn=#{member_delyn} where member_idx=#{member_idx}
 	</update>
 	
 	<select id="info_checkPwd" resultType="int">

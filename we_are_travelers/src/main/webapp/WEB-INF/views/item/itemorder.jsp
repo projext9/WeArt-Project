@@ -11,15 +11,15 @@
 		<script src="${pageContext.request.contextPath}/resources/js/weart_itemorder.js"></script>
 		<script>
 			function makeSame() {
-				document.getElementById("member_name").innerHTML = "${map2.member_name}";
-				document.getElementById("member_phone").innerHTML = "${map2.member_phone}";
-				document.getElementById("sample4_postcode").value = "${map2.address_input1}";
-				document.getElementById("sample4_roadAddress").value = "${map2.address_input2}";
-				document.getElementById("sample4_extraAddress").value = "${map2.address_input3}";
-				document.getElementById("sample4_detailAddress").value = "${map2.address_input4}";
-				document.getElementById("orderLast_name").value = "${map2.member_name}";
-				document.getElementById("orderLast_phone").value = "${map2.member_phone}";
-				document.getElementById("orderLast_addr").value = "${map2.address_input1}&nbsp;${map2.address_input2}&nbsp;${map2.address_input3}&nbsp;${map2.address_input4}";
+				document.getElementById("member_name").innerHTML = "${memberVo.member_name}";
+				document.getElementById("member_phone").innerHTML = "${memberVo.member_phone}";
+				document.getElementById("sample4_postcode").value = "${memberVo.address_input1}";
+				document.getElementById("sample4_roadAddress").value = "${memberVo.address_input2}";
+				document.getElementById("sample4_extraAddress").value = "${memberVo.address_input3}";
+				document.getElementById("sample4_detailAddress").value = "${memberVo.address_input4}";
+				document.getElementById("orderLast_name").value = "${memberVo.member_name}";
+				document.getElementById("orderLast_phone").value = "${memberVo.member_phone}";
+				document.getElementById("orderLast_addr").value = "${memberVo.address_input1}&nbsp;${memberVo.address_input2}&nbsp;${memberVo.address_input3}&nbsp;${memberVo.address_input4}";
 			}
 		</script>
     </head>
@@ -105,15 +105,15 @@
 													<table class="product-details-table">
 														<tr>
 															<th>이름</th>
-															<td><c:out value="${map2.member_name}" /></td>
+															<td><c:out value="${memberVo.member_name}" /></td>
 														</tr>
 														<tr>
 															<th>이메일</th>
-															<td><c:out value="${map2.member_id}" /></td>
+															<td><c:out value="${memberVo.member_id}" /></td>
 														</tr>
 														<tr>
 															<th>휴대폰 번호</th>
-															<td><c:out value="${map2.member_phone}" /></td>
+															<td><c:out value="${memberVo.member_phone}" /></td>
 														</tr>
 													</table>
 												</div>
@@ -127,25 +127,25 @@
 													<table class="product-details-table">
 														<tr>
 															<th>이름</th>
-															<td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalName">변경</button>&nbsp<span id="member_name"><c:out value="${map2.member_name}" /></span><input type="hidden" name="orderLast_name" id="orderLast_name" value="${map2.member_name}" /></td>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalName">변경</button>&nbsp<span id="member_name"><c:out value="${memberVo.member_name}" /></span><input type="hidden" name="orderLast_name" id="orderLast_name" value="${memberVo.member_name}" /></td>
 														</tr>
 														<tr>
 															<th>휴대폰 번호</th>
-															<td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalPhone">변경</button>&nbsp<span id="member_phone"><c:out value="${map2.member_phone}" /></span><input type="hidden" name="orderLast_phone" id="orderLast_phone" value="${map2.member_phone}" /></td>
+															<td><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalPhone">변경</button>&nbsp<span id="member_phone"><c:out value="${memberVo.member_phone}" /></span><input type="hidden" name="orderLast_phone" id="orderLast_phone" value="${memberVo.member_phone}" /></td>
 														</tr>
 														<tr>
 															<th>배송지</th>
 															<td><button type="button" class="btn btn-outline-secondary btn-sm" onClick="sample4_execDaumPostcode()">변경</button>&nbsp
-																<input type="text" id="sample4_postcode" value="${map2.address_input1}" size="5" disabled>
+																<input type="text" id="sample4_postcode" value="${memberVo.address_input1}" size="5" disabled>
 																<br>
-																<input type="text" id="sample4_roadAddress" value="${map2.address_input2}" size="30" disabled>
+																<input type="text" id="sample4_roadAddress" value="${memberVo.address_input2}" size="30" disabled>
 																<br><input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
-																<input type="text" id="sample4_extraAddress" value="${map2.address_input3}" size="30" disabled>
+																<input type="text" id="sample4_extraAddress" value="${memberVo.address_input3}" size="30" disabled>
 																<br>
-																<input type="text" id="sample4_detailAddress" value="${map2.address_input4}" size="30" placeholder="상세주소">
+																<input type="text" id="sample4_detailAddress" value="${memberVo.address_input4}" size="30" placeholder="상세주소">
 																<br>
 																<span id="guide" style="color:#999;display:none"></span>
-																<input type="hidden" name="orderLast_address" id="orderLast_address" value="<c:out value="${map2.address_input1}" />&nbsp;<c:out value="${map2.address_input2}" />&nbsp;<c:out value="${map2.address_input3}" />&nbsp;<c:out value="${map2.address_input4}" />" />
+																<input type="hidden" name="orderLast_address" id="orderLast_address" value="<c:out value="${memberVo.address_input1}" />&nbsp;<c:out value="${memberVo.address_input2}" />&nbsp;<c:out value="${memberVo.address_input3}" />&nbsp;<c:out value="${memberVo.address_input4}" />" />
 															</td>
 														</tr>
 														<tr>

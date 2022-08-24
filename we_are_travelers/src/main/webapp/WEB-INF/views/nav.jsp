@@ -119,7 +119,7 @@
                      <c:when test="${sessionScope.company_id != null && sessionScope.company_auth == 1}">
                     <ul id="after">
 					<li id="member_nick">${sessionScope.company_name }님 환영합니다!</li>
-					<li id="my_page"><a href="${pageContext.request.contextPath}/itemwrite.do">판매등록</a></li>
+                    <li id="my_page"><button id="btn_nav" type="button" onClick="location.href='${pageContext.request.contextPath}/sellerinfo.do'">판매자페이지</button></li>
 					<li id="logout_btn"><button id="btn_nav"type="button"onClick="fn_logout()">로그아웃</button></li>
 					</ul>
 					 </c:when>

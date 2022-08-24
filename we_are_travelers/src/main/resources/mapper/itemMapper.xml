@@ -161,8 +161,8 @@
 			</foreach>
 	</select>
 	
-	<select id="getMemberDetail" resultType="map">	<!-- 2. 배송지 입력 호출(회원정보) -->
-		SELECT * FROM weart_member a INNER JOIN weart_address b WHERE a.member_idx = #{member_idx}
+	<select id="getMemberDetail" resultType="memberVo">	<!-- 2. 배송지 입력 호출(회원정보) -->
+		SELECT * FROM weart_member WHERE member_idx = #{member_idx}
 	</select>
 	
 	<delete id="deleteAllOrder"> <!-- 찌꺼기 제거 -->

@@ -16,6 +16,7 @@
 			let member_pwd = $("#pwd_val").val();
 			let member_nick = $("#nick_val").val();
 			let member_phone = $("#phone_val").val();
+			let member_address = $("#address_val").val();
 			let member_delyn = $("#delyn_val").val();
 			//var password = prompt("삭제 입력","")
 			
@@ -37,7 +38,7 @@
 			$("#modify_pwd_submit").click(function() {
 				
 				let member_pwd = $("#modify_pwd").val();
-				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
+				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_address, member_delyn);
 			});
 			
 			//name
@@ -58,7 +59,7 @@
 			$("#modify_name_submit").click(function() {
 				
 				let member_name = $("#modify_name").val();
-				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
+				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_address, member_delyn);
 			});
 			
 			//nick
@@ -79,7 +80,7 @@
 			$("#modify_nick_submit").click(function() {
 				
 				let member_nick = $("#modify_nick").val();
-				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
+				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_address, member_delyn);
 			});
 			
 			//phone
@@ -100,7 +101,28 @@
 			$("#modify_phone_submit").click(function() {
 				
 				let member_phone = $("#modify_phone").val();
-				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
+				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_address, member_delyn);
+			});
+			
+			//address
+			$("#modify_member_address").click(function(){
+				$("#address").css("display", "none");
+				$("#mod_address").css("display", "");
+				$("#modify_member_address").css("display", "none");
+				$("#modify_address_submit").css("display", "");
+				$("#modify_address_cancel").css("display", "");
+			});
+			$("#modify_address_cancel").click(function() {
+				$("#address").css("display", "");
+				$("#mod_address").css("display", "none");
+				$("#modify_member_address").css("display", "");
+				$("#modify_address_submit").css("display", "none");
+				$("#modify_address_cancel").css("display", "none");
+			});
+			$("#modify_address_submit").click(function() {
+				
+				let member_address = $("#modify_address").val();
+				modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_address, member_delyn);
 			});
 			
 			//delyn
@@ -109,7 +131,7 @@
 				if(password == "삭제"){
 					alert("회원탈퇴 완료");
 					let member_delyn = 'Y';
-					modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn);
+					modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_address, member_delyn);
 					location.href = "${pageContext.request.contextPath}/login.do";
 				}else{
 					alert("취소");
@@ -129,12 +151,12 @@
 			}); */
 			
 			
-			function modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_delyn) {
+			function modify_info(member_idx, member_name, member_pwd, member_nick, member_phone, member_address, member_delyn) {
 				
 				$.ajax({
 					type:'post',
 					url:"${pageContext.request.contextPath}/modify_info.do",
-					data: {"member_idx":member_idx, "member_name":member_name, "member_pwd":member_pwd, "member_nick":member_nick, "member_phone":member_phone, "member_delyn":member_delyn},
+					data: {"member_idx":member_idx, "member_name":member_name, "member_pwd":member_pwd, "member_nick":member_nick, "member_phone":member_phone, "member_address":member_address, "member_delyn":member_delyn},
 					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 					dataType: "json",
 					success: function(data) {
@@ -156,9 +178,10 @@
 				<c:forEach var="memberVo" items="${info}">
 				<input type="hidden" id="idx_val" value="${memberVo.member_idx}" style="display:none;">
 				<input type="hidden" id="name_val" value="${memberVo.member_name}" style="display:none;">
-				<input type="hidden" id="pwd_val" value="${memberVo.member_pwd}" style="display:none;">
+				<input type="hidden" id="pwd_val" value="" style="display:none;">
 				<input type="hidden" id="nick_val" value="${memberVo.member_nick}" style="display:none;">
 				<input type="hidden" id="phone_val" value="${memberVo.member_phone}" style="display:none;">
+				<input type="hidden" id="address_val" value="${memberVo.member_address}" style="display:none;">
 				<input type="hidden" id="delyn_val" value="${memberVo.member_delyn}" style="display:none;">
 					<%-- <tr>
 						<th>인덱스</th>
@@ -181,7 +204,7 @@
 					<tr>
 						<th>비밀번호</th>
 						<td id="pwd"></td>
-						<td id="mod_pwd" style="display:none;"><input type="password" id="modify_pwd" value="${memberVo.member_pwd}"></td>
+						<td id="mod_pwd" style="display:none;"><input type="password" id="modify_pwd" value=""></td>
 						<td style="text-align:right">
 							<label class ="btn btn-outline-primary" id="modify_member_pwd">수정하기</label>
 							<label class ="btn btn-outline-primary" id="modify_pwd_submit" style="display:none;">확인</label>
@@ -208,16 +231,16 @@
 							<label class ="btn btn-outline-primary" id="modify_phone_cancel" style="display:none;">취소</label>
 						</td>
 					</tr>
-					<%-- <tr>
+					<tr>
 						<th>주소</th>
-						<td></td>
-						<td id="mod_pwd" style="display:none;"><input type="text" id="modify_pwd" value="${memberVo.member_pwd}"></td>
+						<td id="address">${memberVo.member_address}</td>
+						<td id="mod_address" style="display:none;"><input type="text" id="modify_address" value="${memberVo.member_address}"></td>
 						<td style="text-align:right">
-							<label class ="btn btn-outline-primary" id="modify_member_pwd">수정하기</label>
-							<label class ="btn btn-outline-primary" id="modify_pwd_submit" style="display:none;">확인</label>
-							<label class ="btn btn-outline-primary" id="modify_pwd_cancel" style="display:none;">취소</label>
+							<label class ="btn btn-outline-primary" id="modify_member_address">수정하기</label>
+							<label class ="btn btn-outline-primary" id="modify_address_submit" style="display:none;">확인</label>
+							<label class ="btn btn-outline-primary" id="modify_address_cancel" style="display:none;">취소</label>
 						</td>
-					</tr> --%>
+					</tr>
 					<tr>
 						<th>ip</th>
 						<td colspan="2">${memberVo.member_ip}</td>

@@ -130,7 +130,7 @@ public class ItemDao {
 		return sqlSession.selectList(MAPPER+".getItemOrder", cart_idx_list_);
 	}
 	
-	public Map<String, Object> getMemberDetail(String member_idx) { //배송지 입력 호출(회원정보)
+	public MemberVo getMemberDetail(String member_idx) { //배송지 입력 호출(회원정보)
 		return sqlSession.selectOne(MAPPER+".getMemberDetail", member_idx);
 	}
 	

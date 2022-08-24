@@ -138,7 +138,7 @@ public class ItemService {
 		return itemDao.getItemOrder(cart_idx_list_);
 	}
 	
-	public Map<String, Object> getMemberDetail(String member_idx) { //배송지 입력 호출(회원정보)
+	public MemberVo getMemberDetail(String member_idx) { //배송지 입력 호출(회원정보)
 		return itemDao.getMemberDetail(member_idx);
 	}
 	

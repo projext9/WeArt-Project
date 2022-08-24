@@ -26,7 +26,7 @@ function fn_modalPhoneChange() {
 }
 
 function fn_AddrChange() {
-	var addr1 = document.getElementById("sample4_postcode").value;
+	var addr1 = "(" + document.getElementById("sample4_postcode").value + ")";
 	var addr2 = document.getElementById("sample4_roadAddress").value;
 	var addr3 = document.getElementById("sample4_extraAddress").value;
 	var addr4 = document.getElementById("sample4_detailAddress").value;
