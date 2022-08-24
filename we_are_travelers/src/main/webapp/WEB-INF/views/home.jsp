@@ -33,14 +33,13 @@
 		
 		.projext9_div1 {
 			width: 80%;
-			height: 20%;
-			top: 9%;
+			height: 16%;
+			top: 8%;
 			left: 10%;
 			right: 0%;
 			z-index: 1;
 			margin: 0;
 			max-width: calc(100% - 4em);
-			padding: 1em;
 			background-color: rgba( 0, 0, 0, 0.7 );
 			color:#fff;
 			box-sizing: border-box;
@@ -50,19 +49,99 @@
 		
 		.projext9_div2 {
 			width: 80%;
-			height: 35%;
+			height: 27%;
 			bottom: 3%;
 			left: 10%;
 			right: 0%;
 			z-index: 1;
 			margin: 0;
 			max-width: calc(100% - 4em);
-			padding: 1em;
+			padding-top: 1em;
 			background-color: rgba( 0, 0, 0, 0.7 );
 			color:#000;
 			box-sizing: border-box;
 			position: absolute;
 			display: none;
+		}
+		
+		.bottom_down {
+		    width: 40px;
+		    height: 40px;
+		    line-height: 40px;
+		    background: #0167F3;
+		    -webkit-box-pack: center;
+		    justify-content: center;
+		    -webkit-box-align: center;
+		    align-items: center;
+		    font-size: 16px;
+		    color: #fff !important;
+		    position: absolute;
+		    bottom: 25px;
+		    right: 10px;
+		    z-index: 1;
+		    cursor: pointer;
+		    transition: all .3s ease-out 0s;
+		    border-radius: 4px;
+		}
+		
+		.bottom_up {
+		    width: 40px;
+		    height: 40px;
+		    line-height: 40px;
+		    background: #0167F3;
+		    -webkit-box-pack: center;
+		    justify-content: center;
+		    -webkit-box-align: center;
+		    align-items: center;
+		    font-size: 16px;
+		    color: #fff !important;
+		    position: absolute;
+		    bottom: 270px;
+		    right: 10px;
+		    z-index: 1;
+		    cursor: pointer;
+		    transition: all .3s ease-out 0s;
+		    border-radius: 4px;
+		}
+		
+		.top_down {
+		    width: 40px;
+		    height: 40px;
+		    line-height: 40px;
+		    background: #0167F3;
+		    -webkit-box-pack: center;
+		    justify-content: center;
+		    -webkit-box-align: center;
+		    align-items: center;
+		    font-size: 16px;
+		    color: #fff !important;
+		    position: absolute;
+		    top: 260px;
+		    right: 10px;
+		    z-index: 1;
+		    cursor: pointer;
+		    transition: all .3s ease-out 0s;
+		    border-radius: 4px;
+		}
+		
+		.top_up {
+		    width: 40px;
+		    height: 40px;
+		    line-height: 40px;
+		    background: #0167F3;
+		    -webkit-box-pack: center;
+		    justify-content: center;
+		    -webkit-box-align: center;
+		    align-items: center;
+		    font-size: 16px;
+		    color: #fff !important;
+		    position: absolute;
+		    top: 130px;
+		    right: 10px;
+		    z-index: 1;
+		    cursor: pointer;
+		    transition: all .3s ease-out 0s;
+		    border-radius: 4px;
 		}
 	    </style>
 	    <script type="text/javascript">
@@ -70,6 +149,21 @@
 			$("#projext9_div1").slideDown("slow");
 			$("#projext9_div2").slideDown("slow");
 	    }
+	    
+	    function top_hide() {
+			$("#projext9_div1").slideUp("slow");
+	    }
+	    function top_show() {
+			$("#projext9_div1").slideDown("slow");
+	    }
+	    
+	    function bottom_hide() {
+			$("#projext9_div2").slideUp("slow");
+	    }
+	    function bottom_show() {
+			$("#projext9_div2").slideDown("slow");
+	    }
+
 	    </script>
 	</head>
 	<body>   
@@ -80,35 +174,35 @@
 
 			<div class="projext9_div1" id="projext9_div1">
 			    <div class="row">
-			      <div class="col-lg-2">
+			      <div class="col-lg-2" style="padding-top: 5px;">
 			        <img src="${pageContext.request.contextPath}/resources/images/culture1.png" width="75" height="75">
 			
 			        <h3>문화</h3>
 			        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/showculture01.do">소개 &raquo;</a></p>
 			      </div><!-- /.col-lg-4 -->
 			      
-			      <div class="col-lg-2">
+			      <div class="col-lg-2" style="padding-top: 5px;">
 			        <img src="${pageContext.request.contextPath}/resources/images/activity1.png" width="75" height="75">
 			
 			        <h3>액티비티</h3>
 			        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/showactivity01.do">소개 &raquo;</a></p>
 			      </div><!-- /.col-lg-4 -->
 			      
-			      <div class="col-lg-2">
+			      <div class="col-lg-2" style="padding-top: 5px;">
 			        <img src="${pageContext.request.contextPath}/resources/images/fishing1.png" width="75" height="75">
 			
 			        <h3>낚시</h3>
 			        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/showfishing01.do">소개 &raquo;</a></p>
 			      </div><!-- /.col-lg-4 -->
 			      
-			      <div class="col-lg-2">
+			      <div class="col-lg-2" style="padding-top: 5px;">
 			        <img src="${pageContext.request.contextPath}/resources/images/camping1.png" width="75" height="75">
 			
 			        <h3>캠핑</h3>
 			        <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/showcamping01.do">소개 &raquo;</a></p>
 			      </div><!-- /.col-lg-4 -->
 			      
-			      <div class="col-lg-2">
+			      <div class="col-lg-2" style="padding-top: 5px;">
 			        <img src="${pageContext.request.contextPath}/resources/images/hotel1.png" width="75" height="75">
 			
 			        <h3>숙박</h3>
@@ -120,13 +214,13 @@
 
 			<div class="projext9_div2" id="projext9_div2">
 
-				<div class="container marketing" style="max-width: 1600px;">
+				<div class="container marketing" style="max-width: 1600px; padding-left: 0; padding-right: 0;">
 				    
 					<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
 				    
 						<div class="carousel-inner">
 				
-							<div class="carousel-item active" style="height: 28rem;">
+							<div class="carousel-item active" style="height: 16rem;">
 								<div class="container px-4 px-lg-5">
 									<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 							
@@ -141,8 +235,6 @@
 							                          <div class="text-center">
 							                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[0].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[0].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -159,8 +251,6 @@
 							                          <div class="text-center">
 							                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[1].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[1].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -177,8 +267,6 @@
 							                          <div class="text-center">
 							                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[2].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[2].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -195,8 +283,6 @@
 							                          <div class="text-center">
 							                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[3].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[3].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -213,8 +299,6 @@
 							                          <div class="text-center">
 							                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[4].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[4].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -225,7 +309,7 @@
 							</div><!-- carousel-item -->
 				
 				
-							<div class="carousel-item" style="height: 28rem;">
+							<div class="carousel-item" style="height: 16rem;">
 								<div class="container px-4 px-lg-5">
 									<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 							
@@ -240,8 +324,6 @@
 							                          <div class="text-center">
 								                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[5].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[5].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -258,8 +340,6 @@
 							                          <div class="text-center">
 								                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[6].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[6].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -276,8 +356,6 @@
 							                          <div class="text-center">
 									                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[7].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[7].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -294,8 +372,6 @@
 							                          <div class="text-center">
 							                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[8].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[8].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -312,8 +388,6 @@
 							                          <div class="text-center">
 							                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[9].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[9].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -324,7 +398,7 @@
 							</div><!-- carousel-item -->
 				
 				
-							<div class="carousel-item" style="height: 28rem;">
+							<div class="carousel-item" style="height: 16rem;">
 								<div class="container px-4 px-lg-5">
 									<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 							
@@ -339,8 +413,6 @@
 							                          <div class="text-center">
 								                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[10].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[10].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -357,8 +429,6 @@
 							                          <div class="text-center">
 								                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[11].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[11].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -375,8 +445,6 @@
 							                          <div class="text-center">
 									                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[12].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[12].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -393,8 +461,6 @@
 							                          <div class="text-center">
 							                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[13].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[13].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -411,8 +477,6 @@
 							                          <div class="text-center">
 							                              <!-- Product name-->
 							                              <h6 class="fw-bolder">${ItemVoList[14].item_name}</h6>
-							                              <!-- Product price-->
-							                              &#8361; ${ItemVoList[14].item_price}
 							                          </div>
 							                      </div>
 							                  </div>
@@ -423,12 +487,12 @@
 							</div><!-- carousel-item -->
 				
 						</div>
-						<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev" style="width: 10%;">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev" style="width: 10%; justify-content: left;">
+							<span class="carousel-control-prev-icon" aria-hidden="true" style="top: 5%;"></span>
 							<span class="visually-hidden">Previous</span>
 						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next" style="width: 10%;">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next" style="width: 10%; justify-content: right;">
+							<span class="carousel-control-next-icon" aria-hidden="true" style="top: 5%;"></span>
 							<span class="visually-hidden">Next</span>
 						</button>
 					</div>
@@ -437,6 +501,13 @@
 
 			</div><!-- projext9_div2 -->
 		</div><!-- projext9_box -->
+
+		<div class="top_up" onClick="top_show();" style="background-image:url(${pageContext.request.contextPath}/resources/img/icon/top-show.png); background-size:100% 100%; display: flex;"></div>
+		<div class="top_down" onClick="top_hide();" style="background-image:url(${pageContext.request.contextPath}/resources/img/icon/top-hide.png); background-size:100% 100%; display: flex;"></div>
+
+
+		<div class="bottom_up" onClick="bottom_hide();" style="background-image:url(${pageContext.request.contextPath}/resources/img/icon/bottom-hide.png); background-size:100% 100%; display: flex;"></div>
+		<div class="bottom_down" onClick="bottom_show();" style="background-image:url(${pageContext.request.contextPath}/resources/img/icon/bottom-show.png); background-size:100% 100%; display: flex;"></div>
         <%@ include file="footer.jsp"%>
     </body>
 </html>
