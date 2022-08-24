@@ -70,12 +70,12 @@ input {
     width: 500px;
     height : 480px;
     padding: 35px 45px;
+    font-size: 15px;
     background-color: #fff;
     border: 3px solid transparent;
     border-radius: 50%;
     border-image: linear-gradient(to right, #72EDF2 0%, #5151E5 100%);
     border-image-slice: 1;
-    font-size: 15px;
     box-sizing: border-box;
 }
 .mail_check_button:hover {
@@ -148,12 +148,12 @@ input {
     width: 500px;
     height : 480px;
     padding: 35px 45px;
+    font-size: 15px;
     background-color: #fff;
     border: 3px solid transparent;
     border-radius: 50%;
     border-image: linear-gradient(to right, #72EDF2 0%, #5151E5 100%);
     border-image-slice: 1;
-    font-size: 15px;
     box-sizing: border-box;
 }
 .multi_box2{

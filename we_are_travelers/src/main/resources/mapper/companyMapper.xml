@@ -5,7 +5,7 @@
 <mapper namespace = "we.are.travelers.company">
 
 	<insert id="joinCompany" parameterType="companyVo">
-		insert into weart_company (company_idx, company_id, company_pwd, company_buis_number, company_name, company_ceo_name,
+		insert IGNORE into weart_company (company_idx, company_id, company_pwd, company_buis_number, company_name, company_ceo_name,
 		 company_phone, company_buis_address, company_ip, company_auth_origin_file, company_auth_system_file)
 		
 		 values(#{company_idx}, #{company_id}, #{company_pwd}, #{company_buis_number}, #{company_name}, #{company_ceo_name},
@@ -35,7 +35,18 @@
 	<select id="checkComName" parameterType="string" resultType="int">
 	   SELECT count(*) FROM weart_company WHERE company_name=#{company_name}
 	</select>
-	   
+	 
+	 <select id="findComId" parameterType="memberVo" resultType="companyVo">
+		select * from weart_company where company_name=#{company_name} and company_ceo_name=#{company_ceo_name}  
+	</select>
+	
+	<select id="findComPwd" parameterType="String" resultType="int">
+		select count(*) from weart_company where company_id=#{company_id}
+	</select>
+	
+	<update id="changeComPwd" parameterType="java.util.HashMap">
+    update weart_company set company_pwd =#{company_pwd} where company_id=#{company_id}
+	</update>  
 	
 	
 

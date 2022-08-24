@@ -1,5 +1,8 @@
  	package we.are.travelers.dao;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -53,5 +56,37 @@ public class CompanyDao {
 		  
 			return sqlSession.selectOne(MAPPER+".checkComName", name);
 	}
+	  
+	  
+	  public CompanyVo findComId(CompanyVo cv) {
+		  
+		  return sqlSession.selectOne(MAPPER+".findComId", cv);
+	  }
+	  public int findComPwd(String company_id) {
+			 
+			return sqlSession.selectOne(MAPPER+".findComPwd", company_id);
+		}
+	 
+	 public CompanyVo changeComPwd(HashMap<String, Object> target_com_id) throws NoSuchAlgorithmException {
+		 
+		    String SHA_pwd = (String) target_com_id.get("company_pwd");
+			
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			 
+	        md.update(SHA_pwd.getBytes());
+	 
+	        StringBuilder builder = new StringBuilder();
+	 
+	        for (byte b: md.digest()) {
+	            builder.append(String.format("%02x", b));
+	        }
+	        String pwd_com_result = builder.toString();
+	        
+	        System.out.println(pwd_com_result); //88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
+	        
+	        target_com_id.put("change_com_pwd" , pwd_com_result );
+	        
+			return sqlSession.selectOne(MAPPER+".changeComPwd", target_com_id );
+		}
 
 }

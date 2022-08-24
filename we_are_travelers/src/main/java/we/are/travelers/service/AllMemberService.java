@@ -124,6 +124,24 @@ public class AllMemberService {
 		
 		 return memberDao.changePwd(target_id); 
 } 
-
+	
+	
+	public CompanyVo findComId(CompanyVo cv) { 
+		
+		 return companyDao.findComId(cv); 
+} 
+	public int findComPwd(String company_id) { 
+		
+        int result_com_pwd=0;//입력 실패
+        
+        result_com_pwd = companyDao.findComPwd(company_id); 
+		
+		 return result_com_pwd;
+} 
+	public CompanyVo changeComPwd(HashMap<String, Object> target_com_id) throws NoSuchAlgorithmException { 
+		
+		 return companyDao.changeComPwd(target_com_id); 
+} 
+	
 }
 

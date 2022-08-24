@@ -14,8 +14,8 @@
 Travelers!
 </h1></a>
 <main class="find_id_main">
-<div class="result_id_box" style="font-size:25px; position:relative; top: -10%;">
-<c:out value='"${member_name }"'/>님의 아이디는 <c:out value='"${member_id }"'/> 입니다.
+<div class="result_id_box" style="font-size:25px; position:relative; top:-10%;">
+<c:out value='"${company_name }"'/>님의 아이디는 <c:out value='"${company_id }"'/> 입니다.
 
    <div class="next_wrap_result">
 	<button type="button" class="next_find" value="다음" style="font-size:1em" onclick='location.href="${pageContext.request.contextPath}/login.do"'>로그인 이동</button>

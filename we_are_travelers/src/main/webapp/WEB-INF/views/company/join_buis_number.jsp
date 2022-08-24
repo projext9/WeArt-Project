@@ -28,9 +28,9 @@
 		  async : false,
 		  success: function(data) {
 			  
-			  var check1 ="유효한 사업자 등록번호입니다."
+			  var check1 ="국세청에 등록된 사업자 등록번호입니다."
 			  var check2 ="휴.폐업처리된 사업자입니다. 회원가입을 진행 하실 수 없습니다."
-			  var check3 ="유효하지 않은 사업자 등록번호입니다."
+			  var check3 ="국세청에 등록되지 않은 사업자 등록번호 입니다."
 					  
 			  var obj = JSON.parse(data);
 			  
@@ -65,7 +65,7 @@
 <br>&nbsp;
 for Company</h1>
 <main class="join_cont_number">
-<form name="joinCompanyForm" action="/travelers/join_com_next2.do" method="post">
+<form name="joinCompanyForm" action="${pageContext.request.contextPath}/join_com_next2.do" method="post">
       <div class="multi_box1">
     <progress value="32" max="100"></progress>
     <br>

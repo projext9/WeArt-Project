@@ -11,14 +11,14 @@
 <a href="${pageContext.request.contextPath}/login.do"><h1>We Are <br>
 Travelers!
 </h1></a>
+<div style="text-align:center; position:relative; top:170px" >
+      <h3 class="join_guide_2">찾으실 아이디(이메일)에 해당하는 이름과 생년월일을 입력해주세요</h3>
+    </div>
 <main class="find_id_main">
-<form class="find_form_id" name="joinForm" action="/travelers/result_id.do" method="post">
+<form class="find_form_id" name="joinForm" action="${pageContext.request.contextPath}/result_id.do" method="post">
 
     <div class="multi_box">
-    <div class="guide_box">
-      <p class="join_guide_2">찾으실 아이디(이메일)에 해당하는<p/>
-      <p>이름과 생년월일을 입력해주세요</p>
-    </div>
+    
     </div>
       
   <div class="info_input_box">

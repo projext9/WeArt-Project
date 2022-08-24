@@ -1,23 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html> <!-- HTML5 적용 표시 -->
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입</title>
-    <link href="${pageContext.request.contextPath}/resources/css/weart_join_form.css" rel="stylesheet" />
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript">
-
-	var code = "";
+<title>위아트 아이디 비밀번호찾기</title>
+<link href="${pageContext.request.contextPath}/resources/css/find.css" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+    var code = "";
 	var timer = null;
 	var isRunning = false;
 	
 	$(function(){
 	
 		  /* 인증번호 숨기기 */
-		 $("#mail_check_number_id").hide();
+		$("#mail_check_number_id").hide();
 		 
 		/*인증번호 버튼 클릭시 유효성 및 중복 검사 후 통과 시 인증번호 발송*/
 		$('.mail_check_button').on('click' , function(){
@@ -25,10 +23,9 @@
 			var email = $(".mail_input").val(); //이메일 input 입력값
 			var display = $('.time'); // 타이머 class
 	    	var leftSec = 180; //3분      
-			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // 알파벳+숫자@알파벳+숫자
-			var member_id = $(".mail_input").val(); // 입력한 이메일     
+			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // 알파벳+숫자@알파벳+숫자   
 			
-			if(exptext.test(email)==false){
+			if(exptext.test(email)==false || email == null){
 				
 				//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우			
 				$(".mail_input_check").html("이메일형식이 올바르지 않습니다.").css("color" , "red");
@@ -38,25 +35,7 @@
 			     return false; // 함수 동작 중단
 			     
 			
-			   }else{
-		        	
-					$.ajax({
-						type:'post',
-						url:"/travelers/checkId.do",
-						data: {"member_id":member_id},
-						success: function(data){
-							if(data == "N"){
-								result = "사용 가능한 아이디입니다.";
-								$(".mail_input_check").html(result).css("color", "green");
-								 $('.mail_input').css({
-										"outline":"none",
-									    "border-bottom":"2px solid transparent",
-									    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
-									    "border-image-slice": "1"})
-							            $("#mail_check_number_id").show();
-							            $(".mail_check_input").attr('type' , 'text');
-							            startTimer(leftSec, display);
-							            
+			   }else{		        	
 								$.ajax({
 									
 							        type:"GET",
@@ -65,37 +44,30 @@
 							        	
 							        if(data != null) 			          
 							            alert("인증번호가 전송되었습니다.")
+							            
+							            $('.mail_input').css({
+										"outline":"none",
+									    "border-bottom":"2px solid transparent",
+									    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+									    "border-image-slice": "1"})
+							            $("#mail_check_number_id").show();
+							            $(".mail_check_input").attr('type' , 'text');
+							            startTimer(leftSec, display);
 							            code = data;
+							        
 							        
 							            console.log("data : " + data);
 							        }    
 							          
 								});
 		
-				    }else{
-				    	
-						result = "이미 사용중인 아이디입니다.";
-						$(".mail_input_check").html(result).css("color", "red");
-						 $('.mail_input').css({
-								"outline":"none",
-							    "border-bottom":"",
-							    "border-image":"",
-							    "border-image-slice": ""})
-						$(".mail_input").val("").trigger("focus");
-						
-						return false;
-					}
-				},
-				error: function(error){alert(error);}
-						 
-			});
-				 
+				
 		/* 인증번호 비교 */
 		$(".mail_check_input").on('keyup' , function(){
 		    
 		    var inputCode = $(".mail_check_input").val();         // 입력코드값  
 		    var checkResult = $(".mail_check_input_box_warn");    // 비교 결과값     
-		   
+		    $(".next_find_pwd").prop('disabled' , true)  
 		    
 		    if(inputCode == code){                                // 일치할 경우
 		        checkResult.html("인증번호가 일치합니다.");
@@ -105,24 +77,19 @@
 				    "border-bottom":"2px solid transparent",
 				    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 				    "border-image-slice": "1"})
-		        $(".next_email").prop('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border-radius', '10px');
-		        $("#mail_check_input_id").prop('disabled' , true);
-		        $('.mail_check_button').prop('disabled' , true);
-		        $(".mail_input").prop('readonly' , true);
-		        $(".mail_check_input").prop('readonly' , true);
+		        $(".next_find_pwd").prop('disabled' , false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white').css('border', '1px solid white').css('border-radius', '10px');
+		        $("#mail_check_input_id").attr('disabled' , true)
+		        $('.mail_check_button').attr('disabled' , true);
+		        $(".mail_input").attr('readonly' , true);
+		        $(".mail_check_input").attr('readonly' , true);
 		        
 		     }else{                                              // 일치하지 않을 경우
 		        checkResult.html("인증번호를 다시 확인해주세요.");
 		        checkResult.css("color", "red");
-		        $(".next_email").prop('disabled' , true).css('background' , '').css('color' , '').css('border-radius', '');
-		        $('.mail_check_input').css({
-					"outline":"",
-				    "border-bottom":"",
-				    "border-image":"",
-				    "border-image-slice": ""})
-		        $('.mail_check_button').prop('disabled' , false);
-		        $(".mail_input").prop('readonly' , false);
-		        $(".mail_check_input").prop('readonly' , false);
+		        $(".next_find_pwd").prop('disabled' , true)
+		        $('.mail_check_button').attr('disabled' , false)
+		        $(".mail_input").attr('readonly' , false);
+		        $(".mail_check_input").attr('readonly' , false);
 		    }    
 		    
 		});
@@ -156,26 +123,18 @@
 	</script>
 </head>
 <body>
-<h1 style="text-align:center;">We Are Travelers!</h1>
-<main class="join_cont_email">
-<form class="join_form" name="joinForm" action="${pageContext.request.contextPath}joinNext2.do" method="post">
-    <br>
-    <div class="multi_box1">
-    <progress value="40" max="100"></progress>
-    <br>
-    <div class="guide_box">
-      <h2 class="join_guide1">위아트 계정으로
-      <br>      
-      사용할 이메일(아이디)를 입력해주세요</h2>
+<a href="${pageContext.request.contextPath}/login.do"><h1>We Are <br>Travelers! <br>for Company
+</h1></a>
+ <div style="text-align:center; position:relative; top:150px;">
+      <h3 class="join_guide_2">찾으실 아이디(이메일)의 새로운 비밀번호 발급을 위해 인증을 진행해 주세요</h3>
     </div>
-    </div>
-      <br> 
-        
-     <!-- 메일 입력 및 인증번호 발송 -->
-     <div id="mail_input-area">
+<main class="find_pwd_main">
+<form class="find_form_id" name="joinForm" action="${pageContext.request.contextPath}/result_com_pwd.do" method="post">
+ 
+   <div id="mail_input-area">
     <div class="mail_input_box">
     <label>이메일
-        <input class="mail_input" id="mail_input_id" name="email">
+        <input class="mail_input" id="mail_input_id" name="company_id">
     </label>
     
    <div class="mail_check_button_wrap">   
@@ -196,10 +155,11 @@
     <span class="mail_check_input_box_warn"></span>
     </div>
     
-    <div class="next_wrap_email">
-	<button type="submit" class="next_email" value="다음" disabled="disabled" style="font-size:1.3em">다음</button>
+    <div class="next_wrap_find">
+	<button type="submit" class="next_find_pwd" value="다음" style="font-size:1.3em">비밀번호 재설정</button>
 	</div>
-</form> 
+	
+</form>  
 </main>
 </body>
-</html>        
+</html>

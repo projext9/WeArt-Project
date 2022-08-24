@@ -128,7 +128,7 @@
 Travelers!
 </h1></a>
 <main class="find_pwd_main">
-<form class="find_form_id" name="joinForm" action="/travelers/result_pwd.do" method="post">
+<form class="find_form_id" name="joinForm" action="${pageContext.request.contextPath}/result_pwd.do" method="post">
 
     <div class="guide_box">
       <p class="join_guide_2">찾으실 아이디(이메일)의<p/>
@@ -160,7 +160,7 @@ Travelers!
     </div>
     
     <div class="next_wrap_find">
-	<button type="submit" class="next_find_pwd" value="다음" style="font-size:1.3em">다음</button>
+	<button type="submit" class="next_find_pwd" value="다음" style="font-size:1.3em">비밀번호 재설정</button>
 	</div>
 	
 </form>  

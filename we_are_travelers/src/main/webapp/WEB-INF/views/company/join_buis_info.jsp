@@ -13,7 +13,7 @@
 	   
 		$(function(){	
 			
-			$('.company_name_input').on('keyup',function() {
+			$('.company_name_input').on('propertychange change keyup paste input',function() {
 
 			    if($('.company_name_input').val() != "" ){
 			        $('.company_name_input').css({
@@ -31,7 +31,7 @@
 	            }
 			});
 			
-			$('.ceo_input').on('keyup',function() {
+			$('.ceo_input').on('propertychange change keyup paste input',function() {
 			     if($('.ceo_input').val() != "" ){
 	             $('.ceo_input').css({
 					"outline":"none",
@@ -46,7 +46,7 @@
 						    "border-image-slice": ""})
 	            }
 			});
-			$('.phone_input').on('keyup',function() {
+			$('.phone_input').on('propertychange change keyup paste input',function() {
 	             if($('.phone_input').val() !=null ){
 		            $('.phone_input').css({
 						"outline":"none",
@@ -62,7 +62,8 @@
 	            }
 			});
 			
-			$('.phone_input').on('keyup',function() {
+			$('.company_address').on('propertychange change keyup paste input',function() {
+				
 	             if($('.company_address').val() !=null ){
 		            $('.company_address').css({
 						"outline":"none",
@@ -70,7 +71,7 @@
 					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 					    "border-image-slice": "1"})
 		        }else{
-	            	 $('.phone_input').css({
+	            	 $('.company_address').css({
 							"outline":"",
 						    "border-bottom":"",
 						    "border-image":"",
@@ -78,7 +79,7 @@
 	            }
 			});
 			
-			$('.company_detail_address').on('blur',function() {
+			$('.company_detail_address').on('propertychange change keyup paste input',function() {
 				
 	             if($('.company_detail_address').val() !=null ){
 		            $('.company_detail_address').css({
@@ -94,7 +95,7 @@
 						    "border-image-slice": ""})
 	            }
 			});
-			$('.company_auth_name').on('blur',function() {
+			$('.company_auth_name').on('propertychange change keyup paste input',function() {
 	             if($('.company_auth_name').val() !=null ){
 		            $('.company_auth_name').css({
 						"outline":"none",
@@ -109,13 +110,10 @@
 						    "border-image-slice":""})
 	           }	             
 			});
-		});
-			
-			$(function() {
-				
-			 $('.next_info').prop('disabled', true)
-				
+			 $('.next_info').prop('disabled', true);
+			 
 			 $('.company_auth').on('click', function(){
+				
 				   var company_name = $('.company_name_input').val();
 	  			   var company_ceo_name = $('.ceo_input').val();
 	  			   var company_phone=$('.phone_input').val();
@@ -128,63 +126,20 @@
 						 $('.next_info').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white');
 						 
 				    }else{
+				    	
 				    	 $('.next_info').prop('disabled', true).css('background' , '').css('color' , '');
 				    }
-				});
-			});
-			
+				});			
 
-	    $(function() {
-	    		 
-		$("#file").on('change',function(){
+		    $("#file").on('change',function(){
 			
 			  var fileName = $("#file").val();
 			  
 			  $(".company_auth_name").val(fileName);
-		});
-			
-	    });
-	
-		function check(){
-			var a = document.joinForm;
-			var company_name = $('.company_name_input').val();
-			var company_name = $('.company_name_input').val();
-			var company_ceo_name = $('.ceo_input').val();
-			var company_phone=$('.phone_input').val();
-		    var company_address = $('.company_address').val();
-			var company_deatailaddress = $('.company_detail_address').val();
-			var company_auth = $('.company_auth_name').val();
-			
-			if(a.company_name.value ==""){	
-				$('.company_name_input_check').html('기업명을 입력해주세요').css('color' , 'red' )
-				return false;
-			}else{
-				$('.company_name_input_check').css('color' , 'white' )
-		    }if(a.company_ceo_name.value ==""){	
-		    	$('.ceo_input_check').html('대표자를 입력해주세요').css('color' , 'red' )
-		    	return false;
-		    }if(a.company_phone.value ==""){	
-		    	$('.phone_input_check').html('연락처를 입력해주세요').css('color' , 'red' )
-		    	return false;
-		    }if(a.address.value ==""){	
-				alert("주소를 입력해주세요");
-				a.address.focus();
-				return false;	
-			}if(a.detail_address.value ==""){	
-				$('.detail_address_check').html('상세주소를 입력해주세요').css('color' , 'red' )
-				return false;
-			}if(a.file_name.value ==""){
-				$('.company_auth_check').html('사업자등록증명원을 첨부해주세요').css('color' , 'red' )
-				return false;
-		    }
-			a.action="/travelers/join_com_finish.do";
-			a.method="post";
-			a.submit();
-			
-		}  
-		/* $('.next_info').on('click' , function(){
-			   var a = document.joinForm;
-			   a.submit();
+		    });	
+		
+		 $('.next_info').on('click' , function(){
+			 
 			   var company_name = $('.company_name_input').val();
 			   var company_ceo_name = $('.ceo_input').val();
 			   var company_phone=$('.phone_input').val();
@@ -192,28 +147,29 @@
 			   var company_deatailaddress = $('.company_detail_address').val();
 			   var company_auth = $('.company_auth_name').val();
 			    
-			if(company_name ==""){	
-				$('.company_name_input_check').html('기업명을 입력해주세요').css('color' , 'red' )
+			if(company_name == ""){	
+				$('.company_name_input_check').html('기업명을 입력해주세요').css('color' , 'red' );
+				$(".next_info").prop('disabled' , true).css('background' , '').css('color' ,'');
+				$('.company_name_input').triger('focus');
 				return false;
-			}else{
-				$('.company_name_input_check').css('color' , 'white' )
 		    }if(company_ceo_name ==""){	
-		    	$('.ceo_input_check').html('대표자를 입력해주세요').css('color' , 'red' )
+		    	$('.ceo_input_check').html('대표자를 입력해주세요').css('color' , 'red' );
 		    	return false;
 		    }if(company_phone ==""){	
-		    	$('.phone_input_check').html('연락처를 입력해주세요').css('color' , 'red' )
+		    	$('.phone_input_check').html('연락처를 입력해주세요').css('color' , 'red' );
 		    	return false;
 		    }if(company_address ==""){	
-				$('.address_check').html('주소를 입력해주세요').css('color' , 'red' )
+				$('.address_check').html('주소를 입력해주세요').css('color' , 'red' );
 				return false;	
 			}if(company_deatailaddress ==""){	
-				$('.detail_address_check').html('상세주소를 입력해주세요').css('color' , 'red' )
+				$('.detail_address_check').html('상세주소를 입력해주세요').css('color' , 'red' );
 				return false;
 			}if(company_auth ==""){
-				$('.company_auth_check').html('사업자등록증명원을 첨부해주세요').css('color' , 'red' )
+				$('.company_auth_check').html('사업자등록증명원을 첨부해주세요').css('color' , 'red' );
 				return false;
 		    }
-		}); */
+		});
+	});
 
 	    function sample6_execDaumPostcode(){
 	        new daum.Postcode({
@@ -272,7 +228,7 @@
 <br>&nbsp;&nbsp;for Company
 </h1>
 <main class="join_cont_info">
-<form class="join_form_info" name="joinForm" action="/travelers/join_com_finish.do" method="post" enctype="multipart/form-data">
+<form class="join_form_info" name="joinForm" action="${pageContext.request.contextPath}/join_com_finish.do" method="post" enctype="multipart/form-data">
     
     <input type="hidden" name="company_buis_number" value="${company_buis_number }">
     <input type="hidden" name="company_id" value="${company_id }">
@@ -310,27 +266,27 @@
                 
       <div class="address_box">
        <label>기업 주소
-        <input type="text" class="company_address" id="company_address_id" onclick="sample6_execDaumPostcode()" placeholder="주소찾기" name="address">       
-       <span class="address_check"></span>
+        <input type="text" class="company_address" id="company_address_id" onclick="sample6_execDaumPostcode()" placeholder="주소찾기" name="company_buis_address" readonly>            
        </label>
        </div>
+       <span class="address_check"></span>
        
        <div class="detail_address_box">
-        <input type="text" class="company_detail_address" id="company_detailAddress_id" placeholder="상세주소" name="detail_address">
-        <span class="detail_address_check"></span>
+        <input type="text" class="company_detail_address" id="company_detailAddress_id" placeholder="상세주소" name="detail_address">       
      </div>
+    <span class="detail_address_check"></span>
+    
     
       <div class="filebox">
       <span>기업인증</span>
         <input class="company_auth_name" placeholder="사업자등록증명원을 첨부해주세요" name="file_name"readonly>
-        <span class="company_auth_check"></span> 
         <label for="file">파일첨부</label>
-        <input type="file" class="company_auth" id="file" name="company_auth_origin_file" accept=".jpg,.pdf,.png,.jpeg">
-        
+        <input type="file" class="company_auth" id="file" name="company_auth_origin_file" accept=".jpg,.pdf,.png,.jpeg">      
     </div>
+    <span class="company_auth_check"></span> 
 </div>
      <div class="next_info_wrap">
-	     <button type="button" class="next_info" style="font-size:1.3em" onclick="check()">다음</button>
+	     <button type="submit" class="next_info" style="font-size:1.3em">다음</button>
 	 </div>
 	      
 </form> 

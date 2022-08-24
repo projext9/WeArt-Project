@@ -81,6 +81,11 @@
 			<exclude-mapping path="/result_id.do"/>
 			<exclude-mapping path="/result_pwd.do"/>
 			<exclude-mapping path="/change_pwd.do"/>
+			<exclude-mapping path="/find_com_id.do"/>
+			<exclude-mapping path="/find_com_pwd.do"/>
+			<exclude-mapping path="/result_com_id.do"/>
+			<exclude-mapping path="/result_com_pwd.do"/>
+			<exclude-mapping path="/change_com_pwd.do"/>
 			
 			<!-- AjaxController -->
 			<exclude-mapping path="/checkId.do"/>

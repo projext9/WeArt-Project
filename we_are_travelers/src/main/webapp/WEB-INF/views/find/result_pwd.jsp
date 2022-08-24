@@ -118,7 +118,7 @@
 Travelers!
 </h1></a>
 <main class="find_id_main">
-<form class="find_form_pwd" name="find_Form" action="/travelers/change_pwd.do" method="post">
+<form class="find_form_pwd" name="find_Form" action="${pageContext.request.contextPath}/change_pwd.do" method="post">
     <input type="hidden" name="member_id" value="${member_id }">
     
     <div class="guide_box">
@@ -142,7 +142,7 @@ Travelers!
     <span class="pwd_input_check2"></span>
     </div>
     <div class="next_wrap_pwd">
-	<button type="submit" class="next_change" value="다음" style="font-size:1.3em">다음</button>
+	<button type="submit" class="next_change" value="다음" style="font-size:1.3em">완료</button>
 	</div>
 	
 </form> 

@@ -59,6 +59,7 @@ public class AllMemberController {
     		
     	 if(memberVo != null) {	
 			HttpSession session = request.getSession();
+			session.invalidate();
 			session.setAttribute("member_idx", memberVo.getMember_idx());//회원등급 추가
 			session.setAttribute("member_id",memberVo.getMember_id());//회원아이디 추가
 			session.setAttribute("member_nick", memberVo.getMember_nick());//회원닉네임
@@ -72,6 +73,7 @@ public class AllMemberController {
 		   
     	 }else {
 		    	 HttpSession session1 = request.getSession();
+		    	 session1.invalidate();
 		    	 session1.setAttribute("company_idx", companyVo.getCompany_idx());//회원등급 추가
 		    	 session1.setAttribute("company_id", companyVo.getCompany_id());//회원등급 추가
 		    	 session1.setAttribute("company_name", companyVo.getCompany_name());//회사이름
@@ -283,17 +285,15 @@ public class AllMemberController {
 }
 	@RequestMapping(value="/join_com_finish.do", method = RequestMethod.POST)
 	public String joinCNext4(@RequestParam("company_buis_number")String company_buis_number , @RequestParam("company_id")String company_id , @RequestParam("company_pwd")String company_pwd, 
-			@RequestParam("company_name") String company_name, @RequestParam("company_ceo_name") String company_ceo_name , 
-			@RequestParam("address") String address , @RequestParam("detail_address") String detail_address , 
+			@RequestParam("company_name") String company_name, @RequestParam("company_ceo_name") String company_ceo_name , @RequestParam("company_phone") String company_phone,
+			@RequestParam("company_buis_address") String company_buis_address , @RequestParam("detail_address") String detail_address , 
 			@RequestParam("company_auth_origin_file") MultipartFile company_auth_origin_file , Model model , HttpServletRequest request) throws NoSuchAlgorithmException  {
 		
 		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		String ip = req.getHeader("X-FORWARDED-FOR");
 		if (ip == null)
 			ip = req.getRemoteAddr();
-		
-		String add = address + detail_address;
-		
+	
 		String idx = "";
 		for (int i = 1; i <= 12; i++) {
             int pick = (int)((Math.random() * (20 - 1)) + 1);
@@ -329,14 +329,15 @@ public class AllMemberController {
         String pwd_result = builder.toString();
         
         System.out.println(pwd_result); //88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
-		
+        	
 		model.addAttribute("company_idx", idx);
 		model.addAttribute("company_buis_number", company_buis_number);
 		model.addAttribute("company_id", company_id);
 		model.addAttribute("company_pwd", pwd_result);
 		model.addAttribute("company_name", company_name );
 		model.addAttribute("company_ceo_name", company_ceo_name);
-		model.addAttribute("address" , add );
+		model.addAttribute("company_phone", company_phone);
+		model.addAttribute("company_buis_address" , (company_buis_address + detail_address) );
 		model.addAttribute("company_ip" , ip);
 		
 		
@@ -421,13 +422,12 @@ public class AllMemberController {
 		return "redirect:login.do";
 	}
 	
-	
 	@RequestMapping("/find_id_pwd.do")
-	public String find_id_pwd() {
+	public String find_id_pwd(HttpServletRequest request) {
 		
 		return "find/find_id_pwd";
 	}
-	
+///////////////////////////////////////////////////////////////////////////////////////////일반회원 아이디 비밀번호 찾기
 	@RequestMapping("/find_id.do")
 	public String find_id() {
 		
@@ -456,7 +456,7 @@ public class AllMemberController {
 	@RequestMapping("/find_pwd.do")
 	public String find_pwd() {
 		
-		return "find/find_pwd";
+		return "find/find_com_pwd";
 	}
 	
 	@RequestMapping("/result_pwd.do")
@@ -475,7 +475,7 @@ public class AllMemberController {
 			
 			return "alert";
 		}
-		return "find/result_pwd";			
+		return "find/result_com_pwd";			
 	}
 	
 	@RequestMapping("/change_pwd.do")
@@ -489,6 +489,67 @@ public class AllMemberController {
 		MemberVo change_pwd = AllmemberService.changePwd(target_id);
 		
 		System.out.println("변경된 비밀번호 :" + change_pwd );
+	
+	  return "login";  
+	}
+	///////////////////////////////////////////////////////////////////////////////////////////기업회원 아이디 비밀번호 찾기
+	@RequestMapping("/find_com_id.do")
+	public String find_com_id() {
+		
+		return "find/find_com_id";
+	}
+	@RequestMapping("/result_com_id.do")
+	public String result_com_id(CompanyVo cv, HttpServletRequest request, Model model) {
+		
+		CompanyVo result_com_id = AllmemberService.findComId(cv);
+		System.out.println("아이디 찾기 결과값 :" + result_com_id);
+		
+		if(result_com_id != null) {
+		   model.addAttribute("company_id" , result_com_id.getCompany_id());
+		   model.addAttribute("company_name" , result_com_id.getCompany_name());
+			
+		}else{
+			request.setAttribute("msg", "해당하는 가입 정보가 없습니다");
+			request.setAttribute("url", "/travelers/find_com_id.do");
+			return "alert";
+		}
+		
+		return "find/result_com_id";
+	}
+	@RequestMapping("/find_com_pwd.do")
+	public String find_com_pwd() {
+		
+		return "find/find_com_pwd";
+	}
+	@RequestMapping("/result_com_pwd.do")
+	public String result_com_pwd(@RequestParam("company_id") String company_id, HttpServletRequest request , Model model) {
+	
+		int company_id_auth = AllmemberService.findComPwd(company_id);
+			
+		if(company_id_auth == 1) {
+			
+			model.addAttribute("company_id", company_id);	
+			
+		   
+		}else{
+			request.setAttribute("msg", "해당하는 아이디(이메일) 정보가 없습니다");
+			request.setAttribute("url", "/travelers/find_com_pwd.do");
+			
+			return "alert";
+		}
+		return "find/result_com_pwd";			
+	}
+	@RequestMapping("/change_com_pwd.do")
+	public String change_com_pwd(CompanyVo mv, HttpServletRequest request, @RequestParam("company_id") String company_id, @RequestParam("company_pwd")String company_pwd) throws NoSuchAlgorithmException {
+				
+		HashMap<String, Object> target_com_id = new HashMap<>();
+		
+		target_com_id.put("company_id", company_id);
+		target_com_id.put("company_pwd", company_pwd);
+		
+		CompanyVo change_com_pwd = AllmemberService.changeComPwd(target_com_id);
+		
+		System.out.println("변경된 비밀번호 :" + change_com_pwd );
 	
 	  return "login";  
 	}

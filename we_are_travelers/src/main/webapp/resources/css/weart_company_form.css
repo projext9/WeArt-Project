@@ -87,8 +87,16 @@ font-size:15px;
     color: #191919;
  }
  #buis_number_input{
-     width:98%;
- }
+     width:100%;
+     margin:0;'
+      }
+.no_b{
+	 margin:0;
+	 position:relative;
+	 left:3px;
+
+	}
+
  .next_wrap_number {
 	position: relative;
     bottom: -50px;
@@ -164,7 +172,7 @@ font-size:15px;
 }
 .next_wrap_email {
 	position: relative;
-    bottom: -150px;
+    bottom: -140px;
     width: 400px;
 } 
 .next_email {
@@ -254,7 +262,7 @@ position: relative;
 .join_cont_info {
     width: 500px;
     height : 580px;
-    padding: 35px 45px;
+    padding: 45px 45px;
     background-color: #fff;
     border: 3px solid transparent;
     border-radius: 50%;
@@ -309,7 +317,7 @@ position: relative;
 }
 .filebox label {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 15px 10px;
     color: #fff;
     vertical-align: middle;
     background-color: #999999;
@@ -317,9 +325,9 @@ position: relative;
     height: 15px;
     margin-left: 10px;
 }
-.company_name_input_check .ceo_input_check .ceo_phone_check .address_check .detail_address_check .company_auth_check{
+.company_name_input_check, .ceo_input_check, .ceo_phone_check, .address_check, .detail_address_check, .company_auth_check, .phone_input_check{
 position: relative;
-    right: -53px;
+    left: 14%;
 }
 .next_info_wrap {
     position: relative;
