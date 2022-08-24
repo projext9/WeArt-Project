@@ -53,7 +53,7 @@
 	  });
 	   
    });
-		$('.name_input').on('focusout' , function(){
+		$('.name_input').on('keyup' , function(){
 			
 		     var name = $('.name_input').val();
 			 var n_RegExp = /^[가-힣]{2,5}$/; //이름 유효성검사 정규식

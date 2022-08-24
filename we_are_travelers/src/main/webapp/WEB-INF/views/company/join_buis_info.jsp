@@ -11,70 +11,180 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">	
 	   
-		$(function() {
+		$(function(){	
 			
-			$('.next_info').prop('disabled', true);		
-			
-			$('input[type="text"]').on('keyup',function() {
+			$('.company_name_input').on('keyup',function() {
 
-			    if($('.company_name_input').val()  != null ){
-	            $('.company_name_input').css("outline","none").css
-				    ("border-bottom","2px solid transparent").css
-				    ("border-image","linear-gradient(to right top, #5151E5, #72EDF2)").css
-				    ("border-image-slice","1");
+			    if($('.company_name_input').val() != "" ){
+			        $('.company_name_input').css({
+						"outline":"none",
+					    "border-bottom":"2px solid transparent",
+					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
+					    "border-image-slice": "1"})
+	            
+	            }else{
+	            	 $('.company_name_input').css({
+							"outline":"",
+						    "border-bottom":"",
+						    "border-image":"",
+						    "border-image-slice": ""})
 	            }
-			    if($('.ceo_input').val() !=null ){
-	            $('.ceo_input').css({
+			});
+			
+			$('.ceo_input').on('keyup',function() {
+			     if($('.ceo_input').val() != "" ){
+	             $('.ceo_input').css({
 					"outline":"none",
 				    "border-bottom":"2px solid transparent",
 				    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 				    "border-image-slice": "1"})
-		        }
-			    if($('.phone_input').val() !=null ){
+		        }else{
+	            	 $('.ceo_input').css({
+							"outline":"",
+						    "border-bottom":"",
+						    "border-image":"",
+						    "border-image-slice": ""})
+	            }
+			});
+			$('.phone_input').on('keyup',function() {
+	             if($('.phone_input').val() !=null ){
 		            $('.phone_input').css({
 						"outline":"none",
 					    "border-bottom":"2px solid transparent",
 					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 					    "border-image-slice": "1"})
-			    }
-			    if($('.company_address').val() !=null ){
+			    }else{
+	            	 $('.phone_input').css({
+							"outline":"",
+						    "border-bottom":"",
+						    "border-image":"",
+						    "border-image-slice": ""})
+	            }
+			});
+			
+			$('.phone_input').on('keyup',function() {
+	             if($('.company_address').val() !=null ){
 		            $('.company_address').css({
 						"outline":"none",
 					    "border-bottom":"2px solid transparent",
 					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 					    "border-image-slice": "1"})
-		        }
-			    if($('.company_detail_address').val() !=null ){
+		        }else{
+	            	 $('.phone_input').css({
+							"outline":"",
+						    "border-bottom":"",
+						    "border-image":"",
+						    "border-image-slice": ""})
+	            }
+			});
+			
+			$('.company_detail_address').on('blur',function() {
+				
+	             if($('.company_detail_address').val() !=null ){
 		            $('.company_detail_address').css({
 						"outline":"none",
 					    "border-bottom":"2px solid transparent",
 					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 					    "border-image-slice": "1"})
-		        }
-			    if($('.company_auth_name').val() !=null ){
+		        }else{
+	            	 $('.company_detail_address').css({
+							"outline":"",
+						    "border-bottom":"",
+						    "border-image":"",
+						    "border-image-slice": ""})
+	            }
+			});
+			$('.company_auth_name').on('blur',function() {
+	             if($('.company_auth_name').val() !=null ){
 		            $('.company_auth_name').css({
 						"outline":"none",
 					    "border-bottom":"2px solid transparent",
 					    "border-image":"linear-gradient(to right top, #5151E5, #72EDF2)",
 					    "border-image-slice": "1"})
-		        }
-			    if($('.company_name_input').val() && $('.ceo_input').val() && $('.company_address').val() && $('.company_detail_address').val() != null){
-					 $('.next_info').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white');					  
-			    }else{
-			    	 $('.next_info').prop('disabled', true).css('background' , '').css('color' , '');
-			    }
-		    });
+		        }else{
+	            	 $('.company_auth_name').css({
+							"outline":"",
+						    "border-bottom":"",
+						    "border-image":"",
+						    "border-image-slice":""})
+	           }	             
+			});
 		});
-	    
+			
+			$(function() {
+				
+			 $('.next_info').prop('disabled', true)
+				
+			 $('.company_auth').on('click', function(){
+				   var company_name = $('.company_name_input').val();
+	  			   var company_ceo_name = $('.ceo_input').val();
+	  			   var company_phone=$('.phone_input').val();
+	  			   var company_address = $('.company_address').val();
+	  			   var company_deatailaddress = $('.company_detail_address').val();
+	  			   var company_auth = $('.company_auth_name').val();
+		            	             	 
+	                if(company_name != null && company_ceo_name != null && company_phone != null && company_address != null && company_deatailaddress != null){
+				    	 
+						 $('.next_info').prop('disabled', false).css('background' , 'linear-gradient(to right top, #5151E5, #72EDF2)').css('color' , 'white');
+						 
+				    }else{
+				    	 $('.next_info').prop('disabled', true).css('background' , '').css('color' , '');
+				    }
+				});
+			});
+			
+
 	    $(function() {
 	    		 
 		$("#file").on('change',function(){
+			
 			  var fileName = $("#file").val();
+			  
 			  $(".company_auth_name").val(fileName);
 		});
-		
-		$('.next_info').on('click' , function(){
-				
+			
+	    });
+	
+		function check(){
+			var a = document.joinForm;
+			var company_name = $('.company_name_input').val();
+			var company_name = $('.company_name_input').val();
+			var company_ceo_name = $('.ceo_input').val();
+			var company_phone=$('.phone_input').val();
+		    var company_address = $('.company_address').val();
+			var company_deatailaddress = $('.company_detail_address').val();
+			var company_auth = $('.company_auth_name').val();
+			
+			if(a.company_name.value ==""){	
+				$('.company_name_input_check').html('기업명을 입력해주세요').css('color' , 'red' )
+				return false;
+			}else{
+				$('.company_name_input_check').css('color' , 'white' )
+		    }if(a.company_ceo_name.value ==""){	
+		    	$('.ceo_input_check').html('대표자를 입력해주세요').css('color' , 'red' )
+		    	return false;
+		    }if(a.company_phone.value ==""){	
+		    	$('.phone_input_check').html('연락처를 입력해주세요').css('color' , 'red' )
+		    	return false;
+		    }if(a.address.value ==""){	
+				alert("주소를 입력해주세요");
+				a.address.focus();
+				return false;	
+			}if(a.detail_address.value ==""){	
+				$('.detail_address_check').html('상세주소를 입력해주세요').css('color' , 'red' )
+				return false;
+			}if(a.file_name.value ==""){
+				$('.company_auth_check').html('사업자등록증명원을 첨부해주세요').css('color' , 'red' )
+				return false;
+		    }
+			a.action="/travelers/join_com_finish.do";
+			a.method="post";
+			a.submit();
+			
+		}  
+		/* $('.next_info').on('click' , function(){
+			   var a = document.joinForm;
+			   a.submit();
 			   var company_name = $('.company_name_input').val();
 			   var company_ceo_name = $('.ceo_input').val();
 			   var company_phone=$('.phone_input').val();
@@ -103,8 +213,8 @@
 				$('.company_auth_check').html('사업자등록증명원을 첨부해주세요').css('color' , 'red' )
 				return false;
 		    }
-		});
-   });
+		}); */
+
 	    function sample6_execDaumPostcode(){
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -153,7 +263,7 @@
 	            }
 	        }).open();
 	     }
-		
+	   
 </script>
 </head>
 
@@ -212,7 +322,7 @@
     
       <div class="filebox">
       <span>기업인증</span>
-        <input class="company_auth_name" placeholder="사업자등록증명원을 첨부해주세요" readonly>
+        <input class="company_auth_name" placeholder="사업자등록증명원을 첨부해주세요" name="file_name"readonly>
         <span class="company_auth_check"></span> 
         <label for="file">파일첨부</label>
         <input type="file" class="company_auth" id="file" name="company_auth_origin_file" accept=".jpg,.pdf,.png,.jpeg">
@@ -220,7 +330,7 @@
     </div>
 </div>
      <div class="next_info_wrap">
-	     <button type="submit" class="next_info" disabled="disabled" style="font-size:1.3em">다음</button>
+	     <button type="button" class="next_info" style="font-size:1.3em" onclick="check()">다음</button>
 	 </div>
 	      
 </form> 

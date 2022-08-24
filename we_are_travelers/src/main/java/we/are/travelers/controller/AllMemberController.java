@@ -425,13 +425,13 @@ public class AllMemberController {
 	@RequestMapping("/find_id_pwd.do")
 	public String find_id_pwd() {
 		
-		return "find_id_pwd";
+		return "find/find_id_pwd";
 	}
 	
 	@RequestMapping("/find_id.do")
 	public String find_id() {
 		
-		return "find_id";
+		return "find/find_id";
 	}
 	@RequestMapping("/result_id.do")
 	public String result_id(MemberVo mv, HttpServletRequest request, Model model) {
@@ -449,14 +449,14 @@ public class AllMemberController {
 			return "alert";
 		}
 		
-		return "result_id";
+		return "find/result_id";
 	}
 	
 	
 	@RequestMapping("/find_pwd.do")
 	public String find_pwd() {
 		
-		return "find_pwd";
+		return "find/find_pwd";
 	}
 	
 	@RequestMapping("/result_pwd.do")
@@ -475,7 +475,7 @@ public class AllMemberController {
 			
 			return "alert";
 		}
-		return "result_pwd";			
+		return "find/result_pwd";			
 	}
 	
 	@RequestMapping("/change_pwd.do")
