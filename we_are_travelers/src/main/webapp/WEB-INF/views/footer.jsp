@@ -5,13 +5,6 @@
             <div class="container">
             	<p class="m-0 text-center text-white">
 			    <ul>
-					<li><a id="footer_link" href="<%=request.getContextPath() %>/link.jsp">TEST 소개</a><span>&nbsp;&nbsp; | &nbsp;&nbsp;</span></li>
-			        <li><a id="footer_link" href="<%=request.getContextPath() %>/link.jsp">이용약관</a><span>&nbsp;&nbsp; | &nbsp;&nbsp;</span></li>
-					<li><a id="footer_link" href="<%=request.getContextPath() %>/link.jsp">개인정보처리방침</a><span>&nbsp;&nbsp; | &nbsp;&nbsp;</span></li>
-			        <li><a id="footer_link" href="<%=request.getContextPath() %>/link.jsp">1:1문의</a><span>&nbsp;&nbsp; | &nbsp;&nbsp;</span></li>
-			        <li><a id="footer_link" href="<%=request.getContextPath() %>/link.jsp">입점문의</a><span>&nbsp;&nbsp;</span></li>
-			    </ul>
-			    <ul>
 					<li>(주)WeArt&nbsp;&nbsp;</li>
 					<li>대표 : 홍길동&nbsp;&nbsp;</li>
 					<li>전라북도 전주시 덕진구 금암1동 667-52 5층&nbsp;&nbsp;</li>

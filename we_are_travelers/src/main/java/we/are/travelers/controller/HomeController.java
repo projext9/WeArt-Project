@@ -31,18 +31,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/")//get방식 요청 처리
-	public String home() {
+	public String home(Model model) {
+		List<ItemVo> ItemVoList = itemService.getItemHomeList();
+		model.addAttribute("ItemVoList", ItemVoList);
 		return "home";
 	}
 	
 	@GetMapping("/home.do")//get방식 요청 처리
 	public String home2(Model model) {
-		
 		List<ItemVo> ItemVoList = itemService.getItemHomeList();
 		model.addAttribute("ItemVoList", ItemVoList);
-		
-
-		
 		return "home";
 	}
 	

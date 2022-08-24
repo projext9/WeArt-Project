@@ -44,7 +44,8 @@
 			background-color: rgba( 0, 0, 0, 0.7 );
 			color:#fff;
 			box-sizing: border-box;
-			position: absolute; 
+			position: absolute;
+			display: none;
 		}
 		
 		.projext9_div2 {
@@ -60,9 +61,16 @@
 			background-color: rgba( 0, 0, 0, 0.7 );
 			color:#000;
 			box-sizing: border-box;
-			position: absolute; 
+			position: absolute;
+			display: none;
 		}
 	    </style>
+	    <script type="text/javascript">
+	    window.onload = function slideUp() {
+			$("#projext9_div1").slideDown("slow");
+			$("#projext9_div2").slideDown("slow");
+	    }
+	    </script>
 	</head>
 	<body>   
 		<div class="projext9_box">
@@ -70,7 +78,7 @@
 				<source src="resources/assets/videohome.webm" type="video/webm"><!-- https://www.youtube.com/watch?v=N6dp6z-Ie_U -->
 			</video>
 
-			<div class="projext9_div1">
+			<div class="projext9_div1" id="projext9_div1">
 			    <div class="row">
 			      <div class="col-lg-2">
 			        <img src="${pageContext.request.contextPath}/resources/images/culture1.png" width="75" height="75">
@@ -110,7 +118,7 @@
 			    </div><!-- /.row -->
 			</div><!-- projext9_div1 -->
 
-			<div class="projext9_div2">
+			<div class="projext9_div2" id="projext9_div2">
 
 				<div class="container marketing" style="max-width: 1600px;">
 				    
@@ -123,12 +131,11 @@
 									<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 							
 							                 <div class="col mb-5" style="width: 20%;">
-							                     <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[0].item_idx}&itemCode=${ItemVoList[0].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[0].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[0].item_idx}&itemCode=${ItemVoList[0].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[0].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -142,12 +149,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[1].item_idx}&itemCode=${ItemVoList[1].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[1].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[1].item_idx}&itemCode=${ItemVoList[1].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[1].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -161,12 +167,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[2].item_idx}&itemCode=${ItemVoList[2].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[2].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[2].item_idx}&itemCode=${ItemVoList[2].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[2].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -180,12 +185,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[3].item_idx}&itemCode=${ItemVoList[3].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[3].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[3].item_idx}&itemCode=${ItemVoList[3].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[3].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -199,12 +203,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[4].item_idx}&itemCode=${ItemVoList[4].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[4].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[4].item_idx}&itemCode=${ItemVoList[4].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[4].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -227,12 +230,11 @@
 									<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 							
 							                 <div class="col mb-5" style="width: 20%;">
-							                     <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[5].item_idx}&itemCode=${ItemVoList[5].item_code}'" style="cursor: pointer;">
 											<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[5].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[5].item_idx}&itemCode=${ItemVoList[5].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[5].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -246,12 +248,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[6].item_idx}&itemCode=${ItemVoList[6].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[6].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[6].item_idx}&itemCode=${ItemVoList[6].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[6].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -265,12 +266,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[7].item_idx}&itemCode=${ItemVoList[7].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[7].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[7].item_idx}&itemCode=${ItemVoList[7].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[7].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -284,12 +284,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[8].item_idx}&itemCode=${ItemVoList[8].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[8].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[8].item_idx}&itemCode=${ItemVoList[8].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[8].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -303,12 +302,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[9].item_idx}&itemCode=${ItemVoList[9].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[9].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[9].item_idx}&itemCode=${ItemVoList[9].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[9].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -331,12 +329,11 @@
 									<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 							
 							                 <div class="col mb-5" style="width: 20%;">
-							                     <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[10].item_idx}&itemCode=${ItemVoList[10].item_code}'" style="cursor: pointer;">
 											<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[10].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[10].item_idx}&itemCode=${ItemVoList[10].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[10].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -350,12 +347,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[11].item_idx}&itemCode=${ItemVoList[11].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[11].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[11].item_idx}&itemCode=${ItemVoList[11].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[11].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -369,12 +365,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[12].item_idx}&itemCode=${ItemVoList[12].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[12].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[12].item_idx}&itemCode=${ItemVoList[12].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[12].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -388,12 +383,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[13].item_idx}&itemCode=${ItemVoList[13].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[13].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[13].item_idx}&itemCode=${ItemVoList[13].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[13].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
@@ -407,12 +401,11 @@
 							              </div>
 							              
 							              <div class="col mb-5" style="width: 20%;">
-							                  <div class="card h-100">
+							                     <div class="card h-100" OnClick="location.href ='${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[14].item_idx}&itemCode=${ItemVoList[14].item_code}'" style="cursor: pointer;">
 								<!-- Hot badge-->
 							                      <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot</div>
 							                      <!-- Product image-->
-							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[14].item_img}" 
-							                      href="${pageContext.request.contextPath}/itemdetail.do?iidx=${ItemVoList[14].item_idx}&itemCode=${ItemVoList[14].item_code}" alt="..." />
+							                      <img class="card-img-top" src="${pageContext.request.contextPath}/resources/itemimg/${ItemVoList[14].item_img}" alt="..." />
 							                      <!-- Product details-->
 							                      <div class="card-body p-1">
 							                          <div class="text-center">
