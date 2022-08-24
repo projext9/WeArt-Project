@@ -27,6 +27,7 @@
 				<input type="hidden" id="pwd_val" value="${memberVo.member_pwd}" style="display:none;">
 				<input type="hidden" id="nick_val" value="${memberVo.member_nick}" style="display:none;">
 				<input type="hidden" id="phone_val" value="${memberVo.member_phone}" style="display:none;">
+				<input type="hidden" id="address_val" value="${memberVo.member_address}" style="display:none;">
 					<tr>
 						<th>인덱스</th>
 						<td colspan="2">${memberVo.member_idx}</td>
@@ -77,12 +78,12 @@
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td></td>
-						<td id="mod_pwd" style="display:none;"><input type="text" id="modify_pwd" value="${memberVo.member_pwd}"></td>
+						<td id="address">${memberVo.member_address}</td>
+						<td id="mod_address" style="display:none;"><input type="text" id="modify_adrress" value="${memberVo.member_address}"></td>
 						<td style="text-align:right">
-							<label class ="btn btn-outline-primary" id="modify_member_pwd">수정하기</label>
-							<label class ="btn btn-outline-primary" id="modify_pwd_submit" style="display:none;">확인</label>
-							<label class ="btn btn-outline-primary" id="modify_pwd_cancel" style="display:none;">취소</label>
+							<label class ="btn btn-outline-primary" id="modify_member_address">수정하기</label>
+							<label class ="btn btn-outline-primary" id="modify_address_submit" style="display:none;">확인</label>
+							<label class ="btn btn-outline-primary" id="modify_address_cancel" style="display:none;">취소</label>
 						</td>
 					</tr>
 					<tr>

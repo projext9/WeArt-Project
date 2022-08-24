@@ -21,7 +21,7 @@ public class MemberVo {
 	private String address_input2;
 	private String address_input3;
 	private String address_input4;
-	private String address_input5;
+	private String member_address;
     
 	public String getMember_idx() {
 		return member_idx;		
@@ -135,11 +135,11 @@ public class MemberVo {
 	public void setAddress_input4(String address_input4) {
 		this.address_input4 = address_input4;
 	}
-	public String getAddress_input5() {
-		return address_input5;
+	public String getMember_address() {
+		return member_address;
 	}
-	public void setAddress_input5(String address_input5) {
-		this.address_input5 = address_input5;
+	public void setMember_address(String address_input5) {
+		this.member_address = address_input5;
 	}
 	
       

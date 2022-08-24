@@ -93,6 +93,7 @@ public class MyController {
 			@RequestParam(value="member_pwd") String member_pwd,
 			@RequestParam(value="member_nick") String member_nick,
 			@RequestParam(value="member_phone") String member_phone,
+			@RequestParam(value="member_address") String member_address,
 			@RequestParam(value="member_delyn") char member_delyn) {
 		
 		memberVo.setMember_idx(member_idx);
@@ -100,6 +101,7 @@ public class MyController {
 		memberVo.setMember_pwd(member_pwd);
 		memberVo.setMember_nick(member_nick);
 		memberVo.setMember_phone(member_phone);
+		memberVo.setMember_address(member_address);
 		memberVo.setMember_delyn(member_delyn);
 				
 		int result = myService.modify_info(memberVo);
