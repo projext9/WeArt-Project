@@ -48,10 +48,10 @@
 		
 		<tbody class = "table-group-divider">
 			<c:forEach var="memberVo" items="${memberContent}">
-				<tr>
+				<%-- <tr>
 					<th>인덱스</th>
 					<td>${memberVo.member_idx}</td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<th>아이디</th>
 					<td>${memberVo.member_id}</td>
@@ -68,17 +68,11 @@
 					<th>생년월일</th>
 					<td>${memberVo.member_birth}</td>
 				</tr>
-				<!-- 수정 -->
-				<tr>
-					<th>수정사항</th>
-					<td>${memberVo.member_regCode}</td>
-				</tr>
-				<!--  -->
 				<tr>
 					<th>전화번호</th>
 					<td>${memberVo.member_phone}</td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th>휴대폰 인증</th>
 					<td>
 						<c:choose>
@@ -86,7 +80,7 @@
 							<c:otherwise>X</c:otherwise>
 						</c:choose>
 					</td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<th>ip</th>
 					<td>${memberVo.member_ip}</td>

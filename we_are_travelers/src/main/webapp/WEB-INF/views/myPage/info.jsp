@@ -160,10 +160,10 @@
 				<input type="hidden" id="nick_val" value="${memberVo.member_nick}" style="display:none;">
 				<input type="hidden" id="phone_val" value="${memberVo.member_phone}" style="display:none;">
 				<input type="hidden" id="delyn_val" value="${memberVo.member_delyn}" style="display:none;">
-					<tr>
+					<%-- <tr>
 						<th>인덱스</th>
 						<td colspan="2">${memberVo.member_idx}</td>
-					</tr>
+					</tr> --%>
 					<tr>
 						<th>아이디</th>
 						<td colspan="2">${memberVo.member_id}</td>

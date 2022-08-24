@@ -43,7 +43,7 @@
 	<table class = "table">
 		<thead>
 			<tr style="text-align:center;">
-				<th>번호</th><th>종류</th><th>제목</th><th>내용</th>
+				<th>번호</th><th>종류</th><th>제목</th>
 				<th>작성자 / 작성일</th><th>삭제여부</th>
 			</tr>
 		</thead>
@@ -62,7 +62,6 @@
 						</c:choose>
 					</td>					
 					<td><a href = "${pageContext.request.contextPath}/admin_board_content.do?board_idx=${boardVo.board_idx}">${boardVo.board_subject}</a></td>
-					<td>${boardVo.board_content}</td>
 					<td>${boardVo.board_writer} / <c:set var="date" value="${boardVo.board_date}"/>${fn:substring(date,2,11)}</td>
 					<td>${boardVo.board_delyn}</td>
 				</tr>

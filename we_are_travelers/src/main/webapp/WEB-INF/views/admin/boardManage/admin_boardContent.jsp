@@ -47,14 +47,14 @@
 		
 		<tbody class = "table-group-divider">
 			<c:forEach var="boardVo" items="${boardContent}">
-				<tr>
+				<%-- <tr>
 					<th>인덱스</th>
 					<td>${boardVo.board_idx}</td>
-				</tr>
-				<tr>
+				</tr> --%>
+				<%-- <tr>
 					<th>제목</th>
 					<td>${boardVo.board_subject}</td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<th>종류</th>
 					<td>
@@ -75,18 +75,18 @@
 					<th>작성자</th>
 					<td>${boardVo.board_writer}</td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th>이미지</th>
 					<td>${boardVo.board_image}</td>
-				</tr>
-				<tr>
+				</tr> --%>
+				<%-- <tr>
 					<th>조회수</th>
 					<td>${boardVo.board_hits}</td>
 				</tr>
 				<tr>
 					<th>좋아요수</th>
 					<td>${boardVo.board_like}</td>
-				</tr>
+				</tr> --%>
 				<%-- <tr>
 					<th>댓글수</th>
 					<td>${boardVo.board_reply}</td>
