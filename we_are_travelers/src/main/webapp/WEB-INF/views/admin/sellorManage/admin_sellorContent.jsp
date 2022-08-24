@@ -107,7 +107,7 @@
 <!-- 					<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1">보기</button>
  -->					</td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th>휴대폰 인증</th>
 					<td>
 						<c:choose>
@@ -115,7 +115,7 @@
 							<c:otherwise>X</c:otherwise>
 						</c:choose>
 					</td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<th>기업 인증</th>
 					<td>
