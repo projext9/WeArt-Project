@@ -323,10 +323,10 @@ public class ItemController {
 			List<String> cart_idx_list_ = Arrays.asList(cart_idx_list);	
 			List<Map<String, Object>> map1 = itemService.getItemOrder(cart_idx_list_); //배송지 입력 호출(상품)
 			model.addAttribute("ItemOrderMap", map1);
-			
-			Map<String, Object> map2 = itemService.getMemberDetail(member_idx); //배송지 입력 호출(회원정보)
-			model.addAttribute("map2", map2);
 
+			MemberVo memberVo = itemService.getMemberDetail(member_idx); //배송지 입력 호출(회원정보)
+			model.addAttribute("memberVo", memberVo);
+			
 			request.setAttribute("total_itemPrice", total_itemPrice);
 			request.setAttribute("total_postPrice", total_postPrice);
 			request.setAttribute("total_price", total_price);

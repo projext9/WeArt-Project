@@ -17,6 +17,11 @@ public class MemberVo {
 	private char member_delyn; //사용자 이용상태(N(정상) Y(삭제) S(정지))
 	private Date member_regdate; //가입일자
 	private String member_ip; //
+	private String address_input1;
+	private String address_input2;
+	private String address_input3;
+	private String address_input4;
+	private String address_input5;
     
 	public String getMember_idx() {
 		return member_idx;		
@@ -105,6 +110,36 @@ public class MemberVo {
 				+ ", member_phone=" + member_phone + ", member_grade=" + member_grade + ", member_regCode="
 				+ member_regCode + ", member_phone_auth=" + member_phone_auth + ", member_delyn=" + member_delyn
 				+ ", member_regdate=" + member_regdate + ", member_ip=" + member_ip + "]";
+	}
+	public String getAddress_input1() {
+		return address_input1;
+	}
+	public void setAddress_input1(String address_input1) {
+		this.address_input1 = address_input1;
+	}
+	public String getAddress_input2() {
+		return address_input2;
+	}
+	public void setAddress_input2(String address_input2) {
+		this.address_input2 = address_input2;
+	}
+	public String getAddress_input3() {
+		return address_input3;
+	}
+	public void setAddress_input3(String address_input3) {
+		this.address_input3 = address_input3;
+	}
+	public String getAddress_input4() {
+		return address_input4;
+	}
+	public void setAddress_input4(String address_input4) {
+		this.address_input4 = address_input4;
+	}
+	public String getAddress_input5() {
+		return address_input5;
+	}
+	public void setAddress_input5(String address_input5) {
+		this.address_input5 = address_input5;
 	}
 	
       
