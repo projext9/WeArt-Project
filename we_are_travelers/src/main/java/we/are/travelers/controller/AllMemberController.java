@@ -60,11 +60,11 @@ public class AllMemberController {
 			HttpSession session1 = request.getSession();
     		
     	 if(memberVo != null) {	
- 		 	session.removeAttribute("company_idx");//기업회원 세션 삭제
- 		 	session.removeAttribute("company_id");//기업회원 세션 삭제
- 		 	session.removeAttribute("company_name");//기업회원 세션 삭제
- 		 	session.removeAttribute("company_auth");//기업회원 세션 삭제
- 		 	session.removeAttribute("company_delyn");//기업회원 세션 삭제
+ 		 	session1.removeAttribute("company_idx");//기업회원 세션 삭제
+ 		 	session1.removeAttribute("company_id");//기업회원 세션 삭제
+ 		 	session1.removeAttribute("company_name");//기업회원 세션 삭제
+ 		 	session1.removeAttribute("company_auth");//기업회원 세션 삭제
+ 		 	session1.removeAttribute("company_delyn");//기업회원 세션 삭제
 
 			session.setAttribute("member_idx", memberVo.getMember_idx());//회원등급 추가
 			session.setAttribute("member_id",memberVo.getMember_id());//회원아이디 추가
