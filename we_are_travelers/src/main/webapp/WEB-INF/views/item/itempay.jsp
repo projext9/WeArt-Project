@@ -16,7 +16,6 @@
 	 		
 	 		function fn_callpayapi() { //결제창 호출
 	 			var fm = document.frm;
-	 			alert("결제창 호출");
 	 			fm.action = "itempayapi.do";
 	 			fm.method = "post";
 	 			fm.submit();

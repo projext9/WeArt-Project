@@ -35,10 +35,14 @@
 									alert("결제 내역 검증 실패. 관리자에게 문의하세요.");
 								}
 							},
-							error: function(error){ alert("에러!"); }
+							error: function(error){ 
+								alert("에러!");
+								location.href="${pageContext.request.contextPath}/itemcart.do";
+								}
 						})
 					} else {
 						alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+						location.href="${pageContext.request.contextPath}/itemcart.do";
 					}
 				});
 			});
