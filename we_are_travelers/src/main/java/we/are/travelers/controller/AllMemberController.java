@@ -56,10 +56,16 @@ public class AllMemberController {
     	int msg = 0;
     	    	
     	if(memberVo != null || companyVo != null) {
+			HttpSession session = request.getSession();
+			HttpSession session1 = request.getSession();
     		
     	 if(memberVo != null) {	
-			HttpSession session = request.getSession();
-			session.invalidate();
+ 		 	session.removeAttribute("company_idx");//기업회원 세션 삭제
+ 		 	session.removeAttribute("company_id");//기업회원 세션 삭제
+ 		 	session.removeAttribute("company_name");//기업회원 세션 삭제
+ 		 	session.removeAttribute("company_auth");//기업회원 세션 삭제
+ 		 	session.removeAttribute("company_delyn");//기업회원 세션 삭제
+
 			session.setAttribute("member_idx", memberVo.getMember_idx());//회원등급 추가
 			session.setAttribute("member_id",memberVo.getMember_id());//회원아이디 추가
 			session.setAttribute("member_nick", memberVo.getMember_nick());//회원닉네임
@@ -72,13 +78,17 @@ public class AllMemberController {
 		 }
 		   
     	 }else {
-		    	 HttpSession session1 = request.getSession();
-		    	 session1.invalidate();
-		    	 session1.setAttribute("company_idx", companyVo.getCompany_idx());//회원등급 추가
-		    	 session1.setAttribute("company_id", companyVo.getCompany_id());//회원등급 추가
-		    	 session1.setAttribute("company_name", companyVo.getCompany_name());//회사이름
-		    	 session1.setAttribute("company_auth", companyVo.getCompany_auth());//회사인증
-		    	 session1.setAttribute("company_delyn", companyVo.getCompany_delyn());//회사인증
+    		 	session.removeAttribute("member_idx");//일반회원 세션 삭제
+    		 	session.removeAttribute("member_id");//일반회원 세션 삭제
+    		 	session.removeAttribute("member_nick");//일반회원 세션 삭제
+    		 	session.removeAttribute("member_grade");//일반회원 세션 삭제
+    		 	session.removeAttribute("member_regCode");//일반회원 세션 삭제
+
+				session1.setAttribute("company_idx", companyVo.getCompany_idx());//회원등급 추가
+				session1.setAttribute("company_id", companyVo.getCompany_id());//회원등급 추가
+				session1.setAttribute("company_name", companyVo.getCompany_name());//회사이름
+				session1.setAttribute("company_auth", companyVo.getCompany_auth());//회사인증
+				session1.setAttribute("company_delyn", companyVo.getCompany_delyn());//회사인증
 		    msg = 0;
 		    
 		if(msg==0) {
