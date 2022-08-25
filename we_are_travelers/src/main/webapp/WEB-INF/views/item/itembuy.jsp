@@ -13,8 +13,8 @@
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
     </head>
 	<body>
-		<section class="item-details section">
-			<div class="container">
+		<section class="item-details section" style="margin-top: 126px;">
+			<div class="container" style="padding-top:200px;">
 				<div class="product-details-info">
 					<div class="single-block">
 						<div class="row">
@@ -31,6 +31,7 @@
 			</div>
 			<br>
 			<div style="text-align: center;"><button type="button" class="btn btn-primary btn-lg"  onClick="location.href='${pageContext.request.contextPath}/payment.do'">구매상품 보러가기</button></div>
+			<div style="height: 300px;"> </div>
 		</section>
 		<%@ include file="../footer.jsp"%>
     </body>

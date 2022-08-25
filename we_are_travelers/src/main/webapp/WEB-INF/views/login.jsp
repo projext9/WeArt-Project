@@ -68,7 +68,7 @@
     
  <div class="social_login">
      <div class="social_logoK">
-     <a href="https://kauth.kakao.com/oauth/authorize?client_id=8a2ee7f6ccee51f630888d04e48e6d7b&redirect_uri=http://localhost:8080${pageContext.request.contextPath}/kakaoLogin.do&response_type=code">
+     <a href="https://kauth.kakao.com/oauth/authorize?client_id=8a2ee7f6ccee51f630888d04e48e6d7b&redirect_uri=http://192.168.0.170:8080${pageContext.request.contextPath}/kakaoLogin.do&response_type=code">
     <img src="${pageContext.request.contextPath}/resources/images/kakao_login.png" width="200" height="50" alt="카카오 로그인">
     </a>
     </div>

@@ -32,7 +32,7 @@
 				location.href="${pageContext.request.contextPath}/logout.do";
 	 		}
 			function fn_logout_kakao() { //로그아웃
-				location.href="https://kauth.kakao.com/oauth/logout?client_id=bd0af17c48ca11ec547a39e63e172346&logout_redirect_uri=http://localhost:8080/travelers/login.do";
+				location.href="https://kauth.kakao.com/oauth/logout?client_id=bd0af17c48ca11ec547a39e63e172346&logout_redirect_uri=http://192.168.0.170:8080/travelers/login.do";
 	 		}
 			function fn_naver_logout() { //로그아웃
 				location.href="${pageContext.request.contextPath}/naverLogout.do";

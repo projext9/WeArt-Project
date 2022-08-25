@@ -17,9 +17,9 @@
 				<tr style = "text-align:center;">
 					<th>주문번호</th>
 					<th>상품이름</th>
-					<th>갯수</th>
-					<th>주문금액</th>
-					<th>받는이</th>
+					<th style="width:50px;">갯수</th>
+					<th style="width:80px;">주문금액</th>
+					<th style="width:65px;">받는이</th>
 					<th>주소</th>
 					<th>폰번호</th>
 					<th>주문상태</th>
