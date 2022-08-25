@@ -466,7 +466,7 @@ public class AllMemberController {
 	@RequestMapping("/find_pwd.do")
 	public String find_pwd() {
 		
-		return "find/find_com_pwd";
+		return "find/find_pwd";
 	}
 	
 	@RequestMapping("/result_pwd.do")
