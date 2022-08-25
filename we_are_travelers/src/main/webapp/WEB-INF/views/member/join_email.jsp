@@ -158,7 +158,7 @@
 <body>
 <h1 style="text-align:center;">We Are Travelers!</h1>
 <main class="join_cont_email">
-<form class="join_form" name="joinForm" action="${pageContext.request.contextPath}joinNext2.do" method="post">
+<form class="join_form" name="joinForm" action="${pageContext.request.contextPath}/joinNext2.do" method="post">
     <br>
     <div class="multi_box1">
     <progress value="40" max="100"></progress>
