@@ -163,6 +163,10 @@
 	    function bottom_show() {
 			$("#projext9_div2").slideDown("slow");
 	    }
+	    
+	    $(document).ready(function() {
+	    	$("#myModal").modal("show");
+	    });
 
 	    </script>
 	</head>
@@ -508,6 +512,45 @@
 
 		<div class="bottom_up" onClick="bottom_hide();" style="background-image:url(${pageContext.request.contextPath}/resources/img/icon/bottom-hide.png); background-size:100% 100%; display: flex;"></div>
 		<div class="bottom_down" onClick="bottom_show();" style="background-image:url(${pageContext.request.contextPath}/resources/img/icon/bottom-show.png); background-size:100% 100%; display: flex;"></div>
+		
+		<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">공지사항</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+본 사이트는 자바 스프링을 활용한 비상업목적(개발연습)의 팀 프로젝트로,
+<br>
+ 사용된 컨텐츠의 저작권은 원저작권자에게 있으며, 원저작권자 요청시 삭제하겠습니다.
+<br>
+Team. We-Art
+<br>
+테스트 사용자 ID
+<br>
+test2@test.com   /   암호 : test2
+<br>
+test3@test.com   /   암호 : test3
+<br>
+테스트 판매자 ID
+<br>
+company2@company.com   /   암호 : company2
+<br>
+company3@company.com   /   암호 : company3
+<br>
+관리자 ID
+<br>
+admin@admin.com   /   암호 : admin
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+		
         <%@ include file="footer.jsp"%>
     </body>
 </html>
