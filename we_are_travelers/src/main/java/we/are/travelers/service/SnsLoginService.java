@@ -148,7 +148,7 @@ public class SnsLoginService {
 			conn.setDoOutput(true);
 			// POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
             
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(),"UTF-8"));
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code"); 
 			sb.append("&client_id=8a2ee7f6ccee51f630888d04e48e6d7b"); //본인이 발급받은 key
